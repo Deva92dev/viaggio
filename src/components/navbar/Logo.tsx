@@ -3,8 +3,26 @@ import Link from "next/link";
 
 const Logo = () => {
   return (
-    <Link href="/" className="mx-2">
-      <Image src="/Logo.png" alt="Logo" width={30} height={30} />
+    <Link
+      href="/"
+      className="mx-2 flex items-center gap-2 group"
+      aria-label="Homepage"
+      style={{ width: 140, minWidth: 140, height: 40 }} // fixed width & height to prevent shift
+    >
+      <div className="relative w-10 h-10 flex-shrink-0">
+        <Image
+          src="/Logo.png"
+          alt="Viaggio Logo"
+          width={40}
+          height={40}
+          className="transition-transform duration-300 group-hover:scale-110"
+          priority
+          sizes="40px"
+        />
+      </div>
+      <span className="hidden md:inline-block font-bold text-lg gradient-text tracking-tight select-none">
+        Viaggio
+      </span>
     </Link>
   );
 };

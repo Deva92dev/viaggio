@@ -9,14 +9,18 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { LucideAlignLeft } from "lucide-react";
+import { LucideAlignLeft, LogIn, UserPlus, LogOut } from "lucide-react";
 import UserIcon from "./UserIcon";
 import { SignedIn, SignedOut, SignInButton, useUser } from "@clerk/nextjs";
-import { publicNavLinks } from "@/utils/links";
+import { navLinks, publicNavLinks } from "@/utils/links";
 import Link from "next/link";
 import SignOutLink from "./SignOutLink";
 
-const DropDown = () => {
+type DropDownProps = {
+  hidePublicNavLinks?: boolean;
+};
+
+const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const user = useUser();
   const profileImage = user.user?.imageUrl || null;
@@ -24,62 +28,104 @@ const DropDown = () => {
   const closeDropdown = () => setIsOpen(false);
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="outline"
-          className="flex gap-4 max-w-[100px]"
+          className="dropdown-trigger hover:bg-[hsl(var(--primary))/0.1] transition-colors duration-150 cursor-pointer"
           aria-label="User Options"
         >
-          <LucideAlignLeft className="w-6 h-6" />
-          <UserIcon profileImage={profileImage} />
+          <LucideAlignLeft className="w-5 h-5 text-[hsl(var(--primary))] flex-shrink-0" />
+          <span className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+            <UserIcon profileImage={profileImage} />
+          </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-48 z-[60] bg-gray-400"
-        align="start"
-        sideOffset={10}
+        side="bottom"
+        align="end"
+        sideOffset={8}
+        alignOffset={0}
+        className="w-52 bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-lg rounded-lg z-50"
+        avoidCollisions={true}
+        collisionPadding={8}
       >
         <SignedOut>
-          <DropdownMenuItem onClick={closeDropdown}>
+          <DropdownMenuItem
+            onClick={closeDropdown}
+            className="hover:bg-[hsl(var(--primary))/0.1] cursor-pointer"
+          >
             <SignInButton mode="modal">
-              <button className="w-full text-left">Login</button>
+              <button className="w-full text-left text-[hsl(var(--primary))] font-medium flex items-center gap-2 cursor-pointer">
+                <LogIn className="w-4 h-4" />
+                <span>Login</span>
+              </button>
             </SignInButton>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={closeDropdown}>
+          <DropdownMenuItem
+            onClick={closeDropdown}
+            className="hover:bg-[hsl(var(--primary))/0.1] cursor-pointer"
+          >
             <SignInButton mode="modal">
-              <button className="w-full text-left">Register</button>
+              <button className="w-full text-left text-[hsl(var(--primary))] font-medium flex items-center gap-2 cursor-pointer">
+                <UserPlus className="w-4 h-4" />
+                <span>Register</span>
+              </button>
             </SignInButton>
           </DropdownMenuItem>
+
           <DropdownMenuSeparator />
-          <div className="py-2">
-            {publicNavLinks.map((link) => {
-              return (
-                <Link href={link.href} key={link.label} onClick={closeDropdown}>
-                  <DropdownMenuItem className="cursor-pointer">
-                    {link.label}
-                  </DropdownMenuItem>
-                </Link>
-              );
-            })}
-          </div>
+
+          {publicNavLinks.map((link) => (
+            <DropdownMenuItem
+              key={link.href}
+              className="cursor-pointer hover:bg-[hsl(var(--accent))/0.1] rounded-md"
+              onClick={closeDropdown}
+            >
+              <Link
+                href={link.href}
+                className="w-full flex items-center gap-2 text-[hsl(var(--foreground))]"
+              >
+                <span>{link.label}</span>
+              </Link>
+            </DropdownMenuItem>
+          ))}
         </SignedOut>
+
         <SignedIn>
-          <div className="py-2">
-            {publicNavLinks.map((link) => {
-              return (
-                <Link href={link.href} key={link.label} onClick={closeDropdown}>
-                  <DropdownMenuItem className="cursor-pointer">
-                    {link.label}
-                  </DropdownMenuItem>
+          {navLinks.map((link) => {
+            if (
+              hidePublicNavLinks &&
+              publicNavLinks.some((pl) => pl.href === link.href)
+            ) {
+              return null;
+            }
+            return (
+              <DropdownMenuItem
+                key={link.href}
+                className="cursor-pointer hover:bg-[hsl(var(--accent))/0.1] rounded-md"
+                onClick={closeDropdown}
+              >
+                <Link
+                  href={link.href}
+                  className="w-full flex items-center gap-2 text-[hsl(var(--foreground))]"
+                >
+                  <span>{link.label}</span>
                 </Link>
-              );
-            })}
-          </div>
+              </DropdownMenuItem>
+            );
+          })}
+
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={closeDropdown}>
-            <SignOutLink />
+
+          <DropdownMenuItem
+            onClick={closeDropdown}
+            className="hover:bg-[hsl(var(--destructive))/0.1] cursor-pointer"
+          >
+            <div className="w-full flex items-center gap-2 text-[hsl(var(--destructive))]">
+              <LogOut className="w-4 h-4" />
+              <SignOutLink />
+            </div>
           </DropdownMenuItem>
         </SignedIn>
       </DropdownMenuContent>

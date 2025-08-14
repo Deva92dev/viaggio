@@ -1,57 +1,60 @@
-import { publicNavLinks } from "@/utils/links";
-import Logo from "../navbar/Logo";
 import Link from "next/link";
+import Logo from "../navbar/Logo";
 import DarkMode from "./DarkMode";
 import DropDown from "./DropDown";
-import { Suspense } from "react";
+import ScrollShadow from "./ScrollShadow";
+import { publicNavLinks } from "@/utils/links";
 
-const Navbar = () => {
+export default function Navbar() {
   return (
-    <nav className="w-full bg-gradient-to-r from-[#eef4ff] to-[#e0ebff] dark:bg-[#0f2942] z-10 relative shadow-sm">
-      {/* Decorative line at the bottom */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#4682b440] to-transparent"></div>
+    <nav
+      className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-[hsl(var(--background))] to-[hsl(var(--background))] shadow-sm transition-shadow"
+      style={{ contain: "layout style" }}
+    >
+      <ScrollShadow />
       <div className="container mx-auto px-4 py-4 flex justify-center items-center">
-        {/* Mobile devices */}
-        <div className="flex flex-row w-full justify-between items-center md:hidden">
-          <Logo />
-          <Suspense fallback={<div className="h-10 w-10"></div>}>
+        {/* Mobile Layout */}
+        <div className="flex w-full justify-between items-center lg:hidden">
+          <div className="flex-shrink-0">
+            <Logo />
+          </div>
+          <div className="flex items-center gap-3 flex-shrink-0">
             <DarkMode />
-          </Suspense>
-          <Suspense fallback={<div className="h-10 w-10"></div>}>
-            <DropDown />
-          </Suspense>
+            <DropDown hidePublicNavLinks={false} />
+          </div>
         </div>
-        {/* Big Screen */}
-        <div className="hidden md:flex w-full items-center justify-between rounded-full px-6 py-3 bg-white/60 dark:bg-[#1a365d]/40 border border-[#4682b420] dark:border-[#87ceeb20]">
-          <Logo />
-
-          <div className="flex items-center space-x-8">
+        {/* Desktop Layout */}
+        <div className="hidden lg:flex w-full items-center justify-between rounded-full px-6 py-3 bg-white/70 dark:bg-[hsl(var(--background))]/80 border border-[hsl(var(--border))] backdrop-blur-md">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Logo />
+          </div>
+          {/* Navigation Links */}
+          <div className="flex items-center space-x-7">
             {publicNavLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-[#1a365d] dark:text-white hover:text-[#4682b4] dark:hover:text-[#87ceeb] font-medium transition-colors relative pb-1 border-b-2 border-transparent hover:border-[#4682b4] dark:hover:border-[#87ceeb]"
+                className="relative font-medium text-[hsl(var(--primary))] dark:text-white px-1 py-2
+                           transition-colors duration-300 hover:text-[hsl(var(--accent))]
+                           after:content-[''] after:absolute after:left-0 after:-bottom-[2px]
+                           after:h-[3px] after:w-0 hover:after:w-full
+                           after:bg-[hsl(var(--accent))] after:rounded-full after:transition-all after:duration-300"
               >
                 {link.label}
               </Link>
             ))}
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <Link
-              href="/booking"
-              className="px-5 py-2 bg-gradient-to-r from-[#4682b4] to-[#87ceeb] text-white rounded-full"
-            >
+            <Link href="/bookings" className="btn-accent ml-4">
               Book Now
             </Link>
-            <Suspense fallback={<div className="h-10 w-10"></div>}>
-              <DarkMode />
-            </Suspense>
+          </div>
+          {/* Utilities */}
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <DarkMode />
+            <DropDown hidePublicNavLinks />
           </div>
         </div>
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}

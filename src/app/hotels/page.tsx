@@ -1,7 +1,7 @@
 import DestinationCard from "@/components/destinations/DestinationCard";
 import DestinationImage from "@/components/destinations/DestinationImage";
-import LoadingContainer from "@/components/global/LoadingContainer";
 import PaginationWrapper from "@/components/global/PaginationWrapper";
+import { PopularSkeleton } from "@/components/global/PopularSkeleton";
 import HotelCard from "@/components/hotels/HotelCard";
 import { getAllHotels } from "@/utils/actions";
 import { redirect } from "next/navigation";
@@ -11,7 +11,7 @@ type Props = {
   searchParams: { page?: string };
 };
 
-// fix favorite functionality
+// fix spacing on smaller screens because on small screens there is unusual space
 const HotelsPage = async ({ searchParams }: Props) => {
   const params = await searchParams;
   const pageParams = params.page || "1";
@@ -23,11 +23,11 @@ const HotelsPage = async ({ searchParams }: Props) => {
 
   return (
     <main className="">
-      <DestinationImage />
-      <Suspense fallback={<LoadingContainer />}>
+      <DestinationImage pageType="hotels" />
+      <Suspense fallback={<PopularSkeleton />}>
         <DestinationCard type="hotel" />
       </Suspense>
-      <Suspense fallback={<LoadingContainer />}>
+      <Suspense fallback={<PopularSkeleton />}>
         <HotelCard hotels={results} key={`hotels-${meta.page}`} />
       </Suspense>
       <PaginationWrapper

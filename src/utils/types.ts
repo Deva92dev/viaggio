@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type InferSelectModel } from "drizzle-orm";
 import { hotels, tourPlaces } from "@/db";
 
@@ -23,4 +24,50 @@ export type PaginationType = {
   totalPages: number;
   hasPrevPage: boolean;
   hasNextPage: boolean;
+};
+
+export type ReviewItemType = "destination" | "hotel";
+
+export type CreateReviewType = {
+  bookingId: string;
+  author: string;
+  authorImageUrl: string;
+  rating: number;
+  comment: string;
+  visitDate?: string;
+};
+
+export type UpdateReviewType = {
+  rating?: number;
+  comment?: string;
+  visitDate?: string;
+};
+
+export type BookingEligibilityType = {
+  eligible: boolean;
+  reason?: string;
+  booking?: any;
+  daysUntilEligible?: number;
+};
+
+export type BookingItemType = "destination" | "hotel";
+
+export type CreateBookingData = {
+  itemId: string;
+  itemType: BookingItemType;
+  checkInDate: string;
+  checkOutDate: string;
+  numberOfGuests: number;
+  totalAmount: number;
+  paymentId?: string;
+  specialRequests?: string;
+  roomType?: string;
+  numberOfRooms?: number;
+};
+
+export type UpdateBookingData = {
+  bookingStatus?: "pending" | "confirmed" | "cancelled" | "completed";
+  paymentStatus?: "pending" | "failed" | "refunded" | "completed";
+  paymentId?: string;
+  specialRequest?: string;
 };

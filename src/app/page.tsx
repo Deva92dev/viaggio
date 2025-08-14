@@ -1,18 +1,30 @@
 import LoadingContainer from "@/components/global/LoadingContainer";
-import Blog from "@/components/home/Blog";
+import { PopularSkeleton } from "@/components/global/PopularSkeleton";
+import CallToAction from "@/components/home/CallToAction";
+import Features from "@/components/home/Features";
 import Hero from "@/components/home/Hero";
+import InstagramGallery from "@/components/home/InstagramGallery";
 import Popular from "@/components/home/Popular";
+import Testimonials from "@/components/home/Testimonials";
+import TrustIndicators from "@/components/home/TrustIndicators";
 import { Suspense } from "react";
 
-// upon navigating down cool animation using framer at every place of the website using inspirations from colorlib, after finishing the project
 export default function Home() {
   return (
     <>
       <Hero />
-      <Suspense fallback={<LoadingContainer />}>
+      <Suspense fallback={<PopularSkeleton />}>
         <Popular />
       </Suspense>
-      <Blog />
+      <Features />
+      <Suspense fallback={<LoadingContainer />}>
+        <Testimonials />
+      </Suspense>
+      <Suspense fallback={<LoadingContainer />}>
+        <InstagramGallery />
+      </Suspense>
+      <CallToAction />
+      <TrustIndicators />
     </>
   );
 }

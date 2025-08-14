@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
-import FavoriteToggleButton from "./FavoriteToggleButton";
 
 type DestinationsGridProps = {
   destinations: DestinationsType[];
@@ -49,12 +48,11 @@ const DestinationsGrid = ({ destinations }: DestinationsGridProps) => {
                   </div>
 
                   {/* text content */}
-                  <div className="p-6">
+                  <div className="p-6 relative">
                     <div className="flex flex-row justify-between">
                       <h2 className="text-xl font-bold mb-2 text-gray-800">
                         {name}
                       </h2>
-                      <FavoriteToggleButton destinationId={destinationsId} />
                     </div>
                     <div className="flex flex-row justify-between">
                       <p className="text-white text-sm font-medium">
