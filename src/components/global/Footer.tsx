@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Link from "next/link";
 import { publicNavLinks } from "@/utils/links";
 import SmartLink from "./SmartLink";
@@ -15,6 +16,11 @@ import {
   Shield,
   Award,
   Users,
+  FileText,
+  Scale,
+  RefreshCw,
+  CreditCard,
+  BookOpen,
 } from "lucide-react";
 
 const Footer = () => {
@@ -43,12 +49,13 @@ const Footer = () => {
     },
   ];
 
-  const popularDestinations = [
-    "Santorini, Greece",
-    "Kashmir, India",
-    "Cappadocia, Turkey",
-    "London, UK",
-    "New York, USA",
+  // UPDATED: Added policy pages
+  const policyLinks = [
+    { href: "/about", label: "About Us", icon: Users },
+    { href: "/privacy-policy", label: "Privacy Policy", icon: Shield },
+    { href: "/booking-policy", label: "Booking Policy", icon: FileText },
+    { href: "/terms-conditions", label: "Terms & Conditions", icon: Scale },
+    { href: "/cancellation-refunds", label: "Refund Policy", icon: RefreshCw },
   ];
 
   const contactInfo = [
@@ -66,6 +73,15 @@ const Footer = () => {
     { icon: Award, text: "Award Winning" },
     { icon: Users, text: "10K+ Travelers" },
     { icon: Globe, text: "500+ Destinations" },
+  ];
+
+  // UPDATED: Moved popular destinations to inline format
+  const popularDestinations = [
+    "Santorini",
+    "Kashmir",
+    "Cappadocia",
+    "London",
+    "New York",
   ];
 
   return (
@@ -99,7 +115,7 @@ const Footer = () => {
       </div>
 
       <div className="relative z-20 container mx-auto px-6 md:px-12 pt-32 pb-8">
-        {/* Main footer content */}
+        {/* UPDATED: Main footer content with new grid layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Enhanced Logo and About Section */}
           <div className="col-span-1 md:col-span-2 lg:col-span-1 space-y-6">
@@ -108,7 +124,7 @@ const Footer = () => {
                 <Globe className="text-white" size={24} />
               </div>
               <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-                Viaggio
+                Viagio
               </h3>
             </div>
 
@@ -150,6 +166,26 @@ const Footer = () => {
                 </div>
               ))}
             </div>
+
+            {/* UPDATED: Inline popular destinations */}
+            <div className="pt-4">
+              <h5 className="text-sm font-semibold text-white/90 mb-3">
+                Popular Destinations:
+              </h5>
+              <div className="flex flex-wrap gap-2">
+                {popularDestinations.map((destination, index) => (
+                  <Link
+                    key={destination}
+                    href={`/destinations?search=${encodeURIComponent(
+                      destination
+                    )}`}
+                    className="text-xs px-3 py-1 bg-white/10 hover:bg-[hsl(var(--accent))]/20 text-white/70 hover:text-[hsl(var(--accent))] rounded-full border border-white/20 hover:border-[hsl(var(--accent))]/30 transition-all duration-300"
+                  >
+                    {destination}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Enhanced Quick Links */}
@@ -180,27 +216,30 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Enhanced Popular Destinations */}
+          {/* NEW: Legal & Policies Section */}
           <div className="space-y-6">
             <h4 className="text-xl font-bold text-white relative inline-block">
-              Popular Destinations
+              Legal & Policies
               <span className="absolute -bottom-2 left-0 w-16 h-1 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-full"></span>
             </h4>
             <ul className="space-y-3">
-              {popularDestinations.map((destination, index) => (
+              {policyLinks.map((link, index) => (
                 <li
-                  key={destination}
+                  key={link.href}
                   className="animate-fade-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <Link
-                    href={`/destinations?search=${encodeURIComponent(
-                      destination.split(",")[0]
-                    )}`}
+                    href={link.href}
                     className="group text-white/80 hover:text-[hsl(var(--accent))] transition-all duration-300 flex items-center gap-3 hover:translate-x-1"
                   >
-                    <div className="w-2 h-2 rounded-full bg-[hsl(var(--accent))] group-hover:scale-125 transition-transform duration-300"></div>
-                    {destination}
+                    <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[hsl(var(--accent))]/20 group-hover:border-[hsl(var(--accent))]/30 transition-all duration-300">
+                      <link.icon
+                        size={14}
+                        className="text-[hsl(var(--accent))]"
+                      />
+                    </div>
+                    <span>{link.label}</span>
                   </Link>
                 </li>
               ))}
@@ -290,31 +329,31 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Enhanced Copyright Section */}
+        {/* UPDATED: Enhanced Copyright Section with cleaner policy links */}
         <div className="border-t border-white/20 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex flex-col sm:flex-row items-center gap-6 text-white/70">
               <p className="text-center sm:text-left">
-                © {currentYear} Viaggio. All rights reserved.
+                © {currentYear} Viagio. All rights reserved.
               </p>
               <div className="flex items-center gap-6 text-sm">
                 <Link
-                  href="/privacy"
+                  href="/privacy-policy"
                   className="hover:text-[hsl(var(--accent))] transition-colors duration-300"
                 >
-                  Privacy Policy
+                  Privacy
                 </Link>
                 <Link
-                  href="/terms"
+                  href="/terms-conditions"
                   className="hover:text-[hsl(var(--accent))] transition-colors duration-300"
                 >
-                  Terms of Service
+                  Terms
                 </Link>
                 <Link
-                  href="/cookies"
+                  href="/refund-policy"
                   className="hover:text-[hsl(var(--accent))] transition-colors duration-300"
                 >
-                  Cookie Policy
+                  Refunds
                 </Link>
               </div>
             </div>
