@@ -8,17 +8,16 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 type Props = {
-  searchParams: Promise<{ page?: string }> | { page?: string };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 const DestinationsPage = async ({ searchParams }: Props) => {
-  const params =
-    searchParams instanceof Promise ? await searchParams : searchParams;
-  const pageParams = params?.page || "1";
+  const resolvedSearchParams = await searchParams;
+  const pageParams = (resolvedSearchParams.page as string) || "1";
   const { results, total, meta } = await getAllDestinations(pageParams);
 
-  const currentPage = parseInt(pageParams, 10);
-  if (meta.page !== currentPage) {
+  const requestedPage = parseInt(pageParams, 10);
+  if (meta.page !== requestedPage) {
     redirect(`/destinations?page=${meta.page}`);
   }
 
