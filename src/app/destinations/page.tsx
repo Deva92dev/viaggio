@@ -8,9 +8,9 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 type Props = {
-  searchParams: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 };
-// fix spacing on smaller screens because on small screens there is unusual space
+
 const DestinationsPage = async ({ searchParams }: Props) => {
   const params = await searchParams;
   const pageParams = params.page || "1";
