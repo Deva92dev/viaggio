@@ -46,6 +46,7 @@ export type UpdateReviewType = {
 export type BookingEligibilityType = {
   eligible: boolean;
   reason?: string;
+  requiresAuth?: boolean;
   booking?: any;
   daysUntilEligible?: number;
 };

@@ -36,6 +36,7 @@ type Props = {
   }>;
 };
 
+// fix reviews problem, so that person who is not logged in can see all most all of pages so fix middleware and any code related to it.
 const DestinationDetailsPage = async ({ params }: Props) => {
   const { destinationsId } = await params;
   const destination = await getSingleDestination(destinationsId);

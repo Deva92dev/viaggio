@@ -9,6 +9,7 @@ import Testimonials from "@/components/home/Testimonials";
 import TrustIndicators from "@/components/home/TrustIndicators";
 import { Suspense } from "react";
 
+// check on npm run build, then npm run start, check extensively, all google measures then deploy on vercel
 export default function Home() {
   return (
     <>

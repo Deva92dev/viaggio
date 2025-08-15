@@ -1028,16 +1028,30 @@ export const checkUserReviewEligibility = async (
   itemId: string,
   itemType: ReviewItemType
 ): Promise<BookingEligibilityType> => {
-  const user = await getAuthUser();
-  const userId = user.id;
-  if (!userId) {
+  try {
+    const user = await getAuthUser().catch(() => null);
+    if (!user || !user.id) {
+      return {
+        eligible: false,
+        reason: "Please sign in to leave a review.",
+        requiresAuth: true,
+      };
+    }
+
+    const userId = user.id;
+    const result = await checkReviewEligibility(userId, itemId, itemType);
+
+    return {
+      ...result,
+      reason: result.reason || "Unable to determine eligibility",
+    };
+  } catch (error) {
+    console.error("Error checking review eligibility:", error);
     return {
       eligible: false,
-      reason: "Please sign in to check review eligibility.",
+      reason: "Unable to check review eligibility at this time.",
     };
   }
-
-  return checkReviewEligibility(userId, itemId, itemType);
 };
 
 // GET USER'S ELIGIBLE BOOKINGS FOR REVIEW
@@ -1228,11 +1242,15 @@ export const getReviews = async (
 
 export const getUserReviews = async () => {
   try {
-    const user = await getAuthUser();
-    const userId = user.id;
-    if (!userId) {
-      return { error: "Unauthorized. Please sign in to see your review." };
+    const user = await getAuthUser().catch(() => null);
+    if (!user || !user.id) {
+      return {
+        success: true,
+        reviews: [],
+        message: "Sign in to see your reviews",
+      };
     }
+    const userId = user.id;
 
     const userReviews = await db.query.reviews.findMany({
       where: eq(reviews.clerkId, userId),
