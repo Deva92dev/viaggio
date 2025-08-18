@@ -42,7 +42,10 @@ const ShareButton = () => {
 
   return (
     <div className="relative group">
-      <Button className="bg-white/20 backdrop-blur-xl hover:bg-white/30 rounded-full p-3 cursor-pointer border border-white/30 transition-all duration-300 hover:scale-110">
+      <Button
+        className="bg-white/20 backdrop-blur-xl hover:bg-white/30 rounded-full p-3 cursor-pointer border border-white/30 transition-all duration-300 hover:scale-110"
+        aria-label="Share Button"
+      >
         <Share2 size={20} className="text-white" />
       </Button>
 
@@ -52,6 +55,7 @@ const ShareButton = () => {
           <button
             onClick={handleCopyLink}
             className="w-full flex items-center gap-3 px-4 py-3 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--primary))]/10 rounded-xl transition-colors duration-200"
+            aria-label="Share Button for various sites"
           >
             {copied ? (
               <Check size={16} className="text-green-500" />
@@ -66,6 +70,7 @@ const ShareButton = () => {
           <button
             onClick={() => handleShare("facebook")}
             className="w-full flex items-center gap-3 px-4 py-3 text-[hsl(var(--foreground))] hover:bg-blue-500/10 rounded-xl transition-colors duration-200"
+            aria-label="Share Button for facebook"
           >
             <Facebook size={16} className="text-blue-600" />
             <span className="text-sm font-medium">Facebook</span>
@@ -74,6 +79,7 @@ const ShareButton = () => {
           <button
             onClick={() => handleShare("twitter")}
             className="w-full flex items-center gap-3 px-4 py-3 text-[hsl(var(--foreground))] hover:bg-blue-400/10 rounded-xl transition-colors duration-200"
+            aria-label="Share Button for instagram"
           >
             <Twitter size={16} className="text-blue-400" />
             <span className="text-sm font-medium">Twitter</span>

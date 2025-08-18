@@ -98,7 +98,6 @@ export default function ReviewList({
     onError: () => toast.error("Failed to toggle helpful"),
   });
 
-  // Render helpful button based on authentication status
   const renderHelpfulButton = (review: any) => {
     if (!isAuthenticated) {
       return (
@@ -142,7 +141,7 @@ export default function ReviewList({
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 auto-rows-[18rem]">
         {reviews.map((r) => {
           const isMyReview = r.id === myReviewId;
           const isEditing = editingId === r.id;
@@ -150,19 +149,19 @@ export default function ReviewList({
           return (
             <div
               key={r.id}
-              className={`p-4 bg-white rounded-lg shadow-sm border transition duration-200 ease-in-out transform h-fit ${
+              className={`p-4 bg-white rounded-lg shadow-sm border transition duration-200 ease-in-out transform flex flex-col ${
                 isMyReview
                   ? "border-blue-500 hover:border-blue-600 hover:bg-blue-50 hover:shadow-lg hover:-translate-y-1"
                   : "border-gray-200 hover:border-gray-300 hover:shadow-md"
               }`}
             >
               {!isEditing ? (
-                <div className="space-y-3">
+                <div className="flex flex-col h-full">
                   {/* First Row: Author Image, Name, Rating, and Actions */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between mb-3 flex-shrink-0">
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
                       {/* Author Profile Image with CircleUser fallback */}
-                      <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-gray-200 bg-gray-100">
+                      <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-gray-200 bg-gray-100 flex-shrink-0">
                         {r.authorImageUrl ? (
                           <Image
                             src={r.authorImageUrl}
@@ -243,15 +242,17 @@ export default function ReviewList({
                     )}
                   </div>
 
-                  {/* Second Row: Comment */}
-                  <div className="pl-13">
-                    <p className="text-gray-700 leading-relaxed break-words">
-                      {r.comment || "No comment provided."}
-                    </p>
+                  {/* Second Row: Comment - This section will take remaining space */}
+                  <div className="flex-1 overflow-hidden mb-3">
+                    <div className="h-full overflow-y-auto pr-2">
+                      <p className="text-gray-700 leading-relaxed break-words">
+                        {r.comment || "No comment provided."}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Third Row: Helpful Button and Verified Badge */}
-                  <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+                  {/* Third Row: Helpful Button and Verified Badge - Fixed at bottom */}
+                  <div className="flex items-center justify-between pt-2 border-t border-gray-100 flex-shrink-0">
                     {renderHelpfulButton(r)}
 
                     {/* Verified Badge */}
@@ -265,10 +266,12 @@ export default function ReviewList({
                   </div>
                 </div>
               ) : (
-                <div className="space-y-4">
-                  <h3 className="font-semibold text-lg">Edit Review</h3>
+                <div className="space-y-4 h-full flex flex-col">
+                  <h3 className="font-semibold text-lg flex-shrink-0">
+                    Edit Review
+                  </h3>
                   {/* Rating Selection */}
-                  <div>
+                  <div className="flex-shrink-0">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Rating
                     </label>
@@ -290,12 +293,12 @@ export default function ReviewList({
                     </select>
                   </div>
                   {/* Comment Section */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="flex-1 flex flex-col min-h-0">
+                    <label className="block text-sm font-medium text-gray-700 mb-2 flex-shrink-0">
                       Your Review
                     </label>
                     <Textarea
-                      className="w-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex-1 resize-none"
                       value={formState.comment}
                       onChange={(e) =>
                         setFormState((prev) => ({
@@ -307,14 +310,13 @@ export default function ReviewList({
                       required
                       minLength={10}
                       maxLength={1500}
-                      rows={4}
                     />
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-gray-500 mt-1 flex-shrink-0">
                       {formState.comment.length}/1500 characters
                     </p>
                   </div>
                   {/* Action Buttons */}
-                  <div className="flex gap-2 pt-2">
+                  <div className="flex gap-2 pt-2 flex-shrink-0">
                     <Button
                       size="sm"
                       className="cursor-pointer hover:bg-blue-500"
@@ -347,21 +349,6 @@ export default function ReviewList({
           );
         })}
       </div>
-
-      {/* Show additional authentication prompt if no reviews and user not authenticated */}
-      {!isAuthenticated && reviews.length === 0 && (
-        <div className="text-center py-8 bg-gray-50 rounded-lg mt-6">
-          <p className="text-gray-500 text-lg mb-2">No reviews yet.</p>
-          <p className="text-gray-400 text-sm mb-4">
-            Be the first to share your experience!
-          </p>
-          <SignInButton mode="modal">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-              Sign In to Review
-            </button>
-          </SignInButton>
-        </div>
-      )}
     </div>
   );
 }

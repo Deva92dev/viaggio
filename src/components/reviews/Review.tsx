@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   checkUserReviewEligibility,
@@ -11,8 +12,9 @@ import {
   markHelpfulBridge,
   updateReviewBridge,
 } from "./ReviewServerAction";
-import { SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
+import { Suspense } from "react";
+import ReviewListSkeleton from "./ReviewListSkeleton";
 
 type Props = {
   itemId: string;
@@ -25,7 +27,6 @@ export default async function Review({ itemId, itemType }: Props) {
 
   try {
     const reviewsData = await getReviews(itemId, itemType);
-    // Only fetch user-specific data if authenticated
     let eligibility = {
       eligible: false,
       reason: "Please sign in to leave a review.",
@@ -51,8 +52,6 @@ export default async function Review({ itemId, itemType }: Props) {
 
       userReviewsData = userReviewsResult;
     }
-
-    // FIXED: Type assertion for the review find operation
     const myReview = userReviewsData?.reviews?.find(
       (r: any) => r.itemId === itemId && r.itemType === itemType
     ) as any;
@@ -63,29 +62,29 @@ export default async function Review({ itemId, itemType }: Props) {
       <div className="flex flex-col gap-6">
         {/* Review Form Section - Only for authenticated users */}
         <div className="flex-1 space-y-6">
-          {isAuthenticated
-            ? // Authenticated user - show review form if eligible
+          {
+            isAuthenticated && // Authenticated user - show review form if eligible
               eligibility.eligible &&
               !myReview && <ReviewFormCreate eligibility={eligibility} />
-            : // Non-authenticated user - show sign-in prompt
-              hasAnyReviews && (
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <div className="text-center">
-                    <h3 className="text-lg font-semibold text-blue-900 mb-2">
-                      Want to leave a review?
-                    </h3>
-                    <p className="text-blue-700 mb-4">
-                      Sign in to share your experience with other travelers.
-                    </p>
-                    <SignInButton mode="modal">
-                      <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
-                        Sign In to Review
-                      </button>
-                    </SignInButton>
-                  </div>
-                </div>
-              )}
-
+            // : // Non-authenticated user - show sign-in prompt
+            //   hasAnyReviews && (
+            //     <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            //       <div className="text-center">
+            //         <h3 className="text-lg font-semibold text-blue-900 mb-2">
+            //           Want to leave a review?
+            //         </h3>
+            //         <p className="text-blue-700 mb-4">
+            //           Sign in to share your experience with other travelers.
+            //         </p>
+            //         <SignInButton mode="modal">
+            //           <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+            //             Sign In to Review
+            //           </button>
+            //         </SignInButton>
+            //       </div>
+            //     </div>
+            //   )
+          }
           {/* Show message for non-eligible authenticated users */}
           {isAuthenticated && !eligibility.eligible && !myReview && (
             <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
@@ -93,18 +92,18 @@ export default async function Review({ itemId, itemType }: Props) {
             </div>
           )}
         </div>
-
-        {/* FIXED: Reviews List - Removed isAuthenticated prop */}
-        <ReviewList
-          reviews={reviewsData?.reviews || []}
-          myReviewId={myReview?.id}
-          itemId={itemId}
-          itemType={itemType}
-          updateReviewAction={updateReviewBridge}
-          deleteReviewAction={deleteReviewBridge}
-          markHelpfulAction={markHelpfulBridge}
-          isAuthenticated={isAuthenticated}
-        />
+        <Suspense fallback={<ReviewListSkeleton />}>
+          <ReviewList
+            reviews={reviewsData?.reviews || []}
+            myReviewId={myReview?.id}
+            itemId={itemId}
+            itemType={itemType}
+            updateReviewAction={updateReviewBridge}
+            deleteReviewAction={deleteReviewBridge}
+            markHelpfulAction={markHelpfulBridge}
+            isAuthenticated={isAuthenticated}
+          />
+        </Suspense>
       </div>
     );
   } catch (error) {
@@ -121,16 +120,18 @@ export default async function Review({ itemId, itemType }: Props) {
               again later.
             </p>
           </div>
-          <ReviewList
-            reviews={reviewsData?.reviews || []}
-            myReviewId={undefined}
-            itemId={itemId}
-            itemType={itemType}
-            updateReviewAction={updateReviewBridge}
-            deleteReviewAction={deleteReviewBridge}
-            markHelpfulAction={markHelpfulBridge}
-            isAuthenticated={isAuthenticated}
-          />
+          <Suspense fallback={<ReviewListSkeleton />}>
+            <ReviewList
+              reviews={reviewsData?.reviews || []}
+              myReviewId={undefined}
+              itemId={itemId}
+              itemType={itemType}
+              updateReviewAction={updateReviewBridge}
+              deleteReviewAction={deleteReviewBridge}
+              markHelpfulAction={markHelpfulBridge}
+              isAuthenticated={isAuthenticated}
+            />
+          </Suspense>
         </div>
       );
     } catch (fallbackError) {

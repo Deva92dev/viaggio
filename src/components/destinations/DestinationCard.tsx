@@ -47,9 +47,9 @@ const DestinationCard = async ({ type }: Props) => {
           {countries.map((country, index) => (
             <Link
               key={country.country}
-              href={`/destinations?country=${encodeURIComponent(
-                country.country
-              )}`}
+              href={`/${
+                type === "destination" ? "destinations" : "hotels"
+              }?country=${encodeURIComponent(country.country)}`}
               className="group block animate-fade-in hover:no-underline"
               style={{ animationDelay: `${index * 0.1}s` }}
             >

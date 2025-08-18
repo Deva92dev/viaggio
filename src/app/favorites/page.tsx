@@ -1,8 +1,29 @@
+import type { Metadata } from "next";
 import PlacesCard from "@/components/destinations/PlacesCard";
 import SectionTitle from "@/components/global/SectionTitle";
 import HotelCard from "@/components/hotels/HotelCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getFavoriteDestinations, getFavoriteHotels } from "@/utils/actions";
+
+export const metadata: Metadata = {
+  title: "My Favorites - Saved Destinations & Hotels | Viagio",
+  description:
+    "Access your saved destinations and hotels. Keep track of places you love and plan your future travels with Viagio.",
+  keywords: [
+    "favorites",
+    "saved destinations",
+    "saved hotels",
+    "wishlist",
+    "travel planning",
+  ],
+  alternates: {
+    canonical: "/favorites",
+  },
+  robots: {
+    index: false, // Private user page
+    follow: false,
+  },
+};
 
 const FavoritesPage = async () => {
   const [favoritesDestinations, favoritesHotel] = await Promise.all([

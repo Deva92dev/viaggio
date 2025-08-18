@@ -100,7 +100,6 @@ const Footer = () => {
           ></path>
         </svg>
       </div>
-
       {/* Enhanced decorative background elements */}
       <div className="absolute inset-0 overflow-hidden z-0" aria-hidden="true">
         <div className="absolute top-20 right-16 w-80 h-80 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-15 animate-pulse" />
@@ -113,7 +112,6 @@ const Footer = () => {
           style={{ animationDelay: "4s", transform: "translate(-50%, -50%)" }}
         />
       </div>
-
       <div className="relative z-20 container mx-auto px-6 md:px-12 pt-32 pb-8">
         {/* UPDATED: Main footer content with new grid layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -123,17 +121,15 @@ const Footer = () => {
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] flex items-center justify-center mr-4 shadow-lg">
                 <Globe className="text-white" size={24} />
               </div>
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+              <p className="text-2xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
                 Viagio
-              </h3>
+              </p>
             </div>
-
             <p className="text-white/80 leading-relaxed text-base">
               Discover breathtaking destinations around the world with our
               expert-guided adventures and personalized travel experiences that
               create memories for a lifetime.
             </p>
-
             {/* Enhanced social media icons */}
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -152,7 +148,6 @@ const Footer = () => {
                 </Link>
               ))}
             </div>
-
             {/* Trust badges */}
             <div className="grid grid-cols-2 gap-3 pt-4">
               {trustBadges.map((badge, index) => (
@@ -166,12 +161,11 @@ const Footer = () => {
                 </div>
               ))}
             </div>
-
             {/* UPDATED: Inline popular destinations */}
             <div className="pt-4">
-              <h5 className="text-sm font-semibold text-white/90 mb-3">
+              <h3 className="text-sm font-semibold text-white/90 mb-3">
                 Popular Destinations:
-              </h5>
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {popularDestinations.map((destination, index) => (
                   <Link
@@ -187,13 +181,12 @@ const Footer = () => {
               </div>
             </div>
           </div>
-
           {/* Enhanced Quick Links */}
           <div className="space-y-6">
-            <h4 className="text-xl font-bold text-white relative inline-block">
+            <h3 className="text-xl font-bold text-white relative inline-block">
               Quick Links
               <span className="absolute -bottom-2 left-0 w-16 h-1 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-full"></span>
-            </h4>
+            </h3>
             <ul className="space-y-3">
               {publicNavLinks.map((link, index) => (
                 <li
@@ -215,19 +208,19 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
           {/* NEW: Legal & Policies Section */}
           <div className="space-y-6">
-            <h4 className="text-xl font-bold text-white relative inline-block">
+            <h3 className="text-xl font-bold text-white relative inline-block">
               Legal & Policies
               <span className="absolute -bottom-2 left-0 w-16 h-1 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-full"></span>
-            </h4>
+            </h3>
             <ul className="space-y-3">
               {policyLinks.map((link, index) => (
                 <li
                   key={link.href}
                   className="animate-fade-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
+                  aria-label="various policy links"
                 >
                   <Link
                     href={link.href}
@@ -245,13 +238,12 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
           {/* Enhanced Contact Info */}
           <div className="space-y-6">
-            <h4 className="text-xl font-bold text-white relative inline-block">
+            <h3 className="text-xl font-bold text-white relative inline-block">
               Contact Us
               <span className="absolute -bottom-2 left-0 w-16 h-1 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-full"></span>
-            </h4>
+            </h3>
             <ul className="space-y-4">
               {contactInfo.map((item, index) => (
                 <li
@@ -276,13 +268,11 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-
         {/* Enhanced Newsletter Section */}
         <div className="relative mb-12">
           <div className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12">
             {/* Decorative gradient border */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-30 -z-10" />
-
             <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
               <div className="text-center lg:text-left">
                 <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
@@ -298,7 +288,6 @@ const Footer = () => {
                   tips delivered to your inbox
                 </p>
               </div>
-
               <div className="w-full lg:w-auto">
                 <form className="flex flex-col sm:flex-row gap-3 max-w-md lg:max-w-none">
                   <input
@@ -313,7 +302,6 @@ const Footer = () => {
                   >
                     {/* Button shine effect */}
                     <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-
                     <span className="relative z-10">Subscribe</span>
                     <ArrowRight
                       size={16}
@@ -328,7 +316,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
         {/* UPDATED: Enhanced Copyright Section with cleaner policy links */}
         <div className="border-t border-white/20 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -357,18 +344,18 @@ const Footer = () => {
                 </Link>
               </div>
             </div>
-
             <div className="flex items-center gap-3">
               <span className="text-white/70 text-sm">Made with</span>
               <div className="w-6 h-6 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse">
-                <span className="text-white text-xs">♥</span>
+                <span className="text-white text-xs" aria-label="heart button">
+                  ♥
+                </span>
               </div>
               <span className="text-white/70 text-sm">in India</span>
             </div>
           </div>
         </div>
       </div>
-
       {/* Additional floating decorative elements */}
       <div className="absolute bottom-10 right-10 w-20 h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-10 animate-float" />
       <div className="absolute top-1/3 left-8 w-16 h-16 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-15 animate-float-slow" />

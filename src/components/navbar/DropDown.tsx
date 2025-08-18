@@ -73,9 +73,7 @@ const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
               </button>
             </SignInButton>
           </DropdownMenuItem>
-
           <DropdownMenuSeparator />
-
           {publicNavLinks.map((link) => (
             <DropdownMenuItem
               key={link.href}
@@ -91,7 +89,6 @@ const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
             </DropdownMenuItem>
           ))}
         </SignedOut>
-
         <SignedIn>
           {navLinks.map((link) => {
             if (
@@ -115,9 +112,7 @@ const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
               </DropdownMenuItem>
             );
           })}
-
           <DropdownMenuSeparator />
-
           <DropdownMenuItem
             onClick={closeDropdown}
             className="hover:bg-[hsl(var(--destructive))/0.1] cursor-pointer"

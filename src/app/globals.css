@@ -21,12 +21,12 @@
     --secondary: 210 24% 90%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 20% 94%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 14 100% 64%; /* Coral Orange */
-    --accent-foreground: 0 0% 100%;
+    --muted-foreground: 215 16% 44%; /* ✅ FIXED: Darker for better contrast */
+    --accent: 14 100% 64%; /* Coral Orange - BRAND COLOR PRESERVED */
+    --accent-foreground: 14 85% 20%; /* ✅ FIXED: Dark coral instead of white */
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
+    --destructive-foreground: 0 85% 20%; /* ✅ FIXED: Dark red instead of white */
+    --border: 214 32% 85%; /* ✅ FIXED: Better contrast with background */
     --input: 214.3 31.8% 91.4%;
     --ring: 216 74% 37%;
     --radius: 0.5rem;
@@ -53,12 +53,12 @@
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 14 100% 64%;
-    --accent-foreground: 210 40% 98%;
+    --muted-foreground: 215 20% 70%; /* ✅ FIXED: Lighter for dark mode */
+    --accent: 14 100% 64%; /* BRAND COLOR PRESERVED */
+    --accent-foreground: 0 0% 100%; /* ✅ White works in dark mode */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
+    --border: 217.2 32.6% 25%; /* ✅ FIXED: Better dark mode contrast */
     --input: 217.2 32.6% 17.5%;
     --ring: 216 74% 50%;
 
@@ -514,14 +514,14 @@
   /* ===== BUTTON STYLES ===== */
   .btn-blue {
     @apply bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]
-           hover:bg-[hsl(var(--primary))/0.9] hover:text-[hsl(var(--primary-foreground))]
+           hover:bg-[hsl(var(--primary)/0.9)] hover:text-[hsl(var(--primary-foreground))]
            transition-colors duration-200 rounded-[var(--radius)]
            px-5 py-3 min-w-[110px] text-center font-semibold select-none;
   }
 
   .btn-accent {
     @apply bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))]
-           hover:bg-[hsl(var(--accent))/0.9] hover:text-[hsl(var(--accent-foreground))]
+           hover:bg-[hsl(var(--accent)/0.9)] hover:text-[hsl(var(--accent-foreground))]
            transition-colors duration-200 rounded-[var(--radius)]
            px-5 py-3 min-w-[110px] text-center font-semibold select-none;
   }

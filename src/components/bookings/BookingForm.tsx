@@ -225,7 +225,6 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
         {/* Enhanced Payment Summary Card */}
         <Card className="bg-white/90 backdrop-blur-xl border border-white/20 shadow-2xl rounded-2xl overflow-hidden">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl blur opacity-20 -z-10"></div>
-
           <CardHeader className="bg-gradient-to-r from-[hsl(var(--primary))] to-blue-700 text-white p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -233,7 +232,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
                   <CreditCard size={24} />
                   Payment Summary
                 </CardTitle>
-                <p className="text-white/90 mt-1">
+                <p className="text-white/95 tracking-tight text-sm sm:text-base mt-1">
                   Review your booking details
                 </p>
               </div>
@@ -242,7 +241,6 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
               </div>
             </div>
           </CardHeader>
-
           <CardContent className="p-6 space-y-4">
             <div className="grid gap-4">
               <div className="flex justify-between items-center p-3 bg-[hsl(var(--features-bg))] rounded-xl border border-[hsl(var(--border))]">
@@ -327,6 +325,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
           variant="outline"
           onClick={() => setShowPayment(false)}
           className="w-full py-3 bg-white/90 backdrop-blur-xl border border-white/20 hover:bg-white text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl rounded-xl"
+          aria-label="Button for going back to booking details"
         >
           <ArrowLeft size={20} className="mr-2" />
           Back to Booking Details
@@ -409,7 +408,10 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
               setFormData({ ...formData, numberOfGuests: parseInt(value) })
             }
           >
-            <SelectTrigger className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300">
+            <SelectTrigger
+              className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
+              aria-label="Choose number of guests"
+            >
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-white/95 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl">
@@ -443,7 +445,10 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
                   setFormData({ ...formData, numberOfRooms: parseInt(value) })
                 }
               >
-                <SelectTrigger className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300">
+                <SelectTrigger
+                  className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
+                  aria-label="Select number of rooms"
+                >
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-white/95 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl">
@@ -475,7 +480,10 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
                   setFormData({ ...formData, roomType: value })
                 }
               >
-                <SelectTrigger className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300">
+                <SelectTrigger
+                  className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
+                  aria-label="Select room type"
+                >
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-white/95 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl">
@@ -595,6 +603,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
             !formData.checkOutDate ||
             totalAmount <= 0
           }
+          aria-label="submit button"
         >
           <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           <span className="flex items-center justify-center gap-3 relative z-10">

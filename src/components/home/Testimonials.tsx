@@ -174,12 +174,14 @@ const Testimonials = () => {
                   <Button
                     onClick={prevTestimonial}
                     className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 p-0 cursor-pointer"
+                    aria-label="left navigation"
                   >
                     <ChevronLeft size={20} className="text-white" />
                   </Button>
                   <Button
                     onClick={nextTestimonial}
                     className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 p-0 cursor-pointer"
+                    aria-label="right navigation"
                   >
                     <ChevronRight size={20} className="text-white" />
                   </Button>
@@ -232,9 +234,9 @@ const Testimonials = () => {
                   </div>
 
                   <div>
-                    <h4 className="font-bold text-[hsl(var(--foreground))] text-lg">
+                    <h3 className="font-bold text-[hsl(var(--foreground))] text-lg">
                       {currentData.name}
-                    </h4>
+                    </h3>
                     <p className="text-[hsl(var(--muted-foreground))] text-sm">
                       {currentData.location}
                     </p>
@@ -301,9 +303,9 @@ const Testimonials = () => {
                   />
                 </div>
                 <div>
-                  <h5 className="font-semibold text-[hsl(var(--foreground))] text-sm">
+                  <h4 className="font-semibold text-[hsl(var(--foreground))] text-sm">
                     {testimonial.name}
-                  </h5>
+                  </h4>
                   <p className="text-[hsl(var(--muted-foreground))] text-xs">
                     {testimonial.destination}
                   </p>

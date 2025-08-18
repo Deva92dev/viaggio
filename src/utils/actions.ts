@@ -121,6 +121,24 @@ export const getGalleryImages = async () => {
   }
 };
 
+export const fetchAllDestinationsForSitemap = unstable_cache(
+  async () =>
+    await db
+      .select({ id: tourPlaces.id, updatedAt: tourPlaces.updatedAt })
+      .from(tourPlaces),
+  ["destinations-sitemap"],
+  { revalidate: 3600 }
+);
+
+export const fetchAllHotelsForSitemap = unstable_cache(
+  async () =>
+    await db
+      .select({ id: hotels.id, updatedAt: hotels.updatedAt })
+      .from(hotels),
+  ["hotels-sitemap"],
+  { revalidate: 3600 }
+);
+
 export const getAllDestinations = unstable_cache(
   async (
     pageParams: string
