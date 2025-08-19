@@ -211,7 +211,7 @@ const SearchFilter = () => {
           disabled={isPending}
         >
           <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-          <SearchIcon className="h-5 w-5 lg:mr-2 relative z-10" />
+          <SearchIcon className="h-6 w-6 lg:mr-2 relative z-10" />
           <span className="hidden lg:inline relative z-10 font-semibold">
             {isPending ? "Searching..." : "Search"}
           </span>

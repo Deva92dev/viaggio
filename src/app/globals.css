@@ -22,8 +22,8 @@
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 20% 94%;
     --muted-foreground: 215 16% 44%; /* ✅ FIXED: Darker for better contrast */
-    --accent: 14 100% 64%; /* Coral Orange - BRAND COLOR PRESERVED */
-    --accent-foreground: 14 85% 20%; /* ✅ FIXED: Dark coral instead of white */
+    --accent: 14 100% 64%; /* Keep your current accent */
+    --accent-foreground: 0 0% 0%; /* ✅ Black text for better contrast */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 85% 20%; /* ✅ FIXED: Dark red instead of white */
     --border: 214 32% 85%; /* ✅ FIXED: Better contrast with background */
@@ -54,8 +54,8 @@
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20% 70%; /* ✅ FIXED: Lighter for dark mode */
-    --accent: 14 100% 64%; /* BRAND COLOR PRESERVED */
-    --accent-foreground: 0 0% 100%; /* ✅ White works in dark mode */
+    --accent: 14 100% 64%; /* Keep your current accent */
+    --accent-foreground: 0 0% 100%; /* ✅ White text for dark mode */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 25%; /* ✅ FIXED: Better dark mode contrast */

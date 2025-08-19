@@ -100,6 +100,7 @@ const Hero = () => {
               width={600} // Smaller base size
               height={480}
               priority
+              fetchPriority="high"
               sizes="(max-width: 768px) 250px, 600px"
               className="rounded-full object-cover w-full h-auto"
               placeholder="blur"

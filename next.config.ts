@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
@@ -19,7 +18,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-
   async headers() {
     return [
       {
@@ -34,5 +32,4 @@ const nextConfig: NextConfig = {
     ];
   },
 };
-
 export default nextConfig;
