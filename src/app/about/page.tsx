@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,7 +16,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BASE_URL, buildWebPage } from "@/utils/schema";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "About Viagio - Your Trusted Travel Experience Partner",
@@ -327,7 +327,7 @@ export default function AboutPage() {
                       width={160}
                       height={160}
                       className="object-cover rounded-full shadow-xl"
-                      sizes="160px"
+                      sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
                     />
                     <div className="absolute inset-0 rounded-full bg-gradient-to-t from-[hsl(var(--primary))/20] to-transparent" />
                   </div>

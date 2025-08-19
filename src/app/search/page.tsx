@@ -1,3 +1,4 @@
+/* app/search/page.tsx — Server Component */
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Script from "next/script";
@@ -20,35 +21,34 @@ export const metadata: Metadata = {
   alternates: { canonical: "/search" },
 };
 
+/* helper: convert possibly-array params to string[][] for URLSearchParams */
 const paramsToEntries = (
   obj: Record<string, string | string[] | undefined>
-): [string, string][] => {
-  const out: [string, string][] = [];
-  Object.entries(obj).forEach(([k, v]) => {
-    if (Array.isArray(v)) v.forEach((item) => item && out.push([k, item]));
-    else if (typeof v === "string" && v) out.push([k, v]);
-  });
-  return out;
+): string[][] =>
+  Object.entries(obj).flatMap(([k, v]) =>
+    Array.isArray(v) ? v.map((item) => [k, item]) : v ? [[k, v]] : []
+  );
+
+type SearchProps = {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-const SearchPage = async ({ searchParams }: Props) => {
-  /* quick helpers */
+export default async function SearchPage({ searchParams }: SearchProps) {
+  const sp = await searchParams;
+  /* helpers to normalise values */
   const str = (k: string) =>
-    typeof searchParams[k] === "string" && searchParams[k]!.trim() !== ""
-      ? (searchParams[k] as string).trim()
+    typeof sp[k] === "string" && sp[k]!.trim() !== ""
+      ? (sp[k] as string).trim()
       : undefined;
 
   const list = (k: string): string[] | undefined => {
-    const v = searchParams[k];
+    const v = sp[k];
     if (Array.isArray(v)) return v.filter(Boolean) as string[];
     if (typeof v === "string" && v) return v.split(",").map((s) => s.trim());
     return undefined;
   };
 
+  /* 2. build filter object exactly like SearchContent uses */
   const filters = {
     destination: str("destination") ?? str("q"),
     country: str("country"),
@@ -63,7 +63,7 @@ const SearchPage = async ({ searchParams }: Props) => {
     limit: str("limit") ? Number(str("limit")) : undefined,
   };
 
-  /* drop empty values so cache key stays deterministic */
+  /* drop empty keys */
   const cleanFilters = Object.fromEntries(
     Object.entries(filters).filter(
       ([, v]) => v !== undefined && !(Array.isArray(v) && v.length === 0)
@@ -72,22 +72,19 @@ const SearchPage = async ({ searchParams }: Props) => {
 
   let jsonLd: Record<string, unknown> | null = null;
   if (Object.keys(cleanFilters).length) {
-    /* call your cached helper WITHOUT pagination limit for true total */
+    /* get true total count (no limit) */
     const { meta } = await getFilteredResults({
       ...cleanFilters,
       limit: undefined,
     });
     const resultCount = meta.totalItems;
 
-    const queryString = new URLSearchParams(
-      paramsToEntries(searchParams)
-    ).toString();
-
+    const queryString = new URLSearchParams(paramsToEntries(sp)).toString();
     const searchSchema = buildSearchResults(queryString, resultCount);
+
     jsonLd = { "@context": "https://schema.org", "@graph": [searchSchema] };
   }
 
-  /* 3. render */
   return (
     <>
       {jsonLd && (
@@ -99,12 +96,9 @@ const SearchPage = async ({ searchParams }: Props) => {
           }}
         />
       )}
-
       <Suspense fallback={<SearchPageSkeleton />}>
         <SearchContent />
       </Suspense>
     </>
   );
-};
-
-export default SearchPage;
+}

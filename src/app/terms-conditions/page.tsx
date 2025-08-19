@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -18,7 +19,6 @@ import {
   UserCheck,
   AlertCircle,
 } from "lucide-react";
-import Script from "next/script";
 import { BASE_URL, buildWebPage } from "@/utils/schema";
 
 export const metadata: Metadata = {
@@ -133,7 +133,7 @@ export default function TermsConditionsPage() {
             width={1920}
             height={800}
             priority
-            sizes="100vw"
+            sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
             className="object-cover absolute inset-0 w-full h-full"
           />
           {/* Enhanced gradient overlays */}

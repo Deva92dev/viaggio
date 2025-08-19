@@ -164,7 +164,7 @@ const DestinationDetailsPage = async ({ params }: Props) => {
             width={1920}
             height={1080}
             priority
-            sizes="100vw"
+            sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
             className="object-cover absolute inset-0 w-full h-full"
           />
           {/* gradient overlays */}

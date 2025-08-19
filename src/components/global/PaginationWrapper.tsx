@@ -33,15 +33,12 @@ const PaginationWrapper = ({
     if (totalPages <= 3) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
-
     if (currentPage <= 2) {
       return [1, 2, 3, "...", totalPages];
     }
-
     if (currentPage >= totalPages - 1) {
       return [1, "...", totalPages - 2, totalPages - 1, totalPages];
     }
-
     return [1, "...", currentPage, "...", totalPages];
   };
 
@@ -62,7 +59,6 @@ const PaginationWrapper = ({
           style={{ animationDelay: "3s" }}
         />
       </div>
-
       <div className="relative z-10 w-full px-3 sm:px-6 md:px-12">
         <div className="flex flex-col items-center gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
           {/* Results Info - Mobile optimized */}
@@ -83,12 +79,10 @@ const PaginationWrapper = ({
               {" results"}
             </p>
           </div>
-
           {/* Main Pagination Container - Mobile responsive */}
           <div className="relative w-full max-w-lg">
             {/* Enhanced decorative background */}
             <div className="absolute -inset-1 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl blur opacity-20" />
-
             {/* Pagination Content */}
             <div className="relative bg-white/95 backdrop-blur-xl rounded-2xl border border-white/30 shadow-2xl p-2 sm:p-4">
               <div className="flex items-center justify-center gap-1 sm:gap-2">
@@ -115,7 +109,6 @@ const PaginationWrapper = ({
                     <span className="hidden sm:inline">Prev</span>
                   </Link>
                 </Button>
-
                 {/* Page Numbers - Mobile responsive */}
                 <div className="flex items-center gap-1">
                   {visiblePages.map((page, index) => {
@@ -129,9 +122,7 @@ const PaginationWrapper = ({
                         </div>
                       );
                     }
-
                     const isActive = page === currentPage;
-
                     return (
                       <Button
                         key={page}
@@ -155,7 +146,6 @@ const PaginationWrapper = ({
                     );
                   })}
                 </div>
-
                 {/* Next Button - Mobile optimized */}
                 <Button
                   variant="ghost"
@@ -184,7 +174,6 @@ const PaginationWrapper = ({
               </div>
             </div>
           </div>
-
           {/* Enhanced Progress Bar - Mobile responsive */}
           <div className="w-32 sm:w-48 md:w-64 h-1 sm:h-2 bg-[hsl(var(--border))] rounded-full overflow-hidden shadow-inner">
             <div
@@ -192,7 +181,6 @@ const PaginationWrapper = ({
               style={{ width: `${(currentPage / totalPages) * 100}%` }}
             />
           </div>
-
           {/* Page Jump Info - Mobile responsive */}
           <div className="text-center">
             <p className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm">

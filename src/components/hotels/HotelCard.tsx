@@ -22,11 +22,9 @@ type Props = {
 };
 
 const HotelCard = ({ hotels }: Props) => {
-  // Function to get display amenities (limit to 2 for consistent height)
   const getDisplayAmenities = (amenities: string[]) => {
     return amenities.slice(0, 2);
   };
-
   // Function to get remaining amenities count
   const getRemainingCount = (amenities: string[]) => {
     return amenities.length > 2 ? amenities.length - 2 : 0;
@@ -80,7 +78,7 @@ const HotelCard = ({ hotels }: Props) => {
                         alt={`${hotel.name} - Premium luxury hotel accommodation`}
                         fill
                         loading="lazy"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                        sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       {/* gradient overlay */}

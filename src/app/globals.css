@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.*dark *));
+/* @custom-variant dark (&:is(.*dark *)); */
 
 @theme {
   --font-sans: var(--font-geist-sans);
@@ -305,12 +305,6 @@
     justify-content: center !important;
   }
 
-  /* Radix UI layout shift prevention */
-  /* [data-radix-popper-content-wrapper] {
-    contain: layout !important;
-    transform: translateZ(0) !important;
-  } */
-
   /* ===== ESSENTIAL ANIMATIONS ===== */
   @keyframes fadeIn {
     0% {
@@ -592,5 +586,715 @@
     .min-h-screen {
       min-height: 100dvh;
     }
+  }
+
+  /* ===== INSTAGRAM GALLERY EFFECTS & OPTIMIZED DOM DECORATION ===== */
+  /* Instagram Gallery Component Styles */
+  .instagram-gallery-bg {
+    @apply relative w-full py-20 bg-gradient-to-b from-[hsl(var(--testimonials-bg))] to-[hsl(var(--background))];
+  }
+
+  .gallery-card {
+    @apply relative overflow-hidden rounded-2xl shadow-lg transition-transform duration-500 aspect-square;
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .gallery-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .gallery-card::after {
+    content: "";
+    @apply absolute -bottom-3 -right-3 w-12 h-12 rounded-full opacity-20 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] blur-xl pointer-events-none transition-opacity duration-500;
+  }
+
+  .gallery-card:hover::after {
+    opacity: 0.4;
+  }
+
+  .gallery-overlay {
+    @apply absolute inset-0 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity p-2;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.2) 60%,
+      transparent 100%
+    );
+  }
+
+  .instagram-header-icon {
+    @apply w-12 h-12 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center shadow-lg;
+  }
+
+  .instagram-cta-card {
+    @apply bg-white/90 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12 inline-block relative overflow-hidden;
+  }
+
+  .instagram-cta-card::before {
+    content: "";
+    @apply absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-15 -z-10;
+  }
+
+  .instagram-title {
+    @apply text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent;
+  }
+
+  .instagram-description {
+    @apply text-[hsl(var(--muted-foreground))] text-lg max-w-2xl mx-auto leading-relaxed;
+  }
+
+  .instagram-follow-button {
+    @apply px-8 py-3 shadow-lg hover:shadow-[hsl(var(--accent))]/50 hover:scale-105 transition-all duration-300 relative overflow-hidden;
+  }
+
+  .instagram-follow-button::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000;
+  }
+
+  .instagram-hashtags {
+    @apply text-sm text-[hsl(var(--muted-foreground))] font-medium;
+  }
+
+  /* Popular Destinations Component Styles */
+  .popular-decorative-bg {
+    @apply absolute inset-0 overflow-hidden z-0 hidden lg:block;
+  }
+
+  .popular-decorative-blob-primary {
+    @apply absolute top-20 left-10 w-64 h-64 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-20 motion-safe:animate-pulse;
+  }
+
+  .popular-decorative-blob-accent {
+    @apply absolute bottom-20 right-10 w-80 h-80 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-15 motion-safe:animate-pulse;
+    animation-delay: 2s;
+  }
+
+  .popular-destination-card {
+    @apply relative overflow-hidden rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl transition-all duration-500 bg-white/90 md:backdrop-blur-md border border-white/20 hover:-translate-y-1 md:hover:-translate-y-2;
+    /* Use regular CSS animation instead of @apply */
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .popular-image-container {
+    @apply relative h-48 md:h-64 xl:h-80;
+  }
+
+  .popular-image-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition-opacity duration-300 md:duration-500;
+  }
+
+  .popular-camera-icon {
+    @apply absolute top-3 right-3 md:top-4 md:right-4 w-10 h-10 md:w-12 md:h-12 bg-white/20 md:backdrop-blur-md rounded-full items-center justify-center transition-all duration-300 hidden sm:flex;
+  }
+
+  .popular-location-badge {
+    @apply absolute top-3 left-3 md:top-4 md:left-4 bg-white/20 md:backdrop-blur-xl rounded-full px-3 py-1 md:px-4 md:py-2 flex items-center gap-2 border border-white/30 transition-all duration-300;
+  }
+
+  .popular-price-tag {
+    @apply absolute bottom-3 right-3 md:bottom-4 md:right-6 xl:right-8 bg-[hsl(var(--accent))] md:bg-gradient-to-r md:from-[hsl(var(--accent))] md:to-orange-500 rounded-full px-3 py-1 md:px-4 md:py-2 shadow-md md:shadow-lg transition-all duration-300;
+  }
+
+  .popular-card-content {
+    @apply p-4 md:p-6 space-y-3 md:space-y-4;
+  }
+
+  .popular-card-title {
+    @apply text-lg md:text-xl font-bold text-[hsl(var(--foreground))] transition-colors duration-300;
+  }
+
+  .popular-explore-button {
+    @apply w-full bg-[hsl(var(--primary))] hover:bg-[hsl(var(--accent))] text-white rounded-lg md:rounded-xl py-2 md:py-3 px-4 transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 shadow-md hover:shadow-lg font-semibold text-sm md:text-base;
+  }
+
+  /* Group hover effects using regular CSS */
+  .popular-destination-card:hover .popular-image-overlay {
+    opacity: 0.8;
+  }
+
+  .popular-destination-card:hover .popular-camera-icon {
+    transform: scale(1.1);
+  }
+
+  .popular-destination-card:hover .popular-location-badge {
+    transform: scale(1.05);
+  }
+
+  .popular-destination-card:hover .popular-price-tag {
+    transform: scale(1.05);
+  }
+
+  .popular-destination-card:hover .popular-card-title {
+    color: hsl(var(--primary));
+  }
+
+  .popular-destination-card:hover .popular-explore-button {
+    transform: scale(1.02);
+  }
+
+  /* Features Component Styles */
+  .features-mobile-bg-primary {
+    @apply absolute top-20 right-10 w-64 h-64 bg-blue-100 rounded-full opacity-40 md:hidden;
+  }
+
+  .features-mobile-bg-secondary {
+    @apply absolute bottom-20 left-10 w-80 h-80 bg-purple-100 rounded-full opacity-30 md:hidden;
+  }
+
+  .features-desktop-bg {
+    @apply hidden md:block absolute inset-0 overflow-hidden z-0;
+  }
+
+  .features-desktop-blob-1 {
+    @apply absolute top-10 right-20 w-72 h-72 rounded-full bg-blue-500 blur-3xl opacity-10;
+  }
+
+  .features-desktop-blob-2 {
+    @apply absolute bottom-10 left-20 w-96 h-96 rounded-full bg-purple-500 blur-3xl opacity-15;
+    animation-delay: 3s;
+  }
+
+  .features-desktop-blob-3 {
+    @apply absolute top-1/2 right-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 blur-3xl opacity-10;
+    animation-delay: 6s;
+  }
+
+  .features-card {
+    @apply relative overflow-hidden rounded-2xl bg-white shadow-lg border border-slate-100 hover:shadow-xl hover:-translate-y-1 md:bg-white/95 md:backdrop-blur-sm md:shadow-xl md:border-white/20 md:rounded-3xl md:hover:shadow-2xl md:hover:-translate-y-2 transition-all duration-300 md:duration-500;
+
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .features-card-content {
+    @apply relative p-6 md:p-8 space-y-4 md:space-y-6;
+  }
+
+  .features-icon-container {
+    @apply w-14 h-14 rounded-xl flex items-center justify-center shadow-md md:w-16 md:h-16 md:rounded-2xl md:shadow-lg transition-transform duration-300;
+  }
+
+  .features-card-title {
+    @apply text-xl md:text-xl font-bold text-slate-900 transition-all duration-300;
+  }
+
+  .features-card-description {
+    @apply text-slate-600 leading-relaxed text-sm md:text-sm;
+  }
+
+  .features-stats-container {
+    @apply pt-4 border-t border-slate-100 md:border-slate-100/50;
+  }
+
+  .features-stats-number {
+    @apply text-2xl md:text-2xl font-bold;
+  }
+
+  .features-stats-label {
+    @apply text-xs text-slate-500 font-medium;
+  }
+
+  .features-stats-icon {
+    @apply w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors duration-300;
+  }
+
+  .features-achievement-container {
+    @apply bg-white shadow-lg rounded-2xl border border-slate-100 p-6 md:bg-white/90 md:backdrop-blur-xl md:shadow-2xl md:border-white/20 md:rounded-3xl md:p-8 lg:p-12;
+  }
+
+  .features-achievement-title {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent md:from-blue-500 md:via-purple-500 md:to-pink-500;
+  }
+
+  .features-achievement-description {
+    @apply text-slate-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed;
+  }
+
+  .features-achievement-stat {
+    @apply text-center;
+
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .features-achievement-icon {
+    @apply w-12 h-12 md:w-14 md:h-14 mx-auto mb-3 md:mb-4 bg-gradient-to-br from-slate-100 to-slate-200 md:bg-gradient-to-br md:from-blue-500 md:to-purple-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-md md:shadow-lg transition-transform duration-300;
+  }
+
+  .features-achievement-number {
+    @apply text-2xl md:text-3xl lg:text-4xl font-black mb-1 md:mb-2 bg-gradient-to-r from-slate-700 to-slate-900 md:from-blue-600 md:to-purple-600 bg-clip-text text-transparent;
+  }
+
+  .features-achievement-label {
+    @apply text-slate-500 font-medium text-xs md:text-sm;
+  }
+
+  .features-floating-mobile-1 {
+    @apply absolute top-1/3 left-8 w-16 h-16 bg-blue-200 rounded-full opacity-20 md:hidden;
+  }
+
+  .features-floating-mobile-2 {
+    @apply absolute bottom-1/3 right-8 w-20 h-20 bg-purple-200 rounded-full opacity-15 md:hidden;
+  }
+
+  .features-floating-desktop-1 {
+    @apply hidden md:block absolute top-1/3 left-8 w-24 h-24 bg-blue-500 rounded-full blur-2xl opacity-15;
+  }
+
+  .features-floating-desktop-2 {
+    @apply hidden md:block absolute bottom-1/3 right-8 w-32 h-32 bg-purple-500 rounded-full blur-2xl opacity-20;
+  }
+
+  /* Hover effects using regular CSS */
+  .features-card:hover .features-icon-container {
+    transform: scale(1.05);
+  }
+
+  @media (min-width: 768px) {
+    .features-card:hover .features-icon-container {
+      transform: scale(1.1);
+    }
+  }
+
+  .features-achievement-stat:hover .features-achievement-icon {
+    transform: scale(1.05);
+  }
+
+  @media (min-width: 768px) {
+    .features-achievement-stat:hover .features-achievement-icon {
+      transform: scale(1.1);
+    }
+  }
+
+  /* Testimonials Component Styles */
+  .testimonials-bg {
+    @apply relative w-full py-20 bg-gradient-to-b from-[hsl(var(--features-bg))] to-[hsl(var(--testimonials-bg))];
+  }
+
+  .testimonials-decorative-bg {
+    @apply absolute inset-0 overflow-hidden z-0;
+  }
+
+  .testimonials-blob-1 {
+    @apply absolute top-16 left-16 w-80 h-80 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-15;
+  }
+
+  .testimonials-blob-2 {
+    @apply absolute bottom-16 right-16 w-96 h-96 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-10;
+    animation-delay: 2s;
+  }
+
+  .testimonials-blob-3 {
+    @apply absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] blur-3xl opacity-12;
+    animation-delay: 4s;
+  }
+
+  .testimonials-main-card {
+    @apply bg-white/90 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl overflow-hidden;
+  }
+
+  .testimonials-gradient-border {
+    @apply absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-20 -z-10;
+  }
+
+  .testimonials-image-container {
+    @apply relative h-80 lg:h-96 overflow-hidden;
+  }
+
+  .testimonials-image-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent;
+  }
+
+  .testimonials-destination-badge {
+    @apply absolute top-6 left-6 bg-white/20 backdrop-blur-xl rounded-full px-4 py-2 flex items-center gap-2 border border-white/30;
+  }
+
+  .testimonials-experience-badge {
+    @apply absolute top-6 right-6 bg-gradient-to-r from-[hsl(var(--accent))] to-orange-500 rounded-full px-4 py-2;
+  }
+
+  .testimonials-nav-button {
+    @apply w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 p-0 cursor-pointer;
+  }
+
+  .testimonials-content-section {
+    @apply p-8 lg:p-12 flex flex-col justify-center;
+  }
+
+  .testimonials-quote-icon {
+    @apply w-16 h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center mb-6 shadow-lg;
+  }
+
+  .testimonials-rating-container {
+    @apply flex items-center gap-2 mb-4;
+  }
+
+  .testimonials-rating-stars {
+    @apply flex items-center gap-1;
+  }
+
+  .testimonials-star {
+    @apply text-[hsl(var(--accent))] fill-[hsl(var(--accent))];
+  }
+
+  .testimonials-verified-text {
+    @apply text-[hsl(var(--muted-foreground))] text-sm font-medium ml-2;
+  }
+
+  .testimonials-quote-text {
+    @apply text-[hsl(var(--foreground))] text-lg lg:text-xl leading-relaxed mb-8 font-medium italic;
+  }
+
+  .testimonials-avatar-container {
+    @apply flex items-center gap-4 mb-6;
+  }
+
+  .testimonials-avatar-wrapper {
+    @apply relative;
+  }
+
+  .testimonials-avatar-image {
+    @apply w-16 h-16 rounded-full overflow-hidden border-3 border-[hsl(var(--primary))];
+  }
+
+  .testimonials-verified-badge {
+    @apply absolute -bottom-1 -right-1 w-6 h-6 bg-[hsl(var(--accent))] rounded-full flex items-center justify-center border-2 border-white;
+  }
+
+  .testimonials-traveler-name {
+    @apply font-bold text-[hsl(var(--foreground))] text-lg;
+  }
+
+  .testimonials-traveler-location {
+    @apply text-[hsl(var(--muted-foreground))] text-sm;
+  }
+
+  .testimonials-trip-details {
+    @apply flex flex-wrap gap-4 text-sm;
+  }
+
+  .testimonials-detail-badge-primary {
+    @apply flex items-center gap-2 bg-[hsl(var(--primary))]/10 px-3 py-1 rounded-full;
+  }
+
+  .testimonials-detail-badge-accent {
+    @apply flex items-center gap-2 bg-[hsl(var(--accent))]/10 px-3 py-1 rounded-full;
+  }
+
+  .testimonials-grid-card {
+    @apply bg-white/80 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 p-6 cursor-pointer;
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .testimonials-grid-avatar {
+    @apply w-10 h-10 rounded-full overflow-hidden border-2 border-[hsl(var(--primary))];
+  }
+
+  .testimonials-grid-name {
+    @apply font-semibold text-[hsl(var(--foreground))] text-sm;
+  }
+
+  .testimonials-grid-destination {
+    @apply text-[hsl(var(--muted-foreground))] text-xs;
+  }
+
+  .testimonials-trust-container {
+    @apply bg-white/90 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl p-8;
+  }
+
+  .testimonials-trust-title {
+    @apply text-2xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-2;
+  }
+
+  .testimonials-trust-description {
+    @apply text-[hsl(var(--muted-foreground))];
+  }
+
+  .testimonials-stats-number {
+    @apply text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-1;
+  }
+
+  .testimonials-stats-label {
+    @apply text-[hsl(var(--muted-foreground))] text-sm;
+  }
+
+  .testimonials-floating-1 {
+    @apply absolute top-1/4 right-12 w-20 h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15;
+  }
+
+  .testimonials-floating-2 {
+    @apply absolute bottom-1/4 left-12 w-28 h-28 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20;
+  }
+
+  @keyframes floatSlowCustom {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  .testimonials-floating-1 {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .testimonials-floating-2 {
+    animation: floatSlowCustom 8s ease-in-out infinite;
+  }
+
+  /* Call to Action Component Styles */
+  .cta-bg {
+    @apply relative w-full py-20 overflow-hidden bg-gradient-to-br from-[hsl(var(--cta-bg))] via-[hsl(var(--accent))] to-[hsl(var(--cta-bg))];
+  }
+
+  .cta-background-overlay {
+    @apply absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/70 z-10;
+  }
+
+  .cta-floating-element-1 {
+    @apply absolute top-20 left-20 w-96 h-96 rounded-full bg-white/10 blur-3xl opacity-30;
+  }
+
+  .cta-floating-element-2 {
+    @apply absolute bottom-20 right-20 w-80 h-80 rounded-full bg-white/5 blur-3xl  opacity-40;
+    animation-delay: 2s;
+  }
+
+  .cta-floating-element-3 {
+    @apply absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-white/10 to-transparent blur-3xl  opacity-20;
+    animation-delay: 4s;
+    transform: translate(-50%, -50%);
+  }
+
+  .cta-badge {
+    @apply inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/20;
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .cta-main-heading {
+    @apply text-4xl md:text-6xl font-black leading-tight tracking-tight text-white;
+  }
+
+  .cta-gradient-text {
+    @apply block bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent;
+  }
+
+  .cta-description {
+    @apply text-xl md:text-2xl text-white/90 leading-relaxed max-w-2xl;
+  }
+
+  .cta-feature-item {
+    @apply flex items-center gap-3;
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .cta-feature-icon {
+    @apply w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center;
+  }
+
+  .cta-feature-text {
+    @apply text-white/90 font-medium text-sm;
+  }
+
+  .cta-primary-button {
+    @apply px-12 py-4 text-lg shadow-2xl shadow-black/30 hover:shadow-black/50 hover:scale-105 transition-all duration-300 relative overflow-hidden;
+  }
+
+  .cta-secondary-button {
+    @apply bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 px-12 py-4 text-lg transition-all duration-300 hover:scale-105;
+  }
+
+  .cta-button-shine {
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000;
+  }
+
+  .cta-trust-indicator {
+    @apply text-center;
+  }
+
+  .cta-trust-number {
+    @apply text-2xl font-bold text-white;
+  }
+
+  .cta-trust-label {
+    @apply text-white/70 text-xs;
+  }
+
+  .cta-newsletter-card {
+    @apply bg-white/95 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 md:p-10 relative;
+  }
+
+  .cta-newsletter-card::before {
+    content: "";
+    @apply absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-white to-[hsl(var(--primary))] rounded-3xl blur opacity-30 -z-10;
+  }
+
+  .cta-newsletter-icon {
+    @apply w-16 h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center mx-auto shadow-lg;
+  }
+
+  .cta-newsletter-title {
+    @apply text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent;
+  }
+
+  .cta-newsletter-description {
+    @apply text-[hsl(var(--muted-foreground))] leading-relaxed;
+  }
+
+  .cta-form-input {
+    @apply h-12 px-4 bg-white border-2 border-[hsl(var(--border))] focus:border-[hsl(var(--primary))] focus:ring-2 focus:ring-[hsl(var(--primary))]/20 rounded-xl;
+  }
+
+  .cta-form-button {
+    @apply w-full  h-12 text-lg font-semibold shadow-lg shadow-[hsl(var(--accent))]/30 hover:shadow-[hsl(var(--accent))]/50 transition-all duration-300 relative overflow-hidden;
+  }
+
+  .cta-benefit-item {
+    @apply flex items-center gap-2 text-sm text-[hsl(var(--muted-foreground))];
+  }
+
+  .cta-benefit-dot {
+    @apply w-2 h-2 bg-[hsl(var(--accent))] rounded-full;
+  }
+
+  .cta-privacy-note {
+    @apply text-xs text-[hsl(var(--muted-foreground))] text-center;
+  }
+
+  /* Custom animations */
+
+  @keyframes spinSlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spinSlow 10s linear infinite;
+  }
+
+  /* Trust Indicators Component Styles */
+  .trust-indicators-bg {
+    @apply relative w-full py-16 bg-gradient-to-b from-[hsl(var(--background))] to-[hsl(var(--features-bg))];
+  }
+
+  .trust-indicators-bg-decor {
+    @apply absolute inset-0 overflow-hidden z-0;
+  }
+
+  .trust-indicators-blob-1 {
+    @apply absolute top-10 right-10 w-64 h-64 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-5;
+  }
+
+  .trust-indicators-blob-2 {
+    @apply absolute bottom-10 left-10 w-80 h-80 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-8;
+    animation-delay: 3s;
+  }
+
+  .trust-indicators-content {
+    @apply relative z-10 max-w-7xl mx-auto px-6 md:px-12 space-y-16;
+  }
+
+  .trust-section-header {
+    @apply text-center space-y-3;
+  }
+
+  .trust-section-header h2 {
+    @apply text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent;
+  }
+
+  .trust-section-header p {
+    @apply text-[hsl(var(--muted-foreground))] text-lg max-w-3xl mx-auto;
+  }
+
+  .trust-certifications {
+    @apply space-y-8;
+  }
+
+  .trust-certifications-grid {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-6;
+  }
+
+  .trust-certification-card {
+    @apply text-center p-6 bg-white/80 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .trust-certification-icon {
+    @apply w-14 h-14 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg;
+  }
+
+  .trust-certification-icon svg {
+    @apply text-white;
+  }
+
+  .trust-certification-badge {
+    @apply bg-[hsl(var(--accent))] text-white text-xs px-2 py-1 rounded-full inline-block mb-2 font-semibold;
+  }
+
+  .trust-certification-card h3 {
+    @apply font-bold text-[hsl(var(--foreground))] text-sm mb-1;
+  }
+
+  .trust-certification-card p {
+    @apply text-[hsl(var(--muted-foreground))] text-xs leading-relaxed;
+  }
+
+  .trust-guarantees {
+    @apply bg-white/90 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12 relative;
+  }
+
+  .trust-guarantees::before {
+    content: "";
+    @apply absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-20 -z-10;
+  }
+
+  .trust-guarantees-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8;
+  }
+
+  .trust-guarantee-card {
+    @apply text-center space-y-4;
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .trust-guarantee-icon {
+    @apply w-16 h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center mx-auto shadow-lg;
+  }
+
+  .trust-guarantee-icon svg {
+    @apply text-white;
+  }
+
+  .trust-guarantee-card h3 {
+    @apply font-bold text-[hsl(var(--foreground))] text-lg;
+  }
+
+  .trust-guarantee-card p {
+    @apply text-[hsl(var(--muted-foreground))] text-sm leading-relaxed px-2;
+  }
+
+  .trust-indicators-footer {
+    @apply text-center py-8;
+  }
+
+  .trust-indicators-footer > div {
+    @apply inline-flex items-center gap-3 bg-[hsl(var(--primary))]/10 backdrop-blur-md rounded-full px-8 py-4 border border-[hsl(var(--primary))]/20;
+  }
+
+  .trust-indicators-footer svg:first-child {
+    @apply text-[hsl(var(--primary))];
+  }
+
+  .trust-indicators-footer p {
+    @apply text-[hsl(var(--primary))] font-semibold;
+  }
+
+  .trust-indicators-footer svg:last-child {
+    @apply text-[hsl(var(--accent))] fill-[hsl(var(--accent))];
   }
 }

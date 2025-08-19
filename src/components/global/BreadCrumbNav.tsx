@@ -31,7 +31,7 @@ export default function BreadcrumbNav({ items, className = "" }: Props) {
         {/* <ol> rendered internally */}
         <BreadcrumbList className="flex flex-wrap items-center space-x-2">
           <BreadcrumbItem>
-            <BreadcrumbLink asChild>
+            <BreadcrumbLink asChild className="cursor-pointer">
               <Link
                 href="/"
                 className="flex items-center text-white/90 hover:text-white transition-colors font-medium"
@@ -47,7 +47,7 @@ export default function BreadcrumbNav({ items, className = "" }: Props) {
           </BreadcrumbSeparator>
           {items.map((item, i) => (
             <React.Fragment key={i}>
-              <BreadcrumbItem>
+              <BreadcrumbItem className="cursor-pointer">
                 {item.isCurrentPage ? (
                   <BreadcrumbPage className="text-white font-semibold bg-white/20 px-3 py-1 rounded-full">
                     {item.label}

@@ -43,7 +43,6 @@ const FavoritesPage = async () => {
             Hotels ({favoritesHotel.length})
           </TabsTrigger>
         </TabsList>
-
         <TabsContent value="destinations" className="mt-6">
           {favoritesDestinations.length === 0 ? (
             <div className="text-center py-16 bg-gray-50 rounded-lg">
@@ -55,7 +54,6 @@ const FavoritesPage = async () => {
             <PlacesCard destinations={favoritesDestinations} />
           )}
         </TabsContent>
-
         <TabsContent value="hotels" className="mt-6">
           {favoritesHotel.length === 0 ? (
             <div className="text-center py-16 bg-gray-50 rounded-lg">

@@ -13,7 +13,7 @@ const Logo = () => {
         <Image
           src="/Logo.png"
           alt="Viaggio Logo"
-          width={40}
+          width={52}
           height={40}
           className="transition-transform duration-300 group-hover:scale-110"
           priority

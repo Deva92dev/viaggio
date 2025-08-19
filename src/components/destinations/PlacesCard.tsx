@@ -61,7 +61,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                 <Card className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur-md border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-0 cursor-pointer h-full flex flex-col">
                   {/* Gradient border effect */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500 -z-10" />
-
                   {/* Enhanced Image Container - Fixed height */}
                   <div className="relative w-full h-64 overflow-hidden rounded-t-3xl flex-shrink-0">
                     <Image
@@ -69,13 +68,11 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                       alt={`${place.name} - Premium ${itemType} experience`}
                       fill
                       loading="lazy"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" // for cards
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-
                     {/* Enhanced gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-
                     {/* Enhanced Favorite Button */}
                     <div className="absolute top-4 right-4 z-20">
                       <FavoriteToggleWrapper
@@ -84,12 +81,10 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                         className="bg-white/20 backdrop-blur-xl hover:bg-white/30 rounded-full p-2 border border-white/30 transition-all duration-300 hover:scale-110"
                       />
                     </div>
-
                     {/* Floating decorative camera icon */}
                     <div className="absolute top-4 left-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
                       <Camera size={16} className="text-white" />
                     </div>
-
                     {/* Enhanced Duration Badge */}
                     <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-[hsl(var(--primary))]/90 backdrop-blur-md rounded-full px-4 py-2 border border-white/30">
                       <div className="flex items-center gap-2">
@@ -99,7 +94,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                         </span>
                       </div>
                     </div>
-
                     {/* Enhanced Price Badge */}
                     <div className="absolute bottom-4 right-4 bg-gradient-to-r from-[hsl(var(--accent))] to-orange-500 rounded-2xl px-4 py-2 shadow-lg group-hover:shadow-[hsl(var(--accent))]/50 group-hover:scale-105 transition-all duration-300">
                       <div className="text-white text-center">
@@ -111,7 +105,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                         </div>
                       </div>
                     </div>
-
                     {/* Rating Badge */}
                     <div className="absolute bottom-4 left-4 bg-white/20 backdrop-blur-xl rounded-xl px-3 py-1 border border-white/30 flex items-center gap-2">
                       <Star
@@ -122,7 +115,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                         4.9
                       </span>
                     </div>
-
                     {/* Hover arrow indicator */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-[hsl(var(--primary))] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shadow-lg">
                       <ArrowRight
@@ -130,11 +122,9 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                         className="text-white group-hover:translate-x-0.5 transition-transform duration-300"
                       />
                     </div>
-
                     {/* Premium shine effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 opacity-0 group-hover:opacity-100" />
                   </div>
-
                   {/* Enhanced Card Content - Flexible height with consistent spacing */}
                   <CardContent className="relative p-6 flex-1 flex flex-col justify-between">
                     {/* Title and Location - Fixed area */}
@@ -142,7 +132,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                       <h3 className="font-bold text-xl text-[hsl(var(--foreground))] group-hover:bg-gradient-to-r group-hover:from-[hsl(var(--primary))] group-hover:to-[hsl(var(--accent))] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 line-clamp-2 min-h-[3.5rem] leading-7">
                         {place.name}
                       </h3>
-
                       {/* Enhanced Location */}
                       <div className="flex items-center gap-2 text-[hsl(var(--muted-foreground))]">
                         <MapPin
@@ -157,7 +146,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                         </span>
                       </div>
                     </div>
-
                     {/* Bottom section with features and CTA */}
                     <div className="space-y-3">
                       {/* Enhanced Features */}
@@ -174,7 +162,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                           </div>
                         </div>
                       </div>
-
                       {/* Hover CTA - Fixed position */}
                       <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 pt-2 border-t border-[hsl(var(--border))]/30">
                         <div className="text-[hsl(var(--primary))] text-sm font-semibold flex items-center gap-2">
@@ -187,7 +174,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                       </div>
                     </div>
                   </CardContent>
-
                   {/* Floating corner accent */}
                   <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-gradient-to-br from-[hsl(var(--accent))] to-orange-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
                 </Card>
@@ -195,7 +181,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
             </div>
           ))}
         </div>
-
         {/* Enhanced Bottom CTA Section */}
         {destinations.length === 0 && (
           <div className="text-center py-16">
@@ -218,7 +203,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
           </div>
         )}
       </div>
-
       {/* Additional floating decorative elements */}
       <div className="absolute top-1/4 right-8 w-20 h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15 animate-float" />
       <div className="absolute bottom-1/4 left-8 w-24 h-24 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20 animate-float-slow" />

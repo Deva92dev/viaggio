@@ -20,7 +20,8 @@ const Features = () => {
         "Hand-picked destinations and experiences crafted by travel experts who know the hidden gems.",
       stat: "500+",
       statLabel: "Destinations",
-      gradient: "from-[hsl(var(--primary))] to-blue-600",
+      gradient: "from-blue-500 to-blue-600",
+      mobileColor: "blue-500",
     },
     {
       icon: Users,
@@ -29,7 +30,8 @@ const Features = () => {
         "Connect with passionate local guides who share authentic stories and insider knowledge.",
       stat: "200+",
       statLabel: "Expert Guides",
-      gradient: "from-[hsl(var(--accent))] to-orange-600",
+      gradient: "from-orange-500 to-red-500",
+      mobileColor: "orange-500",
     },
     {
       icon: Clock,
@@ -38,7 +40,8 @@ const Features = () => {
         "Round-the-clock assistance ensuring your adventure goes smoothly from start to finish.",
       stat: "24/7",
       statLabel: "Support",
-      gradient: "from-[hsl(var(--primary))] to-[hsl(var(--accent))]",
+      gradient: "from-purple-500 to-pink-500",
+      mobileColor: "purple-500",
     },
     {
       icon: Shield,
@@ -47,162 +50,180 @@ const Features = () => {
         "Comprehensive safety protocols and insurance coverage for worry-free exploration.",
       stat: "100%",
       statLabel: "Secure",
-      gradient: "from-green-500 to-[hsl(var(--primary))]",
+      gradient: "from-green-500 to-emerald-600",
+      mobileColor: "green-500",
     },
   ];
 
   const achievements = [
-    { number: "10,000+", label: "Happy Travelers", icon: Heart },
-    { number: "500+", label: "Destinations", icon: Globe },
-    { number: "4.9", label: "Average Rating", icon: Star },
-    { number: "5", label: "Years Experience", icon: Award },
+    {
+      number: "10,000+",
+      label: "Happy Travelers",
+      icon: Heart,
+      color: "text-red-500",
+    },
+    {
+      number: "500+",
+      label: "Destinations",
+      icon: Globe,
+      color: "text-blue-500",
+    },
+    {
+      number: "4.9",
+      label: "Average Rating",
+      icon: Star,
+      color: "text-yellow-500",
+    },
+    {
+      number: "5",
+      label: "Years Experience",
+      icon: Award,
+      color: "text-purple-500",
+    },
   ];
 
   return (
     <MotionSection
       scrollSpeed={50}
-      className="relative w-full py-20 bg-gradient-to-b from-[hsl(var(--background))] to-[hsl(var(--features-bg))]"
+      className="relative w-full py-16 md:py-20 bg-gradient-to-b from-slate-50 to-white"
     >
-      {/* Enhanced decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden z-0" aria-hidden="true">
-        <div className="absolute top-10 right-20 w-72 h-72 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-10 animate-pulse" />
-        <div
-          className="absolute bottom-10 left-20 w-96 h-96 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-15 animate-pulse"
-          style={{ animationDelay: "3s" }}
-        />
-        <div
-          className="absolute top-1/2 right-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] blur-3xl opacity-10 animate-pulse"
-          style={{ animationDelay: "6s" }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
-        {/* Enhanced Section Title */}
-        <div className="mb-16">
+      {/* Background decorative elements */}
+      <figure className="features-mobile-bg-primary" />
+      <figure className="features-mobile-bg-secondary" />
+      <figure className="features-desktop-bg" aria-hidden="true">
+        <div className="features-desktop-blob-1 motion-safe:animate-pulse" />
+        <div className="features-desktop-blob-2 motion-safe:animate-pulse" />
+        <div className="features-desktop-blob-3 motion-safe:animate-pulse" />
+      </figure>
+      <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-12">
+        {/* Section Title */}
+        <header className="mb-12 md:mb-16">
           <SectionTitle
             text="Why Choose Viaggio"
             description="Experience the difference with our premium travel services"
           />
-        </div>
-
+        </header>
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 mb-20">
+        <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8 mb-16 md:mb-20">
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
-              <div
+              <article
                 key={feature.title}
-                className="group relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur-xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                className="group features-card"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Gradient border effect */}
+                {/* Mobile gradient background */}
                 <div
-                  className={`absolute -inset-0.5 bg-gradient-to-r ${feature.gradient} rounded-3xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500 -z-10`}
+                  className={`absolute inset-0 bg-gradient-to-br from-${feature.mobileColor}/5 to-${feature.mobileColor}/10 md:from-transparent md:to-transparent`}
                 />
-
-                <div className="p-8 space-y-6">
-                  {/* Icon with gradient background */}
-                  <div
-                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                {/* Desktop gradient border effect */}
+                <div
+                  className={`hidden md:block absolute -inset-0.5 bg-gradient-to-r ${feature.gradient} rounded-3xl blur opacity-0 group-hover:opacity-25 transition-opacity duration-500 -z-10`}
+                />
+                <div className="features-card-content">
+                  {/* Feature Icon */}
+                  <figure
+                    className={`features-icon-container bg-gradient-to-br ${feature.gradient} group-hover:scale-105 md:group-hover:scale-110`}
                   >
-                    <IconComponent size={28} className="text-white" />
-                  </div>
-
+                    <IconComponent
+                      size={24}
+                      className="md:w-7 md:h-7 text-white"
+                    />
+                  </figure>
                   {/* Content */}
-                  <div className="space-y-3">
-                    <h3 className="text-xl font-bold text-[hsl(var(--foreground))] group-hover:bg-gradient-to-r group-hover:from-[hsl(var(--primary))] group-hover:to-[hsl(var(--accent))] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                  <section className="space-y-3">
+                    <h3
+                      className={`features-card-title group-hover:text-${feature.mobileColor} md:group-hover:bg-gradient-to-r md:group-hover:${feature.gradient} md:group-hover:bg-clip-text md:group-hover:text-transparent`}
+                    >
                       {feature.title}
                     </h3>
-                    <p className="text-[hsl(var(--muted-foreground))] leading-relaxed text-sm">
+                    <p className="features-card-description">
                       {feature.description}
                     </p>
-                  </div>
-
-                  {/* Stat highlight */}
-                  <div className="pt-4 border-t border-[hsl(var(--border))]/30">
+                  </section>
+                  {/* Stats */}
+                  <aside className="features-stats-container">
                     <div className="flex items-center justify-between">
                       <div>
                         <div
-                          className={`text-2xl font-bold bg-gradient-to-r ${feature.gradient} bg-clip-text text-transparent`}
+                          className={`features-stats-number text-${feature.mobileColor} md:bg-gradient-to-r md:${feature.gradient} md:bg-clip-text md:text-transparent`}
                         >
                           {feature.stat}
                         </div>
-                        <div className="text-xs text-[hsl(var(--muted-foreground))] font-medium">
+                        <div className="features-stats-label">
                           {feature.statLabel}
                         </div>
                       </div>
-                      <div className="w-12 h-12 bg-[hsl(var(--primary))]/10 rounded-full flex items-center justify-center group-hover:bg-[hsl(var(--accent))]/10 transition-colors duration-300">
+                      <div
+                        className={`features-stats-icon bg-${feature.mobileColor}/10 md:group-hover:bg-${feature.mobileColor}/20`}
+                      >
                         <IconComponent
-                          size={20}
-                          className="text-[hsl(var(--primary))] group-hover:text-[hsl(var(--accent))] transition-colors duration-300"
+                          size={18}
+                          className={`md:w-5 md:h-5 text-${feature.mobileColor} transition-transform duration-300 group-hover:scale-110`}
                         />
                       </div>
                     </div>
-                  </div>
+                  </aside>
                 </div>
-
-                {/* Floating corner accent */}
-                <div
-                  className={`absolute -bottom-3 -right-3 w-20 h-20 bg-gradient-to-br ${feature.gradient} rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`}
+                {/* Desktop floating accent */}
+                <figure
+                  className={`hidden md:block absolute -bottom-3 -right-3 w-20 h-20 bg-gradient-to-br ${feature.gradient} rounded-full blur-xl opacity-15 group-hover:opacity-30 transition-opacity duration-500`}
                 />
-              </div>
+              </article>
             );
           })}
-        </div>
-
-        {/* Enhanced Achievement Stats */}
-        <div className="relative">
-          {/* Glass morphism container */}
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12">
-            {/* Decorative gradient border */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-20 -z-10" />
-
+        </section>
+        {/* Achievement Stats */}
+        <section className="relative">
+          <div className="features-achievement-container">
+            {/* Desktop decorative gradient border */}
+            <div className="hidden md:block absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl blur opacity-20 -z-10" />
             {/* Header */}
-            <div className="text-center mb-12">
-              <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-4">
+            <header className="text-center mb-8 md:mb-12">
+              <h3 className="features-achievement-title">
                 Trusted by Thousands
               </h3>
-              <p className="text-[hsl(var(--muted-foreground))] text-lg max-w-2xl mx-auto">
+              <p className="features-achievement-description">
                 Join our community of adventurous travelers who have discovered
                 the world with Viaggio
               </p>
-            </div>
-
+            </header>
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {achievements.map((achievement, index) => {
                 const IconComponent = achievement.icon;
                 return (
-                  <div
+                  <article
                     key={achievement.label}
-                    className="text-center group animate-fade-in"
+                    className="group features-achievement-stat"
                     style={{ animationDelay: `${index * 0.1 + 0.5}s` }}
                   >
-                    {/* Icon */}
-                    <div className="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                      <IconComponent size={24} className="text-white" />
-                    </div>
-
-                    {/* Number */}
-                    <div className="text-3xl md:text-4xl font-black bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-2">
+                    <figure className="features-achievement-icon group-hover:scale-105 md:group-hover:scale-110">
+                      <IconComponent
+                        size={20}
+                        className={`md:w-6 md:h-6 ${achievement.color} md:text-white`}
+                      />
+                    </figure>
+                    <div className="features-achievement-number">
                       {achievement.number}
                     </div>
-
-                    {/* Label */}
-                    <div className="text-[hsl(var(--muted-foreground))] font-medium text-sm">
+                    <div className="features-achievement-label">
                       {achievement.label}
                     </div>
-                  </div>
+                  </article>
                 );
               })}
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
 
-      {/* Additional floating decorative elements */}
-      <div className="absolute top-1/3 left-8 w-24 h-24 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15 animate-float" />
-      <div className="absolute bottom-1/3 right-8 w-32 h-32 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20 animate-float-slow" />
+      {/* Floating decorative elements */}
+      <figure className="features-floating-mobile-1" />
+      <figure className="features-floating-mobile-2" />
+      <figure className="features-floating-desktop-1 motion-safe:animate-float" />
+      <figure className="features-floating-desktop-2 motion-safe:animate-float-slow" />
     </MotionSection>
   );
 };

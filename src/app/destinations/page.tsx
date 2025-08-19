@@ -1,11 +1,10 @@
 import Script from "next/script";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import DestinationCard from "@/components/destinations/DestinationCard";
 import DestinationImage from "@/components/destinations/DestinationImage";
 import PlacesCard from "@/components/destinations/PlacesCard";
-import PaginationWrapper from "@/components/global/PaginationWrapper";
 import { PopularSkeleton } from "@/components/global/PopularSkeleton";
 import { getAllDestinations } from "@/utils/actions";
 import {
@@ -13,6 +12,8 @@ import {
   buildBreadcrumb,
   buildDestinationIndex,
 } from "@/utils/schema";
+import dynamic from "next/dynamic";
+import PaginationSkeleton from "@/components/global/PaginationSkeleton";
 
 export const metadata: Metadata = {
   title: "Travel Destinations - Discover Amazing Places with Viagio",
@@ -36,6 +37,13 @@ export const metadata: Metadata = {
   },
 };
 
+const PaginationWrapper = dynamic(
+  () => import("@/components/global/PaginationWrapper"),
+  {
+    loading: () => <PaginationSkeleton />,
+  }
+);
+
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
@@ -47,7 +55,7 @@ const DestinationsPage = async ({ searchParams }: Props) => {
 
   const requestedPage = parseInt(pageParams, 10);
   if (meta.page !== requestedPage) {
-    redirect(`/destinations?page=${meta.page}`);
+    notFound();
   }
 
   const indexSchema = buildDestinationIndex(

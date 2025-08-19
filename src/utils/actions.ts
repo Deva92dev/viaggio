@@ -52,7 +52,7 @@ const getAuthUser = async () => {
 };
 
 // count(*) uses DrizzleORM’s sql helper to safely run aggregate functions.
-const LIMIT = 8;
+const LIMIT = 6;
 
 export const getPopularDestinations = async (): Promise<
   PopularDestinations[]
@@ -84,7 +84,7 @@ export const getGalleryImages = async () => {
         .from(hotels)
         .where(isNotNull(hotels.imageUrl))
         .orderBy(sql`RANDOM()`)
-        .limit(9),
+        .limit(4),
       db
         .select({
           id: tourPlaces.id,
@@ -94,7 +94,7 @@ export const getGalleryImages = async () => {
         .from(tourPlaces)
         .where(isNotNull(tourPlaces.imageUrl))
         .orderBy(sql`RANDOM()`)
-        .limit(9),
+        .limit(4),
     ]);
 
     // Combine images with type labels
@@ -275,7 +275,7 @@ export const getAllCountriesWithData = async () => {
     );
 
     // Sort by country name for consistency
-    return data.sort((a, b) => a.country.localeCompare(b.country));
+    return data.sort((a, b) => a.country.localeCompare(b.country)).slice(0, 6);
   } catch (error) {
     console.error("Error in getAllCountriesWithData:", error);
     return [];
@@ -575,9 +575,9 @@ export const getSimilarDestinations = async (
       imageUrl: tourPlaces.imageUrl,
     })
     .from(tourPlaces)
-    .where(
-      and(eq(tourPlaces.category, category), ne(tourPlaces.id, currentId))
-    );
+    .where(and(eq(tourPlaces.category, category), ne(tourPlaces.id, currentId)))
+    .limit(4);
+
   return similar;
 };
 
@@ -603,7 +603,8 @@ export const getSimilarHotels = async (category: string, currentId: string) => {
       image: hotels.imageUrl,
     })
     .from(hotels)
-    .where(and(eq(hotels.category, category), ne(hotels.id, currentId)));
+    .where(and(eq(hotels.category, category), ne(hotels.id, currentId)))
+    .limit(4);
 
   return similar;
 };

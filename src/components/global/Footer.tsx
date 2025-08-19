@@ -19,8 +19,6 @@ import {
   FileText,
   Scale,
   RefreshCw,
-  CreditCard,
-  BookOpen,
 } from "lucide-react";
 
 const Footer = () => {
@@ -220,11 +218,11 @@ const Footer = () => {
                   key={link.href}
                   className="animate-fade-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
-                  aria-label="various policy links"
                 >
                   <Link
                     href={link.href}
                     className="group text-white/80 hover:text-[hsl(var(--accent))] transition-all duration-300 flex items-center gap-3 hover:translate-x-1"
+                    aria-label="various policy links"
                   >
                     <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[hsl(var(--accent))]/20 group-hover:border-[hsl(var(--accent))]/30 transition-all duration-300">
                       <link.icon

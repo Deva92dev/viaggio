@@ -1,136 +1,121 @@
 import Image from "next/image";
-import { Button } from "../ui/button";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { ArrowRight, Map, Compass } from "lucide-react";
 import MotionSection from "./MotionSection";
-import SearchFilter from "./SearchFilter";
+import SearchFilterSkeleton from "./SearchFilterSkeleton";
+
+const SearchFilter = dynamic(() => import("./SearchFilter"), {
+  loading: () => <SearchFilterSkeleton />,
+});
 
 const Hero = () => {
   return (
     <MotionSection
       scrollSpeed={100}
-      className="relative overflow-hidden min-h-[700px] lg:min-h-[800px] bg-gradient-to-br from-[hsl(var(--hero-bg))] to-[hsl(var(--background))]"
-      aria-label="Hero section with introduction and call to action"
+      className="relative overflow-hidden bg-gradient-to-br from-[hsl(var(--hero-bg))] to-[hsl(var(--background))] min-h-[500px] md:min-h-[750px]"
+      aria-label="Hero"
     >
-      {/* Simplified background - only essential elements */}
-      <div className="absolute inset-0 overflow-hidden z-0" aria-hidden="true">
-        <div className="absolute top-20 left-10 w-96 h-96 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-30 animate-pulse" />
+      {/* Decorative background (desktop only) */}
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden hidden md:block"
+        aria-hidden="true"
+      >
+        <div className="absolute top-20 left-10 w-96 h-96 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-30 motion-safe:animate-pulse" />
         <div
-          className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-25 animate-pulse"
+          className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-25 motion-safe:animate-pulse"
           style={{ animationDelay: "1s" }}
         />
       </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto p-8 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 items-center justify-center">
-        {/* Text Content - Simplified for faster render */}
-        <article className="flex flex-col gap-6 justify-center items-center md:items-start text-center md:text-left w-full">
-          <div className="space-y-4 max-w-xl">
-            <div className="flex items-center gap-2 text-[hsl(var(--accent))] font-semibold animate-fade-in">
-              <Compass size={24} className="animate-spin-slow" />
-              <span>Discover the world</span>
+      {/* Content container */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <article className="flex flex-col items-center md:items-start text-center md:text-left gap-4 md:gap-6">
+          <div className="space-y-3 md:space-y-4 max-w-xl">
+            <div className="flex items-center gap-2 text-[hsl(var(--accent))] font-semibold motion-safe:animate-fade-in">
+              <Compass
+                size={20}
+                className="md:w-6 md:h-6 motion-safe:animate-spin-slow"
+              />
+              <span className="text-sm md:text-base">Discover the world</span>
             </div>
-
-            {/* Simplified heading - faster to render */}
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-tight text-white">
-              Welcome to
-              <span className="relative ml-3 inline-block text-[hsl(var(--accent))]">
+            <h1 className="text-2xl font-bold text-white md:text-7xl md:font-black md:tracking-tight md:leading-tight">
+              Welcome to{" "}
+              <span className="text-[hsl(var(--accent))] md:bg-gradient-to-r md:from-[hsl(var(--primary))] md:to-[hsl(var(--accent))] md:bg-clip-text md:text-transparent">
                 Viaggio
-                <span className="absolute -bottom-1 left-0 w-full h-1 bg-[hsl(var(--accent))] scale-x-0 animate-scale-in origin-left rounded-full" />
               </span>
             </h1>
-
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed">
-              Enjoy the scenic view of natural wonders around the world with
-              unforgettable experiences.
+            <p className="text-sm text-white/80 leading-normal md:text-xl md:text-white/90 md:leading-relaxed">
+              Enjoy scenic views of natural wonders with unforgettable
+              experiences.
             </p>
           </div>
-
-          {/* Simplified buttons - faster hover effects */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center md:justify-start w-full md:w-auto">
-            <Button
-              asChild
-              size="lg"
-              className="btn-accent px-12 py-5 text-lg rounded-full shadow-lg transition-all duration-300 hover:shadow-xl group"
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-4 md:mt-6">
+            <Link
+              href="/destinations"
+              className="inline-flex items-center justify-center btn-accent px-6 py-3 text-base md:px-12 md:py-5 md:text-lg rounded-full shadow-lg transition-all duration-300 hover:shadow-xl group"
             >
-              <Link href="/destinations" className="flex items-center gap-3">
-                Explore Now
-                <ArrowRight
-                  size={22}
-                  className="group-hover:translate-x-2 transition-transform duration-300"
-                />
-              </Link>
-            </Button>
-
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 transition-all duration-300 px-12 py-5 rounded-full"
+              Explore Now
+              <ArrowRight
+                size={18}
+                className="md:w-6 md:h-6 group-hover:translate-x-2 transition-transform duration-300 ml-2 md:ml-3"
+              />
+            </Link>
+            <Link
+              href="/about"
+              className="inline-flex items-center justify-center px-6 py-3 text-base md:px-12 md:py-5 md:text-lg border border-white/30 text-white bg-white/10 backdrop-blur-md rounded-full transition-all duration-300 hover:bg-white/20"
             >
-              <Link href="/about" className="flex items-center gap-3">
-                Learn More
-                <Map size={22} className="ml-1" />
-              </Link>
-            </Button>
+              Find Us
+              <Map size={18} className="md:w-6 md:h-6 ml-2 md:ml-3" />
+            </Link>
           </div>
-
-          {/* Simplified social proof */}
-          <section className="mt-6 flex flex-col gap-2">
-            <div className="flex -space-x-2">
+          <section className="mt-4 md:mt-6 flex flex-col gap-2">
+            <div className="flex -space-x-1 md:-space-x-2">
               {[1, 2, 3, 4, 5].map((i) => (
                 <div
                   key={i}
-                  className="w-10 h-10 rounded-full bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] border-2 border-white flex items-center justify-center text-white text-sm font-bold"
+                  className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] border border-white md:border-2 flex items-center justify-center text-white text-xs font-bold"
                 >
                   {i}
                 </div>
               ))}
-              <div className="w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center text-sm font-bold border-2 border-white">
+              <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-white/20 text-white flex items-center justify-center text-xs font-bold border border-white md:border-2">
                 +
               </div>
             </div>
-            <p className="text-sm text-white/90">
+            <p className="text-xs md:text-sm text-white/90">
               <span className="font-bold text-[hsl(var(--accent))]">
                 10,000+
-              </span>{" "}
+              </span>
               travelers joined last month
             </p>
           </section>
         </article>
-
-        {/* Image Section - LCP Optimized */}
-        <article className="w-full flex justify-center items-center relative">
-          {/* Single background glow - minimal impact */}
-          <div className="absolute inset-0 max-w-lg max-h-lg rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] blur-3xl opacity-40 animate-pulse z-0" />
-
-          {/* Main image - LCP optimized */}
-          <div className="relative rounded-full overflow-hidden border-4 border-white shadow-2xl shadow-[hsl(var(--primary))/0.25] animate-float max-w-lg">
+        {/* Image block - smaller on mobile */}
+        <article className="relative flex justify-center items-center">
+          <div className="hidden md:block absolute inset-0 max-w-lg max-h-lg rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] blur-3xl opacity-40 motion-safe:animate-pulse" />
+          <div className="relative rounded-full overflow-hidden border-2 md:border-4 border-white shadow-lg md:shadow-2xl md:shadow-[hsl(var(--primary))/0.25] motion-safe:animate-float max-w-[250px] md:max-w-lg">
             <Image
               src="/Main.jpg"
               alt="Couple enjoying breathtaking mountain adventure"
-              width={1000}
-              height={800}
-              priority // Critical for LCP
+              width={600} // Smaller base size
+              height={480}
+              priority
+              sizes="(max-width: 768px) 250px, 600px"
               className="rounded-full object-cover w-full h-auto"
               placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-              sizes="(max-width: 768px) 90vw, 600px"
-              fetchPriority="high" // Additional LCP hint
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSk..."
             />
           </div>
-
-          {/* Minimal floating icons - lazy loaded via CSS */}
-          <div className="absolute top-1/4 -right-6 bg-white p-4 rounded-2xl shadow-xl rotate-12 animate-float-slow z-20">
-            <Compass size={28} className="text-[hsl(var(--primary))]" />
+          {/* Floating icons - desktop only */}
+          <div className="absolute top-1/4 -right-6 hidden md:block bg-white p-3 rounded-2xl shadow-xl rotate-12 motion-safe:animate-float-slow">
+            <Compass size={24} className="text-[hsl(var(--primary))]" />
           </div>
-          <div className="absolute bottom-1/4 -left-6 bg-white p-4 rounded-2xl shadow-xl -rotate-12 animate-float-delay z-20">
-            <Map size={28} className="text-[hsl(var(--accent))]" />
+          <div className="absolute bottom-1/4 -left-6 hidden md:block bg-white p-3 rounded-2xl shadow-xl -rotate-12 motion-safe:animate-float-delay">
+            <Map size={24} className="text-[hsl(var(--accent))]" />
           </div>
         </article>
       </div>
-
-      {/* Search Filter */}
-      <div className="relative z-20 w-full max-w-4xl px-4 mx-auto mt-12 md:mt-16">
+      <div className="relative z-20 w-full max-w-4xl px-4 mx-auto mt-6 md:mt-14">
         <SearchFilter />
       </div>
     </MotionSection>

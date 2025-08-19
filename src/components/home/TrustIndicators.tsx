@@ -62,112 +62,104 @@ const TrustIndicators = () => {
   ];
 
   return (
-    <MotionSection
-      scrollSpeed={25}
-      className="relative w-full py-16 bg-gradient-to-b from-[hsl(var(--background))] to-[hsl(var(--features-bg))]"
-    >
-      {/* Subtle decorative background */}
-      <div className="absolute inset-0 overflow-hidden z-0" aria-hidden="true">
-        <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-5 animate-pulse" />
-        <div
-          className="absolute bottom-10 left-10 w-80 h-80 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-8 animate-pulse"
-          style={{ animationDelay: "3s" }}
-        />
-      </div>
+    <MotionSection scrollSpeed={25} className="trust-indicators-bg">
+      {/* Background decorative elements */}
+      <aside className="trust-indicators-bg-decor" aria-hidden="true">
+        <div className="trust-indicators-blob-1 animate-pulse" />
+        <div className="trust-indicators-blob-2 animate-pulse" />
+      </aside>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 space-y-16">
-        {/* Certifications Grid */}
-        <div className="space-y-8">
-          <div className="text-center">
-            <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-3">
-              Certified & Trusted
-            </h3>
-            <p className="text-[hsl(var(--muted-foreground))] text-lg max-w-2xl mx-auto">
+      <main className="trust-indicators-content">
+        {/* Certifications Section */}
+        <section
+          aria-labelledby="certifications-heading"
+          className="trust-certifications"
+        >
+          <header id="certifications-heading" className="trust-section-header">
+            <h2>Certified & Trusted</h2>
+            <p>
               Our certifications and partnerships ensure you receive the highest
               quality travel experiences
             </p>
-          </div>
+          </header>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {certifications.map((cert, index) => (
-              <div
-                key={cert.title}
-                className="group text-center p-6 bg-white/80 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <cert.icon size={24} className="text-white" />
-                </div>
+          <div className="trust-certifications-grid">
+            {certifications.map((cert, index) => {
+              const IconComponent = cert.icon;
+              return (
+                <article
+                  key={cert.title}
+                  className="trust-certification-card group"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <figure className="trust-certification-icon">
+                    <IconComponent size={24} />
+                  </figure>
 
-                <div className="space-y-1">
-                  <div className="bg-[hsl(var(--accent))] text-white text-xs px-2 py-1 rounded-full inline-block mb-2 font-semibold">
-                    {cert.badge}
+                  <div className="space-y-1">
+                    <span className="trust-certification-badge">
+                      {cert.badge}
+                    </span>
+                    <h3>{cert.title}</h3>
+                    <p>{cert.description}</p>
                   </div>
-                  <h4 className="font-bold text-[hsl(var(--foreground))] text-sm">
-                    {cert.title}
-                  </h4>
-                  <p className="text-[hsl(var(--muted-foreground))] text-xs leading-relaxed">
-                    {cert.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+                </article>
+              );
+            })}
           </div>
-        </div>
+        </section>
 
         {/* Guarantees Section */}
-        <div className="bg-white/90 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12">
-          {/* Decorative gradient border */}
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-20 -z-10" />
-
-          <div className="text-center mb-10">
-            <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-3">
-              Our Promise to You
-            </h3>
-            <p className="text-[hsl(var(--muted-foreground))] text-lg max-w-3xl mx-auto">
+        <section
+          aria-labelledby="guarantees-heading"
+          className="trust-guarantees"
+        >
+          <header
+            id="guarantees-heading"
+            className="trust-section-header mb-10"
+          >
+            <h2>Our Promise to You</h2>
+            <p>
               We stand behind every booking with comprehensive guarantees that
               protect your investment and ensure satisfaction
             </p>
-          </div>
+          </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-            {guarantees.map((guarantee, index) => (
-              <div
-                key={guarantee.title}
-                className="text-center space-y-4 animate-fade-in"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                  <guarantee.icon size={28} className="text-white" />
-                </div>
+          <div className="trust-guarantees-grid">
+            {guarantees.map((guarantee, index) => {
+              const IconComponent = guarantee.icon;
+              return (
+                <article
+                  key={guarantee.title}
+                  className="trust-guarantee-card"
+                  style={{ animationDelay: `${index * 0.15}s` }}
+                >
+                  <figure className="trust-guarantee-icon">
+                    <IconComponent size={28} />
+                  </figure>
 
-                <div className="space-y-2">
-                  <h4 className="font-bold text-[hsl(var(--foreground))] text-lg">
-                    {guarantee.title}
-                  </h4>
-                  <p className="text-[hsl(var(--muted-foreground))] text-sm leading-relaxed px-2">
-                    {guarantee.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+                  <div className="space-y-2">
+                    <h3>{guarantee.title}</h3>
+                    <p>{guarantee.description}</p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
-        </div>
+        </section>
 
-        {/* Final Trust Statement */}
-        <div className="text-center py-8">
-          <div className="inline-flex items-center gap-3 bg-[hsl(var(--primary))]/10 backdrop-blur-md rounded-full px-8 py-4 border border-[hsl(var(--primary))]/20">
-            <Shield size={20} className="text-[hsl(var(--primary))]" />
-            <span className="text-[hsl(var(--primary))] font-semibold">
-              Trusted by 10,000+ travelers worldwide since 2019
-            </span>
-            <Star
-              size={20}
-              className="text-[hsl(var(--accent))] fill-[hsl(var(--accent))]"
-            />
+        {/* Trust Statement Footer */}
+        <footer
+          className="trust-indicators-footer"
+          aria-label="Trust statement"
+        >
+          <div>
+            <Shield size={20} />
+            <p>Trusted by 10,000+ travelers worldwide since 2019</p>
+            <Star size={20} />
           </div>
-        </div>
-      </div>
+        </footer>
+      </main>
     </MotionSection>
   );
 };

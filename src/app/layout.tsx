@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/global/Footer";
 import Providers from "./providers";
-import { ClerkProvider } from "@clerk/nextjs";
 import QueryProvider from "@/components/global/QueryProvider";
 import ClipDefs from "@/components/global/ClipDefs";
 import { Toaster } from "@/components/ui/sonner";

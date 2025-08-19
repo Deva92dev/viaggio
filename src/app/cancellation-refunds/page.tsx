@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,7 +22,6 @@ import {
   Heart,
 } from "lucide-react";
 import { BASE_URL, buildWebPage } from "@/utils/schema";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Cancellation & Refund Policy - Fair & Flexible | Viagio",
@@ -194,7 +194,7 @@ export default function RefundCancellationPage() {
             width={1920}
             height={800}
             priority
-            sizes="100vw"
+            sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
             className="object-cover absolute inset-0 w-full h-full"
           />
           {/* Enhanced gradient overlays */}

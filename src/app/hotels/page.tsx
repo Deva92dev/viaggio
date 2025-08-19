@@ -1,14 +1,15 @@
+import dynamic from "next/dynamic";
 import Script from "next/script";
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import DestinationCard from "@/components/destinations/DestinationCard";
 import DestinationImage from "@/components/destinations/DestinationImage";
-import PaginationWrapper from "@/components/global/PaginationWrapper";
 import { PopularSkeleton } from "@/components/global/PopularSkeleton";
 import HotelCard from "@/components/hotels/HotelCard";
 import { getAllHotels } from "@/utils/actions";
 import { BASE_URL, buildBreadcrumb, buildHotelIndex } from "@/utils/schema";
+import PaginationSkeleton from "@/components/global/PaginationSkeleton";
 
 export const metadata: Metadata = {
   title: "Hotels & Accommodations - Book Your Perfect Stay | Viagio",
@@ -33,6 +34,13 @@ export const metadata: Metadata = {
   },
 };
 
+const PaginationWrapper = dynamic(
+  () => import("@/components/global/PaginationWrapper"),
+  {
+    loading: () => <PaginationSkeleton />,
+  }
+);
+
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
@@ -44,7 +52,7 @@ const HotelsPage = async ({ searchParams }: Props) => {
 
   const requestedPage = parseInt(pageParams, 10);
   if (meta.page !== requestedPage) {
-    redirect(`/hotels?page=${meta.page}`);
+    notFound();
   }
 
   const indexSchema = buildHotelIndex(

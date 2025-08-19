@@ -35,16 +35,15 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="relative font-medium text-[hsl(var(--primary))] dark:text-white px-1 py-2
-                           transition-colors duration-300 hover:text-[hsl(var(--accent))]
-                           after:content-[''] after:absolute after:left-0 after:-bottom-[2px]
-                           after:h-[3px] after:w-0 hover:after:w-full
-                           after:bg-[hsl(var(--accent))] after:rounded-full after:transition-all after:duration-300"
+                className="font-medium text-black dark:text-white px-1 py-2 
+               hover:text-[hsl(var(--accent))] transition-colors duration-150
+               border-b-2 border-transparent hover:border-[hsl(var(--accent))]"
               >
                 {link.label}
               </Link>
             ))}
-            <Link href="/bookings" className="btn-accent ml-4">
+
+            <Link href="/destinations" className="btn-accent ml-4">
               Book Now
             </Link>
           </div>

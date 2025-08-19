@@ -14,6 +14,8 @@ import { RefreshCcw, MapPin, DollarSign, Hotel, Compass } from "lucide-react";
 import { Pagination } from "@/components/search/Pagination";
 import { useEffect, useMemo, useState } from "react";
 
+// improve image loading fill or not fill priority for 4 cards images
+
 const SearchContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -156,7 +158,7 @@ const SearchContent = () => {
               fill
               priority
               className="object-cover group-hover:scale-110 transition-transform duration-700"
-              sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" // for cards
             />
           </div>
           <CardContent className="p-4">
