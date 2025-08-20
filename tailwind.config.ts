@@ -11,6 +11,21 @@ const config: Config = {
     extend: {
       // ... your existing colors, fonts, etc.
 
+      fontFamily: {
+        // Set Inter as default sans-serif
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+
+        // Poppins for display/headings
+        display: ["var(--font-poppins)", "system-ui", "sans-serif"],
+
+        // Keep mono
+        mono: ["var(--font-geist-mono)", "monospace"],
+
+        // Individual font access
+        inter: ["var(--font-inter)"],
+        poppins: ["var(--font-poppins)"],
+      },
+
       keyframes: {
         // ... your existing keyframes
         fadeIn: {

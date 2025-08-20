@@ -9,8 +9,7 @@ import InstagramGallery from "@/components/home/InstagramGallery";
 import Popular from "@/components/home/Popular";
 import TrustIndicators from "@/components/home/TrustIndicators";
 import TestimonialsSkeleton from "@/components/home/TestimonialSkeleton";
-
-// for dynamic pages, if they have more than 200 items, fetch 100 dynamic items at build time using generateStaticParams and rest are build time, dynamic fetch client data in server pages and components. Avoid enormous server payload, excessive dom size
+import SearchFilterSkeleton from "@/components/home/SearchFilterSkeleton";
 
 export const metadata: Metadata = {
   title: "Viagio - Discover Amazing Travel Destinations & Guided Tours",
@@ -48,6 +47,9 @@ export const metadata: Metadata = {
   },
 };
 
+const SearchFilter = dynamic(() => import("@/components/home/SearchFilter"), {
+  loading: () => <SearchFilterSkeleton />,
+});
 const Testimonials = dynamic(() => import("@/components/home/Testimonials"), {
   loading: () => <TestimonialsSkeleton />,
 });
@@ -56,6 +58,11 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <section className="relative -mt-16 z-20">
+        <div className="container mx-auto px-4">
+          <SearchFilter />
+        </div>
+      </section>
       <Suspense fallback={<PopularSkeleton />}>
         <Popular />
       </Suspense>

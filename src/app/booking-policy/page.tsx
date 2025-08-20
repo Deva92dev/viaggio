@@ -148,7 +148,7 @@ export default function BookingPolicyPage() {
         {/* Hero Section */}
         <section className="relative w-full h-[50vh] min-h-[400px] mb-16 overflow-hidden">
           <Image
-            src="/Main.jpg"
+            src="/Hero.webp"
             alt="Booking and Reservations"
             width={1920}
             height={800}

@@ -125,7 +125,7 @@ export default function PrivacyPolicyPage() {
         {/* Hero Section */}
         <section className="relative w-full h-[50vh] min-h-[400px] mb-16 overflow-hidden">
           <Image
-            src="/Main.jpg"
+            src="/Hero.webp"
             alt="Privacy and Security"
             width={1920}
             height={800}

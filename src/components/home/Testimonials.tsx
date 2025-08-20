@@ -28,7 +28,7 @@ const Testimonials = () => {
       date: "March 2024",
       groupSize: "2 travelers",
       avatar: "/Avatar1.jpg",
-      image: "/Testi1.jpg",
+      image: "/Testim1.webp",
       quote:
         "Viaggio transformed our honeymoon into an unforgettable adventure. The local guides showed us hidden temples and secret beaches we never would have found ourselves.",
       experience: "Romantic Getaway",
@@ -43,7 +43,7 @@ const Testimonials = () => {
       date: "January 2024",
       groupSize: "4 travelers",
       avatar: "/Avatar1.jpg",
-      image: "/Testi2.jpg",
+      image: "/Testim2.webp",
       quote:
         "The hiking expedition was expertly organized. Every detail was perfect, from the mountain guides to the eco-lodges. Truly a once-in-a-lifetime experience.",
       experience: "Adventure Trek",
@@ -58,7 +58,7 @@ const Testimonials = () => {
       date: "November 2023",
       groupSize: "3 travelers",
       avatar: "/Avatar1.jpg",
-      image: "/Testi3.jpg",
+      image: "/Testim3.webp",
       quote:
         "The cultural immersion was incredible. From private tea ceremonies to exclusive temple visits, Viaggio gave us authentic Japan beyond any guidebook.",
       experience: "Cultural Journey",
@@ -73,7 +73,7 @@ const Testimonials = () => {
       date: "September 2023",
       groupSize: "2 travelers",
       avatar: "/Avatar1.jpg",
-      image: "/Testi4.jpg",
+      image: "/Testim4.webp",
       quote:
         "Aurora hunting with Viaggio was magical. The photography guide helped us capture stunning shots while the thermal spring tours were perfectly timed.",
       experience: "Photography Tour",
@@ -88,7 +88,7 @@ const Testimonials = () => {
       date: "August 2023",
       groupSize: "6 travelers",
       avatar: "/Avatar1.jpg",
-      image: "/Testi5.jpg",
+      image: "/Testim5.webp",
       quote:
         "Our family reunion became extraordinary with Viaggio's planning. The overwater villas and snorkeling adventures created memories that will last forever.",
       experience: "Family Vacation",

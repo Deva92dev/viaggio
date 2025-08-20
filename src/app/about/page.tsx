@@ -78,19 +78,19 @@ export default function AboutPage() {
     {
       name: "Sarah Chen",
       role: "Founder & CEO",
-      image: "/Testi1.jpg",
+      image: "/Testim1.webp",
       description: "Travel enthusiast with 15+ years in the industry",
     },
     {
       name: "Marcus Rivera",
       role: "Head of Operations",
-      image: "/Testi2.jpg",
+      image: "/Testim2.webp",
       description: "Operations expert ensuring seamless travel experiences",
     },
     {
       name: "Elena Kowalski",
       role: "Travel Curator",
-      image: "/Testi3.jpg",
+      image: "/Testim3.webp",
       description:
         "Destination specialist with expertise in unique experiences",
     },
@@ -120,12 +120,12 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="relative w-full h-[70vh] min-h-[600px] mb-16 overflow-hidden">
           <Image
-            src="/Main.jpg"
+            src="/Hero.webp"
             alt="Viagio Team"
             width={1920}
             height={1080}
             priority
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
             className="object-cover absolute inset-0 w-full h-full"
           />
           {/* Enhanced gradient overlays */}

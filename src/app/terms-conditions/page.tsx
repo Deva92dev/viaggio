@@ -128,7 +128,7 @@ export default function TermsConditionsPage() {
         {/* Hero Section */}
         <section className="relative w-full h-[50vh] min-h-[400px] mb-16 overflow-hidden">
           <Image
-            src="/Main.jpg"
+            src="/Hero.webp"
             alt="Terms and Conditions"
             width={1920}
             height={800}

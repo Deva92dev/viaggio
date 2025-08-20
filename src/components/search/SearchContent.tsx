@@ -138,7 +138,7 @@ const SearchContent = () => {
   );
 
   // Render result card
-  const renderResultCard = (item: any) => {
+  const renderResultCard = (item: any, index: number) => {
     const isHotel = item.type === "hotel";
     const iconClassName = "w-5 h-5 mr-2 text-blue-600";
 
@@ -156,7 +156,7 @@ const SearchContent = () => {
               src={item.imageUrl}
               alt={item.name}
               fill
-              priority
+              priority={index < 3}
               className="object-cover group-hover:scale-110 transition-transform duration-700"
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" // for cards
             />
@@ -241,7 +241,7 @@ const SearchContent = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {data.items.map((item) => renderResultCard(item))}
+              {data.items.map((item, index) => renderResultCard(item, index))}
             </div>
           )}
           {renderPagination()}

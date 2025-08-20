@@ -31,7 +31,7 @@ const Popular = async () => {
         {destinations.map((destination, index) => (
           <article
             key={destination.id}
-            className="group popular-destination-card" // ADD GROUP CLASS HERE
+            className="group popular-destination-card"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <figure className="popular-image-container">

@@ -189,7 +189,7 @@ export default function RefundCancellationPage() {
         {/* Hero Section */}
         <section className="relative w-full h-[50vh] min-h-[400px] mb-16 overflow-hidden">
           <Image
-            src="/Main.jpg"
+            src="/hero.webp"
             alt="Refund and Cancellation Policy"
             width={1920}
             height={800}
