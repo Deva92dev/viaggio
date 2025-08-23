@@ -246,7 +246,7 @@ export default function AboutPage() {
               <div className="animate-fade-in">
                 <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/Testi5.jpg"
+                    src="/Testim5.webp"
                     alt="Our Story"
                     width={600}
                     height={400}

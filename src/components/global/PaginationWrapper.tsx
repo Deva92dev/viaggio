@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
-import MotionSection from "../home/MotionSection";
 
 type Props = {
   totalItems: number;
@@ -47,10 +46,7 @@ const PaginationWrapper = ({
   const visiblePages = getVisiblePages();
 
   return (
-    <MotionSection
-      scrollSpeed={25}
-      className="relative w-screen py-8 sm:py-12 md:py-16 bg-gradient-to-b from-[hsl(var(--background))] to-[hsl(var(--features-bg))]"
-    >
+    <section className="relative w-screen py-8 sm:py-12 md:py-16 bg-gradient-to-b from-[hsl(var(--background))] to-[hsl(var(--features-bg))]">
       {/* Subtle decorative background */}
       <div className="absolute inset-0 overflow-hidden z-0" aria-hidden="true">
         <div className="absolute top-4 sm:top-10 left-4 sm:left-10 w-32 sm:w-64 h-32 sm:h-64 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-5 animate-pulse" />
@@ -196,7 +192,7 @@ const PaginationWrapper = ({
           </div>
         </div>
       </div>
-    </MotionSection>
+    </section>
   );
 };
 

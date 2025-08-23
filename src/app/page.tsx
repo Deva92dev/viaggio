@@ -54,6 +54,7 @@ const Testimonials = dynamic(() => import("@/components/home/Testimonials"), {
   loading: () => <TestimonialsSkeleton />,
 });
 
+// fix coloring if any section of below components
 export default function Home() {
   return (
     <>

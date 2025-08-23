@@ -109,31 +109,74 @@ const Testimonials = () => {
   const currentData = testimonials[currentTestimonial];
 
   return (
-    <MotionSection scrollSpeed={50} className="testimonials-bg">
-      {/* Decorative background elements */}
-      <figure className="testimonials-decorative-bg" aria-hidden="true">
-        <div className="testimonials-blob-1 animate-pulse" />
-        <div className="testimonials-blob-2 animate-pulse" />
-        <div className="testimonials-blob-3 animate-pulse" />
-      </figure>
+    <MotionSection
+      parallax={{
+        speed: 40,
+        direction: "down",
+        range: [0, 1],
+        offset: ["start end", "end start"],
+      }}
+      animation={{
+        type: "scale",
+        duration: 1.0,
+        delay: 0.2,
+        ease: "easeOut",
+      }}
+      mobile={{
+        disableParallax: true,
+        disableAnimations: false,
+        simpleAnimation: "fade",
+        breakPoint: 768,
+        reducedMotion: true,
+      }}
+      triggerOnce={true}
+      threshold={0.2}
+      overflow={true}
+      className="relative w-full py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-[hsl(var(--features-bg))] to-[hsl(var(--testimonials-bg))]"
+    >
+      {/* Decorative background elements - Mobile optimized */}
+      <MotionSection
+        animation={{
+          type: "scale",
+          duration: 2.0,
+          delay: 0.2,
+          ease: "easeOut",
+        }}
+        mobile={{
+          simpleAnimation: "none",
+        }}
+        triggerOnce={true}
+        threshold={0.05}
+        className="absolute inset-0 overflow-hidden z-0"
+        aria-hidden="true"
+      >
+        <div className="absolute top-4 left-4 sm:top-16 sm:left-16 w-24 h-24 sm:w-80 sm:h-80 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-15 animate-pulse-custom" />
+        <div
+          className="absolute bottom-4 right-4 sm:bottom-16 sm:right-16 w-32 h-32 sm:w-96 sm:h-96 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-10 animate-pulse-custom"
+          style={{ animationDelay: "2s" }}
+        />
+        <div
+          className="absolute top-1/2 left-1/3 w-20 h-20 sm:w-64 sm:h-64 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] blur-3xl opacity-12 animate-pulse-custom"
+          style={{ animationDelay: "4s" }}
+        />
+      </MotionSection>
 
-      <main className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 container">
         {/* Section Title */}
-        <header className="mb-16">
+        <header className="mb-8 sm:mb-12 md:mb-16">
           <SectionTitle
             text="Traveler Stories"
             description="Real adventures from our amazing community of explorers"
           />
         </header>
-
         {/* Main Featured Testimonial */}
-        <section className="relative mb-16">
-          <article className="testimonials-main-card">
-            <div className="testimonials-gradient-border" />
+        <section className="relative mb-8 sm:mb-12 md:mb-16 w-full">
+          <article className="bg-white/90 backdrop-blur-xl rounded-xl sm:rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl overflow-hidden w-full">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-xl sm:rounded-2xl md:rounded-3xl blur opacity-20 -z-10" />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
               {/* Image Side */}
-              <figure className="testimonials-image-container">
+              <figure className="relative h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden">
                 <Image
                   src={currentData.image}
                   alt={`${currentData.destination} adventure with Viaggio`}
@@ -143,74 +186,71 @@ const Testimonials = () => {
                   className="object-cover w-full h-full"
                   loading="lazy"
                 />
-                <div className="testimonials-image-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
                 {/* Destination badge */}
-                <address className="testimonials-destination-badge not-italic">
-                  <MapPin size={14} className="text-white" />
-                  <span className="text-white text-sm font-semibold">
+                <address className="absolute top-2 left-2 sm:top-4 sm:left-4 md:top-6 md:left-6 bg-white/20 backdrop-blur-xl rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 flex items-center gap-1 sm:gap-2 border border-white/30 not-italic">
+                  <MapPin size={10} className="text-white flex-shrink-0" />
+                  <span className="text-white text-xs sm:text-sm font-semibold truncate max-w-[100px] sm:max-w-[120px] md:max-w-none">
                     {currentData.destination}
                   </span>
                 </address>
 
                 {/* Experience type */}
-                <aside className="testimonials-experience-badge">
-                  <span className="text-white text-sm font-bold">
+                <aside className="absolute top-2 right-2 sm:top-4 sm:right-4 md:top-6 md:right-6 bg-gradient-to-r from-[hsl(var(--accent))] to-orange-500 rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2">
+                  <span className="text-white text-xs sm:text-sm font-bold">
                     {currentData.experience}
                   </span>
                 </aside>
 
                 {/* Navigation buttons */}
-                <nav className="absolute bottom-16 right-4 flex gap-2">
+                <nav className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 flex gap-1 sm:gap-2">
                   <Button
                     onClick={prevTestimonial}
-                    className="testimonials-nav-button"
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 p-0 cursor-pointer"
                     aria-label="Previous testimonial"
                   >
-                    <ChevronLeft size={20} className="text-white" />
+                    <ChevronLeft size={14} className="text-white" />
                   </Button>
                   <Button
                     onClick={nextTestimonial}
-                    className="testimonials-nav-button"
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 p-0 cursor-pointer"
                     aria-label="Next testimonial"
                   >
-                    <ChevronRight size={20} className="text-white" />
+                    <ChevronRight size={14} className="text-white" />
                   </Button>
                 </nav>
               </figure>
 
               {/* Content Side */}
-              <section className="testimonials-content-section">
+              <section className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 flex flex-col justify-center">
                 {/* Quote icon */}
-                <figure className="testimonials-quote-icon">
-                  <Quote size={28} className="text-white" />
+                <figure className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 md:mb-6 shadow-lg">
+                  <Quote size={16} className="text-white" />
                 </figure>
-
                 {/* Rating */}
-                <div className="testimonials-rating-container">
-                  <div className="testimonials-rating-stars">
+                <div className="flex items-center gap-1 sm:gap-2 mb-2 sm:mb-3 md:mb-4">
+                  <div className="flex items-center gap-0.5 sm:gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
                         key={star}
-                        size={18}
-                        className="testimonials-star"
+                        size={12}
+                        className="text-[hsl(var(--accent))] fill-[hsl(var(--accent))]"
                       />
                     ))}
                   </div>
-                  <span className="testimonials-verified-text">
+                  <span className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm font-medium ml-1 sm:ml-2">
                     5.0 • Verified Review
                   </span>
                 </div>
-
                 {/* Quote */}
-                <blockquote className="testimonials-quote-text">
+                <blockquote className="text-[hsl(var(--foreground))] text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 md:mb-8 font-medium italic">
                   {currentData.quote}
                 </blockquote>
-
                 {/* Traveler info */}
-                <div className="testimonials-avatar-container">
-                  <div className="testimonials-avatar-wrapper">
-                    <figure className="testimonials-avatar-image">
+                <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4 md:mb-6">
+                  <div className="relative flex-shrink-0">
+                    <figure className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-[hsl(var(--primary))]">
                       <Image
                         src={currentData.avatar}
                         alt={currentData.name}
@@ -219,34 +259,36 @@ const Testimonials = () => {
                         className="object-cover w-full h-full"
                       />
                     </figure>
-                    <div className="testimonials-verified-badge">
-                      <Star size={12} className="text-white fill-white" />
+                    <div className="absolute -bottom-0.5 -right-0.5 sm:-bottom-1 sm:-right-1 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-[hsl(var(--accent))] rounded-full flex items-center justify-center border-2 border-white">
+                      <Star size={8} className="text-white fill-white" />
                     </div>
                   </div>
-                  <div>
-                    <h3 className="testimonials-traveler-name">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-bold text-[hsl(var(--foreground))] text-sm sm:text-base md:text-lg truncate">
                       {currentData.name}
                     </h3>
-                    <p className="testimonials-traveler-location">
+                    <p className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm truncate">
                       {currentData.location}
                     </p>
                   </div>
                 </div>
-
                 {/* Trip details */}
-                <aside className="testimonials-trip-details">
-                  <div className="testimonials-detail-badge-primary">
+                <aside className="flex flex-wrap gap-1 sm:gap-2 md:gap-4 text-xs sm:text-sm">
+                  <div className="flex items-center gap-1 sm:gap-2 bg-[hsl(var(--primary))]/10 px-2 sm:px-3 py-1 rounded-full">
                     <Calendar
-                      size={14}
-                      className="text-[hsl(var(--primary))]"
+                      size={10}
+                      className="text-[hsl(var(--primary))] flex-shrink-0"
                     />
-                    <span className="text-[hsl(var(--primary))] font-medium">
+                    <span className="text-[hsl(var(--primary))] font-medium text-xs sm:text-sm">
                       {currentData.date}
                     </span>
                   </div>
-                  <div className="testimonials-detail-badge-accent">
-                    <Users size={14} className="text-[hsl(var(--accent))]" />
-                    <span className="text-[hsl(var(--accent))] font-medium">
+                  <div className="flex items-center gap-1 sm:gap-2 bg-[hsl(var(--accent))]/10 px-2 sm:px-3 py-1 rounded-full">
+                    <Users
+                      size={10}
+                      className="text-[hsl(var(--accent))] flex-shrink-0"
+                    />
+                    <span className="text-[hsl(var(--accent))] font-medium text-xs sm:text-sm">
                       {currentData.groupSize}
                     </span>
                   </div>
@@ -255,98 +297,148 @@ const Testimonials = () => {
             </div>
           </article>
         </section>
-
-        {/* Testimonial Grid - FIXED: Use actual testimonial indices */}
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {testimonials.slice(0, 3).map((testimonial, gridIndex) => {
-            // Find the actual index in the full testimonials array
-            const actualIndex = testimonials.findIndex(
-              (t) => t.id === testimonial.id
-            );
-            return (
-              <article
-                key={testimonial.id}
-                className={`testimonials-grid-card group ${
-                  currentTestimonial === actualIndex
-                    ? "ring-2 ring-[hsl(var(--primary))] bg-white/95"
-                    : ""
-                }`}
-                style={{ animationDelay: `${gridIndex * 0.2}s` }}
-                onClick={() => setCurrentTestimonial(actualIndex)}
-              >
-                {/* Rating */}
-                <div className="testimonials-rating-stars mb-4">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} size={14} className="testimonials-star" />
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <blockquote className="text-[hsl(var(--foreground))] mb-4 line-clamp-3 leading-relaxed">
-                  {testimonial.quote}
-                </blockquote>
-
-                {/* Traveler */}
-                <div className="flex items-center gap-3">
-                  <figure className="testimonials-grid-avatar">
-                    <Image
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      width={40}
-                      height={40}
-                      className="object-cover w-full h-full"
-                    />
-                  </figure>
-                  <div>
-                    <h4 className="testimonials-grid-name">
-                      {testimonial.name}
-                    </h4>
-                    <p className="testimonials-grid-destination">
-                      {testimonial.destination}
-                    </p>
+        {/* Testimonial Grid */}
+        <section className="mb-8 sm:mb-12 md:mb-16 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full">
+            {testimonials.slice(0, 3).map((testimonial, index) => {
+              const actualIndex = testimonials.findIndex(
+                (t) => t.id === testimonial.id
+              );
+              return (
+                <MotionSection
+                  animation={{
+                    type: "fade",
+                    direction: "up",
+                    duration: 0.6,
+                    delay: 0.3 + index * 0.1,
+                    ease: "easeOut",
+                  }}
+                  mobile={{
+                    simpleAnimation: "fade",
+                    disableAnimations: false,
+                    disableParallax: true,
+                    breakPoint: 768,
+                    reducedMotion: true,
+                  }}
+                  triggerOnce={true}
+                  threshold={0.3}
+                  overflow={true}
+                  key={testimonial.id}
+                  className={`w-full bg-white/80 backdrop-blur-md rounded-lg sm:rounded-xl md:rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 p-3 sm:p-4 md:p-6 cursor-pointer group animate-fade-in ${
+                    currentTestimonial === actualIndex
+                      ? "ring-2 ring-[hsl(var(--primary))] bg-white/95"
+                      : ""
+                  }`}
+                >
+                  {/* Rating */}
+                  <div className="flex items-center gap-0.5 sm:gap-1 mb-2 sm:mb-3 md:mb-4">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        size={10}
+                        className="text-[hsl(var(--accent))] fill-[hsl(var(--accent))]"
+                      />
+                    ))}
                   </div>
-                </div>
-              </article>
-            );
-          })}
+                  {/* Quote */}
+                  <blockquote className="text-[hsl(var(--foreground))] mb-2 sm:mb-3 md:mb-4 line-clamp-3 leading-relaxed text-xs sm:text-sm md:text-base">
+                    {testimonial.quote}
+                  </blockquote>
+                  {/* Traveler */}
+                  <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
+                    <figure className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-[hsl(var(--primary))] flex-shrink-0">
+                      <Image
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        width={40}
+                        height={40}
+                        className="object-cover w-full h-full"
+                      />
+                    </figure>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="font-semibold text-[hsl(var(--foreground))] text-xs sm:text-sm truncate">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-[hsl(var(--muted-foreground))] text-xs truncate">
+                        {testimonial.destination}
+                      </p>
+                    </div>
+                  </div>
+                </MotionSection>
+              );
+            })}
+          </div>
         </section>
-
         {/* Trust indicators */}
-        <section className="testimonials-trust-container">
-          <header className="text-center mb-8">
-            <h3 className="testimonials-trust-title">
+        <MotionSection
+          animation={{
+            type: "fade",
+            direction: "up",
+            duration: 0.8,
+            delay: 0.4,
+            ease: "easeOut",
+          }}
+          mobile={{
+            simpleAnimation: "fade",
+            disableAnimations: false,
+            disableParallax: true,
+            breakPoint: 768,
+            reducedMotion: true,
+          }}
+          triggerOnce={true}
+          threshold={0.3}
+          overflow={true}
+          className="bg-white/90 backdrop-blur-xl rounded-lg sm:rounded-xl md:rounded-2xl border border-white/20 shadow-xl p-3 sm:p-4 md:p-6 lg:p-8 w-full"
+        >
+          <header className="text-center mb-4 sm:mb-6 md:mb-8">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-1 sm:mb-2">
               Trusted by Adventurers Worldwide
             </h3>
-            <p className="testimonials-trust-description">
+            <p className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm md:text-base px-2">
               Join thousands of travelers who chose Viaggio for their dream
               adventures
             </p>
           </header>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <article>
-              <div className="testimonials-stats-number">4.9</div>
-              <div className="testimonials-stats-label">Average Rating</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 text-center w-full">
+            <article className="w-full">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
+                4.9
+              </div>
+              <div className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm">
+                Average Rating
+              </div>
             </article>
-            <article>
-              <div className="testimonials-stats-number">2,847</div>
-              <div className="testimonials-stats-label">Reviews</div>
+            <article className="w-full">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
+                2,847
+              </div>
+              <div className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm">
+                Reviews
+              </div>
             </article>
-            <article>
-              <div className="testimonials-stats-number">98%</div>
-              <div className="testimonials-stats-label">Recommend Us</div>
+            <article className="w-full">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
+                98%
+              </div>
+              <div className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm">
+                Recommend Us
+              </div>
             </article>
-            <article>
-              <div className="testimonials-stats-number">100%</div>
-              <div className="testimonials-stats-label">Verified</div>
+            <article className="w-full">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
+                100%
+              </div>
+              <div className="text-[hsl(var(--muted-foregroound))] text-xs sm:text-sm">
+                Verified
+              </div>
             </article>
           </div>
-        </section>
+        </MotionSection>
       </main>
 
-      {/* Additional floating decorative elements */}
-      <figure className="testimonials-floating-1" />
-      <figure className="testimonials-floating-2" />
+      {/* Additional floating decorative elements - Mobile optimized */}
+      <figure className="animate-float absolute top-1/4 right-2 sm:right-12 w-8 h-8 sm:w-12 sm:h-12 md:w-20 md:h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15" />
+      <figure className="animate-floatSlowCustom absolute bottom-1/4 left-2 sm:left-12 w-10 h-10 sm:w-16 sm:h-16 md:w-28 md:h-28 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20" />
     </MotionSection>
   );
 };

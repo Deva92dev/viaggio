@@ -15,6 +15,7 @@ import {
   MapPinIcon,
   DollarSignIcon,
 } from "lucide-react";
+import MotionSection from "./MotionSection";
 
 const SearchFilter = () => {
   const router = useRouter();
@@ -55,7 +56,28 @@ const SearchFilter = () => {
   };
 
   return (
-    <div
+    <MotionSection
+      parallax={{
+        speed: 30,
+        direction: "up",
+        range: [0, 0.8],
+      }}
+      animation={{
+        type: "slide",
+        direction: "up",
+        duration: 0.8,
+        delay: 0.5,
+        ease: "easeOut",
+      }}
+      mobile={{
+        disableParallax: true,
+        disableAnimations: false,
+        simpleAnimation: "fade",
+        breakPoint: 768,
+        reducedMotion: true,
+      }}
+      triggerOnce={true}
+      threshold={0.2}
       className={`relative p-6 sm:p-8 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-[hsl(var(--primary))/0.1] w-full space-y-6 border border-white/20 transition-all duration-300 ${
         isPending ? "opacity-70 pointer-events-none" : ""
       }`}
@@ -268,7 +290,7 @@ const SearchFilter = () => {
           </div>
         </div>
       )}
-    </div>
+    </MotionSection>
   );
 };
 

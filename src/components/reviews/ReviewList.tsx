@@ -131,7 +131,7 @@ export default function ReviewList({
   };
 
   return (
-    <div className="w-full">
+    <main className="w-full">
       {reviews.length === 0 && (
         <div className="text-center py-8">
           <p className="text-gray-500 text-lg">No reviews yet.</p>
@@ -141,7 +141,7 @@ export default function ReviewList({
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 auto-rows-[18rem]">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 auto-rows-auto">
         {reviews.map((r) => {
           const isMyReview = r.id === myReviewId;
           const isEditing = editingId === r.id;
@@ -156,7 +156,7 @@ export default function ReviewList({
               }`}
             >
               {!isEditing ? (
-                <div className="flex flex-col h-full">
+                <div className="flex flex-col">
                   {/* First Row: Author Image, Name, Rating, and Actions */}
                   <div className="flex items-center justify-between mb-3 flex-shrink-0">
                     <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -243,7 +243,7 @@ export default function ReviewList({
                   </div>
 
                   {/* Second Row: Comment - This section will take remaining space */}
-                  <div className="flex-1 overflow-hidden mb-3">
+                  <div className="overflow-hidden mb-3 max-h-32">
                     <div className="h-full overflow-y-auto pr-2">
                       <p className="text-gray-700 leading-relaxed break-words">
                         {r.comment || "No comment provided."}
@@ -348,7 +348,7 @@ export default function ReviewList({
             </div>
           );
         })}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

@@ -10,7 +10,6 @@ import {
   Bed,
   Wifi,
 } from "lucide-react";
-import MotionSection from "../home/MotionSection";
 
 interface DestinationImageProps {
   pageType: "destinations" | "hotels";
@@ -19,7 +18,7 @@ interface DestinationImageProps {
 const DestinationImage = ({ pageType }: DestinationImageProps) => {
   const content = {
     destinations: {
-      imageSrc: "/Zermatt.jpg",
+      imageSrc: "/Zermat.webp",
       altText:
         "Discover amazing travel destinations - Zermatt mountain adventure",
       badgeText: "Your Adventure Awaits",
@@ -64,7 +63,7 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
       ],
     },
     hotels: {
-      imageSrc: "/Hotel.jpg",
+      imageSrc: "/Hotels.webp",
       altText:
         "Experience luxury accommodations with premium amenities and stunning views",
       badgeText: "Your Perfect Stay Awaits",
@@ -123,10 +122,7 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
   } = content[pageType];
 
   return (
-    <MotionSection
-      scrollSpeed={100}
-      className="relative w-screen min-h-screen bg-gradient-to-br from-[hsl(var(--hero-bg))] to-[hsl(var(--background))] overflow-hidden"
-    >
+    <section className="relative w-screen min-h-screen bg-gradient-to-br from-[hsl(var(--hero-bg))] to-[hsl(var(--background))] overflow-hidden">
       {/* Background Image - Full screen coverage */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
@@ -147,9 +143,9 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
 
       {/* Enhanced decorative elements */}
       <div className="absolute inset-0 overflow-hidden z-10" aria-hidden="true">
-        <div className="absolute top-4 sm:top-10 lg:top-20 left-4 sm:left-10 lg:left-20 w-32 sm:w-64 lg:w-96 h-32 sm:h-64 lg:h-96 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-20 animate-pulse" />
+        <div className="absolute top-4 sm:top-10 lg:top-20 left-4 sm:left-10 lg:left-20 w-32 sm:w-64 lg:w-96 h-32 sm:h-64 lg:h-96 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-20 motion-safe:animate-pulse-custom" />
         <div
-          className="absolute bottom-4 sm:bottom-10 lg:bottom-20 right-4 sm:right-10 lg:right-20 w-40 sm:w-72 lg:w-80 h-40 sm:h-72 lg:h-80 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-15 animate-pulse"
+          className="absolute bottom-4 sm:bottom-10 lg:bottom-20 right-4 sm:right-10 lg:right-20 w-40 sm:w-72 lg:w-80 h-40 sm:h-72 lg:h-80 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-15 motion-safe:animate-pulse-custom"
           style={{ animationDelay: "2s" }}
         />
       </div>
@@ -174,7 +170,7 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
 
         {/* Top Stats - Mobile responsive */}
         <div
-          className="absolute top-3 sm:top-6 md:top-8 right-3 sm:right-6 md:right-12 flex gap-1 sm:gap-2 lg:gap-4 animate-fade-in"
+          className="absolute top-3 sm:top-6 md:top-8 right-3 sm:right-6 md:right-12 flex gap-1 sm:gap-2 lg:gap-4 motion-safe:animate-fade-in"
           style={{ animationDelay: "0.2s" }}
         >
           {stats.map(({ label, value }) => (
@@ -194,12 +190,12 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
         <div className="text-center space-y-4 sm:space-y-6 lg:space-y-8 max-w-full px-2 sm:px-4">
           {/* Badge - Mobile optimized */}
           <div
-            className="inline-flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-xl rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-white/20 animate-fade-in"
+            className="inline-flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-xl rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-white/20 motion-safe:animate-fade-in"
             style={{ animationDelay: "0.3s" }}
           >
             <Globe
               size={16}
-              className="sm:w-5 sm:h-5 text-[hsl(var(--accent))] animate-spin-slow"
+              className="sm:w-5 sm:h-5 text-[hsl(var(--accent))] motion-safe:animate-spin-slow"
             />
             <span className="text-white font-semibold text-xs sm:text-sm lg:text-base">
               {badgeText}
@@ -227,7 +223,7 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
 
         {/* Bottom Scroll Hint - Mobile positioning */}
         <div
-          className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 animate-fade-in"
+          className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 motion-safe:animate-fade-in"
           style={{ animationDelay: "0.7s" }}
         >
           <div className="flex flex-col items-center gap-2 sm:gap-3 text-white/80">
@@ -249,7 +245,7 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
         ({ Icon, position, rotation, color, animation }, index) => (
           <div
             key={index}
-            className={`absolute ${position} bg-white/10 backdrop-blur-xl p-2 sm:p-3 lg:p-4 rounded-xl shadow-2xl ${rotation} animate-float z-30 hidden lg:block`}
+            className={`absolute ${position} bg-white/10 backdrop-blur-xl p-2 sm:p-3 lg:p-4 rounded-xl shadow-2xl ${rotation} motion-safe:animate-spin-slow z-30 hidden lg:block`}
             style={{ animationDelay: `${1 + index * 0.2}s` }}
           >
             <Icon
@@ -259,7 +255,7 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
           </div>
         )
       )}
-    </MotionSection>
+    </section>
   );
 };
 

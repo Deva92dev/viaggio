@@ -15,10 +15,7 @@ type Props = {
 
 const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
   return (
-    <MotionSection
-      scrollSpeed={50}
-      className="relative w-full py-20 bg-gradient-to-b from-[hsl(var(--features-bg))] to-[hsl(var(--background))]"
-    >
+    <section className="relative w-full py-20 bg-gradient-to-b from-[hsl(var(--features-bg))] to-[hsl(var(--background))]">
       {/* Enhanced decorative background elements */}
       <div className="absolute inset-0 overflow-hidden z-0" aria-hidden="true">
         <div className="absolute top-16 left-16 w-80 h-80 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-15 animate-pulse" />
@@ -52,10 +49,26 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
         {/* Enhanced Places Grid - Fixed height cards */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {destinations.map((place, index) => (
-            <div
+            <MotionSection
               key={place.id}
-              className="group animate-fade-in h-full"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              animation={{
+                type: "slide",
+                direction: "left",
+                duration: 0.6,
+                delay: 0.4 + index * 0.2,
+                ease: "easeOut",
+              }}
+              mobile={{
+                simpleAnimation: "fade",
+                disableAnimations: false,
+                disableParallax: true,
+                breakPoint: 768,
+                reducedMotion: true,
+              }}
+              triggerOnce={true}
+              threshold={0.2}
+              overflow={true}
+              className="group h-full"
             >
               <SmartLink href={`/destinations/${place.id}`}>
                 <Card className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur-md border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-0 cursor-pointer h-full flex flex-col">
@@ -178,7 +191,7 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                   <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-gradient-to-br from-[hsl(var(--accent))] to-orange-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
                 </Card>
               </SmartLink>
-            </div>
+            </MotionSection>
           ))}
         </div>
         {/* Enhanced Bottom CTA Section */}
@@ -206,7 +219,7 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
       {/* Additional floating decorative elements */}
       <div className="absolute top-1/4 right-8 w-20 h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15 animate-float" />
       <div className="absolute bottom-1/4 left-8 w-24 h-24 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20 animate-float-slow" />
-    </MotionSection>
+    </section>
   );
 };
 

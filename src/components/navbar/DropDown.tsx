@@ -15,6 +15,7 @@ import { SignedIn, SignedOut, SignInButton, useUser } from "@clerk/nextjs";
 import { navLinks, publicNavLinks } from "@/utils/links";
 import Link from "next/link";
 import SignOutLink from "./SignOutLink";
+import { useResponsive } from "@/hooks/useResponsive";
 
 type DropDownProps = {
   hidePublicNavLinks?: boolean;
@@ -24,14 +25,37 @@ const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const user = useUser();
   const profileImage = user.user?.imageUrl || null;
+  const { isMobile } = useResponsive();
 
   const closeDropdown = () => setIsOpen(false);
+
+  // Button styles - extracted for reusability
+  const buttonStyles = {
+    width: "48px",
+    height: "48px",
+    minWidth: "48px",
+    minHeight: "48px",
+    maxWidth: "48px",
+    maxHeight: "48px",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0",
+    margin: "0",
+    flexShrink: 0,
+    flexGrow: 0,
+    position: "relative" as const,
+    overflow: "hidden",
+    contain: "none" as const,
+    gap: "8px",
+  };
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
       <DropdownMenuTrigger asChild>
         <Button
-          className="dropdown-trigger hover:bg-[hsl(var(--primary))/0.1] transition-colors duration-150 cursor-pointer"
+          className="hover:bg-[hsl(var(--primary))/0.1] transition-colors duration-150 cursor-pointer"
+          style={buttonStyles}
           aria-label="User Options"
         >
           <LucideAlignLeft className="w-5 h-5 text-[hsl(var(--primary))] flex-shrink-0" />
@@ -46,16 +70,25 @@ const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
         sideOffset={8}
         alignOffset={0}
         className="w-52 bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-lg rounded-lg z-50"
-        avoidCollisions={true}
-        collisionPadding={8}
+        style={{
+          position: "fixed",
+          top: `${isMobile ? "16px" : "24px"}`,
+          right: "8px",
+          left: "auto",
+          maxWidth: "calc(100vw - 32px)", // Prevent overflow with padding
+          minWidth: "200px",
+          transform: "none",
+        }}
+        avoidCollisions={false} // Disable automatic collision detection
+        collisionPadding={0}
       >
         <SignedOut>
           <DropdownMenuItem
             onClick={closeDropdown}
-            className="hover:bg-[hsl(var(--primary))/0.1] cursor-pointer"
+            className="hover:bg-[hsl(var(--primary))/0.1] cursor-pointer transition-colors duration-150"
           >
             <SignInButton mode="modal">
-              <button className="w-full text-left text-[hsl(var(--primary))] font-medium flex items-center gap-2 cursor-pointer">
+              <button className="w-full text-left text-[hsl(var(--primary))] font-medium flex items-center gap-2 cursor-pointer transition-colors duration-150">
                 <LogIn className="w-4 h-4" />
                 <span>Login</span>
               </button>
@@ -64,10 +97,10 @@ const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={closeDropdown}
-            className="hover:bg-[hsl(var(--primary))/0.1] cursor-pointer"
+            className="hover:bg-[hsl(var(--primary))/0.1] cursor-pointer transition-colors duration-150"
           >
             <SignInButton mode="modal">
-              <button className="w-full text-left text-[hsl(var(--primary))] font-medium flex items-center gap-2 cursor-pointer">
+              <button className="w-full text-left text-[hsl(var(--primary))] font-medium flex items-center gap-2 cursor-pointer transition-colors duration-150">
                 <UserPlus className="w-4 h-4" />
                 <span>Register</span>
               </button>
@@ -77,12 +110,12 @@ const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
           {publicNavLinks.map((link) => (
             <DropdownMenuItem
               key={link.href}
-              className="cursor-pointer hover:bg-[hsl(var(--accent))/0.1] rounded-md"
+              className="cursor-pointer hover:bg-[hsl(var(--accent))/0.1] rounded-md transition-colors duration-150"
               onClick={closeDropdown}
             >
               <Link
                 href={link.href}
-                className="w-full flex items-center gap-2 text-[hsl(var(--foreground))]"
+                className="w-full flex items-center gap-2 text-[hsl(var(--foreground))] transition-colors duration-150"
               >
                 <span>{link.label}</span>
               </Link>
@@ -100,12 +133,12 @@ const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
             return (
               <DropdownMenuItem
                 key={link.href}
-                className="cursor-pointer hover:bg-[hsl(var(--accent))/0.1] rounded-md"
+                className="cursor-pointer hover:bg-[hsl(var(--accent))/0.1] rounded-md transition-colors duration-150"
                 onClick={closeDropdown}
               >
                 <Link
                   href={link.href}
-                  className="w-full flex items-center gap-2 text-[hsl(var(--foreground))]"
+                  className="w-full flex items-center gap-2 text-[hsl(var(--foreground))] transition-colors duration-150"
                 >
                   <span>{link.label}</span>
                 </Link>
@@ -115,9 +148,9 @@ const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={closeDropdown}
-            className="hover:bg-[hsl(var(--destructive))/0.1] cursor-pointer"
+            className="hover:bg-[hsl(var(--destructive))/0.1] cursor-pointer transition-colors duration-150"
           >
-            <div className="w-full flex items-center gap-2 text-[hsl(var(--destructive))]">
+            <div className="w-full flex items-center gap-2 text-[hsl(var(--destructive))] transition-colors duration-150">
               <LogOut className="w-4 h-4" />
               <SignOutLink />
             </div>

@@ -96,7 +96,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   };
 }
-// fix review section height of review list
+
 const DestinationDetailsPage = async ({ params }: Props) => {
   const { destinationsId } = await params;
   const destination = await cachedGetSingleDestination(destinationsId);
@@ -327,7 +327,7 @@ const DestinationDetailsPage = async ({ params }: Props) => {
                         </p>
                       </div>
                     </div>
-                    <div className="mt-6 bg-gradient-to-br from-[hsl(var(--features-bg))] to-white rounded-2xl p-6 border border-[hsl(var(--border))] shadow-lg">
+                    <div className="mt-6 bg-gradient-to-br from-[hsl(var(--features-bg))] to-white rounded-2xl p-6 border border-[hsl(var(--border))] shadow-lg hover:-translate-y-1">
                       <div className="flex items-center mb-4">
                         <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mr-3">
                           <Camera size={20} className="text-white" />

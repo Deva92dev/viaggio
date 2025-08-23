@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 import {
@@ -25,10 +26,9 @@ export default function BreadcrumbNav({ items, className = "" }: Props) {
   return (
     <div
       className={`bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20
-                  shadow-lg px-4 py-3 ${className}`}
+                  shadow-lg px-2 py-2 ${className}`}
     >
       <Breadcrumb>
-        {/* <ol> rendered internally */}
         <BreadcrumbList className="flex flex-wrap items-center space-x-2">
           <BreadcrumbItem>
             <BreadcrumbLink asChild className="cursor-pointer">
@@ -49,14 +49,14 @@ export default function BreadcrumbNav({ items, className = "" }: Props) {
             <React.Fragment key={i}>
               <BreadcrumbItem className="cursor-pointer">
                 {item.isCurrentPage ? (
-                  <BreadcrumbPage className="text-white font-semibold bg-white/20 px-3 py-1 rounded-full">
+                  <BreadcrumbPage className="text-white font-semibold bg-white/20 px-2 py-1 rounded-full">
                     {item.label}
                   </BreadcrumbPage>
                 ) : (
                   <BreadcrumbLink asChild>
                     <Link
                       href={item.href || "#"}
-                      className="text-white/90 hover:text-white transition-colors font-medium hover:bg-white/10 px-3 py-1 rounded-full"
+                      className="text-white/90 hover:text-white transition-colors font-medium hover:bg-white/10 px-2 py-1 rounded-full"
                     >
                       {item.label}
                     </Link>

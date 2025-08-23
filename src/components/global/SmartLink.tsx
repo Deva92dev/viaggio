@@ -9,7 +9,7 @@ type SmartLinkProps = {
   className?: string;
   children: React.ReactNode;
 };
-// useTransition here
+
 const SmartLink = ({ href, children }: SmartLinkProps) => {
   const router = useRouter();
   const [prefetched, setPrefetched] = useState(false);

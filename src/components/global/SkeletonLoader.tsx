@@ -1,4 +1,3 @@
-// components/global/SkeletonLoader.tsx
 const SkeletonLoader = ({
   className = "",
   variant = "default",
