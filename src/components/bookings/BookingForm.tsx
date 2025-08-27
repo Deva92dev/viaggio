@@ -1,9 +1,19 @@
 "use client";
-
-import { createBooking } from "@/utils/actions";
-import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import { useEffect, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import {
+  Calendar,
+  Users,
+  DollarSign,
+  CreditCard,
+  Shield,
+  ArrowLeft,
+  Bed,
+  MessageSquare,
+} from "lucide-react";
+import { createBooking } from "@/utils/actions";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
@@ -19,17 +29,17 @@ import {
 } from "../ui/select";
 import { Textarea } from "../ui/textarea";
 import { CreateBookingData } from "@/utils/types";
-import StripePayment from "./StripePayment";
-import {
-  Calendar,
-  Users,
-  DollarSign,
-  CreditCard,
-  Shield,
-  ArrowLeft,
-  Bed,
-  MessageSquare,
-} from "lucide-react";
+
+const StripePayment = dynamic(() => import("./StripePayment"), {
+  loading: () => (
+    <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl p-6">
+      <div className="flex items-center justify-center h-32">
+        <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin"></div>
+        <span className="ml-3 text-gray-600">Loading payment...</span>
+      </div>
+    </div>
+  ),
+});
 
 type BookingFormProps = {
   itemId: string;
@@ -308,7 +318,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
           </CardContent>
         </Card>
 
-        {/* Enhanced Stripe Payment */}
+        {/*  Stripe Payment */}
         {showPayment && (
           <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl p-6">
             <StripePayment

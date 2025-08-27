@@ -1,25 +1,68 @@
-/* app/search/page.tsx — Server Component */
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Script from "next/script";
-import SearchContent from "@/components/search/SearchContent";
-import { SearchPageSkeleton } from "@/components/search/SearchSkeleton";
+import { SearchSkeleton } from "@/components/search/SearchSkeleton";
 import { buildSearchResults } from "@/utils/schema";
 import { getFilteredResults } from "@/utils/actions";
+import dynamic from "next/dynamic";
 
-export const metadata: Metadata = {
-  title: "Search Results - Find Your Perfect Trip | Viagio",
-  description:
-    "Search destinations, hotels and travel experiences. Find exactly what you're looking for with Viagio's comprehensive search.",
-  keywords: [
-    "search results",
-    "find destinations",
-    "search hotels",
-    "travel search",
-    "Viagio search",
-  ],
-  alternates: { canonical: "/search" },
+const SearchContent = dynamic(
+  () => import("@/components/search/SearchContent"),
+  {
+    loading: () => <SearchSkeleton />,
+  }
+);
+
+type SearchProps = {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
+
+export async function generateMetadata({
+  searchParams,
+}: SearchProps): Promise<Metadata> {
+  const sp = await searchParams;
+
+  const destination =
+    typeof sp.destination === "string" ? sp.destination : undefined;
+  const country = typeof sp.country === "string" ? sp.country : undefined;
+
+  // Build dynamic title and description
+  let title = "Search Results - Find Your Perfect Trip | Viagio";
+  let description =
+    "Search destinations, hotels and travel experiences. Find exactly what you're looking for with Viagio's comprehensive search.";
+
+  if (destination) {
+    title = `${destination} - Search Results | Viagio`;
+    description = `Find the best destinations, hotels and experiences in ${destination}. Discover your perfect trip with Viagio.`;
+  } else if (country) {
+    title = `${country} Travel - Search Results | Viagio`;
+    description = `Explore ${country} destinations and hotels. Find amazing travel experiences in ${country} with Viagio.`;
+  }
+
+  // Check if we have no search parameters at all
+  const hasAnyParams = Object.keys(sp).length > 0;
+
+  if (!hasAnyParams) {
+    title = "Search - Find Your Perfect Trip | Viagio";
+    description =
+      "Search for destinations, hotels and travel experiences worldwide. Start planning your perfect trip with Viagio's comprehensive search.";
+  }
+
+  return {
+    title,
+    description,
+    keywords: [
+      "search results",
+      "find destinations",
+      "search hotels",
+      "travel search",
+      "Viagio search",
+      ...(destination ? [`${destination} travel`] : []),
+      ...(country ? [`${country} tourism`] : []),
+    ],
+    alternates: { canonical: "/search" },
+  };
+}
 
 /* helper: convert possibly-array params to string[][] for URLSearchParams */
 const paramsToEntries = (
@@ -28,10 +71,6 @@ const paramsToEntries = (
   Object.entries(obj).flatMap(([k, v]) =>
     Array.isArray(v) ? v.map((item) => [k, item]) : v ? [[k, v]] : []
   );
-
-type SearchProps = {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-};
 
 export default async function SearchPage({ searchParams }: SearchProps) {
   const sp = await searchParams;
@@ -96,7 +135,7 @@ export default async function SearchPage({ searchParams }: SearchProps) {
           }}
         />
       )}
-      <Suspense fallback={<SearchPageSkeleton />}>
+      <Suspense fallback={<SearchSkeleton />}>
         <SearchContent />
       </Suspense>
     </>

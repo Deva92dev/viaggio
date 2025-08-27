@@ -14,7 +14,7 @@ import SearchFilterSkeleton from "@/components/home/SearchFilterSkeleton";
 export const metadata: Metadata = {
   title: "Viagio - Discover Amazing Travel Destinations & Guided Tours",
   description:
-    "Explore breathtaking destinations worldwide with Viagio. Expert-guided tours, personalized travel experiences, and unforgettable adventures await. Book your dream trip today.",
+    "Discover breathtaking destinations, luxury hotels, and expertly-guided tours with Viaggio. Leisure meets luxury for unforgettable adventures.",
   keywords: [
     "travel",
     "tours",
@@ -54,7 +54,6 @@ const Testimonials = dynamic(() => import("@/components/home/Testimonials"), {
   loading: () => <TestimonialsSkeleton />,
 });
 
-// fix coloring if any section of below components
 export default function Home() {
   return (
     <>

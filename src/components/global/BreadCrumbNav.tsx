@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 import {
@@ -9,7 +10,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import React from "react";
 
 interface Item {
   label: string;

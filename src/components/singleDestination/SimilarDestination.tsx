@@ -15,6 +15,8 @@ const SimilarDestination = async ({ imageUrl, title }: RecommendedType) => {
       <Image
         src={imageUrl}
         alt={title}
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         width={300}
         height={200}
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

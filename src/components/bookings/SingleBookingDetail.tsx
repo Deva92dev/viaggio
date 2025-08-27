@@ -1,4 +1,6 @@
-import { getSingleBooking } from "@/utils/actions";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import {
   Calendar,
   CheckCircle,
@@ -7,7 +9,7 @@ import {
   MapPin,
   Users,
 } from "lucide-react";
-import { notFound } from "next/navigation";
+import { getSingleBooking } from "@/utils/actions";
 import {
   Card,
   CardContent,
@@ -16,11 +18,9 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
-import Image from "next/image";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
-import Link from "next/link";
 
 type SingleBookingDetailProps = {
   bookingId: string;

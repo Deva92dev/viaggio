@@ -41,8 +41,6 @@ export const metadata: Metadata = {
     default: "Viaggio – Where Leisure Meets Luxury",
     template: "%s | Viaggio",
   },
-  description:
-    "Discover breathtaking destinations, luxury hotels, and expertly-guided tours with Viaggio. Leisure meets luxury for unforgettable adventures.",
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   openGraph: {

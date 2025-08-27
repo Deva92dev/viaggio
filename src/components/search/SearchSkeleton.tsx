@@ -1,7 +1,7 @@
 import { Skeleton } from "../ui/skeleton";
 
 // Loading component for the search page
-export const SearchPageSkeleton = () => (
+export const SearchSkeleton = () => (
   <section className="max-w-7xl mx-auto p-6">
     <div className="mb-8">
       <Skeleton className="h-8 w-64 mb-4" />

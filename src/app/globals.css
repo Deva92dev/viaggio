@@ -22,12 +22,12 @@
     --secondary: 210 24% 90%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 20% 94%;
-    --muted-foreground: 215 16% 44%; /* ✅ FIXED: Darker for better contrast */
-    --accent: 14 100% 64%; /* Keep your current accent */
-    --accent-foreground: 0 0% 0%; /* ✅ Black text for better contrast */
+    --muted-foreground: 215 16% 44%;
+    --accent: 14 100% 64%;
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 85% 20%; /* ✅ FIXED: Dark red instead of white */
-    --border: 214 32% 85%; /* ✅ FIXED: Better contrast with background */
+    --destructive-foreground: 0 85% 20%;
+    --border: 214 32% 85%;
     --input: 214.3 31.8% 91.4%;
     --ring: 216 74% 37%;
     --radius: 0.5rem;
@@ -44,7 +44,7 @@
   /* ===== Dark Mode ===== */
   .dark {
     --background: 213 63% 16%;
-    --foreground: 210 40% 98%;
+    --foreground: 210 40% 95%; /* Lighter text */
     --card: 217 32% 20%;
     --card-foreground: 210 40% 98%;
     --popover: 213 63% 16%;
@@ -54,12 +54,12 @@
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20% 70%; /* ✅ FIXED: Lighter for dark mode */
-    --accent: 14 100% 64%; /* Keep your current accent */
-    --accent-foreground: 0 0% 100%; /* ✅ White text for dark mode */
+    --muted-foreground: 215 20% 75%;
+    --accent: 14 90% 45%; /* Darker orange */
+    --accent-foreground: 0 0% 100%; /* Pure white */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 25%; /* ✅ FIXED: Better dark mode contrast */
+    --border: 217.2 32.6% 25%;
     --input: 217.2 32.6% 17.5%;
     --ring: 216 74% 50%;
 
@@ -312,9 +312,14 @@
 
   .btn-accent {
     @apply bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))]
-           hover:bg-[hsl(var(--accent)/0.9)] hover:text-[hsl(var(--accent-foreground))]
-           transition-colors duration-200 rounded-[var(--radius)]
-           px-5 py-3 min-w-[110px] text-center font-semibold select-none;
+         hover:bg-[hsl(var(--accent)/0.9)] 
+         transition-colors duration-200 rounded-[var(--radius)]
+         px-5 py-3 min-w-[110px] text-center font-semibold;
+  }
+
+  .btn-accent:focus {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 2px;
   }
 
   .gradient-text {
@@ -383,7 +388,6 @@
   }
 }
 
-/* Custom Keyframes - Add these AFTER the @layer utilities section */
 @keyframes floatSlowCustom {
   0%,
   100% {

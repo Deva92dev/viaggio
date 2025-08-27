@@ -9,30 +9,24 @@ type SimilarHotelProps = {
 const SimilarHotels = ({ image, title }: SimilarHotelProps) => {
   return (
     <div className="group relative rounded-2xl overflow-hidden h-44 sm:h-48 md:h-52 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer w-full max-w-none">
-      {/* Enhanced gradient border effect */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500 -z-10"></div>
-
       <Image
         src={image}
         alt={title}
-        fill
+        width={300}
+        height={200}
+        loading="lazy"
         className="object-cover transition-transform duration-700 group-hover:scale-110"
-        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" // for cards
       />
-
-      {/* Enhanced gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
       <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--primary))]/20 to-[hsl(var(--accent))]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-      {/* Enhanced content with full width coverage */}
       <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white">
         <div className="flex items-start justify-between gap-2 w-full">
           <div className="flex-1 min-w-0">
             <p className="font-bold text-sm sm:text-base mb-2 line-clamp-2 leading-tight">
               {title}
             </p>
-
-            {/* Enhanced explore section */}
             <div className="flex items-center opacity-0 transform translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
               <div className="flex items-center bg-white/20 backdrop-blur-md rounded-full px-2 sm:px-3 py-1 border border-white/30">
                 <Bed
@@ -47,8 +41,6 @@ const SimilarHotels = ({ image, title }: SimilarHotelProps) => {
               </div>
             </div>
           </div>
-
-          {/* Hotel rating badge */}
           <div className="flex items-center bg-white/20 backdrop-blur-md rounded-full px-2 py-1 border border-white/30 flex-shrink-0">
             <Star
               size={10}
@@ -58,11 +50,7 @@ const SimilarHotels = ({ image, title }: SimilarHotelProps) => {
           </div>
         </div>
       </div>
-
-      {/* Premium shine effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 opacity-0 group-hover:opacity-100"></div>
-
-      {/* Floating corner accent */}
       <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 w-8 h-8 sm:w-12 sm:h-12 bg-gradient-to-br from-[hsl(var(--accent))] to-orange-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
     </div>
   );

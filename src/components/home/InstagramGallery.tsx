@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -7,10 +8,13 @@ import {
   Send,
   ExternalLink,
 } from "lucide-react";
-import MotionSection from "./MotionSection";
 import SectionTitle from "../global/SectionTitle";
 import { Button } from "../ui/button";
 import { getGalleryImages } from "@/utils/actions";
+
+const MotionSection = dynamic(() => import("./MotionSection"), {
+  loading: () => <div className="opacity-0" />,
+});
 
 interface GalleryImage {
   id: string;

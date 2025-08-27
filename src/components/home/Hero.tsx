@@ -8,7 +8,6 @@ const Hero = () => {
       className="relative min-h-[500px] md:min-h-[750px] overflow-hidden"
       aria-label="Welcome to Viaggio"
     >
-      {/* Full-width banner image */}
       <Image
         src="/Hero.webp"
         alt="Breathtaking travel destination banner"
@@ -19,7 +18,7 @@ const Hero = () => {
         className="object-cover"
         placeholder="blur"
         blurDataURL="data:image/jpeg;base64,/9j/4AAQSk..."
-        quality={85}
+        quality={75}
       />
 
       {/* Readability overlay */}

@@ -1,11 +1,15 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import SectionTitle from "../global/SectionTitle";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import { MapPin, ArrowRight, Camera } from "lucide-react";
+import SectionTitle from "../global/SectionTitle";
+import { Button } from "../ui/button";
 import { getPopularDestinations } from "@/utils/actions";
 import { formatCurrency } from "@/utils/format";
-import MotionSection from "./MotionSection";
+
+const MotionSection = dynamic(() => import("./MotionSection"), {
+  loading: () => <div className="opacity-0" />,
+});
 
 const Popular = async () => {
   const destinations = await getPopularDestinations();
@@ -87,7 +91,7 @@ const Popular = async () => {
               type: "slide",
               direction: "up",
               duration: 0.6,
-              delay: 0.5 + index * 0.1, // Staggered delay
+              delay: 0.5 + index * 0.1,
               ease: "easeOut",
             }}
             mobile={{
@@ -95,7 +99,7 @@ const Popular = async () => {
               disableAnimations: false,
             }}
             triggerOnce={true}
-            threshold={[0.3, 0.5]} // Multiple thresholds
+            threshold={[0.3, 0.5]}
           >
             <figure className="relative h-48 md:h-64 xl:h-80">
               <Image
@@ -104,13 +108,11 @@ const Popular = async () => {
                 width={1000}
                 height={800}
                 loading="lazy"
+                sizes="(max-width: 640px) 85vw, (max-width: 768px) 42vw, (max-width: 1024px) 28vw, 22vw"
                 className="object-cover w-full h-full transition-transform duration-500 md:duration-700 group-hover:scale-105 md:group-hover:scale-110"
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                quality={75}
+                quality={60}
               />
-
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition-opacity duration-300 md:duration-500 group-hover:opacity-80" />
-
               <div className="absolute top-3 right-3 md:top-4 md:right-4 w-10 h-10 md:w-12 md:h-12 bg-white/20 md:backdrop-blur-md rounded-full items-center justify-center duration-300 hidden sm:flex group-hover:scale-110 transition-transform">
                 <Camera size={14} className="md:w-4 md:h-4 text-white" />
               </div>
@@ -136,13 +138,12 @@ const Popular = async () => {
               <h3 className="text-lg md:text-xl font-bold text-[hsl(var(--foreground))] transition-colors duration-300 group-hover:text-[hsl(var(--primary))]">
                 {destination.name}
               </h3>
-
               <nav>
                 <Link
                   href={`/destinations/${destination.id}`}
                   className="block"
                 >
-                  <button className="w-full bg-[hsl(var(--primary))] hover:bg-[hsl(var(--accent))] text-white rounded-lg md:rounded-xl py-2 md:py-3 px-4 transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 shadow-md hover:shadow-lg font-semibold text-sm md:text-base group">
+                  <button className="w-full bg-[hsl(var(--primary))] hover:bg-[hsl(var(--accent))] text-white rounded-lg md:rounded-xl py-2 md:py-3 px-4 transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 shadow-md hover:shadow-lg font-semibold text-sm md:text-base group cursor-pointer">
                     <span>Explore Adventure</span>
                     <ArrowRight
                       size={16}

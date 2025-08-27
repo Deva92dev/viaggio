@@ -919,6 +919,7 @@ export const checkReviewEligibility = async (
     return {
       eligible: true,
       booking: completedBookings[0],
+      bookingId: completedBookings[0].id,
     };
   } catch (error) {
     console.error("Error checking review eligibility:", error);
@@ -967,7 +968,7 @@ export const validateBookingForReview = async (
     // you can change it to different dates for hotel and destinations
     if (now < checkoutDate) {
       const daysUntilEligible = Math.ceil(
-        (checkoutDate.getTime() - now.getTime()) / 1000 / 60 / 60 / 24
+        (checkoutDate.getTime() - now.getTime()) * 1000 * 60 * 60 * 24
       );
 
       return {
@@ -1062,7 +1063,10 @@ export const checkUserReviewEligibility = async (
 
     return {
       ...result,
-      reason: result.reason || "Unable to determine eligibility",
+      // ✅ Only use fallback reason when NOT eligible
+      reason: result.eligible
+        ? result.reason || "" // If eligible, use provided reason or empty string
+        : result.reason || "Unable to determine eligibility", // If not eligible, use fallback
     };
   } catch (error) {
     console.error("Error checking review eligibility:", error);

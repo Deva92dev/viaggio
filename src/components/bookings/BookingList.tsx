@@ -1,10 +1,10 @@
+import Link from "next/link";
+import Image from "next/image";
+import { Calendar, CreditCard, Eye, MapPin, Users } from "lucide-react";
 import { getUserBookings } from "@/utils/actions";
 import { Button } from "../ui/button";
 import { Alert, AlertDescription } from "../ui/alert";
 import { Card, CardContent } from "../ui/card";
-import { Calendar, CreditCard, Eye, MapPin, Users } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
 import { Badge } from "../ui/badge";
 
 const CancelBookingButton = ({ bookingId }: { bookingId: string }) => {

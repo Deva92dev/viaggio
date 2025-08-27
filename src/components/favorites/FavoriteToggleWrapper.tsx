@@ -1,10 +1,10 @@
 "use client";
 
-import { IsFavorited } from "@/utils/actions";
-import FavoriteButton from "./FavoriteButton";
 import { useAuth } from "@clerk/nextjs";
 import { useEffect, useState, useTransition } from "react";
 import { Heart } from "lucide-react";
+import { IsFavorited } from "@/utils/actions";
+import FavoriteButton from "./FavoriteButton";
 
 type FavoriteToggleServerWrapperProps = {
   itemId: string;

@@ -1,15 +1,19 @@
-import { getAllCountriesWithData } from "@/utils/actions";
-import { Card } from "../ui/card";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import SectionTitle from "../global/SectionTitle";
 import { MapPin, ArrowRight, Users, Camera, Star, Globe } from "lucide-react";
-import MotionSection from "../home/MotionSection";
+import { getAllCountriesWithData } from "@/utils/actions";
+import { Card } from "../ui/card";
+import SectionTitle from "../global/SectionTitle";
+
+const MotionSection = dynamic(() => import("@/components/home/MotionSection"), {
+  loading: () => <div className="opacity-0" />,
+});
 
 type Props = {
   type: "destination" | "hotel";
 };
-
+// asking for properly sized images
 const DestinationCard = async ({ type }: Props) => {
   const countries = await getAllCountriesWithData();
 
@@ -69,7 +73,6 @@ const DestinationCard = async ({ type }: Props) => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <Card className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/90 backdrop-blur-md border border-white/20 shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 aspect-[4/3] p-0 cursor-pointer">
-                  {/* OPTIMIZED Image Container */}
                   <div className="relative w-full h-full overflow-hidden rounded-2xl md:rounded-3xl">
                     <Image
                       src={country.image}
@@ -82,13 +85,13 @@ const DestinationCard = async ({ type }: Props) => {
                       } ${type}s`}
                       fill
                       loading="lazy"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      quality={75}
+                      sizes="(max-width: 640px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 22vw"
+                      quality={60}
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    {/* Simplified gradient overlay */}
+                    {/*  gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:opacity-80 transition-opacity duration-500" />
-                    {/* Simplified decorative camera icon - hidden on mobile */}
+                    {/* decorative camera icon - hidden on mobile */}
                     <div className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-md rounded-full items-center justify-center border border-white/30 group-hover:scale-110 transition-all duration-300 hidden sm:flex">
                       <Camera
                         size={16}

@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { AlertTriangle, RefreshCw, ArrowLeft, Home, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ErrorProps {
   error: Error & { digest?: string };

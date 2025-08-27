@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useUser } from "@clerk/nextjs";
+import Image from "next/image";
+import { Star } from "lucide-react";
 import { createReview } from "@/utils/actions";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {
@@ -12,15 +15,14 @@ import {
 } from "../ui/select";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
-import { Star } from "lucide-react";
-import { useUser } from "@clerk/nextjs";
-import Image from "next/image";
 
 type Props = {
   eligibility: any;
+  itemId: string;
+  itemType: "hotel" | "destination";
 };
 
-export default function ReviewFormCreate({ eligibility }: Props) {
+export default function ReviewFormCreate({ eligibility, itemId }: Props) {
   const { user, isLoaded } = useUser();
   const authorName = user?.firstName || user?.username || "Anonymous";
   const authorImage = user?.imageUrl || "/default-avatar.png";
@@ -28,9 +30,14 @@ export default function ReviewFormCreate({ eligibility }: Props) {
   async function handleCreate(formData: FormData) {
     const rating = Number(formData.get("rating"));
     const comment = String(formData.get("comment") || "");
-    const bookingId = eligibility?.booking?.id;
+    const bookingId = eligibility?.bookingId || eligibility?.booking?.id;
 
-    if (!bookingId) throw new Error("No bookingId");
+    if (!bookingId) {
+      console.error("Eligibility object:", eligibility);
+      throw new Error("No bookingId available");
+    }
+
+    if (!itemId) throw new Error("No itemId provided");
     if (!comment.trim()) throw new Error("Comment is required");
     if (!rating || rating < 1 || rating > 5)
       throw new Error("Valid rating is required");

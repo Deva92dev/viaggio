@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Link from "next/link";
-import { publicNavLinks } from "@/utils/links";
-import SmartLink from "./SmartLink";
 import {
   MapPin,
   Phone,
@@ -20,6 +18,8 @@ import {
   Scale,
   RefreshCw,
 } from "lucide-react";
+import { publicNavLinks } from "@/utils/links";
+import SmartLink from "./SmartLink";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

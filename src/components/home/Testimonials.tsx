@@ -182,6 +182,7 @@ const Testimonials = () => {
                   alt={`${currentData.destination} adventure with Viaggio`}
                   width={800}
                   height={600}
+                  quality={75}
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover w-full h-full"
                   loading="lazy"

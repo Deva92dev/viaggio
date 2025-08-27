@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import {
   Shield,
   Users,
@@ -8,8 +9,11 @@ import {
   Heart,
   Award,
 } from "lucide-react";
-import MotionSection from "./MotionSection";
 import SectionTitle from "../global/SectionTitle";
+
+const MotionSection = dynamic(() => import("./MotionSection"), {
+  loading: () => <div className="opacity-0" />,
+});
 
 const Features = () => {
   const features = [

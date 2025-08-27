@@ -2,17 +2,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { getFilteredResults } from "@/utils/actions";
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { RefreshCcw, MapPin, DollarSign, Hotel, Compass } from "lucide-react";
-import { Pagination } from "@/components/search/Pagination";
 import { useEffect, useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { getFilteredResults } from "@/utils/actions";
+import { Pagination } from "@/components/search/Pagination";
 
 // improve image loading fill or not fill priority for 4 cards images
 
@@ -110,15 +110,15 @@ const SearchContent = () => {
     if (query.maxPrice) summaryParts.push(`Max Price: $${query.maxPrice}`);
 
     return summaryParts.length > 0 ? (
-      <div className="bg-blue-50 p-4 rounded-lg mb-6 border border-blue-100">
-        <h2 className="text-lg font-semibold text-blue-800 mb-2">
+      <div className="bg-[hsl(var(--muted))] p-4 rounded-lg mb-6 border border-[hsl(var(--border))]">
+        <h2 className="text-lg font-semibold text-[hsl(var(--foreground))] mb-2">
           Search Filters
         </h2>
         <div className="flex flex-wrap gap-2">
           {summaryParts.map((part, index) => (
             <span
               key={index}
-              className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+              className="bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] px-3 py-1 rounded-full text-sm"
             >
               {part}
             </span>
@@ -137,10 +137,9 @@ const SearchContent = () => {
     </div>
   );
 
-  // Render result card
   const renderResultCard = (item: any, index: number) => {
     const isHotel = item.type === "hotel";
-    const iconClassName = "w-5 h-5 mr-2 text-blue-600";
+    const iconClassName = "w-5 h-5 mr-2 text-[hsl(var(--primary))]";
 
     return (
       <Link
@@ -151,20 +150,23 @@ const SearchContent = () => {
         className="group"
       >
         <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-          <div className="relative h-56 overflow-hidden rounded-t-xl">
+          <div className="relative w-full aspect-[4/3] rounded-t-xl overflow-hidden">
             <Image
               src={item.imageUrl}
-              alt={item.name}
+              alt={`${item.name} - ${
+                item.type === "hotel" ? "Hotel" : "Destination"
+              }`}
+              priority
+              quality={60}
               fill
-              priority={index < 3}
+              sizes="(max-width: 640px) 85vw, (max-width: 768px) 42vw, (max-width: 1024px) 28vw, 22vw"
               className="object-cover group-hover:scale-110 transition-transform duration-700"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" // for cards
             />
           </div>
           <CardContent className="p-4">
             <div className="flex justify-between items-start">
               <div>
-                <h2 className="text-xl font-bold text-gray-800 mb-2 flex items-center">
+                <h2 className="text-xl font-bold text-[hsl(var(--card-foreground))] mb-2 flex items-center">
                   {isHotel ? (
                     <Hotel className={iconClassName} />
                   ) : (
@@ -172,14 +174,14 @@ const SearchContent = () => {
                   )}
                   {item.name}
                 </h2>
-                <div className="text-sm text-gray-600 flex items-center mb-2">
-                  <MapPin className="w-4 h-4 mr-2 text-blue-500" />
+                <div className="text-sm text-[hsl(var(--muted-foreground))] flex items-center mb-2">
+                  <MapPin className="w-4 h-4 mr-2 text-[hsl(var(--primary))]" />
                   {item.location || "Location not specified"}
                   {item.country && `, ${item.country}`}
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-lg font-bold text-blue-700 flex items-center justify-end">
+                <p className="text-lg font-bold text-[hsl(var(--primary))] flex items-center justify-end">
                   <DollarSign className="w-4 h-4 mr-1" />
                   {item.price}
                 </p>
@@ -204,7 +206,7 @@ const SearchContent = () => {
           itemsPerPage={ITEM_PER_PAGE}
           onPageChange={handlePageChange}
         />
-        <div className="mt-2 text-sm text-gray-500 text-center">
+        <div className="mt-2 text-sm text-[hsl(var(--muted-foreground))] text-center">
           Showing {(currentPage - 1) * ITEM_PER_PAGE + 1}-
           {Math.min(currentPage * ITEM_PER_PAGE, data.meta.totalItems)} of{" "}
           {data.meta.totalItems} results
@@ -215,8 +217,8 @@ const SearchContent = () => {
 
   return (
     <section className="max-w-7xl mx-auto p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+      <div className="mt-24 mb-8">
+        <h1 className="text-3xl font-bold text-[hsl(var(--foreground))] mb-4">
           Search Results
         </h1>
         {renderSearchSummary()}
@@ -225,17 +227,19 @@ const SearchContent = () => {
       {showSkeleton && renderSkeletonLoader()}
 
       {error && (
-        <div className="bg-red-50 border border-red-200 p-4 rounded-lg text-red-700">
+        <div className="bg-[hsl(var(--destructive))] border border-[hsl(var(--destructive))] p-4 rounded-lg text-[hsl(var(--destructive-foreground))]">
           Error fetching results: {error.message}
         </div>
       )}
 
       {!showSkeleton && data && (
         <div>
-          {data.items.length === 0 && data.items.length === 0 ? (
-            <div className="text-center py-12 bg-gray-50 rounded-lg">
-              <p className="text-xl text-gray-600">No results found</p>
-              <p className="text-sm text-gray-500 mt-2">
+          {data.items.length === 0 ? (
+            <div className="text-center py-12 bg-[hsl(var(--muted))] rounded-lg">
+              <p className="text-xl text-[hsl(var(--muted-foreground))]">
+                No results found
+              </p>
+              <p className="text-sm text-[hsl(var(--muted-foreground))] mt-2">
                 Try adjusting your search filters
               </p>
             </div>
@@ -252,7 +256,7 @@ const SearchContent = () => {
         <Button
           onClick={() => refetch()}
           variant="outline"
-          className="flex items-center gap-2 hover:bg-blue-50 cursor-pointer"
+          className="flex items-center gap-2 hover:bg-[hsl(var(--accent))]  cursor-pointer"
           disabled={isLoading}
         >
           <RefreshCcw className="w-4 h-4" />

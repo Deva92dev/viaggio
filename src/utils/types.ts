@@ -34,6 +34,8 @@ export type CreateReviewType = {
   authorImageUrl: string;
   rating: number;
   comment: string;
+  itemId?: string;
+  itemType?: string;
   visitDate?: string;
 };
 
@@ -44,6 +46,7 @@ export type UpdateReviewType = {
 };
 
 export type BookingEligibilityType = {
+  bookingId?: string;
   eligible: boolean;
   reason?: string;
   requiresAuth?: boolean;

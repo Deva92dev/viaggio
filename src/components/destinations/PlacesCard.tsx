@@ -1,18 +1,22 @@
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { MapPin, Star, Clock, Users, Camera, ArrowRight } from "lucide-react";
 import { DestinationsType } from "@/utils/types";
 import SectionTitle from "../global/SectionTitle";
 import { Card, CardContent } from "../ui/card";
-import Image from "next/image";
 import { formatCurrency } from "@/utils/format";
-import { MapPin, Star, Clock, Users, Camera, ArrowRight } from "lucide-react";
 import FavoriteToggleWrapper from "../favorites/FavoriteToggleWrapper";
 import SmartLink from "../global/SmartLink";
-import MotionSection from "../home/MotionSection";
+
+const MotionSection = dynamic(() => import("@/components/home/MotionSection"), {
+  loading: () => <div className="opacity-0" />,
+});
 
 type Props = {
   destinations: DestinationsType[];
   itemType?: "hotel" | "destination";
 };
-
+// asking for properly sizes images.
 const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
   return (
     <section className="relative w-full py-20 bg-gradient-to-b from-[hsl(var(--features-bg))] to-[hsl(var(--background))]">
@@ -81,7 +85,8 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                       alt={`${place.name} - Premium ${itemType} experience`}
                       fill
                       loading="lazy"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" // for cards
+                      quality={60}
+                      sizes="(max-width: 640px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 22vw"
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     {/* Enhanced gradient overlay */}

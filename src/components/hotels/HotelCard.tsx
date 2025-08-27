@@ -1,8 +1,5 @@
-import { HotelsType } from "@/utils/types";
-import SectionTitle from "../global/SectionTitle";
-import { Card, CardContent } from "../ui/card";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import { formatCurrency } from "@/utils/format";
 import {
   MapPin,
   Star,
@@ -12,9 +9,16 @@ import {
   Home,
   Users,
 } from "lucide-react";
+import { HotelsType } from "@/utils/types";
+import SectionTitle from "../global/SectionTitle";
+import { Card, CardContent } from "../ui/card";
+import { formatCurrency } from "@/utils/format";
 import FavoriteToggleWrapper from "../favorites/FavoriteToggleWrapper";
 import SmartLink from "../global/SmartLink";
-import MotionSection from "../home/MotionSection";
+
+const MotionSection = dynamic(() => import("@/components/home/MotionSection"), {
+  loading: () => <div className="opacity-0" />,
+});
 
 type Props = {
   hotels: HotelsType[];
@@ -91,7 +95,8 @@ const HotelCard = ({ hotels }: Props) => {
                         alt={`${hotel.name} - Premium luxury hotel accommodation`}
                         fill
                         loading="lazy"
-                        sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
+                        quality={60}
+                        sizes="(max-width: 640px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 22vw"
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       {/* gradient overlay */}

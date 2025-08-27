@@ -2,15 +2,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
-import { FaEdit, FaRegThumbsUp, FaStar, FaThumbsUp } from "react-icons/fa";
+import {
+  Delete,
+  DeleteIcon,
+  CircleUser,
+  ThumbsUp,
+  Star,
+  Edit,
+} from "lucide-react";
+import { SignInButton } from "@clerk/nextjs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
-import { Delete, DeleteIcon, CircleUser } from "lucide-react";
-import Image from "next/image";
-import { SignInButton } from "@clerk/nextjs";
 
 type Props = {
   reviews: any[];
@@ -103,7 +109,7 @@ export default function ReviewList({
       return (
         <SignInButton mode="modal">
           <button className="flex items-center gap-2 px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50 transition-colors group">
-            <FaRegThumbsUp className="text-gray-400 group-hover:text-blue-500" />
+            <ThumbsUp className="text-gray-400 group-hover:text-blue-500" />
             <span className="text-gray-600 group-hover:text-blue-600">
               Helpful ({review.helpfulCount || 0})
             </span>
@@ -121,9 +127,9 @@ export default function ReviewList({
         disabled={toggleHelpfulMutation.isPending}
       >
         {review.helpfulByMe ? (
-          <FaThumbsUp className="mr-2" />
+          <ThumbsUp className="mr-2" />
         ) : (
-          <FaRegThumbsUp className="mr-2" />
+          <ThumbsUp className="mr-2" />
         )}
         Helpful ({review.helpfulCount || 0})
       </Button>
@@ -134,8 +140,10 @@ export default function ReviewList({
     <main className="w-full">
       {reviews.length === 0 && (
         <div className="text-center py-8">
-          <p className="text-gray-500 text-lg">No reviews yet.</p>
-          <p className="text-gray-400 text-sm">
+          <p className="text-[hsl(var(--foreground))] text-lg">
+            No reviews yet.
+          </p>
+          <p className="text-[hsl(var(--muted-foreground))] text-sm">
             Be the first to share your experience!
           </p>
         </div>
@@ -181,20 +189,20 @@ export default function ReviewList({
                       </div>
                       {/* Author Name and Rating */}
                       <div className="min-w-0 flex-1">
-                        <h4 className="font-semibold text-gray-900 text-lg truncate">
+                        <h3 className="font-semibold text-gray-900 text-lg truncate">
                           {r.author || "Anonymous"}
-                        </h4>
+                        </h3>
                         <div className="flex items-center gap-2">
                           {/* Star Rating */}
                           <div className="flex items-center space-x-1 text-yellow-500">
                             {Array.from({ length: r.rating || 0 }).map(
                               (_, i) => (
-                                <FaStar key={i} size={14} />
+                                <Star key={i} size={14} />
                               )
                             )}
                             {Array.from({ length: 5 - (r.rating || 0) }).map(
                               (_, i) => (
-                                <FaStar
+                                <Star
                                   key={`empty-${i}`}
                                   size={14}
                                   className="text-gray-300"
@@ -224,7 +232,7 @@ export default function ReviewList({
                             });
                           }}
                         >
-                          <FaEdit />
+                          <Edit />
                         </Button>
                         <Button
                           size="sm"

@@ -2,6 +2,12 @@
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
+import {
+  CalendarIcon,
+  SearchIcon,
+  MapPinIcon,
+  DollarSignIcon,
+} from "lucide-react";
 import { Input } from "../ui/input";
 import { Calendar } from "../ui/calendar";
 import { Label } from "../ui/label";
@@ -9,12 +15,6 @@ import { Slider } from "../ui/slider";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "@/lib/utils";
-import {
-  CalendarIcon,
-  SearchIcon,
-  MapPinIcon,
-  DollarSignIcon,
-} from "lucide-react";
 import MotionSection from "./MotionSection";
 
 const SearchFilter = () => {

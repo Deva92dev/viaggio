@@ -1,13 +1,12 @@
 import type { NextConfig } from "next";
+
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "images.pexels.com",
       },
-      // change following hostname(url) for client
       {
         protocol: "https",
         hostname: "bxjlbovqqpknnamezbpx.supabase.co",
@@ -17,6 +16,12 @@ const nextConfig: NextConfig = {
         hostname: "img.clerk.com",
       },
     ],
+    // Add the new image optimization properties
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 320, 384, 450, 512, 640],
+    qualities: [25, 40, 50, 60, 75],
+    minimumCacheTTL: 31536000, // 1 year
   },
   async headers() {
     return [
@@ -32,4 +37,5 @@ const nextConfig: NextConfig = {
     ];
   },
 };
+
 export default nextConfig;

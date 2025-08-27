@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { FC } from "react";
 
 const DynamicMapView = dynamic(() => import("./MapView"), {
   ssr: false,
@@ -23,7 +22,7 @@ type Props = {
   location: string;
 };
 
-const MapViewWrapper: FC<Props> = ({ location }) => {
+const MapViewWrapper = ({ location }: Props) => {
   return (
     <div className="relative bg-white/90 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl overflow-hidden">
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl blur opacity-20 -z-10"></div>

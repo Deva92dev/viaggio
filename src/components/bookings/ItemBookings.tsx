@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { db, hotels, tourPlaces } from "@/db";
+import Image from "next/image";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
+import { Clock, MapPin, Star, Users } from "lucide-react";
+import { db, hotels, tourPlaces } from "@/db";
 import {
   Card,
   CardContent,
@@ -11,8 +12,6 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { Clock, MapPin, Star, Users } from "lucide-react";
-import Image from "next/image";
 import BookingForm from "./BookingForm";
 
 type BookingItemsProps = {

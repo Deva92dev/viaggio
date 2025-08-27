@@ -1,12 +1,11 @@
 "use client";
 
-import { toggleFavorite } from "@/utils/actions";
-import { useAuth } from "@clerk/clerk-react";
-import { useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
-import { Button } from "../ui/button";
+import { useAuth, SignInButton } from "@clerk/clerk-react";
 import { Heart, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { toggleFavorite } from "@/utils/actions";
+import { Button } from "../ui/button";
 
 type FavoriteButtonProps = {
   itemId: string;
@@ -26,7 +25,6 @@ const FavoriteButton = ({
   const [isFavorited, setIsFavorited] = useState(initialFavorited);
   const [isPending, startTransition] = useTransition();
   const [isAnimating, setIsAnimating] = useState(false);
-  const router = useRouter();
   const { isSignedIn } = useAuth();
 
   useEffect(() => {
@@ -36,12 +34,6 @@ const FavoriteButton = ({
   const handleToggleFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-
-    if (!isSignedIn) {
-      toast.error("Please sign in to add favorites");
-      router.push("/sign-in");
-      return;
-    }
 
     // Trigger animation
     setIsAnimating(true);
@@ -75,9 +67,44 @@ const FavoriteButton = ({
 
   const isDisabled = isPending || isLoading;
 
+  if (!isSignedIn) {
+    return (
+      <div className="relative group">
+        <div className="absolute -inset-1 rounded-full blur transition-all duration-500 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] opacity-0 group-hover:opacity-20" />
+        <SignInButton mode="modal">
+          <Button
+            aria-label="Sign in to add to favorites"
+            className={`
+              relative z-10 w-12 h-12 rounded-full p-0 
+              bg-white/20 backdrop-blur-xl border border-white/30 
+              hover:bg-white/30 hover:scale-110 
+              active:scale-95
+              transition-all duration-300 ease-out
+              group-hover:shadow-xl group-hover:shadow-white/25
+              cursor-pointer
+              ${className}
+            `}
+          >
+            <Heart
+              size={24}
+              className="text-white group-hover:text-[hsl(var(--accent))] group-hover:scale-105 transition-all duration-300"
+            />
+
+            {/* Shine effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 opacity-0 group-hover:opacity-100" />
+          </Button>
+        </SignInButton>
+
+        {/* Tooltip for non-signed in users */}
+        <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/80 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+          Sign in to save favorites
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative group">
-      {/* Enhanced gradient glow effect */}
       <div
         className={`absolute -inset-1 rounded-full blur transition-all duration-500 ${
           isFavorited
@@ -89,9 +116,7 @@ const FavoriteButton = ({
       <Button
         onClick={handleToggleFavorite}
         disabled={isDisabled}
-        aria-label={
-          isFavorited ? "Removed from Favorites" : "Added to Favorites"
-        }
+        aria-label={isFavorited ? "Remove from Favorites" : "Add to Favorites"}
         className={`
           relative z-10 w-12 h-12 rounded-full p-0 
           bg-white/20 backdrop-blur-xl border border-white/30 
@@ -161,9 +186,9 @@ const FavoriteButton = ({
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 opacity-0 group-hover:opacity-100" />
       </Button>
 
-      {/* Tooltip */}
+      {/* Tooltip for signed-in users */}
       <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/80 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
-        {isFavorited ? "Removed from favorites" : "Added to favorites"}
+        {isFavorited ? "Remove from favorites" : "Add to favorites"}
       </div>
     </div>
   );

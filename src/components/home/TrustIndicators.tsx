@@ -8,7 +8,11 @@ import {
   Globe,
   Heart,
 } from "lucide-react";
-import MotionSection from "./MotionSection";
+import dynamic from "next/dynamic";
+
+const MotionSection = dynamic(() => import("./MotionSection"), {
+  loading: () => <div className="opacity-0" />,
+});
 
 const TrustIndicators = () => {
   const certifications = [

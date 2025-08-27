@@ -1,20 +1,28 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import dynamic from "next/dynamic";
+import { auth } from "@clerk/nextjs/server";
+import { Suspense } from "react";
+import ReviewListSkeleton from "./ReviewListSkeleton";
+
 import {
   checkUserReviewEligibility,
   getReviews,
   getUserReviews,
 } from "@/utils/actions";
-import ReviewList from "./ReviewList";
-import ReviewFormCreate from "./ReviewFormCreate";
 import {
   deleteReviewBridge,
   markHelpfulBridge,
   updateReviewBridge,
 } from "./ReviewServerAction";
-import { auth } from "@clerk/nextjs/server";
-import { Suspense } from "react";
-import ReviewListSkeleton from "./ReviewListSkeleton";
+import ReviewFormCreateSkeleton from "./ReviewFormSkeleton";
+
+const ReviewFormCreate = dynamic(() => import("./ReviewFormCreate"), {
+  loading: () => <ReviewFormCreateSkeleton />,
+});
+const ReviewList = dynamic(() => import("./ReviewList"), {
+  loading: () => <ReviewListSkeleton />,
+});
 
 type Props = {
   itemId: string;
@@ -31,6 +39,7 @@ export default async function Review({ itemId, itemType }: Props) {
       eligible: false,
       reason: "Please sign in to leave a review.",
       requiresAuth: true,
+      bookingId: undefined as string | undefined,
     };
     let userReviewsData: any = {
       success: true,
@@ -46,8 +55,12 @@ export default async function Review({ itemId, itemType }: Props) {
 
       eligibility = {
         eligible: eligibilityResult.eligible,
-        reason: eligibilityResult.reason || "Unable to determine eligibility",
+        reason: eligibilityResult.eligible
+          ? eligibilityResult.reason ||
+            "You can leave a review for this booking"
+          : eligibilityResult.reason || "Unable to determine eligibility",
         requiresAuth: false,
+        bookingId: eligibilityResult.bookingId,
       };
 
       userReviewsData = userReviewsResult;
@@ -63,7 +76,11 @@ export default async function Review({ itemId, itemType }: Props) {
         {/* Review Form Section - Only for authenticated users */}
         <div className="flex-1 space-y-6">
           {isAuthenticated && eligibility.eligible && !myReview && (
-            <ReviewFormCreate eligibility={eligibility} />
+            <ReviewFormCreate
+              eligibility={eligibility}
+              itemId={itemId}
+              itemType={itemType}
+            />
           )}
           {/* Show message for non-eligible authenticated users */}
           {isAuthenticated && !eligibility.eligible && !myReview && (

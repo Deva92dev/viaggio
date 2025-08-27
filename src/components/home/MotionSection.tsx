@@ -5,7 +5,9 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
-} from "framer-motion";
+  Transition,
+  Easing,
+} from "motion/react";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -24,7 +26,7 @@ interface MotionSectionProps {
     duration?: number;
     delay?: number;
     stagger?: number; // for child elements
-    ease?: string; // custom ease
+    ease?: Easing | string; // Allow both Easing type and common string values
   };
   triggerOnce?: boolean;
   threshold?: number | number[];
@@ -144,13 +146,83 @@ const MotionSection = ({
 
   const getAnimationVariants = () => {
     if (customVariants) {
+      // Build transition properly for custom variants
+      const transition: Transition = {
+        duration: animation.duration || 0.8,
+        delay: animation.delay || 0,
+      };
+
+      // Handle ease properly
+      const easeValue = animation.ease || "easeOut";
+      if (typeof easeValue === "string") {
+        // Convert common string easing names to proper values
+        switch (easeValue) {
+          case "linear":
+            transition.ease = "linear";
+            break;
+          case "easeIn":
+            transition.ease = "easeIn";
+            break;
+          case "easeOut":
+            transition.ease = "easeOut";
+            break;
+          case "easeInOut":
+            transition.ease = "easeInOut";
+            break;
+          case "circIn":
+            transition.ease = "circIn";
+            break;
+          case "circOut":
+            transition.ease = "circOut";
+            break;
+          case "circInOut":
+            transition.ease = "circInOut";
+            break;
+          case "backIn":
+            transition.ease = "backIn";
+            break;
+          case "backOut":
+            transition.ease = "backOut";
+            break;
+          case "backInOut":
+            transition.ease = "backInOut";
+            break;
+          case "anticipate":
+            transition.ease = "anticipate";
+            break;
+          default:
+            // For custom cubic-bezier or other values, try to parse or fallback
+            if (easeValue.includes("cubic-bezier")) {
+              // Extract cubic-bezier values and convert to array
+              const match = easeValue.match(/cubic-bezier\(([^)]+)\)/);
+              if (match) {
+                const values = match[1]
+                  .split(",")
+                  .map((v) => parseFloat(v.trim()));
+                if (values.length === 4) {
+                  transition.ease = values as [number, number, number, number];
+                }
+              } else {
+                transition.ease = "easeOut";
+              }
+            } else {
+              transition.ease = "easeOut";
+            }
+        }
+      } else {
+        transition.ease = easeValue;
+      }
+
+      // Only add staggerChildren if it's defined and greater than 0
+      if (animation.stagger && animation.stagger > 0) {
+        transition.staggerChildren = animation.stagger;
+      }
+
       return {
-        ...customVariants,
-        transition: {
-          duration: animation.duration || 0.8,
-          delay: animation.delay || 0,
-          ease: animation.ease || "easeOut",
-        },
+        initial: customVariants.initial,
+        animate: customVariants.animate,
+        exit: customVariants.exit,
+        transition,
       };
     }
 
@@ -232,11 +304,6 @@ const MotionSection = ({
           opacity: 1,
           y: 0,
           scale: 1,
-          transition: {
-            type: "spring",
-            damping: 10,
-            stiffness: 100,
-          },
         },
       },
       none: {
@@ -245,14 +312,103 @@ const MotionSection = ({
       },
     };
 
+    // Build the proper transition object
+    const baseTransition: Transition = {
+      duration,
+      delay,
+    };
+
+    // Handle ease properly
+    const easeValue = ease;
+    if (typeof easeValue === "string") {
+      // Convert common string easing names to proper values
+      switch (easeValue) {
+        case "linear":
+          baseTransition.ease = "linear";
+          break;
+        case "easeIn":
+          baseTransition.ease = "easeIn";
+          break;
+        case "easeOut":
+          baseTransition.ease = "easeOut";
+          break;
+        case "easeInOut":
+          baseTransition.ease = "easeInOut";
+          break;
+        case "circIn":
+          baseTransition.ease = "circIn";
+          break;
+        case "circOut":
+          baseTransition.ease = "circOut";
+          break;
+        case "circInOut":
+          baseTransition.ease = "circInOut";
+          break;
+        case "backIn":
+          baseTransition.ease = "backIn";
+          break;
+        case "backOut":
+          baseTransition.ease = "backOut";
+          break;
+        case "backInOut":
+          baseTransition.ease = "backInOut";
+          break;
+        case "anticipate":
+          baseTransition.ease = "anticipate";
+          break;
+        default:
+          // For custom cubic-bezier or other values, try to parse or fallback
+          if (easeValue.includes("cubic-bezier")) {
+            // Extract cubic-bezier values and convert to array
+            const match = easeValue.match(/cubic-bezier\(([^)]+)\)/);
+            if (match) {
+              const values = match[1]
+                .split(",")
+                .map((v) => parseFloat(v.trim()));
+              if (values.length === 4) {
+                baseTransition.ease = values as [
+                  number,
+                  number,
+                  number,
+                  number
+                ];
+              }
+            } else {
+              baseTransition.ease = "easeOut";
+            }
+          } else {
+            baseTransition.ease = "easeOut";
+          }
+      }
+    } else {
+      baseTransition.ease = easeValue;
+    }
+
+    // Only add staggerChildren if it's defined and greater than 0
+    if (stagger > 0) {
+      baseTransition.staggerChildren = stagger;
+    }
+
+    // Handle special case for bounce animation
+    if (type === "bounce") {
+      const bounceTransition: Transition = {
+        ...baseTransition,
+        type: "spring",
+        damping: 10,
+        stiffness: 100,
+      };
+
+      return {
+        initial: variants[type].initial,
+        animate: variants[type].animate,
+        transition: bounceTransition,
+      };
+    }
+
     return {
-      ...variants[type],
-      transition: {
-        duration,
-        delay,
-        ease,
-        staggerChildren: stagger > 0 ? stagger : undefined,
-      },
+      initial: variants[type].initial,
+      animate: variants[type].animate,
+      transition: baseTransition,
     };
   };
 
@@ -331,7 +487,7 @@ const MotionSection = ({
             : animationVariants.initial
           : false
       }
-      transition={animationVariants.transition}
+      transition={shouldAnimate ? animationVariants.transition : undefined}
       className={getEnhancedClassName()}
     >
       {children}

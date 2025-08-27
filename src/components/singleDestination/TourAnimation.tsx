@@ -1,5 +1,4 @@
-import { Compass } from "lucide-react";
-import { Camera, Clock, Globe, MapPin, Plane } from "lucide-react";
+import { Camera, Clock, Compass, Globe, MapPin, Plane } from "lucide-react";
 import Image from "next/image";
 
 export const JourneyPath = () => {
@@ -114,6 +113,8 @@ export const PhotoGallery = ({ imageUrl, name }: PhotoGalleryProps) => {
         alt={name}
         width={400}
         height={300}
+        loading="lazy"
+        quality={60}
         className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
       />
 

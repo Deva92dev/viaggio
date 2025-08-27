@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { MapPin, ArrowLeft, Home, Compass, Building2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   const router = useRouter();

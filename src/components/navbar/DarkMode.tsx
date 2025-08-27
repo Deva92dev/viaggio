@@ -2,6 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { MoonIcon, SunIcon, Monitor } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,7 +10,6 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { MoonIcon, SunIcon, Monitor } from "lucide-react";
 import { useResponsive } from "@/hooks/useResponsive";
 
 const DarkMode = () => {

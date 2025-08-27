@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
+import { Button } from "../ui/button";
 
 type Props = {
   totalItems: number;

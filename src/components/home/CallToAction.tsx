@@ -2,7 +2,11 @@ import Link from "next/link";
 import { ArrowRight, Compass, Star, Shield, Clock, Users } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import MotionSection from "./MotionSection";
+import dynamic from "next/dynamic";
+
+const MotionSection = dynamic(() => import("./MotionSection"), {
+  loading: () => <div className="opacity-0" />,
+});
 
 const CallToAction = () => {
   const features = [
