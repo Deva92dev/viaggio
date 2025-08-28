@@ -27,7 +27,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
           style={{ animationDelay: "4s" }}
         />
       </div>
-
       <div className="relative z-10 max-w-7xl mx-auto w-full px-4 md:px-8 lg:px-12">
         <div className="mb-16">
           <SectionTitle
@@ -43,7 +42,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
             }`}
           />
         </div>
-
         <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-full">
           {destinations.map((place) => (
             <div
@@ -176,7 +174,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
             </div>
           ))}
         </div>
-
         {/* Bottom CTA Section */}
         {destinations.length === 0 && (
           <div className="text-center py-16">
@@ -199,7 +196,7 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
           </div>
         )}
       </div>
-      {/* Additional floating decorative elements */}
+      {/*  floating decorative elements */}
       <div className="absolute top-1/4 hidden md:block right-8 w-20 h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15 animate-float" />
       <div className="absolute bottom-1/4 hidden md:block left-8 w-24 h-24 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20 animate-float-slow" />
     </section>

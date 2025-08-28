@@ -10,15 +10,16 @@ const SimilarHotels = ({ image, title }: SimilarHotelProps) => {
   return (
     <div className="group relative rounded-2xl overflow-hidden h-44 sm:h-48 md:h-52 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer w-full max-w-none">
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500 -z-10"></div>
-      <Image
-        src={image}
-        alt={title}
-        width={300}
-        height={200}
-        loading="lazy"
-        className="object-cover transition-transform duration-700 group-hover:scale-110"
-        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-      />
+      <div className="absolute inset-0 w-full h-full">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          loading="lazy"
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      </div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
       <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--primary))]/20 to-[hsl(var(--accent))]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white">
