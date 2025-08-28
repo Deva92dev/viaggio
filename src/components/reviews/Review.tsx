@@ -82,12 +82,6 @@ export default async function Review({ itemId, itemType }: Props) {
               itemType={itemType}
             />
           )}
-          {/* Show message for non-eligible authenticated users */}
-          {isAuthenticated && !eligibility.eligible && !myReview && (
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-              <p className="text-gray-600 text-sm">{eligibility.reason}</p>
-            </div>
-          )}
         </div>
         <Suspense fallback={<ReviewListSkeleton />}>
           <ReviewList

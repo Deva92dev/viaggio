@@ -145,8 +145,8 @@ const SearchContent = () => {
         key={item.id}
         className="group"
       >
-        <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-          <div className="relative w-full aspect-[4/3] rounded-t-xl overflow-hidden">
+        <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col">
+          <div className="relative w-full aspect-[4/3] rounded-t-xl overflow-hidden flex-shrink-0">
             <Image
               src={item.imageUrl}
               alt={`${item.name} - ${
@@ -159,24 +159,26 @@ const SearchContent = () => {
               className="object-cover group-hover:scale-110 transition-transform duration-700"
             />
           </div>
-          <CardContent className="p-4">
-            <div className="flex justify-between items-start">
-              <div>
+          <CardContent className="p-4 flex-1 flex flex-col">
+            <div className="flex justify-between items-start flex-1">
+              <div className="flex-1 min-w-0">
                 <h2 className="text-xl font-bold text-[hsl(var(--card-foreground))] mb-2 flex items-center">
                   {isHotel ? (
                     <Hotel className={iconClassName} />
                   ) : (
                     <Compass className={iconClassName} />
                   )}
-                  {item.name}
+                  <span className="truncate">{item.name}</span>
                 </h2>
-                <div className="text-sm text-[hsl(var(--muted-foreground))] flex items-center mb-2">
-                  <MapPin className="w-4 h-4 mr-2 text-[hsl(var(--primary))]" />
-                  {item.location || "Location not specified"}
-                  {item.country && `, ${item.country}`}
+                <div className="text-sm text-[hsl(var(--muted-foreground))] flex items-start mb-2 min-h-[2.5rem]">
+                  <MapPin className="w-4 h-4 mr-2 text-[hsl(var(--primary))] flex-shrink-0 mt-0.5" />
+                  <span className="line-clamp-2">
+                    {item.location || "Location not specified"}
+                    {item.country && `, ${item.country}`}
+                  </span>
                 </div>
               </div>
-              <div className="text-right">
+              <div className="text-right flex-shrink-0 ml-4">
                 <p className="text-lg font-bold text-[hsl(var(--primary))] flex items-center justify-end">
                   <DollarSign className="w-4 h-4 mr-1" />
                   {item.price}

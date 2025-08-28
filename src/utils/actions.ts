@@ -1063,10 +1063,10 @@ export const checkUserReviewEligibility = async (
 
     return {
       ...result,
-      // ✅ Only use fallback reason when NOT eligible
+      // Only use fallback reason when NOT eligible
       reason: result.eligible
-        ? result.reason || "" // If eligible, use provided reason or empty string
-        : result.reason || "Unable to determine eligibility", // If not eligible, use fallback
+        ? result.reason || ""
+        : result.reason || "Unable to determine eligibility",
     };
   } catch (error) {
     console.error("Error checking review eligibility:", error);
