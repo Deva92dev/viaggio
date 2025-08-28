@@ -42,7 +42,6 @@ const MapLoadingFallback = ({
   </div>
 );
 
-// Cache coordinates per location - leverages your QueryProvider defaults
 const useGeoLocation = (location: string) => {
   return useQuery({
     queryKey: ["geo-location", location],
@@ -61,14 +60,11 @@ const useMapComponents = () => {
     queryKey: ["map-components"],
     queryFn: async () => {
       const [leafletComponents] = await Promise.all([
-        // Dynamic import of all react-leaflet components
         import("react-leaflet"),
-        // Load icons and CSS
         Promise.all([
           import("@/utils/leafletIcons").then((mod) =>
             mod.initializeLeafletIcons()
           ),
-          // Load Leaflet CSS if not already loaded
           new Promise<void>((resolve) => {
             if (document.querySelector('link[href*="leaflet"]')) {
               resolve();
@@ -100,7 +96,6 @@ const useMapComponents = () => {
   });
 };
 
-// Optional: Pre-cache map tiles for better UX
 const useMapTilePreload = (coords: { lat: number; lon: number } | null) => {
   return useQuery({
     queryKey: ["map-tiles-preload", coords?.lat, coords?.lon],
@@ -111,7 +106,6 @@ const useMapTilePreload = (coords: { lat: number; lon: number } | null) => {
       const tilePromises = [];
       const zoom = 13;
 
-      // Calculate tile coordinates
       const tileX = Math.floor(((coords.lon + 180) / 360) * Math.pow(2, zoom));
       const tileY = Math.floor(
         ((1 -
@@ -147,7 +141,6 @@ const useMapTilePreload = (coords: { lat: number; lon: number } | null) => {
 };
 
 const MapView = memo(({ location }: MapViewProps) => {
-  // Use TanStack Query for all async operations
   const {
     data: coords,
     isLoading: coordsLoading,
@@ -161,10 +154,8 @@ const MapView = memo(({ location }: MapViewProps) => {
     error: componentsError,
   } = useMapComponents();
 
-  // Pre-cache tiles for smoother experience
   useMapTilePreload(coords ?? null);
 
-  // Determine loading status
   const isLoading = coordsLoading || componentsLoading;
   const hasError = coordsError || componentsError;
 
@@ -175,7 +166,6 @@ const MapView = memo(({ location }: MapViewProps) => {
   if (coords && mapComponents) status = "Map ready!";
   if (hasError) status = "Failed to load map";
 
-  // Show loading while anything is missing
   if (isLoading || !coords || !mapComponents) {
     return <MapLoadingFallback location={location} status={status} />;
   }

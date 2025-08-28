@@ -76,7 +76,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   };
 }
-// color ratio not good.
+
 const DestinationDetailsPage = async ({ params }: Props) => {
   const { destinationsId } = await params;
   const destination = await cachedGetSingleDestination(destinationsId);

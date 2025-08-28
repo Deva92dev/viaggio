@@ -40,7 +40,6 @@ const FavoriteToggleWrapper = ({
     }
   }, [isLoaded, isSignedIn, itemId, itemType]);
 
-  // Enhanced loading state
   if (!isLoaded || isPending) {
     return (
       <div className={`${className} animate-pulse`}>
@@ -53,7 +52,7 @@ const FavoriteToggleWrapper = ({
 
   return (
     <div className="relative group">
-      {/* Enhanced backdrop effect */}
+      {/* backdrop effect */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-full blur opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
 
       <FavoriteButton

@@ -44,7 +44,6 @@ const HotelHero = ({
       <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.4] via-transparent to-[hsl(var(--accent))/0.2] z-10" />
       <FloatingClods />
       <HorizontalLine />
-      {/* BreadCrumb fix positioning, */}
       <div className="absolute container mx-auto top-0 left-0 right-0 z-10 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
         <BreadcrumbNav
           items={breadcrumbItems}
@@ -56,7 +55,6 @@ const HotelHero = ({
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 pb-12 w-full">
           <div className="flex justify-between items-end flex-wrap gap-4 sm:gap-6 w-full">
             <div className="flex-1 min-w-0">
-              {/*  badges */}
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-6 animate-fade-in">
                 <span className="bg-gradient-to-r from-[hsl(var(--primary))] to-blue-700 text-white text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-semibold shadow-lg">
                   {category}
@@ -72,7 +70,6 @@ const HotelHero = ({
                   <span>Premium Hotel</span>
                 </div>
               </div>
-              {/*  title */}
               <h1
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-4 sm:mb-6 shadow-text leading-tight animate-fade-in capitalize"
                 style={{ animationDelay: "0.2s" }}
@@ -81,7 +78,6 @@ const HotelHero = ({
                   {name}
                 </span>
               </h1>
-              {/* location */}
               <div
                 className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 animate-fade-in"
                 style={{ animationDelay: "0.3s" }}
@@ -98,7 +94,6 @@ const HotelHero = ({
                 </div>
               </div>
             </div>
-            {/* action buttons */}
             <div
               className="flex gap-2 sm:gap-3 animate-fade-in"
               style={{ animationDelay: "0.4s" }}

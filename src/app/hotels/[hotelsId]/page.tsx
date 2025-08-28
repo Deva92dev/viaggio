@@ -103,7 +103,6 @@ const HotelsDetailsPage = async ({ params }: Props) => {
     { name, url: `${BASE_URL}/hotels/${id}` },
   ]);
 
-  /* 3. Wrap in @context + @graph  */
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [hotelSchema, breadcrumb],

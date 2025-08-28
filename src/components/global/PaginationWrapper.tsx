@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Button } from "../ui/button";
+import { useEffect, useState } from "react";
 
 type Props = {
   totalItems: number;
@@ -19,6 +20,17 @@ const PaginationWrapper = ({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Handle responsive behavior
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Create page URL while preserving existing search params
   const createPageUrl = (pageNumber: number) => {
@@ -27,18 +39,22 @@ const PaginationWrapper = ({
     return `${pathname}?${params.toString()}`;
   };
 
-  // Generate visible page numbers - mobile optimized
+  // Generate visible page numbers
   const getVisiblePages = () => {
-    if (totalPages <= 3) {
-      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    if (isMobile) {
+      return [currentPage];
+    } else {
+      if (totalPages <= 3) {
+        return Array.from({ length: totalPages }, (_, i) => i + 1);
+      }
+      if (currentPage <= 2) {
+        return [1, 2, 3, "...", totalPages];
+      }
+      if (currentPage >= totalPages - 1) {
+        return [1, "...", totalPages - 2, totalPages - 1, totalPages];
+      }
+      return [1, "...", currentPage, "...", totalPages];
     }
-    if (currentPage <= 2) {
-      return [1, 2, 3, "...", totalPages];
-    }
-    if (currentPage >= totalPages - 1) {
-      return [1, "...", totalPages - 2, totalPages - 1, totalPages];
-    }
-    return [1, "...", currentPage, "...", totalPages];
   };
 
   if (totalPages <= 1) return null;
@@ -57,7 +73,7 @@ const PaginationWrapper = ({
       </div>
       <div className="relative z-10 w-full px-3 sm:px-6 md:px-12">
         <div className="flex flex-col items-center gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
-          {/* Results Info - Mobile optimized */}
+          {/* Results Info */}
           <div className="text-center">
             <p className="text-[hsl(var(--muted-foreground))] text-sm sm:text-base lg:text-lg">
               Showing{" "}
@@ -75,14 +91,14 @@ const PaginationWrapper = ({
               {" results"}
             </p>
           </div>
-          {/* Main Pagination Container - Mobile responsive */}
+          {/* Main Pagination Container */}
           <div className="relative w-full max-w-lg">
             {/* Enhanced decorative background */}
             <div className="absolute -inset-1 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl blur opacity-20" />
             {/* Pagination Content */}
             <div className="relative bg-white/95 backdrop-blur-xl rounded-2xl border border-white/30 shadow-2xl p-2 sm:p-4">
-              <div className="flex items-center justify-center gap-1 sm:gap-2">
-                {/* Previous Button - Mobile optimized */}
+              <div className="flex items-center justify-center gap-4 md:gap-2">
+                {/* Previous Button */}
                 <Button
                   variant="ghost"
                   size="sm"
@@ -105,44 +121,45 @@ const PaginationWrapper = ({
                     <span className="hidden sm:inline">Prev</span>
                   </Link>
                 </Button>
-                {/* Page Numbers - Mobile responsive */}
+                {/* Page Numbers */}
                 <div className="flex items-center gap-1">
-                  {visiblePages.map((page, index) => {
-                    if (page === "...") {
+                  {visiblePages &&
+                    visiblePages.map((page, index) => {
+                      if (page === "...") {
+                        return (
+                          <div
+                            key={`dots-${index}`}
+                            className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center text-[hsl(var(--muted-foreground))]"
+                          >
+                            <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4" />
+                          </div>
+                        );
+                      }
+                      const isActive = page === currentPage;
                       return (
-                        <div
-                          key={`dots-${index}`}
-                          className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center text-[hsl(var(--muted-foreground))]"
+                        <Button
+                          key={page}
+                          variant="ghost"
+                          size="sm"
+                          className={`w-6 h-6 sm:w-8 sm:h-8 rounded-xl transition-all duration-300 font-semibold text-xs sm:text-sm ${
+                            isActive
+                              ? "bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))/0.9] text-white shadow-lg scale-110"
+                              : "text-[hsl(var(--foreground))] hover:bg-[hsl(var(--accent))]/10 hover:text-[hsl(var(--accent))] hover:scale-105 hover:shadow-md"
+                          }`}
+                          asChild
                         >
-                          <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4" />
-                        </div>
+                          <Link
+                            href={createPageUrl(page as number)}
+                            scroll={false}
+                            className="flex items-center justify-center w-full h-full"
+                          >
+                            {page}
+                          </Link>
+                        </Button>
                       );
-                    }
-                    const isActive = page === currentPage;
-                    return (
-                      <Button
-                        key={page}
-                        variant="ghost"
-                        size="sm"
-                        className={`w-6 h-6 sm:w-8 sm:h-8 rounded-xl transition-all duration-300 font-semibold text-xs sm:text-sm ${
-                          isActive
-                            ? "bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))/0.9] text-white shadow-lg scale-110"
-                            : "text-[hsl(var(--foreground))] hover:bg-[hsl(var(--accent))]/10 hover:text-[hsl(var(--accent))] hover:scale-105 hover:shadow-md"
-                        }`}
-                        asChild
-                      >
-                        <Link
-                          href={createPageUrl(page as number)}
-                          scroll={false}
-                          className="flex items-center justify-center w-full h-full"
-                        >
-                          {page}
-                        </Link>
-                      </Button>
-                    );
-                  })}
+                    })}
                 </div>
-                {/* Next Button - Mobile optimized */}
+                {/* Next Button  */}
                 <Button
                   variant="ghost"
                   size="sm"
@@ -170,14 +187,14 @@ const PaginationWrapper = ({
               </div>
             </div>
           </div>
-          {/* Enhanced Progress Bar - Mobile responsive */}
+          {/* Enhanced Progress Bar */}
           <div className="w-32 sm:w-48 md:w-64 h-1 sm:h-2 bg-[hsl(var(--border))] rounded-full overflow-hidden shadow-inner">
             <div
               className="h-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-full transition-all duration-500 shadow-sm"
               style={{ width: `${(currentPage / totalPages) * 100}%` }}
             />
           </div>
-          {/* Page Jump Info - Mobile responsive */}
+          {/* Page Jump Info  */}
           <div className="text-center">
             <p className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm">
               Page{" "}

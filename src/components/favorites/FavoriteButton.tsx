@@ -129,14 +129,12 @@ const FavoriteButton = ({
           ${className}
         `}
       >
-        {/* Loading spinner overlay */}
         {isPending && (
           <div className="absolute inset-0 flex items-center justify-center bg-white/20 backdrop-blur-sm rounded-full">
             <Loader2 size={16} className="animate-spin text-white" />
           </div>
         )}
 
-        {/* Heart icon with enhanced effects */}
         <Heart
           fill={isFavorited ? "currentColor" : "none"}
           className={`

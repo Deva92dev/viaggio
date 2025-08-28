@@ -100,7 +100,6 @@ export default function ReviewFormCreate({ eligibility, itemId }: Props) {
         </div>
 
         <form action={handleCreate} className="space-y-4">
-          {/* Rating Selection with Star Display */}
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700">
               Rating *
@@ -135,8 +134,6 @@ export default function ReviewFormCreate({ eligibility, itemId }: Props) {
               </SelectContent>
             </Select>
           </div>
-
-          {/* Comment Section */}
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700">
               Your Review *
@@ -154,7 +151,6 @@ export default function ReviewFormCreate({ eligibility, itemId }: Props) {
               Minimum 10 characters, maximum 1500 characters
             </p>
           </div>
-
           <Button
             type="submit"
             className="w-full cursor-pointer hover:bg-blue-500"

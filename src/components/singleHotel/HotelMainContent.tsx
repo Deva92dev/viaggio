@@ -19,7 +19,6 @@ const HotelMainContent = ({
   const reviewsCount = 26;
   return (
     <div className="lg:col-span-2 space-y-8 sm:space-y-10 md:space-y-12 w-full">
-      {/* Trust Elements Section */}
       <section className="animate-fade-in w-full">
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl overflow-hidden w-full">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl sm:rounded-3xl blur opacity-20 -z-10" />
@@ -55,7 +54,6 @@ const HotelMainContent = ({
           </div>
         </div>
       </section>
-      {/* Description Section */}
       <section className="animate-fade-in w-full">
         <div className="flex items-center mb-6 sm:mb-8">
           <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4 shadow-lg">
@@ -76,7 +74,6 @@ const HotelMainContent = ({
           </div>
         </div>
       </section>
-      {/* Amenities Section */}
       <section className="animate-fade-in w-full">
         <div className="flex items-center mb-6 sm:mb-8">
           <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4 shadow-lg">

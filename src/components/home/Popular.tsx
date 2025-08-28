@@ -82,7 +82,7 @@ const Popular = async () => {
         />
       </header>
 
-      <main className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 px-4 md:px-6 lg:px-12 max-w-7xl mx-auto">
+      <main className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 px-4 md:px-6 lg:px-12 max-w-7xl mx-auto">
         {destinations.map((destination, index) => (
           <MotionSection
             key={destination.id}

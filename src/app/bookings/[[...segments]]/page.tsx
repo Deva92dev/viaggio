@@ -17,7 +17,6 @@ export async function generateMetadata({
 }: BookingsPageProps): Promise<Metadata> {
   const { segments } = await params;
   const segArray = segments ?? [];
-  // Base metadata shared across all booking pages
   const baseMetadata = {
     robots: {
       index: false, // Private user page

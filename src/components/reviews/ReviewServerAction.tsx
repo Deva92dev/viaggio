@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// app/components/reviews/serverActionsBridge.ts
 "use server";
 
 import { deleteReview, makeReviewHelpful, updateReview } from "@/utils/actions";

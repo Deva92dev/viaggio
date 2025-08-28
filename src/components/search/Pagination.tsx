@@ -73,7 +73,6 @@ export const Pagination = ({
       >
         <ChevronLeft className="w-4 h-4" />
       </Button>
-
       {generatePageNumbers().map((page, index) =>
         typeof page === "number" ? (
           <Button
@@ -98,7 +97,6 @@ export const Pagination = ({
           </Button>
         )
       )}
-
       <Button
         variant="outline"
         size="icon"

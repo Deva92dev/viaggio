@@ -168,7 +168,6 @@ export default function ReviewList({
                   {/* First Row: Author Image, Name, Rating, and Actions */}
                   <div className="flex items-center justify-between mb-3 flex-shrink-0">
                     <div className="flex items-center gap-3 min-w-0 flex-1">
-                      {/* Author Profile Image with CircleUser fallback */}
                       <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-gray-200 bg-gray-100 flex-shrink-0">
                         {r.authorImageUrl ? (
                           <Image
@@ -193,7 +192,6 @@ export default function ReviewList({
                           {r.author || "Anonymous"}
                         </h3>
                         <div className="flex items-center gap-2">
-                          {/* Star Rating */}
                           <div className="flex items-center space-x-1 text-yellow-500">
                             {Array.from({ length: r.rating || 0 }).map(
                               (_, i) => (
@@ -210,7 +208,6 @@ export default function ReviewList({
                               )
                             )}
                           </div>
-                          {/* Date */}
                           <span className="text-sm text-gray-500 truncate">
                             {formatDate(r.visitDate || r.createdAt)}
                           </span>
@@ -249,8 +246,7 @@ export default function ReviewList({
                       </div>
                     )}
                   </div>
-
-                  {/* Second Row: Comment - This section will take remaining space */}
+                  {/* Second Row: Comment */}
                   <div className="overflow-hidden mb-3 max-h-32">
                     <div className="h-full overflow-y-auto pr-2">
                       <p className="text-gray-700 leading-relaxed break-words">
@@ -258,12 +254,9 @@ export default function ReviewList({
                       </p>
                     </div>
                   </div>
-
                   {/* Third Row: Helpful Button and Verified Badge - Fixed at bottom */}
                   <div className="flex items-center justify-between pt-2 border-t border-gray-100 flex-shrink-0">
                     {renderHelpfulButton(r)}
-
-                    {/* Verified Badge */}
                     {r.isVerified && (
                       <div className="flex items-center gap-1 text-green-600 text-sm">
                         <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -278,7 +271,6 @@ export default function ReviewList({
                   <h3 className="font-semibold text-lg flex-shrink-0">
                     Edit Review
                   </h3>
-                  {/* Rating Selection */}
                   <div className="flex-shrink-0">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Rating
@@ -300,7 +292,6 @@ export default function ReviewList({
                       ))}
                     </select>
                   </div>
-                  {/* Comment Section */}
                   <div className="flex-1 flex flex-col min-h-0">
                     <label className="block text-sm font-medium text-gray-700 mb-2 flex-shrink-0">
                       Your Review
@@ -323,7 +314,6 @@ export default function ReviewList({
                       {formState.comment.length}/1500 characters
                     </p>
                   </div>
-                  {/* Action Buttons */}
                   <div className="flex gap-2 pt-2 flex-shrink-0">
                     <Button
                       size="sm"

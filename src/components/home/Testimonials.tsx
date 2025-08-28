@@ -134,7 +134,7 @@ const Testimonials = () => {
       overflow={true}
       className="relative w-full py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-[hsl(var(--features-bg))] to-[hsl(var(--testimonials-bg))]"
     >
-      {/* Decorative background elements - Mobile optimized */}
+      {/* Decorative background elements*/}
       <MotionSection
         animation={{
           type: "scale",
@@ -160,22 +160,17 @@ const Testimonials = () => {
           style={{ animationDelay: "4s" }}
         />
       </MotionSection>
-
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 container">
-        {/* Section Title */}
         <header className="mb-8 sm:mb-12 md:mb-16">
           <SectionTitle
             text="Traveler Stories"
             description="Real adventures from our amazing community of explorers"
           />
         </header>
-        {/* Main Featured Testimonial */}
         <section className="relative mb-8 sm:mb-12 md:mb-16 w-full">
           <article className="bg-white/90 backdrop-blur-xl rounded-xl sm:rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl overflow-hidden w-full">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-xl sm:rounded-2xl md:rounded-3xl blur opacity-20 -z-10" />
-
             <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
-              {/* Image Side */}
               <figure className="relative h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden">
                 <Image
                   src={currentData.image}
@@ -188,23 +183,17 @@ const Testimonials = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
-                {/* Destination badge */}
                 <address className="absolute top-2 left-2 sm:top-4 sm:left-4 md:top-6 md:left-6 bg-white/20 backdrop-blur-xl rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 flex items-center gap-1 sm:gap-2 border border-white/30 not-italic">
                   <MapPin size={10} className="text-white flex-shrink-0" />
                   <span className="text-white text-xs sm:text-sm font-semibold truncate max-w-[100px] sm:max-w-[120px] md:max-w-none">
                     {currentData.destination}
                   </span>
                 </address>
-
-                {/* Experience type */}
                 <aside className="absolute top-2 right-2 sm:top-4 sm:right-4 md:top-6 md:right-6 bg-gradient-to-r from-[hsl(var(--accent))] to-orange-500 rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2">
                   <span className="text-white text-xs sm:text-sm font-bold">
                     {currentData.experience}
                   </span>
                 </aside>
-
-                {/* Navigation buttons */}
                 <nav className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 flex gap-1 sm:gap-2">
                   <Button
                     onClick={prevTestimonial}
@@ -222,14 +211,10 @@ const Testimonials = () => {
                   </Button>
                 </nav>
               </figure>
-
-              {/* Content Side */}
               <section className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 flex flex-col justify-center">
-                {/* Quote icon */}
                 <figure className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 md:mb-6 shadow-lg">
                   <Quote size={16} className="text-white" />
                 </figure>
-                {/* Rating */}
                 <div className="flex items-center gap-1 sm:gap-2 mb-2 sm:mb-3 md:mb-4">
                   <div className="flex items-center gap-0.5 sm:gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
@@ -244,11 +229,9 @@ const Testimonials = () => {
                     5.0 • Verified Review
                   </span>
                 </div>
-                {/* Quote */}
                 <blockquote className="text-[hsl(var(--foreground))] text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 md:mb-8 font-medium italic">
                   {currentData.quote}
                 </blockquote>
-                {/* Traveler info */}
                 <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4 md:mb-6">
                   <div className="relative flex-shrink-0">
                     <figure className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-[hsl(var(--primary))]">
@@ -273,7 +256,6 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-                {/* Trip details */}
                 <aside className="flex flex-wrap gap-1 sm:gap-2 md:gap-4 text-xs sm:text-sm">
                   <div className="flex items-center gap-1 sm:gap-2 bg-[hsl(var(--primary))]/10 px-2 sm:px-3 py-1 rounded-full">
                     <Calendar
@@ -298,7 +280,6 @@ const Testimonials = () => {
             </div>
           </article>
         </section>
-        {/* Testimonial Grid */}
         <section className="mb-8 sm:mb-12 md:mb-16 w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full">
             {testimonials.slice(0, 3).map((testimonial, index) => {
@@ -331,7 +312,6 @@ const Testimonials = () => {
                       : ""
                   }`}
                 >
-                  {/* Rating */}
                   <div className="flex items-center gap-0.5 sm:gap-1 mb-2 sm:mb-3 md:mb-4">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
@@ -341,11 +321,9 @@ const Testimonials = () => {
                       />
                     ))}
                   </div>
-                  {/* Quote */}
                   <blockquote className="text-[hsl(var(--foreground))] mb-2 sm:mb-3 md:mb-4 line-clamp-3 leading-relaxed text-xs sm:text-sm md:text-base">
                     {testimonial.quote}
                   </blockquote>
-                  {/* Traveler */}
                   <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
                     <figure className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-[hsl(var(--primary))] flex-shrink-0">
                       <Image
@@ -370,7 +348,6 @@ const Testimonials = () => {
             })}
           </div>
         </section>
-        {/* Trust indicators */}
         <MotionSection
           animation={{
             type: "fade",
@@ -436,8 +413,7 @@ const Testimonials = () => {
           </div>
         </MotionSection>
       </main>
-
-      {/* Additional floating decorative elements - Mobile optimized */}
+      {/* floating decorative elements*/}
       <figure className="animate-float absolute top-1/4 right-2 sm:right-12 w-8 h-8 sm:w-12 sm:h-12 md:w-20 md:h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15" />
       <figure className="animate-floatSlowCustom absolute bottom-1/4 left-2 sm:left-12 w-10 h-10 sm:w-16 sm:h-16 md:w-28 md:h-28 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20" />
     </MotionSection>

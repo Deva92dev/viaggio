@@ -123,7 +123,6 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
 
   return (
     <section className="relative w-screen min-h-screen bg-gradient-to-br from-[hsl(var(--hero-bg))] to-[hsl(var(--background))] overflow-hidden">
-      {/* Background Image - Full screen coverage */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
           src={imageSrc}
@@ -137,12 +136,12 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..."
         />
-        {/* Enhanced overlay gradients */}
+        {/* overlay gradients */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.3] via-transparent to-[hsl(var(--accent))/0.2]" />
       </div>
 
-      {/* Enhanced decorative elements */}
+      {/*  decorative elements */}
       <div className="absolute inset-0 overflow-hidden z-10" aria-hidden="true">
         <div className="absolute top-4 sm:top-10 lg:top-20 left-4 sm:left-10 lg:left-20 w-32 sm:w-64 lg:w-96 h-32 sm:h-64 lg:h-96 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-20 motion-safe:animate-pulse-custom" />
         <div
@@ -150,10 +149,8 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
           style={{ animationDelay: "2s" }}
         />
       </div>
-
-      {/* Main Content - Full mobile optimization */}
       <div className="relative z-20 w-full h-full min-h-screen flex flex-col justify-center items-center px-3 sm:px-6 md:px-12 py-4 sm:py-8">
-        {/* Top Navigation - Mobile optimized */}
+        {/* Top Navigation */}
         <div className="absolute top-3 sm:top-6 md:top-8 left-3 sm:left-6 md:left-12 animate-fade-in">
           <nav className="flex items-center gap-1 sm:gap-2 text-white/80 text-xs sm:text-sm">
             <Link
@@ -168,8 +165,6 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
             </span>
           </nav>
         </div>
-
-        {/* Top Stats - Mobile responsive */}
         <div
           className="absolute top-3 sm:top-6 md:top-8 right-3 sm:right-6 md:right-12 flex gap-1 sm:gap-2 lg:gap-4 motion-safe:animate-fade-in"
           style={{ animationDelay: "0.2s" }}
@@ -186,10 +181,7 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
             </div>
           ))}
         </div>
-
-        {/* Hero Content - Enhanced mobile spacing */}
         <div className="text-center space-y-4 sm:space-y-6 lg:space-y-8 max-w-full px-2 sm:px-4">
-          {/* Badge - Mobile optimized */}
           <div
             className="inline-flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-xl rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-white/20 motion-safe:animate-fade-in"
             style={{ animationDelay: "0.3s" }}
@@ -202,8 +194,6 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
               {badgeText}
             </span>
           </div>
-
-          {/* Main Heading - Better mobile scaling */}
           <div
             className="space-y-3 sm:space-y-4 lg:space-y-6 animate-fade-in"
             style={{ animationDelay: "0.4s" }}
@@ -221,8 +211,6 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
             </p>
           </div>
         </div>
-
-        {/* Bottom Scroll Hint - Mobile positioning */}
         <div
           className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 motion-safe:animate-fade-in"
           style={{ animationDelay: "0.7s" }}
@@ -240,8 +228,6 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
           </div>
         </div>
       </div>
-
-      {/* Floating Icons - Hidden on small screens */}
       {floatingIcons.map(
         ({ Icon, position, rotation, color, animation }, index) => (
           <div

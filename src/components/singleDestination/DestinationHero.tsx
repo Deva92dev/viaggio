@@ -52,7 +52,6 @@ const DestinationHero = ({
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.4] via-transparent to-[hsl(var(--accent))/0.2] z-10" />
       <JourneyPath />
-      {/* BreadCrumb */}
       <div className="absolute top-0 left-0 z-10 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
         <BreadcrumbNav
           items={breadcrumbItems}
@@ -63,7 +62,6 @@ const DestinationHero = ({
       <div className="absolute inset-0 flex items-center z-20 pt-16 sm:pt-20 md:pt-24 lg:pt-16">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
           <div className="max-w-4xl w-full">
-            {/*  badges */}
             <div className="hidden md:flex items-center flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 w-full relative z-40 mt-4 sm:mt-6 md:mt-8 animate-fade-in">
               <div className="inline-block opacity-100">
                 <Duration duration={duration} />
@@ -79,7 +77,6 @@ const DestinationHero = ({
                 <span>Premium Experience</span>
               </div>
             </div>
-            {/*  title */}
             <h1
               className="text-5xl md:text-7xl font-black text-white mb-6 shadow-text leading-tight animate-fade-in"
               style={{ animationDelay: "0.2s" }}
@@ -95,7 +92,6 @@ const DestinationHero = ({
             >
               {description.substring(0, 150)}...
             </p>
-            {/*  location info */}
             <div
               className="flex items-center flex-wrap gap-6 mb-8 animate-fade-in"
               style={{ animationDelay: "0.4s" }}
@@ -113,7 +109,6 @@ const DestinationHero = ({
                 </span>
               </div>
             </div>
-            {/*  action buttons */}
             <div
               className="flex flex-col sm:flex-row gap-4 animate-fade-in"
               style={{ animationDelay: "0.5s" }}

@@ -62,7 +62,6 @@ const StripePayment = memo(
       queryFn: async () => {
         const controller = new AbortController();
 
-        // Set timeout for the request
         const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
 
         try {
@@ -98,11 +97,10 @@ const StripePayment = memo(
       staleTime: 5 * 60 * 1000, // 5 minutes
       gcTime: 10 * 60 * 1000, // 10 minutes garbage collection
       retry: (failureCount, error) => {
-        // Don't retry on client errors (4xx)
         if (error instanceof Error && error.message.includes("HTTP 4")) {
           return false;
         }
-        return failureCount < 2; // Retry max 2 times for network errors
+        return failureCount < 2;
       },
       retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 5000), // Exponential backoff
     });
@@ -117,7 +115,6 @@ const StripePayment = memo(
       }
     }, [isError, error, onPaymentError]);
 
-    // Enhanced loading state
     if (isLoading) {
       return (
         <div className="space-y-4">
@@ -134,7 +131,6 @@ const StripePayment = memo(
       );
     }
 
-    // Error state
     if (isError) {
       return (
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg">

@@ -20,7 +20,6 @@ type BookingItemsProps = {
 };
 
 const BookingItems = async ({ itemId, itemType }: BookingItemsProps) => {
-  // fetch item data
   let item;
   if (itemType === "destination") {
     item = await db.query.tourPlaces.findFirst({

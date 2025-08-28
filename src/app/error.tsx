@@ -14,7 +14,6 @@ export default function Error({ error, reset }: ErrorProps) {
   const router = useRouter();
 
   useEffect(() => {
-    // Log the error to your error reporting service
     console.error("Application error:", error);
   }, [error]);
 
@@ -29,13 +28,11 @@ export default function Error({ error, reset }: ErrorProps) {
   return (
     <div className="min-h-screen bg-[hsl(var(--background))] flex items-center justify-center px-4">
       <div className="max-w-2xl w-full text-center">
-        {/* Error Icon */}
         <div className="mb-8">
           <div className="w-24 h-24 bg-gradient-to-br from-[hsl(var(--accent))] to-orange-500 rounded-full flex items-center justify-center mx-auto shadow-2xl">
             <AlertTriangle size={48} className="text-white" />
           </div>
         </div>
-        {/* Error Content */}
         <div className="bg-white/90 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl overflow-hidden mb-8">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-20 -z-10" />
           <div className="p-8 md:p-12">
@@ -47,7 +44,6 @@ export default function Error({ error, reset }: ErrorProps) {
               Viaggio. Do not worry, our team has been notified and we are
               working on fixing it.
             </p>
-            {/* Error Details (only show in development) */}
             {process.env.NODE_ENV === "development" && (
               <div className="bg-[hsl(var(--features-bg))] rounded-xl p-4 mb-6 text-left border border-[hsl(var(--border))]">
                 <h3 className="font-semibold text-[hsl(var(--foreground))] mb-2">
@@ -58,7 +54,6 @@ export default function Error({ error, reset }: ErrorProps) {
                 </code>
               </div>
             )}
-            {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 onClick={reset}
@@ -89,7 +84,6 @@ export default function Error({ error, reset }: ErrorProps) {
             </div>
           </div>
         </div>
-        {/* Help Section */}
         <div className="text-center">
           <p className="text-[hsl(var(--muted-foreground))] mb-4">
             Still having trouble? We are here to help you continue your journey!

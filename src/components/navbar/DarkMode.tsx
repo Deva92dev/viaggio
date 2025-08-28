@@ -21,7 +21,6 @@ const DarkMode = () => {
     setMounted(true);
   }, []);
 
-  // Button styles - consistent with DropDown
   const buttonStyles = {
     width: "48px",
     height: "48px",
@@ -131,7 +130,6 @@ const DarkMode = () => {
             <div className="ml-auto w-2 h-2 bg-[hsl(var(--primary))] rounded-full"></div>
           )}
         </DropdownMenuItem>
-
         <DropdownMenuItem
           onClick={() => setTheme("dark")}
           className="hover:bg-[hsl(var(--primary))/0.1] cursor-pointer flex items-center gap-2 transition-colors duration-150"
@@ -142,7 +140,6 @@ const DarkMode = () => {
             <div className="ml-auto w-2 h-2 bg-[hsl(var(--accent))] rounded-full"></div>
           )}
         </DropdownMenuItem>
-
         <DropdownMenuItem
           onClick={() => setTheme("system")}
           className="hover:bg-[hsl(var(--primary))/0.1] cursor-pointer flex items-center gap-2 transition-colors duration-150"

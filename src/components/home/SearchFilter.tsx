@@ -1,4 +1,5 @@
 "use client";
+import dynamic from "next/dynamic";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
@@ -15,7 +16,10 @@ import { Slider } from "../ui/slider";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "@/lib/utils";
-import MotionSection from "./MotionSection";
+
+const MotionSection = dynamic(() => import("./MotionSection"), {
+  loading: () => <div className="opacity-0" />,
+});
 
 const SearchFilter = () => {
   const router = useRouter();
@@ -84,8 +88,6 @@ const SearchFilter = () => {
     >
       {/* Decorative gradient border */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl blur opacity-20 -z-10" />
-
-      {/* Header with icon */}
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-xl">
           <SearchIcon className="h-5 w-5 text-white" />
@@ -94,10 +96,7 @@ const SearchFilter = () => {
           Find Your Perfect Adventure
         </h2>
       </div>
-
-      {/* Main inputs row */}
       <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4 lg:items-end">
-        {/* Destination Input */}
         <div className="flex-grow w-full space-y-2">
           <Label
             htmlFor="destination"
@@ -116,8 +115,6 @@ const SearchFilter = () => {
             />
           </div>
         </div>
-
-        {/* Check-in Date */}
         <div className="w-full lg:w-auto space-y-2">
           <Label
             htmlFor="checkin-date"
@@ -169,8 +166,6 @@ const SearchFilter = () => {
             </PopoverContent>
           </Popover>
         </div>
-
-        {/* Check-out Date */}
         <div className="w-full lg:w-auto space-y-2">
           <Label
             htmlFor="checkout-date"
@@ -223,8 +218,6 @@ const SearchFilter = () => {
             </PopoverContent>
           </Popover>
         </div>
-
-        {/* Enhanced Search Button */}
         <Button
           onClick={handleSearch}
           size="lg"
@@ -239,14 +232,11 @@ const SearchFilter = () => {
           </span>
         </Button>
       </div>
-
-      {/* Price Range Section */}
       <div className="space-y-4 pt-6 border-t border-[hsl(var(--border))]/30">
         <Label className="text-sm font-semibold text-[hsl(var(--primary))] flex items-center gap-2">
           <DollarSignIcon className="h-4 w-4" />
           Price Range
         </Label>
-
         <div className="space-y-4">
           <Slider
             value={priceRange}
@@ -257,8 +247,6 @@ const SearchFilter = () => {
             className="cursor-pointer"
             aria-label={`Price range between $${priceRange[0]} and $${priceRange[1]}`}
           />
-
-          {/* Enhanced Price Display */}
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
             <div className="flex items-center gap-4">
               <div className="bg-[hsl(var(--primary))/0.1] px-3 py-2 rounded-lg">
@@ -278,8 +266,6 @@ const SearchFilter = () => {
           </div>
         </div>
       </div>
-
-      {/* Loading overlay */}
       {isPending && (
         <div className="absolute inset-0 bg-white/50 backdrop-blur-sm rounded-2xl flex items-center justify-center z-10">
           <div className="flex items-center gap-3">

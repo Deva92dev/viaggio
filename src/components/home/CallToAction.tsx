@@ -50,17 +50,12 @@ const CallToAction = () => {
           {/* Main Content Section */}
           <section className="space-y-8 text-white">
             {/* Hero Badge */}
-            <header
-              className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/20 animate-fade-in"
-              // style={{ animation: "fadeIn 1s ease-out forwards" }}
-            >
+            <header className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/20 animate-fade-in">
               <Compass size={20} className="text-white animate-spin-slow" />
               <span className="text-white font-semibold">
                 Start Your Adventure Today
               </span>
             </header>
-
-            {/* Main Heading */}
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl font-black leading-tight tracking-tight text-white">
                 Ready for Your
@@ -73,8 +68,6 @@ const CallToAction = () => {
                 Viaggio. Your extraordinary journey starts with a single step.
               </p>
             </div>
-
-            {/* Features List */}
             <section className="grid grid-cols-2 gap-4">
               {features.map((feature, index) => {
                 const IconComponent = feature.icon;
@@ -83,7 +76,6 @@ const CallToAction = () => {
                     key={feature.text}
                     className="flex items-center gap-3 animate-fade-in"
                     style={{
-                      // animation: "fadeIn 1s ease-out forwards",
                       animationDelay: `${index * 0.1}s`,
                     }}
                   >
@@ -97,8 +89,6 @@ const CallToAction = () => {
                 );
               })}
             </section>
-
-            {/* Action Buttons */}
             <nav className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link href="/destinations">
                 <Button className="px-12 py-4 text-lg shadow-2xl shadow-black/30 hover:shadow-black/50 hover:scale-105 transition-all duration-300 relative overflow-hidden btn-accent group">
@@ -121,8 +111,6 @@ const CallToAction = () => {
                 </Button>
               </Link>
             </nav>
-
-            {/* Trust Indicators */}
             <aside className="pt-8 border-t border-white/20">
               <div className="flex flex-wrap items-center gap-6">
                 {trustStats.map((stat) => (
@@ -136,13 +124,10 @@ const CallToAction = () => {
               </div>
             </aside>
           </section>
-
-          {/* Newsletter Signup Section */}
           <section className="lg:pl-8">
             <article className="bg-white/95 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 md:p-10 relative">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-white to-[hsl(var(--primary))] rounded-3xl blur opacity-30 -z-10 pointer-events-none" />
               <div className="space-y-6">
-                {/* Newsletter Header */}
                 <header className="text-center space-y-3">
                   <figure className="h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center mx-auto shadow-lg">
                     <Star size={28} className="text-white" />
@@ -155,8 +140,6 @@ const CallToAction = () => {
                     deals, insider tips, and early access to new destinations.
                   </p>
                 </header>
-
-                {/* Newsletter Form */}
                 <form
                   className="space-y-4"
                   role="form"
@@ -185,8 +168,6 @@ const CallToAction = () => {
                     <span className="relative z-10">Claim 20% Discount</span>
                   </Button>
                 </form>
-
-                {/* Benefits List */}
                 <aside className="space-y-2">
                   {benefits.map((benefit, index) => (
                     <div
@@ -198,8 +179,6 @@ const CallToAction = () => {
                     </div>
                   ))}
                 </aside>
-
-                {/* Privacy Note */}
                 <footer className="text-xs text-[hsl(var(--muted-foreground))] text-center">
                   We respect your privacy. Unsubscribe anytime.
                 </footer>

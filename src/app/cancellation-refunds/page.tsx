@@ -186,7 +186,6 @@ export default function RefundCancellationPage() {
         }}
       />
       <main className="relative overflow-hidden bg-[hsl(var(--background))]">
-        {/* Hero Section */}
         <section className="relative w-full h-[50vh] min-h-[400px] mb-16 overflow-hidden">
           <Image
             src="/Hero.webp"
@@ -197,14 +196,11 @@ export default function RefundCancellationPage() {
             sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
             className="object-cover absolute inset-0 w-full h-full"
           />
-          {/* Enhanced gradient overlays */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.4] via-transparent to-[hsl(var(--accent))/0.2] z-10" />
-          {/* Hero Content */}
           <div className="absolute inset-0 flex items-center z-20 pt-16 sm:pt-20 md:pt-24 lg:pt-16">
             <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
               <div className="max-w-4xl w-full">
-                {/* Enhanced badges */}
                 <div className="flex items-center flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 w-full relative z-30 mt-4 sm:mt-6 md:mt-8 animate-fade-in">
                   <span className="bg-gradient-to-r from-[hsl(var(--primary))] to-blue-700 text-white text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-semibold shadow-lg">
                     Flexible Policy
@@ -217,7 +213,6 @@ export default function RefundCancellationPage() {
                     <span>Fair Refunds</span>
                   </div>
                 </div>
-                {/* Enhanced title */}
                 <h1
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-4 sm:mb-6 shadow-text leading-tight animate-fade-in"
                   style={{ animationDelay: "0.2s" }}
@@ -234,7 +229,6 @@ export default function RefundCancellationPage() {
                   Transparent, fair, and flexible refund policies designed to
                   protect your travel investment with peace of mind.
                 </p>
-                {/* Last updated info */}
                 <div
                   className="flex items-center gap-2 text-white/80 animate-fade-in"
                   style={{ animationDelay: "0.4s" }}
@@ -246,7 +240,6 @@ export default function RefundCancellationPage() {
             </div>
           </div>
         </section>
-        {/* Policy Highlights Section */}
         <section className="py-12 sm:py-16 bg-gradient-to-r from-[hsl(var(--features-bg))] to-white">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
             <div className="text-center mb-12">
@@ -279,12 +272,10 @@ export default function RefundCancellationPage() {
             </div>
           </div>
         </section>
-        {/* Main Content */}
         <section className="py-16 sm:py-20">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
             <div className="max-w-4xl mx-auto">
               <div className="space-y-12">
-                {/* General Refund Policy */}
                 <section id="general-policy" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -338,7 +329,6 @@ export default function RefundCancellationPage() {
                     </div>
                   </div>
                 </section>
-                {/* Service-Specific Policies */}
                 <section id="service-policies" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -387,7 +377,6 @@ export default function RefundCancellationPage() {
                     ))}
                   </div>
                 </section>
-                {/* Cancellation Process */}
                 <section id="cancellation-process" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -397,13 +386,11 @@ export default function RefundCancellationPage() {
                       How to Cancel
                     </h2>
                   </div>
-
                   <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl p-6 sm:p-8">
                     <p className="text-[hsl(var(--foreground))] mb-6 leading-relaxed">
                       Cancelling your booking is simple and can be done through
                       multiple channels:
                     </p>
-
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
                         <h3 className="font-semibold text-[hsl(var(--foreground))] mb-3">
@@ -472,7 +459,6 @@ export default function RefundCancellationPage() {
                     </div>
                   </div>
                 </section>
-                {/* Special Circumstances */}
                 <section id="special-circumstances" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -529,7 +515,6 @@ export default function RefundCancellationPage() {
                     </div>
                   </div>
                 </section>
-                {/* Refund Processing */}
                 <section id="refund-processing" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -613,7 +598,6 @@ export default function RefundCancellationPage() {
                     </div>
                   </div>
                 </section>
-                {/* Contact Support */}
                 <section id="refund-support" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -682,7 +666,6 @@ export default function RefundCancellationPage() {
             </div>
           </div>
         </section>
-        {/* CTA Section */}
         <section className="py-16 sm:py-20 bg-gradient-to-r from-[hsl(var(--primary))] to-blue-700 text-white">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
             <div className="max-w-3xl mx-auto">

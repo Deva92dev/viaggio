@@ -125,7 +125,6 @@ export default function TermsConditionsPage() {
         }}
       />
       <main className="relative overflow-hidden bg-[hsl(var(--background))]">
-        {/* Hero Section */}
         <section className="relative w-full h-[50vh] min-h-[400px] mb-16 overflow-hidden">
           <Image
             src="/Hero.webp"
@@ -136,14 +135,12 @@ export default function TermsConditionsPage() {
             sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
             className="object-cover absolute inset-0 w-full h-full"
           />
-          {/* Enhanced gradient overlays */}
+          {/* gradient overlays */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.4] via-transparent to-[hsl(var(--accent))/0.2] z-10" />
-          {/* Hero Content */}
           <div className="absolute inset-0 flex items-center z-20 pt-16 sm:pt-20 md:pt-24 lg:pt-16">
             <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
               <div className="max-w-4xl w-full">
-                {/* Enhanced badges */}
                 <div className="flex items-center flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 w-full relative z-30 mt-4 sm:mt-6 md:mt-8 animate-fade-in">
                   <span className="bg-gradient-to-r from-[hsl(var(--primary))] to-blue-700 text-white text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-semibold shadow-lg">
                     Legal Agreement
@@ -156,7 +153,6 @@ export default function TermsConditionsPage() {
                     <span>Fair & Transparent</span>
                   </div>
                 </div>
-                {/* Enhanced title */}
                 <h1
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-4 sm:mb-6 shadow-text leading-tight animate-fade-in"
                   style={{ animationDelay: "0.2s" }}
@@ -173,7 +169,6 @@ export default function TermsConditionsPage() {
                   Clear, fair terms that govern your use of Viaggio travel
                   services and protect both travelers and our platform.
                 </p>
-                {/* Date information */}
                 <div
                   className="flex flex-col sm:flex-row gap-4 text-white/80 animate-fade-in"
                   style={{ animationDelay: "0.4s" }}
@@ -191,7 +186,6 @@ export default function TermsConditionsPage() {
             </div>
           </div>
         </section>
-        {/* Key Terms Section */}
         <section className="py-12 sm:py-16 bg-gradient-to-r from-[hsl(var(--features-bg))] to-white">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
             <div className="text-center mb-12">
@@ -229,7 +223,6 @@ export default function TermsConditionsPage() {
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
             <div className="max-w-4xl mx-auto">
               <div className="space-y-12">
-                {/* Acceptance of Terms */}
                 <section id="acceptance" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -245,7 +238,6 @@ export default function TermsConditionsPage() {
                       bound by these Terms and Conditions. If you do not agree
                       to these terms, please do not use our services.
                     </p>
-
                     <div className="bg-blue-50 border-l-4 border-[hsl(var(--primary))] p-4 rounded-r-lg">
                       <div className="flex items-center gap-2 mb-2">
                         <Gavel
@@ -265,7 +257,6 @@ export default function TermsConditionsPage() {
                     </div>
                   </div>
                 </section>
-                {/* Service Description */}
                 <section id="services" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -302,7 +293,6 @@ export default function TermsConditionsPage() {
                     </div>
                   </div>
                 </section>
-                {/* User Obligations */}
                 <section id="user-obligations" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -356,7 +346,6 @@ export default function TermsConditionsPage() {
                     </div>
                   </div>
                 </section>
-                {/* Prohibited Activities */}
                 <section id="prohibited-activities" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -371,7 +360,6 @@ export default function TermsConditionsPage() {
                       The following activities are strictly prohibited when
                       using our services:
                     </p>
-
                     <div className="space-y-3">
                       {prohibitedActivities.map((activity, index) => (
                         <div
@@ -403,7 +391,6 @@ export default function TermsConditionsPage() {
                     </div>
                   </div>
                 </section>
-                {/* Payment Terms */}
                 <section id="payment-terms" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -474,7 +461,6 @@ export default function TermsConditionsPage() {
                     </div>
                   </div>
                 </section>
-                {/* Limitation of Liability */}
                 <section id="liability" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -523,7 +509,6 @@ export default function TermsConditionsPage() {
                     </div>
                   </div>
                 </section>
-                {/* Governing Law */}
                 <section id="governing-law" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -568,7 +553,6 @@ export default function TermsConditionsPage() {
                     </div>
                   </div>
                 </section>
-                {/* Contact Information */}
                 <section id="contact-legal" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -625,7 +609,6 @@ export default function TermsConditionsPage() {
             </div>
           </div>
         </section>
-        {/* CTA Section */}
         <section className="py-16 sm:py-20 bg-gradient-to-r from-[hsl(var(--primary))] to-blue-700 text-white">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
             <div className="max-w-3xl mx-auto">

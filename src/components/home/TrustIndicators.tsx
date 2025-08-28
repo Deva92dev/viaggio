@@ -91,7 +91,7 @@ const TrustIndicators = () => {
       overflow={false}
       className="relative w-full py-6 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-slate-100/50 to-slate-50 overflow-hidden"
     >
-      {/* Background decorative elements - Mobile optimized */}
+      {/* Background decorative elements  */}
       <aside
         className="absolute inset-0 overflow-hidden z-0"
         aria-hidden="true"
@@ -101,7 +101,6 @@ const TrustIndicators = () => {
       </aside>
 
       <main className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 md:px-8 lg:px-12 space-y-8 sm:space-y-12 md:space-y-16 overflow-hidden">
-        {/* Certifications Section */}
         <section
           aria-labelledby="certifications-heading"
           className="space-y-4 sm:space-y-6 md:space-y-8"
@@ -118,7 +117,6 @@ const TrustIndicators = () => {
               quality travel experiences
             </p>
           </header>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 overflow-hidden pt-16 md:pt-2">
             {certifications.map((cert, index) => {
               const IconComponent = cert.icon;
@@ -143,7 +141,6 @@ const TrustIndicators = () => {
                   <figure className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     <IconComponent className="text-white" size={14} />
                   </figure>
-
                   <div className="space-y-1">
                     <span className="bg-[hsl(var(--accent))] text-white text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full inline-block mb-1 sm:mb-2 font-semibold">
                       {cert.badge}
@@ -160,8 +157,6 @@ const TrustIndicators = () => {
             })}
           </div>
         </section>
-
-        {/* Guarantees Section */}
         <MotionSection
           animation={{
             type: "slide",
@@ -205,7 +200,6 @@ const TrustIndicators = () => {
               protect your investment and ensure satisfaction
             </p>
           </header>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
             {guarantees.map((guarantee, index) => {
               const IconComponent = guarantee.icon;
@@ -234,8 +228,6 @@ const TrustIndicators = () => {
             })}
           </div>
         </MotionSection>
-
-        {/* Trust Statement Footer */}
         <footer
           className="text-center py-3 sm:py-4 md:py-6 lg:py-8 px-2"
           aria-label="Trust statement"

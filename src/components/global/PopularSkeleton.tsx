@@ -11,7 +11,6 @@ export const PopularSkeleton = () => (
           >
             <div className="relative w-full aspect-[4/3] rounded-[var(--radius-sm)] overflow-hidden">
               <SkeletonLoader variant="image" className="w-full h-full" />
-              {/* overlay badges skeletons */}
               <div className="absolute top-3 left-3 h-7 w-7 rounded-[var(--radius-sm)] bg-[hsl(var(--muted))] opacity-70" />
               <div className="absolute top-3 right-3 h-6 w-20 rounded-[var(--radius-pill)] bg-[hsl(var(--muted))]" />
               <div className="absolute bottom-3 left-3 h-6 w-28 rounded-[var(--radius-pill)] bg-[hsl(var(--muted))]" />

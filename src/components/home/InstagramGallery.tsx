@@ -61,7 +61,6 @@ function GalleryCard({ image, index }: GalleryCardProps) {
         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQY..."
         sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
       />
-
       {/* Overlay with social interactions */}
       <div className="absolute inset-0 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-[linear-gradient(to_top,rgba(0,0,0,0.7),rgba(0,0,0,0.2)_60%,transparent_100%)]">
         <div className="flex justify-end">
@@ -75,7 +74,6 @@ function GalleryCard({ image, index }: GalleryCardProps) {
             {image.type === "hotel" ? "Hotel" : "Destination"}
           </span>
         </div>
-
         <nav className="flex gap-3" aria-label="Social interactions">
           <button
             className="text-white hover:text-red-400 transition-colors cursor-pointer"
@@ -131,7 +129,6 @@ const InstagramGallery = async () => {
       className="relative w-full py-20 bg-gradient-to-b from-[hsl(var(--testimonials-bg))] to-[hsl(var(--background))]"
     >
       <main className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
-        {/* Header Section */}
         <header className="mb-16 text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
             <figure className="w-12 h-12 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center shadow-lg">
@@ -143,8 +140,6 @@ const InstagramGallery = async () => {
             />
           </div>
         </header>
-
-        {/* Gallery Grid */}
         <section
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-12"
           aria-label="Instagram photo gallery"
@@ -153,8 +148,6 @@ const InstagramGallery = async () => {
             <GalleryCard image={image} index={index} key={image.id} />
           ))}
         </section>
-
-        {/* Call to Action Section */}
         <section className="text-center">
           <article className="bg-white/90 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12 inline-block relative overflow-hidden">
             <div className="space-y-6 relative z-10">
@@ -166,12 +159,10 @@ const InstagramGallery = async () => {
                   @ViaggioTravel
                 </h3>
               </header>
-
               <p className="text-[hsl(var(--muted-foreground))] text-lg max-w-2xl mx-auto leading-relaxed">
                 Join our community of adventurous travelers and share your
                 amazing moments. Tag us for a chance to be featured!
               </p>
-
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link
                   href="https://instagram.com/viaggiotravel"
@@ -190,7 +181,6 @@ const InstagramGallery = async () => {
                     </span>
                   </Button>
                 </Link>
-
                 <aside className="text-sm text-[hsl(var(--muted-foreground))] font-medium">
                   #ViaggioAdventures #TravelWithUs
                 </aside>

@@ -25,12 +25,9 @@ const TestimonialsSkeleton = () => {
                 className="group relative bg-white rounded-xl md:rounded-2xl border border-gray-100 p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 animate-pulse"
                 style={{ animationDelay: `${item * 0.1}s` }}
               >
-                {/* Quote Icon Skeleton */}
                 <div className="absolute -top-3 -left-3 w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full flex items-center justify-center animate-pulse">
                   <Quote size={16} className="md:w-5 md:h-5 text-gray-400" />
                 </div>
-
-                {/* Stars Rating Skeleton */}
                 <div className="flex items-center gap-1 mb-4">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <div
@@ -41,37 +38,24 @@ const TestimonialsSkeleton = () => {
                     </div>
                   ))}
                 </div>
-
-                {/* Testimonial Text Skeleton */}
                 <div className="space-y-3 mb-6">
                   <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
                   <div className="h-4 bg-gray-200 rounded w-5/6 animate-pulse"></div>
                   <div className="h-4 bg-gray-200 rounded w-4/6 animate-pulse"></div>
                   <div className="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></div>
                 </div>
-
-                {/* User Info Skeleton */}
                 <div className="flex items-center gap-4">
-                  {/* Avatar */}
                   <div className="w-12 h-12 md:w-14 md:h-14 bg-gray-200 rounded-full animate-pulse"></div>
-
                   <div className="flex-1">
-                    {/* Name */}
                     <div className="h-4 md:h-5 w-24 md:w-32 bg-gray-200 rounded mb-2 animate-pulse"></div>
-                    {/* Title/Company */}
                     <div className="h-3 md:h-4 w-32 md:w-40 bg-gray-200 rounded animate-pulse"></div>
                   </div>
                 </div>
-
-                {/* Floating corner accent */}
                 <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-30 animate-pulse"></div>
               </div>
             ))}
           </div>
-
-          {/* Navigation Controls Skeleton */}
           <div className="flex items-center justify-between mt-8 md:mt-12">
-            {/* Pagination Dots Skeleton */}
             <div className="flex items-center gap-2">
               {[1, 2, 3, 4].map((dot) => (
                 <div
@@ -82,8 +66,6 @@ const TestimonialsSkeleton = () => {
                 ></div>
               ))}
             </div>
-
-            {/* Navigation Arrows Skeleton */}
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full flex items-center justify-center animate-pulse">
                 <ChevronLeft
@@ -100,8 +82,6 @@ const TestimonialsSkeleton = () => {
             </div>
           </div>
         </div>
-
-        {/* Bottom Stats/Trust Indicators Skeleton */}
         <div className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {[1, 2, 3, 4].map((stat) => (
             <div
@@ -115,8 +95,6 @@ const TestimonialsSkeleton = () => {
           ))}
         </div>
       </div>
-
-      {/* Loading overlay for extra realism */}
       <div className="absolute inset-0 bg-white/30 backdrop-blur-sm rounded-2xl md:rounded-3xl flex items-center justify-center z-10 pointer-events-none">
         <div className="flex items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg">
           <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>

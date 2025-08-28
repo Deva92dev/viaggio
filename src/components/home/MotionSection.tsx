@@ -43,7 +43,7 @@ interface MotionSectionProps {
     gpuAcceleration?: boolean;
     reducedMotionFallback?: boolean;
   };
-  // Custom variants (for advanced users)
+  // Custom variants
   customVariants?: {
     initial: any;
     animate: any;

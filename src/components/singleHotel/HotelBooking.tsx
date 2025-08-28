@@ -35,7 +35,6 @@ const HotelBooking = ({
   return (
     <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl overflow-hidden sticky top-8 w-full mt-8 lg:mt-0">
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl sm:rounded-3xl blur opacity-20 -z-10" />
-      {/*  Header */}
       <div className="bg-gradient-to-r from-[hsl(var(--primary))] to-blue-700 text-white p-4 sm:p-6">
         <div className="flex items-center justify-between">
           <div>
@@ -51,7 +50,6 @@ const HotelBooking = ({
           </div>
         </div>
       </div>
-      {/*  Price Section */}
       <div className="p-4 sm:p-6 bg-gradient-to-br from-[hsl(var(--features-bg))] to-white">
         <div className="mb-4 sm:mb-6">
           <h3 className="text-lg sm:text-xl font-bold text-[hsl(var(--foreground))] mb-3 flex items-center gap-2">
@@ -70,7 +68,6 @@ const HotelBooking = ({
             </span>
           </div>
         </div>
-        {/* Availability Section */}
         <div className="mb-4 sm:mb-6">
           <h3 className="text-lg sm:text-xl font-bold text-[hsl(var(--foreground))] mb-3 flex items-center gap-2">
             <Bed
@@ -99,7 +96,6 @@ const HotelBooking = ({
             </div>
           </div>
         </div>
-        {/*  Trust Elements */}
         <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6 pt-4 sm:pt-6 border-t border-[hsl(var(--border))]">
           {[
             {
@@ -122,7 +118,6 @@ const HotelBooking = ({
             </div>
           ))}
         </div>
-        {/* Booking Form */}
         <Suspense fallback={<BookingFormSkeleton />}>
           <BookingForm
             itemId={id}
@@ -137,7 +132,6 @@ const HotelBooking = ({
             }}
           />
         </Suspense>
-        {/* Trust indicators */}
         <div className="flex items-center justify-center gap-4 sm:gap-6 mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-[hsl(var(--border))]">
           <div className="flex items-center gap-1.5 sm:gap-2 text-green-600">
             <Shield size={14} className="sm:w-4 sm:h-4" />

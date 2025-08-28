@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import {
   MapPin,
@@ -15,10 +14,6 @@ import { Card, CardContent } from "../ui/card";
 import { formatCurrency } from "@/utils/format";
 import FavoriteToggleWrapper from "../favorites/FavoriteToggleWrapper";
 import SmartLink from "../global/SmartLink";
-
-const MotionSection = dynamic(() => import("@/components/home/MotionSection"), {
-  loading: () => <div className="opacity-0" />,
-});
 
 type Props = {
   hotels: HotelsType[];
@@ -47,48 +42,23 @@ const HotelCard = ({ hotels }: Props) => {
           style={{ animationDelay: "4s" }}
         />
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-4 md:px-8 lg:px-12">
         <div className="mb-16">
           <SectionTitle
             text="Premium Hotels"
             description="Experience luxury accommodations with exceptional service and breathtaking views"
           />
         </div>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {hotels.map((hotel, index) => {
+        <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {hotels.map((hotel) => {
             const displayAmenities = getDisplayAmenities(hotel.amenities);
             const remainingCount = getRemainingCount(hotel.amenities);
-
             return (
-              <MotionSection
-                animation={{
-                  type: "slide",
-                  direction: "right",
-                  duration: 0.6,
-                  delay: 0.4 + index * 0.2,
-                  ease: "easeOut",
-                }}
-                mobile={{
-                  simpleAnimation: "fade",
-                  disableAnimations: false,
-                  disableParallax: true,
-                  breakPoint: 768,
-                  reducedMotion: true,
-                }}
-                triggerOnce={true}
-                threshold={0.2}
-                overflow={true}
-                key={hotel.id}
-                className="group h-full"
-              >
-                <SmartLink
-                  href={`/hotels/${hotel.id}`}
-                  className="block h-full"
-                >
+              <div key={hotel.id} className="group h-full">
+                <SmartLink href={`/hotels/${hotel.id}`}>
                   <Card className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur-md border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-0 cursor-pointer h-full flex flex-col">
                     {/* Gradient border effect */}
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500 -z-10" />
-                    {/*  Image Container  */}
                     <div className="relative w-full h-56 overflow-hidden rounded-t-3xl flex-shrink-0">
                       <Image
                         src={hotel.imageUrl}
@@ -101,7 +71,6 @@ const HotelCard = ({ hotels }: Props) => {
                       />
                       {/* gradient overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                      {/* Favorite Button */}
                       <div className="absolute top-4 right-4 z-20">
                         <FavoriteToggleWrapper
                           itemId={hotel.id}
@@ -113,7 +82,6 @@ const HotelCard = ({ hotels }: Props) => {
                       <div className="absolute top-4 left-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
                         <Camera size={16} className="text-white" />
                       </div>
-                      {/* Hotel Star Rating */}
                       <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-[hsl(var(--primary))]/90 backdrop-blur-md rounded-full px-4 py-2 border border-white/30">
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1">
@@ -130,7 +98,6 @@ const HotelCard = ({ hotels }: Props) => {
                           </span>
                         </div>
                       </div>
-                      {/* Price Badge */}
                       <div className="absolute bottom-4 right-4 bg-gradient-to-r from-[hsl(var(--accent))] to-orange-500 rounded-2xl px-4 py-2 shadow-lg group-hover:shadow-[hsl(var(--accent))]/50 group-hover:scale-105 transition-all duration-300">
                         <div className="text-white text-center">
                           <div className="font-bold text-lg">
@@ -141,7 +108,6 @@ const HotelCard = ({ hotels }: Props) => {
                           </div>
                         </div>
                       </div>
-                      {/* Premium Category Badge */}
                       <div className="absolute bottom-4 left-4 bg-white/20 backdrop-blur-xl rounded-xl px-3 py-1 border border-white/30 flex items-center gap-2">
                         <Bed size={14} className="text-[hsl(var(--accent))]" />
                         <span className="text-white text-sm font-semibold truncate max-w-[60px]">
@@ -155,18 +121,15 @@ const HotelCard = ({ hotels }: Props) => {
                           className="text-white group-hover:translate-x-0.5 transition-transform duration-300"
                         />
                       </div>
-                      {/* Premium shine effect */}
+                      {/* shine effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 opacity-0 group-hover:opacity-100" />
                     </div>
-                    {/*Card Content with Flex-Grow */}
                     <CardContent className="relative p-6 flex-1 flex flex-col justify-between">
                       <div className="space-y-4">
-                        {/* Hotel name with gradient hover effect */}
                         <div className="space-y-2">
                           <h3 className="font-bold text-xl text-[hsl(var(--foreground))] group-hover:bg-gradient-to-r group-hover:from-[hsl(var(--primary))] group-hover:to-[hsl(var(--accent))] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 line-clamp-1 min-h-[28px]">
                             {hotel.name}
                           </h3>
-                          {/* Location */}
                           <div className="flex items-center gap-2 text-[hsl(var(--muted-foreground))] min-h-[20px]">
                             <MapPin
                               size={16}
@@ -180,7 +143,6 @@ const HotelCard = ({ hotels }: Props) => {
                             </span>
                           </div>
                         </div>
-                        {/*Hotel Amenities Section */}
                         <div className="space-y-2 min-h-[80px] flex flex-col justify-start">
                           <div className="flex items-center gap-2">
                             <div className="w-1 h-4 bg-[hsl(var(--accent))] rounded-full flex-shrink-0"></div>
@@ -211,7 +173,6 @@ const HotelCard = ({ hotels }: Props) => {
                           </div>
                         </div>
                       </div>
-                      {/* Available Rooms Section */}
                       <div className="space-y-3 mt-auto pt-4">
                         <div className="flex items-center justify-between">
                           <div className="bg-white/50 backdrop-blur-md rounded-xl px-3 py-2 border border-[hsl(var(--border))]/30 shadow-sm group-hover:shadow-md transition-all duration-300 flex-1 mr-2">
@@ -229,7 +190,6 @@ const HotelCard = ({ hotels }: Props) => {
                               </div>
                             </div>
                           </div>
-                          {/* Capacity Badge */}
                           <div className="bg-[hsl(var(--accent))]/10 backdrop-blur-md px-3 py-2 rounded-xl border border-[hsl(var(--accent))]/20 flex items-center gap-1 flex-shrink-0">
                             <Users
                               size={12}
@@ -240,7 +200,6 @@ const HotelCard = ({ hotels }: Props) => {
                             </span>
                           </div>
                         </div>
-                        {/* Status Indicator */}
                         <div className="flex items-center justify-between">
                           <div
                             className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold flex-1 mr-2 ${
@@ -269,7 +228,6 @@ const HotelCard = ({ hotels }: Props) => {
                             </span>
                           </div>
                         </div>
-                        {/* Hover CTA */}
                         <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <div className="text-[hsl(var(--primary))] text-sm font-semibold flex items-center gap-2">
                             <span>Book Now</span>
@@ -285,11 +243,10 @@ const HotelCard = ({ hotels }: Props) => {
                     <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-gradient-to-br from-[hsl(var(--accent))] to-orange-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
                   </Card>
                 </SmartLink>
-              </MotionSection>
+              </div>
             );
           })}
         </div>
-        {/* Empty State */}
         {hotels.length === 0 && (
           <div className="text-center py-16">
             <div className="bg-white/90 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12 inline-block">
@@ -311,7 +268,7 @@ const HotelCard = ({ hotels }: Props) => {
           </div>
         )}
       </div>
-      {/* Additional floating decorative elements */}
+      {/*  floating decorative elements */}
       <div className="absolute top-1/4 right-8 w-20 h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15 animate-float" />
       <div className="absolute bottom-1/4 left-8 w-24 h-24 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20 animate-float-slow" />
     </section>

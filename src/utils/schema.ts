@@ -36,7 +36,6 @@ export const siteSchema = {
   ],
 };
 
-/* 2.1 — Breadcrumbs (use inside any detail page) */
 export function buildBreadcrumb(
   paths: { name: string; url: string }[]
 ): object {
@@ -51,7 +50,6 @@ export function buildBreadcrumb(
   };
 }
 
-/* 2.2 — Destinations Hub  (/destinations) */
 export function buildDestinationIndex(
   pageUrl: string,
   destinations: { id: string; name: string }[]
@@ -70,7 +68,6 @@ export function buildDestinationIndex(
   };
 }
 
-/* 2.3 — Single Destination (/destinations/[id]) */
 export function buildDestinationDetail(dest: {
   id: string;
   name: string;
@@ -88,11 +85,6 @@ export function buildDestinationDetail(dest: {
     name: dest.name,
     description: dest.description,
     image: dest.imageUrl,
-    // geo: {
-    //   "@type": "GeoCoordinates",
-    //   latitude: dest.lat,
-    //   longitude: dest.lng,
-    // },
     address: {
       "@type": "PostalAddress",
       addressLocality: dest.location,
@@ -101,7 +93,6 @@ export function buildDestinationDetail(dest: {
   };
 }
 
-/* 2.4 — Hotels Hub  (/hotels) */
 export function buildHotelIndex(
   pageUrl: string,
   hotels: { id: string; name: string }[]
@@ -120,7 +111,6 @@ export function buildHotelIndex(
   };
 }
 
-/* 2.5 — Single Hotel (/hotels/[id]) */
 export function buildHotelDetail(hotel: {
   id: string;
   name: string;
@@ -128,7 +118,6 @@ export function buildHotelDetail(hotel: {
   location: string;
   country: string;
   pricePerNight: number;
-  //   rating optional for now
   stars?: number;
 }): object {
   return {
@@ -143,14 +132,9 @@ export function buildHotelDetail(hotel: {
       addressCountry: hotel.country,
     },
     priceRange: `$${hotel.pricePerNight} per night`,
-    // starRating: {
-    //   "@type": "Rating",
-    //   ratingValue: hotel.stars,
-    // },
   };
 }
 
-/* 2.6 — Generic Static Page (about, policies, etc.) */
 export function buildWebPage(
   title: string,
   url: string,
@@ -164,7 +148,6 @@ export function buildWebPage(
   };
 }
 
-/* 2.7 — FAQ Page (if policy pages contain FAQs) */
 export function buildFAQ(
   faqEntries: { question: string; answer: string }[]
 ): object {
@@ -182,7 +165,6 @@ export function buildFAQ(
   };
 }
 
-/* 2.8 — Search Results Page */
 export function buildSearchResults(query: string, resultCount: number): object {
   return {
     "@type": "SearchResultsPage",

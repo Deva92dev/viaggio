@@ -71,7 +71,6 @@ const DestinationsPage = async ({ searchParams }: Props) => {
     },
   ]);
 
-  /* wrapper with @context + @graph */
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [indexSchema, breadcrumb],

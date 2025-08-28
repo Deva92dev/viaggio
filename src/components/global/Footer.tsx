@@ -73,7 +73,6 @@ const Footer = () => {
     { icon: Globe, text: "500+ Destinations" },
   ];
 
-  // UPDATED: Moved popular destinations to inline format
   const popularDestinations = [
     "Santorini",
     "Kashmir",
@@ -84,7 +83,7 @@ const Footer = () => {
 
   return (
     <footer className="relative overflow-hidden bg-gradient-to-b from-[hsl(var(--footer-bg))] to-[hsl(var(--footer-bg)/0.9)]">
-      {/* Enhanced wave decoration */}
+      {/* wave decoration */}
       <div className="w-full h-20 overflow-hidden absolute top-0 left-0 z-10">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +97,7 @@ const Footer = () => {
           ></path>
         </svg>
       </div>
-      {/* Enhanced decorative background elements */}
+      {/*  decorative background elements */}
       <div className="absolute inset-0 overflow-hidden z-0" aria-hidden="true">
         <div className="absolute top-20 right-16 w-80 h-80 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-15 animate-pulse" />
         <div
@@ -111,9 +110,9 @@ const Footer = () => {
         />
       </div>
       <div className="relative z-20 container mx-auto px-6 md:px-12 pt-32 pb-8">
-        {/* UPDATED: Main footer content with new grid layout */}
+        {/* Main footer content with new grid layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Enhanced Logo and About Section */}
+          {/*  Logo and About Section */}
           <div className="col-span-1 md:col-span-2 lg:col-span-1 space-y-6">
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] flex items-center justify-center mr-4 shadow-lg">
@@ -128,7 +127,6 @@ const Footer = () => {
               expert-guided adventures and personalized travel experiences that
               create memories for a lifetime.
             </p>
-            {/* Enhanced social media icons */}
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
                 <Link
@@ -159,7 +157,6 @@ const Footer = () => {
                 </div>
               ))}
             </div>
-            {/* UPDATED: Inline popular destinations */}
             <div className="pt-4">
               <h3 className="text-sm font-semibold text-white/90 mb-3">
                 Popular Destinations:
@@ -179,7 +176,6 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          {/* Enhanced Quick Links */}
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white relative inline-block">
               Quick Links
@@ -206,7 +202,6 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          {/* NEW: Legal & Policies Section */}
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white relative inline-block">
               Legal & Policies
@@ -236,7 +231,6 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          {/* Enhanced Contact Info */}
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white relative inline-block">
               Contact Us
@@ -266,7 +260,6 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        {/* Enhanced Newsletter Section */}
         <div className="relative mb-12">
           <div className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12">
             {/* Decorative gradient border */}
@@ -314,7 +307,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        {/* UPDATED: Enhanced Copyright Section with cleaner policy links */}
         <div className="border-t border-white/20 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex flex-col sm:flex-row items-center gap-6 text-white/70">
@@ -354,7 +346,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      {/* Additional floating decorative elements */}
+      {/* floating decorative elements */}
       <div className="absolute bottom-10 right-10 w-20 h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-10 animate-float" />
       <div className="absolute top-1/3 left-8 w-16 h-16 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-15 animate-float-slow" />
     </footer>

@@ -31,7 +31,6 @@ export default function NotFound() {
           </div>
           <div className="w-16 h-1 bg-gradient-to-r from-[hsl(var(--accent))] to-orange-500 rounded-full mx-auto" />
         </div>
-        {/* Main Content */}
         <div className="bg-white/90 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl overflow-hidden mb-8">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-20 -z-10" />
           <div className="p-8 md:p-12">
@@ -43,7 +42,6 @@ export default function NotFound() {
               get you back on track to discover amazing destinations and hotels
               with Viaggio!
             </p>
-            {/* Navigation Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <Button
                 onClick={handleGoBack}
@@ -64,7 +62,6 @@ export default function NotFound() {
                 Home
               </Button>
             </div>
-            {/* Popular Routes */}
             <div>
               <h3 className="text-lg font-semibold text-[hsl(var(--foreground))] mb-4">
                 Continue Your Journey
@@ -88,7 +85,6 @@ export default function NotFound() {
             </div>
           </div>
         </div>
-        {/* Fun Message */}
         <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl p-6">
           <p className="text-[hsl(var(--muted-foreground))] text-lg font-medium mb-2">
             Not all those who wander are lost..

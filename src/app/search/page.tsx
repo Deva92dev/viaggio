@@ -26,7 +26,6 @@ export async function generateMetadata({
     typeof sp.destination === "string" ? sp.destination : undefined;
   const country = typeof sp.country === "string" ? sp.country : undefined;
 
-  // Build dynamic title and description
   let title = "Search Results - Find Your Perfect Trip | Viagio";
   let description =
     "Search destinations, hotels and travel experiences. Find exactly what you're looking for with Viagio's comprehensive search.";
@@ -64,7 +63,6 @@ export async function generateMetadata({
   };
 }
 
-/* helper: convert possibly-array params to string[][] for URLSearchParams */
 const paramsToEntries = (
   obj: Record<string, string | string[] | undefined>
 ): string[][] =>
@@ -87,7 +85,6 @@ export default async function SearchPage({ searchParams }: SearchProps) {
     return undefined;
   };
 
-  /* 2. build filter object exactly like SearchContent uses */
   const filters = {
     destination: str("destination") ?? str("q"),
     country: str("country"),

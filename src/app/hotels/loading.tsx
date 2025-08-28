@@ -1,7 +1,6 @@
 export default function HotelsLoading() {
   return (
     <div className="animate-pulse">
-      {/* Hero Section Skeleton (DestinationImage) */}
       <section className="relative h-64 md:h-80 lg:h-96 bg-gray-200 mb-8">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300" />
         <div className="absolute inset-0 flex items-center justify-center">
@@ -11,14 +10,12 @@ export default function HotelsLoading() {
           </div>
         </div>
       </section>
-      {/* Featured Hotels Card Section Skeleton (DestinationCard) */}
       <section className="container mx-auto px-4 mb-12">
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl p-8">
           <div className="text-center space-y-4 mb-8">
             <div className="h-8 w-56 bg-gray-200 rounded mx-auto" />
             <div className="h-4 w-80 bg-gray-200 rounded mx-auto" />
           </div>
-          {/* Featured hotel cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 3 }).map((_, i) => (
               <FeaturedHotelCardSkeleton key={i} />
@@ -26,15 +23,12 @@ export default function HotelsLoading() {
           </div>
         </div>
       </section>
-      {/* Main Hotels Grid Skeleton (HotelCard) */}
       <section className="container mx-auto px-4 mb-12">
         <div className="space-y-6">
-          {/* Section header */}
           <div className="text-center space-y-3">
             <div className="h-8 w-64 bg-gray-200 rounded mx-auto" />
             <div className="h-4 w-96 bg-gray-200 rounded mx-auto" />
           </div>
-          {/* Hotel cards grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {Array.from({ length: 8 }).map((_, i) => (
               <HotelCardSkeleton key={i} />
@@ -42,7 +36,6 @@ export default function HotelsLoading() {
           </div>
         </div>
       </section>
-      {/* Pagination Skeleton */}
       <section className="container mx-auto px-4 mb-8">
         <div className="flex justify-center items-center space-x-2">
           <div className="h-10 w-10 bg-gray-200 rounded" />
@@ -59,26 +52,19 @@ export default function HotelsLoading() {
 function FeaturedHotelCardSkeleton() {
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-      {/* Image skeleton */}
       <div className="h-48 bg-gray-200" />
-      {/* Content skeleton */}
       <div className="p-4 space-y-3">
-        {/* Hotel name */}
         <div className="h-6 w-3/4 bg-gray-200 rounded" />
-        {/* Location */}
         <div className="h-4 w-1/2 bg-gray-200 rounded" />
-        {/* Rating stars */}
         <div className="flex items-center space-x-1">
           {Array.from({ length: 5 }).map((_, i) => (
             <div key={i} className="h-4 w-4 bg-gray-200 rounded" />
           ))}
         </div>
-        {/* Description */}
         <div className="space-y-2">
           <div className="h-4 w-full bg-gray-200 rounded" />
           <div className="h-4 w-5/6 bg-gray-200 rounded" />
         </div>
-        {/* Price and book button */}
         <div className="flex justify-between items-center pt-2">
           <div className="space-y-1">
             <div className="h-6 w-16 bg-gray-200 rounded" />
@@ -94,16 +80,11 @@ function FeaturedHotelCardSkeleton() {
 function HotelCardSkeleton() {
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow">
-      {/* Image skeleton */}
       <div className="relative h-48 bg-gray-200">
-        {/* Favorite button skeleton */}
         <div className="absolute top-3 right-3 w-8 h-8 bg-gray-300 rounded-full" />
       </div>
-      {/* Content skeleton */}
       <div className="p-4 space-y-3">
-        {/* Hotel name */}
         <div className="h-6 w-4/5 bg-gray-200 rounded" />
-        {/* Location and rating */}
         <div className="flex items-center justify-between">
           <div className="h-4 w-1/2 bg-gray-200 rounded" />
           <div className="flex items-center space-x-1">
@@ -111,25 +92,21 @@ function HotelCardSkeleton() {
             <div className="h-4 w-8 bg-gray-200 rounded" />
           </div>
         </div>
-        {/* Amenities */}
         <div className="flex items-center space-x-2">
           <div className="h-4 w-4 bg-gray-200 rounded" />
           <div className="h-4 w-4 bg-gray-200 rounded" />
           <div className="h-4 w-4 bg-gray-200 rounded" />
           <div className="h-3 w-16 bg-gray-200 rounded" />
         </div>
-        {/* Description */}
         <div className="space-y-2">
           <div className="h-4 w-full bg-gray-200 rounded" />
           <div className="h-4 w-3/4 bg-gray-200 rounded" />
         </div>
-        {/* Room info */}
         <div className="flex items-center justify-between text-sm">
           <div className="h-4 w-20 bg-gray-200 rounded" />
           <div className="h-4 w-16 bg-gray-200 rounded" />
         </div>
         <div className="border-t border-gray-100 pt-3">
-          {/* Price and book button */}
           <div className="flex justify-between items-center">
             <div className="space-y-1">
               <div className="h-6 w-20 bg-gray-200 rounded" />

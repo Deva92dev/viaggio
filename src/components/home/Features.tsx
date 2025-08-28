@@ -140,14 +140,12 @@ const Features = () => {
         />
       </MotionSection>
       <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-12">
-        {/* Section Title */}
         <header className="mb-12 md:mb-16">
           <SectionTitle
             text="Why Choose Viaggio"
             description="Experience the difference with our premium travel services"
           />
         </header>
-        {/* Features Grid */}
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8 mb-16 md:mb-20">
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
@@ -158,7 +156,7 @@ const Features = () => {
                   type: "slide",
                   direction: "up",
                   duration: 0.6,
-                  delay: 0.4 + index * 0.15, // Staggered: 0.4s, 0.55s, 0.7s, 0.85s
+                  delay: 0.4 + index * 0.15,
                   ease: "easeOut",
                 }}
                 mobile={{
@@ -169,16 +167,13 @@ const Features = () => {
                 threshold={0.3}
                 className="group relative overflow-hidden rounded-2xl bg-white shadow-lg border border-slate-100 hover:shadow-xl hover:-translate-y-1 md:bg-white/95 md:backdrop-blur-sm md:shadow-xl md:border-white/20 md:rounded-3xl md:hover:shadow-2xl md:hover:-translate-y-2 transition-all duration-300 md:duration-500 group-hover:scale-105 md:group-hover:scale-110"
               >
-                {/* Mobile gradient background */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br from-${feature.mobileColor}/5 to-${feature.mobileColor}/10 md:from-transparent md:to-transparent`}
                 />
-                {/* Desktop gradient border effect */}
                 <div
                   className={`hidden md:block absolute -inset-0.5 bg-gradient-to-r ${feature.gradient} rounded-3xl blur opacity-0 group-hover:opacity-25 transition-opacity duration-500 -z-10`}
                 />
                 <div className="relative p-6 md:p-8 space-y-4 md:space-y-6">
-                  {/* Feature Icon */}
                   <figure
                     className={`w-14 h-14 rounded-xl flex items-center justify-center shadow-md md:w-16 md:h-16 md:rounded-2xl md:shadow-lg transition-transform duration-300 bg-gradient-to-br ${feature.gradient} group-hover:scale-105 md:group-hover:scale-110`}
                   >
@@ -187,7 +182,6 @@ const Features = () => {
                       className="md:w-7 md:h-7 text-white"
                     />
                   </figure>
-                  {/* Content */}
                   <section className="space-y-3">
                     <h3
                       className={`text-xl md:text-xl font-bold text-slate-900 transition-all duration-300 group-hover:text-${feature.mobileColor} md:group-hover:bg-gradient-to-r md:group-hover:${feature.gradient} md:group-hover:bg-clip-text md:group-hover:text-transparent`}
@@ -198,7 +192,6 @@ const Features = () => {
                       {feature.description}
                     </p>
                   </section>
-                  {/* Stats */}
                   <aside className="pt-4 border-t border-slate-100 md:border-slate-100/50">
                     <div className="flex items-center justify-between">
                       <div>
@@ -222,7 +215,6 @@ const Features = () => {
                     </div>
                   </aside>
                 </div>
-                {/* Desktop floating accent */}
                 <figure
                   className={`hidden md:block absolute -bottom-3 -right-3 w-20 h-20 bg-gradient-to-br ${feature.gradient} rounded-full blur-xl opacity-15 group-hover:opacity-30 transition-opacity duration-500`}
                 />
@@ -230,12 +222,11 @@ const Features = () => {
             );
           })}
         </section>
-        {/* Achievement Stats */}
         <MotionSection
           animation={{
             type: "scale",
             duration: 0.8,
-            delay: 1.2, // After all feature cards
+            delay: 1.2,
             ease: "easeOut",
           }}
           mobile={{
@@ -248,7 +239,6 @@ const Features = () => {
           <div className="bg-white shadow-lg rounded-2xl border border-slate-100 p-6 md:bg-white/90 md:backdrop-blur-xl md:shadow-2xl md:border-white/20 md:rounded-3xl md:p-8 lg:p-12">
             {/* Desktop decorative gradient border */}
             <div className="hidden md:block absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl blur opacity-20 -z-10" />
-            {/* Header */}
             <header className="text-center mb-8 md:mb-12">
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent md:from-blue-500 md:via-purple-500 md:to-pink-500">
                 Trusted by Thousands
@@ -258,7 +248,6 @@ const Features = () => {
                 the world with Viaggio
               </p>
             </header>
-            {/* Stats Grid */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {achievements.map((achievement, index) => {
                 const IconComponent = achievement.icon;
@@ -298,8 +287,6 @@ const Features = () => {
           </div>
         </MotionSection>
       </main>
-
-      {/* Floating decorative elements */}
       <MotionSection
         parallax={{
           speed: 20,

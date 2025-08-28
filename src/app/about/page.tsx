@@ -117,7 +117,6 @@ export default function AboutPage() {
         }}
       />
       <main className="relative overflow-hidden bg-[hsl(var(--background))]">
-        {/* Hero Section */}
         <section className="relative w-full h-[70vh] min-h-[600px] mb-16 overflow-hidden">
           <Image
             src="/Hero.webp"
@@ -128,14 +127,11 @@ export default function AboutPage() {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
             className="object-cover absolute inset-0 w-full h-full"
           />
-          {/* Enhanced gradient overlays */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.4] via-transparent to-[hsl(var(--accent))/0.2] z-10" />
-          {/* Hero Content */}
           <div className="absolute inset-0 flex items-center z-20 pt-16 sm:pt-20 md:pt-24 lg:pt-16">
             <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
               <div className="max-w-4xl w-full">
-                {/* Enhanced badges */}
                 <div className="flex items-center flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 w-full relative z-30 mt-4 sm:mt-6 md:mt-8 animate-fade-in">
                   <span className="bg-gradient-to-r from-[hsl(var(--accent))] to-orange-500 text-white text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-semibold shadow-lg">
                     Since 2016
@@ -148,7 +144,6 @@ export default function AboutPage() {
                     <span>Trusted Travel Partner</span>
                   </div>
                 </div>
-                {/* Enhanced title */}
                 <h1
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-4 sm:mb-6 shadow-text leading-tight animate-fade-in"
                   style={{ animationDelay: "0.2s" }}
@@ -166,7 +161,6 @@ export default function AboutPage() {
                   2016. We are passionate about creating unforgettable journeys
                   that inspire, educate, and transform.
                 </p>
-                {/* Enhanced action button */}
                 <div
                   className="animate-fade-in"
                   style={{ animationDelay: "0.4s" }}
@@ -183,7 +177,6 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-        {/* Stats Section */}
         <section className="py-12 sm:py-16 bg-gradient-to-r from-[hsl(var(--features-bg))] to-white">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -207,7 +200,6 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-        {/* Our Story Section */}
         <section className="py-16 sm:py-20">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -259,7 +251,6 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-        {/* Values Section */}
         <section className="py-16 sm:py-20 bg-gradient-to-br from-[hsl(var(--features-bg))] to-white">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
             <div className="text-center mb-12 sm:mb-16">
@@ -296,7 +287,6 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-        {/* Team Section */}
         <section className="py-16 sm:py-20">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
             <div className="text-center mb-12 sm:mb-16">
@@ -345,7 +335,6 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-        {/* CTA Section */}
         <section className="py-16 sm:py-20 bg-gradient-to-r from-[hsl(var(--primary))] to-blue-700 text-white">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
             <div className="max-w-3xl mx-auto">

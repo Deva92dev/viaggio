@@ -1,6 +1,5 @@
 import { Skeleton } from "../ui/skeleton";
 
-// Loading component for the search page
 export const SearchSkeleton = () => (
   <section className="max-w-7xl mx-auto p-6">
     <div className="mb-8">
@@ -14,7 +13,6 @@ export const SearchSkeleton = () => (
         </div>
       </div>
     </div>
-
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {[1, 2, 3, 4, 5, 6].map((item) => (
         <div
@@ -30,7 +28,6 @@ export const SearchSkeleton = () => (
         </div>
       ))}
     </div>
-
     <div className="mt-8 flex justify-center">
       <Skeleton className="h-10 w-32" />
     </div>

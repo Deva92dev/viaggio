@@ -48,7 +48,6 @@ const ShareButton = () => {
       >
         <Share2 size={20} className="text-white" />
       </Button>
-
       {/* Dropdown menu */}
       <div className="absolute top-full right-0 mt-2 w-48 bg-white/95 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
         <div className="p-2 space-y-1">
@@ -66,7 +65,6 @@ const ShareButton = () => {
               {copied ? "Copied!" : "Copy Link"}
             </span>
           </button>
-
           <button
             onClick={() => handleShare("facebook")}
             className="w-full flex items-center gap-3 px-4 py-3 text-[hsl(var(--foreground))] hover:bg-blue-500/10 rounded-xl transition-colors duration-200"
@@ -75,7 +73,6 @@ const ShareButton = () => {
             <Facebook size={16} className="text-blue-600" />
             <span className="text-sm font-medium">Facebook</span>
           </button>
-
           <button
             onClick={() => handleShare("twitter")}
             className="w-full flex items-center gap-3 px-4 py-3 text-[hsl(var(--foreground))] hover:bg-blue-400/10 rounded-xl transition-colors duration-200"

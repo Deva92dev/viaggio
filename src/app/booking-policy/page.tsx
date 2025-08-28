@@ -145,7 +145,6 @@ export default function BookingPolicyPage() {
         }}
       />
       <main className="relative overflow-hidden bg-[hsl(var(--background))]">
-        {/* Hero Section */}
         <section className="relative w-full h-[50vh] min-h-[400px] mb-16 overflow-hidden">
           <Image
             src="/Hero.webp"
@@ -156,14 +155,11 @@ export default function BookingPolicyPage() {
             sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
             className="object-cover absolute inset-0 w-full h-full"
           />
-          {/* Enhanced gradient overlays */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.4] via-transparent to-[hsl(var(--accent))/0.2] z-10" />
-          {/* Hero Content */}
           <div className="absolute inset-0 flex items-center z-20 pt-16 sm:pt-20 md:pt-24 lg:pt-16">
             <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
               <div className="max-w-4xl w-full">
-                {/* Enhanced badges */}
                 <div className="flex items-center flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 w-full relative z-30 mt-4 sm:mt-6 md:mt-8 animate-fade-in">
                   <span className="bg-gradient-to-r from-[hsl(var(--primary))] to-blue-700 text-white text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-semibold shadow-lg">
                     Secure Booking
@@ -176,7 +172,6 @@ export default function BookingPolicyPage() {
                     <span>Flexible Reservations</span>
                   </div>
                 </div>
-                {/* Enhanced title */}
                 <h1
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-4 sm:mb-6 shadow-text leading-tight animate-fade-in"
                   style={{ animationDelay: "0.2s" }}
@@ -193,7 +188,6 @@ export default function BookingPolicyPage() {
                   Everything you need to know about booking, modifying, and
                   managing your travel reservations with Viagio.
                 </p>
-                {/* Last updated info */}
                 <div
                   className="flex items-center gap-2 text-white/80 animate-fade-in"
                   style={{ animationDelay: "0.4s" }}
@@ -205,7 +199,6 @@ export default function BookingPolicyPage() {
             </div>
           </div>
         </section>
-        {/* Policy Highlights Section */}
         <section className="py-12 sm:py-16 bg-gradient-to-r from-[hsl(var(--features-bg))] to-white">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
             <div className="text-center mb-12">
@@ -238,12 +231,10 @@ export default function BookingPolicyPage() {
             </div>
           </div>
         </section>
-        {/* Main Content */}
         <section className="py-16 sm:py-20">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
             <div className="max-w-4xl mx-auto">
               <div className="space-y-12">
-                {/* Booking Process */}
                 <section id="booking-process" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -279,7 +270,6 @@ export default function BookingPolicyPage() {
                     </div>
                   </div>
                 </section>
-                {/* Payment Methods */}
                 <section id="payment-methods" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -333,7 +323,6 @@ export default function BookingPolicyPage() {
                     </div>
                   </div>
                 </section>
-                {/* Booking Confirmation */}
                 <section id="booking-confirmation" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -388,7 +377,6 @@ export default function BookingPolicyPage() {
                     </div>
                   </div>
                 </section>
-                {/* Modification & Cancellation Policy */}
                 <section
                   id="modification-cancellation"
                   className="animate-fade-in"
@@ -477,7 +465,6 @@ export default function BookingPolicyPage() {
                     </div>
                   </div>
                 </section>
-                {/* Special Circumstances */}
                 <section id="special-circumstances" className="animate-fade-in">
                   <div className="flex items-center mb-6">
                     <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mr-3 shadow-lg">
@@ -522,7 +509,6 @@ export default function BookingPolicyPage() {
                     </div>
                   </div>
                 </section>
-                {/* Contact Information */}
                 <section
                   id="contact-booking-support"
                   className="animate-fade-in"
@@ -593,7 +579,6 @@ export default function BookingPolicyPage() {
             </div>
           </div>
         </section>
-        {/* CTA Section */}
         <section className="py-16 sm:py-20 bg-gradient-to-r from-[hsl(var(--primary))] to-blue-700 text-white">
           <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
             <div className="max-w-3xl mx-auto">

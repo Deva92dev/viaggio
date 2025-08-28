@@ -98,7 +98,6 @@ const BookDestination = ({
             </span>
           </div>
         </div>
-        {/* Trust indicators */}
         <div className="flex items-center justify-center gap-6 mt-6 pt-6 border-t border-[hsl(var(--border))]">
           <div className="flex items-center gap-2 text-green-600">
             <Shield size={16} />

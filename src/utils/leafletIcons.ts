@@ -11,7 +11,6 @@ export const initializeLeafletIcons = async () => {
   try {
     // Dynamic import of Leaflet
     const L = await import("leaflet");
-
     // Fix default icon issue
     delete (L.Icon.Default as any).prototype._getIconUrl;
 

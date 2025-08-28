@@ -96,7 +96,6 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
 
   const totalAmount = countTotal();
 
-  // Only effect sets error & closes payment if validation fails after showPayment is set
   useEffect(() => {
     if (
       showPayment &&
@@ -164,7 +163,6 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
     });
   };
 
-  // handle successful payment
   const handlePaymentSuccess = async (
     paymentId: string,
     bookingData: Omit<CreateBookingData, "paymentId">
@@ -205,15 +203,12 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
     tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow.toISOString().split("T")[0];
   };
-
-  // Only block render if showPayment is active but (for some reason) required data is missing.
   if (
     showPayment &&
     (!formData.checkInDate ||
       !formData.checkOutDate ||
       !formData.numberOfGuests)
   ) {
-    // Let useEffect handle closing payment and showing error, just render nothing
     return null;
   }
 
@@ -232,7 +227,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
 
     return (
       <div className="space-y-8">
-        {/* Enhanced Payment Summary Card */}
+        {/* Payment Summary Card */}
         <Card className="bg-white/90 backdrop-blur-xl border border-white/20 shadow-2xl rounded-2xl overflow-hidden">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl blur opacity-20 -z-10"></div>
           <CardHeader className="bg-gradient-to-r from-[hsl(var(--primary))] to-blue-700 text-white p-6">
@@ -330,7 +325,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
           </div>
         )}
 
-        {/* Enhanced Back Button */}
+        {/* Back Button */}
         <Button
           variant="outline"
           onClick={() => setShowPayment(false)}
@@ -347,7 +342,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
   return (
     <div className={isPending ? "opacity-70 pointer-events-none" : ""}>
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Enhanced Error Alert */}
+        {/* Error Alert */}
         {error && (
           <Alert
             variant="destructive"
@@ -359,7 +354,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
           </Alert>
         )}
 
-        {/* Enhanced Date Selection */}
+        {/* Date Selection */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="space-y-3">
             <Label
@@ -403,7 +398,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
           </div>
         </div>
 
-        {/* Enhanced Guest Selection */}
+        {/* Guest Selection */}
         <div className="space-y-3">
           <Label
             htmlFor="numberOfGuests"
@@ -527,7 +522,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
           </>
         )}
 
-        {/* Enhanced Special Requests */}
+        {/* Special Requests */}
         <div className="space-y-3">
           <Label
             htmlFor="specialRequests"
@@ -548,7 +543,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
           />
         </div>
 
-        {/* Enhanced Price Breakdown */}
+        {/* Price Breakdown */}
         {totalAmount > 0 && (
           <Card className="bg-white/90 backdrop-blur-xl border border-white/20 shadow-xl rounded-2xl overflow-hidden">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl blur opacity-15 -z-10"></div>
@@ -603,7 +598,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
           </Card>
         )}
 
-        {/* Enhanced Submit Button */}
+        {/* Submit Button */}
         <Button
           type="submit"
           className="w-full btn-accent py-4 text-lg font-bold shadow-xl shadow-[hsl(var(--accent))]/30 hover:shadow-[hsl(var(--accent))]/50 hover:scale-[1.02] transition-all duration-300 group relative overflow-hidden"

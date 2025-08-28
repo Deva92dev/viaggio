@@ -14,8 +14,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getFilteredResults } from "@/utils/actions";
 import { Pagination } from "@/components/search/Pagination";
 
-// improve image loading fill or not fill priority for 4 cards images
-
 const SearchContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -88,7 +86,6 @@ const SearchContent = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Render search parameters summary
   const renderSearchSummary = () => {
     const summaryParts = [];
     if (
@@ -128,7 +125,6 @@ const SearchContent = () => {
     ) : null;
   };
 
-  // Render skeleton loader
   const renderSkeletonLoader = () => (
     <div className="space-y-4">
       {[1, 2, 3].map((item) => (
@@ -223,15 +219,12 @@ const SearchContent = () => {
         </h1>
         {renderSearchSummary()}
       </div>
-
       {showSkeleton && renderSkeletonLoader()}
-
       {error && (
         <div className="bg-[hsl(var(--destructive))] border border-[hsl(var(--destructive))] p-4 rounded-lg text-[hsl(var(--destructive-foreground))]">
           Error fetching results: {error.message}
         </div>
       )}
-
       {!showSkeleton && data && (
         <div>
           {data.items.length === 0 ? (
@@ -251,7 +244,6 @@ const SearchContent = () => {
           {renderPagination()}
         </div>
       )}
-
       <div className="mt-8 flex justify-center">
         <Button
           onClick={() => refetch()}

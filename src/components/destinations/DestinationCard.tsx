@@ -13,13 +13,12 @@ const MotionSection = dynamic(() => import("@/components/home/MotionSection"), {
 type Props = {
   type: "destination" | "hotel";
 };
-// asking for properly sized images
+
 const DestinationCard = async ({ type }: Props) => {
   const countries = await getAllCountriesWithData();
 
   return (
     <section className="relative w-full py-20 bg-gradient-to-b from-[hsl(var(--background))] to-[hsl(var(--features-bg))]">
-      {/* Simplified decorative background - mobile hidden */}
       <div
         className="absolute inset-0 overflow-hidden z-0 hidden md:block"
         aria-hidden="true"
@@ -41,7 +40,6 @@ const DestinationCard = async ({ type }: Props) => {
           />
         </div>
 
-        {/* OPTIMIZED Grid with proper image sizing */}
         <div className="grid gap-6 md:gap-8 lg:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           {countries.map((country, index) => (
             <MotionSection
@@ -50,7 +48,7 @@ const DestinationCard = async ({ type }: Props) => {
                 type: "slide",
                 direction: "up",
                 duration: 0.6,
-                delay: 0.4 + index * 0.1, // Staggered animation
+                delay: 0.4 + index * 0.1,
                 ease: "easeOut",
               }}
               mobile={{
@@ -91,7 +89,6 @@ const DestinationCard = async ({ type }: Props) => {
                     />
                     {/*  gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:opacity-80 transition-opacity duration-500" />
-                    {/* decorative camera icon - hidden on mobile */}
                     <div className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-md rounded-full items-center justify-center border border-white/30 group-hover:scale-110 transition-all duration-300 hidden sm:flex">
                       <Camera
                         size={16}
@@ -138,7 +135,7 @@ const DestinationCard = async ({ type }: Props) => {
                         </div>
                       </div>
                     </div>
-                    {/* Hover Arrow - hidden on mobile */}
+                    {/* Hover Arrow  */}
                     <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 w-12 h-12 md:w-14 md:h-14 bg-[hsl(var(--accent))] rounded-full items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shadow-lg hidden sm:flex">
                       <ArrowRight
                         size={18}
@@ -151,7 +148,7 @@ const DestinationCard = async ({ type }: Props) => {
             </MotionSection>
           ))}
         </div>
-        {/* Simplified Call-to-Action */}
+        {/*  Call-to-Action */}
         <div className="mt-16 md:mt-20 text-center relative">
           <div className="relative bg-white/90 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-white/20 shadow-xl md:shadow-2xl p-6 md:p-8 lg:p-12 inline-block">
             <div className="space-y-4 md:space-y-6">
