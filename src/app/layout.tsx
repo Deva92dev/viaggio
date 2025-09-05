@@ -11,6 +11,7 @@ import QueryProvider from "@/components/global/QueryProvider";
 import ClipDefs from "@/components/global/ClipDefs";
 import { Toaster } from "@/components/ui/sonner";
 import { siteSchema } from "@/utils/schema";
+import { MotionProvider } from "./motionProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -93,10 +94,12 @@ export default function RootLayout({
           <ClipDefs />
           <QueryProvider>
             <Providers>
-              <Navbar />
-              {children}
-              <Toaster />
-              <Footer />
+              <MotionProvider>
+                <Navbar />
+                {children}
+                <Toaster />
+                <Footer />
+              </MotionProvider>
             </Providers>
           </QueryProvider>
         </body>

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import {
-  motion,
+  m,
   useScroll,
   useTransform,
   useReducedMotion,
@@ -476,7 +476,7 @@ const MotionSection = ({
   };
 
   return (
-    <motion.section
+    <m.section
       ref={combinedRef}
       style={getMotionStyle()}
       initial={shouldAnimate ? animationVariants.initial : false}
@@ -491,7 +491,7 @@ const MotionSection = ({
       className={getEnhancedClassName()}
     >
       {children}
-    </motion.section>
+    </m.section>
   );
 };
 
