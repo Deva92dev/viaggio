@@ -2,25 +2,24 @@
 
 if they have more than 200 items, fetch 100 dynamic items at build time using generateStaticParams and rest are build time, dynamic fetch client data in server pages and components. Avoid enormous server payload, excessive dom size
 make video and record then go for lighthouse check
-
-### ENV Variables
-
-NEXT_PUBLIC_WEBSITE_URL
-
-## Clerk AUth
-
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-CLERK_SECRET_KEY
-
-## Supabase
-
-DB_PASSWORD=
-DATABASE_URL=
-DIRECT_URL=
-SUPABASE_URL=
-SUPABASE_KEY=
-
-## Stripe
-
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-STRIPE_SECRET_KEY=
+Hero - First Impression
+typescript parallax: { speed: 100, direction: 'up' }
+animation: { type: 'fade', duration: 1.2 }
+SearchFilter - Functional Focus
+typescript parallax: { speed: 0 } // Preserves negative margin
+animation: { type: 'slide', direction: 'up' }
+Features - Key Selling Points
+typescript parallax: { speed: 75, direction: 'up' }
+// + Individual card animations with stagger
+Testimonials - Social Proof
+typescript parallax: { speed: 40, direction: 'right' }
+// + Individual testimonial scale animations
+InstagramGallery - Visual Impact
+typescript parallax: { speed: 50, direction: 'down' }
+// + Individual image fade-ins with micro-delays
+CallToAction - Conversion Focus
+typescript parallax: { speed: 80, direction: 'up' }
+// + Nested scale animation for button/text
+TrustIndicators - Credibility Finale
+typescript parallax: { speed: 30, direction: 'up' }
+// + Logo fade-ins with sequential delays
