@@ -12,6 +12,7 @@ import ClipDefs from "@/components/global/ClipDefs";
 import { Toaster } from "@/components/ui/sonner";
 import { siteSchema } from "@/utils/schema";
 import { MotionProvider } from "./motionProvider";
+import { LenisProvider } from "./LenisProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -90,16 +91,17 @@ export default function RootLayout({
               __html: JSON.stringify(siteSchema).replace(/</g, "\\u003c"),
             }}
           />
-
           <ClipDefs />
           <QueryProvider>
             <Providers>
-              <MotionProvider>
-                <Navbar />
-                {children}
-                <Toaster />
-                <Footer />
-              </MotionProvider>
+              <LenisProvider>
+                <MotionProvider>
+                  <Navbar />
+                  {children}
+                  <Toaster />
+                  <Footer />
+                </MotionProvider>
+              </LenisProvider>
             </Providers>
           </QueryProvider>
         </body>
