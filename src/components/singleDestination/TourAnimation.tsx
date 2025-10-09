@@ -48,7 +48,7 @@ export const Duration = ({ duration }: DurationProps) => {
       <div className="w-5 h-5 bg-[hsl(var(--accent))] rounded-full flex items-center justify-center mr-2">
         <Clock size={12} className="text-white" />
       </div>
-      <span className="text-sm font-semibold">{durationText}</span>
+      <span className="text-sm font-semibold text-black">{durationText}</span>
     </div>
   );
 };
@@ -77,12 +77,8 @@ export const Location3DCard = ({ location, country }: LocationType) => {
           <MapPin className="text-white" size={16} />
         </div>
         <div>
-          <p className="font-bold text-[hsl(var(--foreground))] text-lg">
-            {location}
-          </p>
-          <p className="font-medium text-[hsl(var(--muted-foreground))] mt-1">
-            {country}
-          </p>
+          <p className="font-bold text-black text-lg">{location}</p>
+          <p className="font-medium text-black mt-1">{country}</p>
         </div>
       </div>
       <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))]"></div>

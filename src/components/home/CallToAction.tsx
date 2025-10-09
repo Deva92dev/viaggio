@@ -44,7 +44,6 @@ const CallToAction = () => {
           style={{ animationDelay: "4s", transform: "translate(-50%, -50%)" }}
         />
       </figure>
-
       <main className="relative z-20 max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Main Content Section */}
@@ -172,14 +171,14 @@ const CallToAction = () => {
                   {benefits.map((benefit, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-2 text-sm text-[hsl(var(--muted-foreground))]"
+                      className="flex items-center gap-2 text-sm text-black"
                     >
                       <div className="w-2 h-2 bg-[hsl(var(--accent))] rounded-full" />
                       <span>{benefit}</span>
                     </div>
                   ))}
                 </aside>
-                <footer className="text-xs text-[hsl(var(--muted-foreground))] text-center">
+                <footer className="text-xs text-black text-center">
                   We respect your privacy. Unsubscribe anytime.
                 </footer>
               </div>

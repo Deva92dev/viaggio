@@ -74,14 +74,12 @@ const Popular = async () => {
           />
         </figure>
       </MotionSection>
-
       <header className="relative z-10 mb-12 md:mb-16">
         <SectionTitle
           text="Popular Destinations"
           description="Discover breathtaking places where adventure meets luxury"
         />
       </header>
-
       <main className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 px-4 md:px-6 lg:px-12 max-w-7xl mx-auto">
         {destinations.map((destination, index) => (
           <MotionSection
@@ -116,7 +114,6 @@ const Popular = async () => {
               <div className="absolute top-3 right-3 md:top-4 md:right-4 w-10 h-10 md:w-12 md:h-12 bg-white/20 md:backdrop-blur-md rounded-full items-center justify-center duration-300 hidden sm:flex group-hover:scale-110 transition-transform">
                 <Camera size={14} className="md:w-4 md:h-4 text-white" />
               </div>
-
               <address className="absolute top-3 left-3 md:top-4 md:left-4 bg-white/20 md:backdrop-blur-xl rounded-full px-3 py-1 md:px-4 md:py-2 flex items-center gap-2 border border-white/30 duration-300 group-hover:scale-105 transition-transform not-italic">
                 <MapPin
                   size={12}
@@ -126,16 +123,14 @@ const Popular = async () => {
                   {destination.location}
                 </span>
               </address>
-
               <aside className="absolute bottom-3 right-3 md:bottom-4 md:right-6 xl:right-8 bg-[hsl(var(--accent))] md:bg-gradient-to-r md:from-[hsl(var(--accent))] md:to-orange-500 rounded-full px-3 py-1 md:px-4 md:py-2 shadow-md md:shadow-lg duration-300 group-hover:scale-105 transition-transform">
                 <span className="text-white text-xs md:text-sm font-bold">
                   {formatCurrency(destination.price)}
                 </span>
               </aside>
             </figure>
-
             <section className="p-4 md:p-6 space-y-3 md:space-y-4">
-              <h3 className="text-lg md:text-xl font-bold text-[hsl(var(--foreground))] transition-colors duration-300 group-hover:text-[hsl(var(--primary))]">
+              <h3 className="text-lg md:text-xl font-bold text-black transition-colors duration-300 group-hover:text-[hsl(var(--primary))]">
                 {destination.name}
               </h3>
               <nav>
@@ -156,7 +151,6 @@ const Popular = async () => {
           </MotionSection>
         ))}
       </main>
-
       <footer className="relative z-10 flex items-center justify-center mt-12 md:mt-16">
         <Link href="/destinations" className="group">
           <MotionSection

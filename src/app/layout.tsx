@@ -80,6 +80,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
+        <head>
+          <meta
+            name="description"
+            content="Explore the world in style: curated destinations, premium hotels, and personalized travel experiences by Viaggio."
+          />
+        </head>
         <body
           className={`${inter.variable} ${poppins.variable} ${geistMono.variable} antialiased`}
         >

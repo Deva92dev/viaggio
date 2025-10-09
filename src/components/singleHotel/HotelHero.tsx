@@ -2,8 +2,8 @@ import Image from "next/image";
 import { MapPin, Star } from "lucide-react";
 import ShareButton from "../singleDestination/ShareButton";
 import FavoriteToggleWrapper from "../favorites/FavoriteToggleWrapper";
-import BreadcrumbNav from "../global/BreadCrumbNav";
 import { FloatingClods, HorizontalLine } from "../hotels/ServerAnimation";
+import CustomBreadcrumb from "../global/CustomBreadCrumb";
 
 type HotelHeroProps = {
   id: string;
@@ -22,12 +22,8 @@ const HotelHero = ({
   location,
   name,
 }: HotelHeroProps) => {
-  const breadcrumbItems = [
-    { label: "Hotels", href: "/hotels" },
-    { label: name, isCurrentPage: true },
-  ];
-
   const destinationTag = "Popular Destination";
+
   return (
     <div className="relative w-full h-[70vh] min-h-[600px] mb-16 overflow-hidden">
       <Image
@@ -37,20 +33,25 @@ const HotelHero = ({
         priority
         quality={75}
         sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
-        className="object-cover absolute inset-0 w-full h-full"
+        className="object-cover"
       />
-      {/* gradient overlays */}
+      {/* Gradient overlays  */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.4] via-transparent to-[hsl(var(--accent))/0.2] z-10" />
       <FloatingClods />
       <HorizontalLine />
-      <div className="absolute container mx-auto top-0 left-0 right-0 z-10 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
-        <BreadcrumbNav
-          items={breadcrumbItems}
-          className="animate-fade-in max-w-fit"
-        />
+      <div className="absolute top-28 left-12 right-0 z-50 pt-4">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
+          <CustomBreadcrumb
+            items={[
+              { label: "Hotels", href: "/hotels" },
+              { label: name, isCurrentPage: true },
+            ]}
+            className="animate-fade-in inline-block"
+          />
+        </div>
       </div>
-      {/*  Hero Content */}
+      {/* Hero Content  */}
       <div className="absolute inset-0 flex items-end z-20">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 pb-12 w-full">
           <div className="flex justify-between items-end flex-wrap gap-4 sm:gap-6 w-full">
@@ -88,7 +89,7 @@ const HotelHero = ({
                     className="mr-2 text-[hsl(var(--accent))] sm:w-5 sm:h-5"
                   />
                   <span className="font-semibold text-sm sm:text-base lg:text-lg">
-                    {location},
+                    {location},{" "}
                     <span className="text-[hsl(var(--accent))]">{country}</span>
                   </span>
                 </div>

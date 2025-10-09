@@ -261,7 +261,7 @@ export default function RefundCancellationPage() {
                   <div className="w-12 h-12 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <highlight.icon className="text-white w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-[hsl(var(--foreground))] mb-2">
+                  <h3 className="font-bold text-black mb-2">
                     {highlight.title}
                   </h3>
                   <p className="text-sm text-[hsl(var(--muted-foreground))] leading-relaxed">
@@ -349,7 +349,7 @@ export default function RefundCancellationPage() {
                             <service.icon size={20} className="text-white" />
                           </div>
                           <div>
-                            <h3 className="text-xl font-bold text-[hsl(var(--foreground))]">
+                            <h3 className="text-xl font-bold text-black">
                               {service.service}
                             </h3>
                             <p className="text-sm text-[hsl(var(--muted-foreground))]">
@@ -393,7 +393,7 @@ export default function RefundCancellationPage() {
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
-                        <h3 className="font-semibold text-[hsl(var(--foreground))] mb-3">
+                        <h3 className="font-semibold text-black mb-3">
                           Online Cancellation
                         </h3>
                         <div className="space-y-3">
@@ -485,16 +485,16 @@ export default function RefundCancellationPage() {
                               size={32}
                               className="text-[hsl(var(--primary))] mx-auto mb-2"
                             />
-                            <h3 className="font-bold text-[hsl(var(--foreground))] mb-1">
+                            <h3 className="font-bold text-black mb-1">
                               {circumstance.title}
                             </h3>
-                            <p className="text-sm font-medium text-[hsl(14 100% 45%)]">
+                            <p className="text-sm font-medium text-black">
                               {circumstance.description}
                             </p>
                           </div>
                           <div className="space-y-2 text-sm">
                             <div>
-                              <span className="font-medium text-[hsl(var(--foreground))]">
+                              <span className="font-medium text-black">
                                 Requirements:
                               </span>
                               <p className="text-[hsl(var(--muted-foreground))]">
@@ -502,7 +502,7 @@ export default function RefundCancellationPage() {
                               </p>
                             </div>
                             <div>
-                              <span className="font-medium text-[hsl(var(--foreground))]">
+                              <span className="font-medium text-black">
                                 Processing:
                               </span>
                               <p className="text-[hsl(var(--muted-foreground))]">
@@ -527,7 +527,7 @@ export default function RefundCancellationPage() {
                   <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl p-6 sm:p-8">
                     <div className="space-y-6">
                       <div>
-                        <h3 className="font-semibold text-[hsl(var(--foreground))] mb-3 flex items-center gap-2">
+                        <h3 className="font-semibold text-black mb-3 flex items-center gap-2">
                           <CheckCircle
                             size={16}
                             className="text-[hsl(var(--accent))]"
@@ -541,7 +541,7 @@ export default function RefundCancellationPage() {
                         </p>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-[hsl(var(--foreground))] mb-3 flex items-center gap-2">
+                        <h3 className="font-semibold text-black mb-3 flex items-center gap-2">
                           <CheckCircle
                             size={16}
                             className="text-[hsl(var(--accent))]"
@@ -555,7 +555,7 @@ export default function RefundCancellationPage() {
                         </p>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-[hsl(var(--foreground))] mb-3 flex items-center gap-2">
+                        <h3 className="font-semibold text-black mb-3 flex items-center gap-2">
                           <CheckCircle
                             size={16}
                             className="text-[hsl(var(--accent))]"
@@ -569,7 +569,7 @@ export default function RefundCancellationPage() {
                         </p>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-[hsl(var(--foreground))] mb-3 flex items-center gap-2">
+                        <h3 className="font-semibold text-black mb-3 flex items-center gap-2">
                           <CheckCircle
                             size={16}
                             className="text-[hsl(var(--accent))]"
@@ -608,7 +608,7 @@ export default function RefundCancellationPage() {
                     </h2>
                   </div>
                   <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl p-6 sm:p-8">
-                    <p className="text-[hsl(var(--foreground))] mb-6 leading-relaxed">
+                    <p className="text-black mb-6 leading-relaxed">
                       Our dedicated refund support team is here to help with
                       cancellations, refund status, and any questions about our
                       policies.
@@ -619,28 +619,21 @@ export default function RefundCancellationPage() {
                           className="text-[hsl(var(--primary))] mx-auto mb-3"
                           size={24}
                         />
-                        <h3 className="font-semibold text-[hsl(var(--foreground))] mb-2">
+                        <h3 className="font-semibold text-black mb-2">
                           Refund Hotline
                         </h3>
-                        <p className="text-[hsl(var(--muted-foreground))] text-sm">
+                        <p className="text-black text-sm">
                           +1 (555) 123-REFUND
                         </p>
-                        <p className="text-xs text-[hsl(var(--muted-foreground))] mt-1">
-                          24/7 Priority Support
-                        </p>
+                        <p className="text-black mt-1">24/7 Priority Support</p>
                       </div>
                       <div className="text-center">
-                        <Mail
-                          className="text-[hsl(var(--accent))] mx-auto mb-3"
-                          size={24}
-                        />
-                        <h3 className="font-semibold text-[hsl(var(--foreground))] mb-2">
+                        <Mail className="text-black mx-auto mb-3" size={24} />
+                        <h3 className="font-semibold text-black text mb-2">
                           Refund Email
                         </h3>
-                        <p className="text-[hsl(var(--muted-foreground))] text-sm">
-                          refunds@viagio.com
-                        </p>
-                        <p className="text-xs text-[hsl(var(--muted-foreground))] mt-1">
+                        <p className="text-black">refunds@viagio.com</p>
+                        <p className="text-xs text-black mt-1">
                           Response within 1 hour
                         </p>
                       </div>
@@ -649,13 +642,13 @@ export default function RefundCancellationPage() {
                           className="text-[hsl(var(--primary))] mx-auto mb-3"
                           size={24}
                         />
-                        <h3 className="font-semibold text-[hsl(var(--foreground))] mb-2">
+                        <h3 className="font-semibold text-black mb-2">
                           Status Tracker
                         </h3>
-                        <p className="text-[hsl(var(--muted-foreground))] text-sm">
+                        <p className="text-black text-sm">
                           Online portal available
                         </p>
-                        <p className="text-xs text-[hsl(var(--muted-foreground))] mt-1">
+                        <p className="text-xs text-black mt-1">
                           Real-time refund updates
                         </p>
                       </div>

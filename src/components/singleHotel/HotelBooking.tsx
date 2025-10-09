@@ -60,7 +60,7 @@ const HotelBooking = ({
             Price Details
           </h3>
           <div className="flex justify-between items-center p-3 sm:p-4 bg-white rounded-xl border border-[hsl(var(--border))] shadow-sm">
-            <span className="text-[hsl(var(--muted-foreground))] font-medium text-sm sm:text-base">
+            <span className="text-black font-medium text-sm sm:text-base">
               Per night
             </span>
             <span className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent">
@@ -77,7 +77,7 @@ const HotelBooking = ({
             Availability
           </h3>
           <div className="flex justify-between items-center p-3 sm:p-4 bg-white rounded-xl border border-[hsl(var(--border))] shadow-sm">
-            <span className="text-[hsl(var(--muted-foreground))] font-medium text-sm sm:text-base">
+            <span className="text-black font-medium text-sm sm:text-base">
               Rooms available
             </span>
             <div className="flex items-center">
@@ -90,7 +90,7 @@ const HotelBooking = ({
                     : "bg-red-500"
                 }`}
               ></span>
-              <span className="font-bold text-[hsl(var(--foreground))] text-base sm:text-lg">
+              <span className="font-bold text-black text-base sm:text-lg">
                 {availableRooms}
               </span>
             </div>
@@ -112,7 +112,7 @@ const HotelBooking = ({
               <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center">
                 <item.icon size={14} className="text-white sm:w-4 sm:h-4" />
               </div>
-              <span className="text-xs sm:text-sm text-[hsl(var(--foreground))] font-medium">
+              <span className="text-xs sm:text-sm text-black font-medium">
                 {item.text}
               </span>
             </div>

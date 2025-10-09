@@ -61,9 +61,7 @@ const BookDestination = ({
       <div className="p-6 bg-gradient-to-br from-[hsl(var(--features-bg))] to-white">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <p className="text-[hsl(var(--muted-foreground))] text-sm font-medium">
-              Starting From
-            </p>
+            <p className="text-black text-sm font-medium">Starting From</p>
             <p className="text-4xl font-black bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent">
               ${price}
             </p>
@@ -76,26 +74,18 @@ const BookDestination = ({
               <div className="w-8 h-8 bg-[hsl(var(--primary))]/10 rounded-lg flex items-center justify-center mr-3">
                 <Users size={16} className="text-[hsl(var(--primary))]" />
               </div>
-              <span className="text-[hsl(var(--foreground))] font-medium">
-                Travelers
-              </span>
+              <span className="text-black font-medium">Travelers</span>
             </div>
-            <span className="font-bold text-[hsl(var(--foreground))]">
-              {travelerCount}+
-            </span>
+            <span className="font-bold text-black">{travelerCount}+</span>
           </div>
           <div className="flex items-center justify-between p-3 bg-white rounded-xl border border-[hsl(var(--border))] shadow-sm">
             <div className="flex items-center">
               <div className="w-8 h-8 bg-[hsl(var(--accent))]/10 rounded-lg flex items-center justify-center mr-3">
                 <Compass size={16} className="text-[hsl(var(--accent))]" />
               </div>
-              <span className="text-[hsl(var(--foreground))] font-medium">
-                Guided Tours
-              </span>
+              <span className="text-black font-medium">Guided Tours</span>
             </div>
-            <span className="font-bold text-[hsl(var(--foreground))]">
-              {guidedTours}
-            </span>
+            <span className="font-bold text-black">{guidedTours}</span>
           </div>
         </div>
         <div className="flex items-center justify-center gap-6 mt-6 pt-6 border-t border-[hsl(var(--border))]">

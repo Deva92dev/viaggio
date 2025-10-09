@@ -29,7 +29,7 @@ const DestinationExperience = ({
         <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-20 -z-10" />
         <div className="p-8 md:p-10">
           <div className="prose max-w-none">
-            <p className="text-[hsl(var(--foreground))] text-lg leading-relaxed mb-8">
+            <p className="text-black text-lg leading-relaxed mb-8">
               {description}
             </p>
           </div>
@@ -64,7 +64,7 @@ const DestinationExperience = ({
                   Tour Duration
                 </h3>
               </div>
-              <p className="text-[hsl(var(--muted-foreground))] mt-4 leading-relaxed">
+              <p className="text-black mt-4 leading-relaxed">
                 <span className="font-bold text-[hsl(var(--primary))]">
                   {duration.toUpperCase()}
                 </span>
@@ -84,7 +84,7 @@ const DestinationExperience = ({
                 Surroundings Views
               </h3>
             </div>
-            <p className="text-[hsl(var(--muted-foreground))] mt-4 leading-relaxed">
+            <p className="text-black mt-4 leading-relaxed">
               <span className="font-bold text-[hsl(var(--primary))]">
                 {category.toUpperCase()}
               </span>

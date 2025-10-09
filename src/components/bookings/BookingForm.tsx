@@ -256,63 +256,46 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
                   {itemData.name}
                 </span>
               </div>
-
               <div className="flex justify-between items-center p-3 bg-[hsl(var(--features-bg))] rounded-xl border border-[hsl(var(--border))]">
-                <span className="text-[hsl(var(--muted-foreground))] font-medium">
-                  Check-In:
-                </span>
+                <span className="text-black font-medium">Check-In:</span>
                 <span className="font-bold text-[hsl(var(--foreground))]">
                   {formData.checkInDate
                     ? new Date(formData.checkInDate).toLocaleDateString()
                     : ""}
                 </span>
               </div>
-
               <div className="flex justify-between items-center p-3 bg-[hsl(var(--features-bg))] rounded-xl border border-[hsl(var(--border))]">
-                <span className="text-[hsl(var(--muted-foreground))] font-medium">
-                  Check-Out:
-                </span>
+                <span className="text-black font-medium">Check-Out:</span>
                 <span className="font-bold text-[hsl(var(--foreground))]">
                   {formData.checkOutDate
                     ? new Date(formData.checkOutDate).toLocaleDateString()
                     : ""}
                 </span>
               </div>
-
               <div className="flex justify-between items-center p-3 bg-[hsl(var(--features-bg))] rounded-xl border border-[hsl(var(--border))]">
-                <span className="text-[hsl(var(--muted-foreground))] font-medium">
-                  Guests:
-                </span>
+                <span className="text-black font-medium">Guests:</span>
                 <span className="font-bold text-[hsl(var(--foreground))]">
                   {formData.numberOfGuests}
                 </span>
               </div>
-
               {itemType === "hotel" && (
                 <div className="flex justify-between items-center p-3 bg-[hsl(var(--features-bg))] rounded-xl border border-[hsl(var(--border))]">
-                  <span className="text-[hsl(var(--muted-foreground))] font-medium">
-                    Rooms:
-                  </span>
-                  <span className="font-bold text-[hsl(var(--foreground))]">
+                  <span className="text-black font-medium">Rooms:</span>
+                  <span className="font-bold text-black">
                     {formData.numberOfRooms}
                   </span>
                 </div>
               )}
             </div>
-
             <Separator className="my-6" />
-
             <div className="flex justify-between items-center p-4 bg-gradient-to-r from-[hsl(var(--primary))]/10 to-[hsl(var(--accent))]/10 rounded-xl border-2 border-[hsl(var(--primary))]/20">
-              <span className="text-xl font-bold text-[hsl(var(--foreground))]">
-                Total:
-              </span>
+              <span className="text-xl font-bold text-black">Total:</span>
               <span className="text-2xl font-black bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent">
                 ${totalAmount}
               </span>
             </div>
           </CardContent>
         </Card>
-
         {/*  Stripe Payment */}
         {showPayment && (
           <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl p-6">
@@ -324,12 +307,11 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
             />
           </div>
         )}
-
         {/* Back Button */}
         <Button
           variant="outline"
           onClick={() => setShowPayment(false)}
-          className="w-full py-3 bg-white/90 backdrop-blur-xl border border-white/20 hover:bg-white text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl rounded-xl"
+          className="w-full py-3 bg-white/90 backdrop-blur-xl border border-white/20 hover:bg-white text-black hover:text-[hsl(var(--primary))] transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl rounded-xl"
           aria-label="Button for going back to booking details"
         >
           <ArrowLeft size={20} className="mr-2" />
@@ -353,13 +335,12 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
             </AlertDescription>
           </Alert>
         )}
-
         {/* Date Selection */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="space-y-3">
             <Label
               htmlFor="checkInDate"
-              className="text-[hsl(var(--foreground))] font-semibold flex items-center gap-2"
+              className="text-black font-semibold flex items-center gap-2"
             >
               <Calendar size={16} className="text-[hsl(var(--primary))]" />
               Check-in Date
@@ -370,7 +351,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
               min={getMinDate()}
               value={formData.checkInDate}
               required
-              className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
+              className="bg-white text-black backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
               onChange={(e) =>
                 setFormData({ ...formData, checkInDate: e.target.value })
               }
@@ -379,7 +360,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
           <div className="space-y-3">
             <Label
               htmlFor="checkOutDate"
-              className="text-[hsl(var(--foreground))] font-semibold flex items-center gap-2"
+              className="text-black font-semibold flex items-center gap-2"
             >
               <Calendar size={16} className="text-[hsl(var(--accent))]" />
               Check-out Date
@@ -390,21 +371,20 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
               min={formData.checkInDate || getMinDate()}
               value={formData.checkOutDate}
               required
-              className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
+              className="bg-white text-black backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
               onChange={(e) =>
                 setFormData({ ...formData, checkOutDate: e.target.value })
               }
             />
           </div>
         </div>
-
         {/* Guest Selection */}
         <div className="space-y-3">
           <Label
             htmlFor="numberOfGuests"
-            className="text-[hsl(var(--foreground))] font-semibold flex items-center gap-2"
+            className="text-black font-semibold flex items-center gap-2"
           >
-            <Users size={16} className="text-[hsl(var(--primary))]" />
+            <Users size={16} className="text-black" />
             Number of Guests
           </Label>
           <Select
@@ -414,12 +394,12 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
             }
           >
             <SelectTrigger
-              className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
+              className="bg-white/90 text-black backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
               aria-label="Choose number of guests"
             >
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-white/95 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl">
+            <SelectContent className="bg-white/95 text-black backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl">
               {[...Array(10)].map((_, i) => (
                 <SelectItem
                   key={i + 1}
@@ -432,14 +412,13 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
             </SelectContent>
           </Select>
         </div>
-
         {/* Hotel-specific fields */}
         {itemType === "hotel" && (
           <>
             <div className="space-y-3">
               <Label
                 htmlFor="numberOfRooms"
-                className="text-[hsl(var(--foreground))] font-semibold flex items-center gap-2"
+                className="text-black font-semibold flex items-center gap-2"
               >
                 <Bed size={16} className="text-[hsl(var(--accent))]" />
                 Number Of Rooms
@@ -451,12 +430,12 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
                 }
               >
                 <SelectTrigger
-                  className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
+                  className="bg-white/90 text-black backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
                   aria-label="Select number of rooms"
                 >
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-white/95 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl">
+                <SelectContent className="bg-white/95 text-black backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl">
                   {[...Array(Math.min(5, itemData.availableRooms || 1))].map(
                     (_, i) => (
                       <SelectItem
@@ -471,12 +450,8 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
                 </SelectContent>
               </Select>
             </div>
-
             <div className="space-y-3">
-              <Label
-                htmlFor="roomType"
-                className="text-[hsl(var(--foreground))] font-semibold"
-              >
+              <Label htmlFor="roomType" className="text-black font-semibold">
                 Room Type
               </Label>
               <Select
@@ -486,12 +461,12 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
                 }
               >
                 <SelectTrigger
-                  className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
+                  className="bg-white/90 text-black backdrop-blur-md border border-[hsl(var(--border))] rounded-xl py-3 px-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300"
                   aria-label="Select room type"
                 >
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-white/95 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl">
+                <SelectContent className="bg-white/95 text-black backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl">
                   <SelectItem
                     value="standard"
                     className="hover:bg-[hsl(var(--primary))]/10 rounded-lg"
@@ -521,12 +496,11 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
             </div>
           </>
         )}
-
         {/* Special Requests */}
         <div className="space-y-3">
           <Label
             htmlFor="specialRequests"
-            className="text-[hsl(var(--foreground))] font-semibold flex items-center gap-2"
+            className="text-black font-semibold flex items-center gap-2"
           >
             <MessageSquare size={16} className="text-[hsl(var(--primary))]" />
             Special Requests (Optional)
@@ -535,31 +509,28 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
             id="specialRequests"
             placeholder="Any special requests or notes..."
             value={formData.specialRequests}
-            className="bg-white/90 backdrop-blur-md border border-[hsl(var(--border))] rounded-xl p-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300 resize-none"
+            className="bg-white/90 text-black backdrop-blur-md border border-[hsl(var(--border))] rounded-xl p-4 focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))] transition-all duration-300 resize-none"
             rows={4}
             onChange={(e) =>
               setFormData({ ...formData, specialRequests: e.target.value })
             }
           />
         </div>
-
         {/* Price Breakdown */}
         {totalAmount > 0 && (
           <Card className="bg-white/90 backdrop-blur-xl border border-white/20 shadow-xl rounded-2xl overflow-hidden">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl blur opacity-15 -z-10"></div>
-
             <CardHeader className="bg-gradient-to-r from-[hsl(var(--features-bg))] to-white p-6">
               <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent flex items-center justify-center gap-2">
                 <DollarSign size={24} />
                 Price Breakdown
               </CardTitle>
             </CardHeader>
-
             <CardContent className="p-6">
               <div className="space-y-4">
                 {itemType === "destination" ? (
                   <div className="flex justify-between items-center p-3 bg-[hsl(var(--features-bg))] rounded-xl">
-                    <span className="text-[hsl(var(--muted-foreground))]">
+                    <span className="text-black">
                       ${itemData.price} × {formData.numberOfGuests} guests
                     </span>
                     <span className="font-bold text-[hsl(var(--foreground))]">
@@ -568,7 +539,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
                   </div>
                 ) : (
                   <div className="flex justify-between items-center p-3 bg-[hsl(var(--features-bg))] rounded-xl">
-                    <span className="text-[hsl(var(--muted-foreground))]">
+                    <span className="text-black">
                       ${itemData.price} ×{" "}
                       {Math.ceil(
                         (new Date(formData.checkOutDate).getTime() -
@@ -582,13 +553,9 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
                     </span>
                   </div>
                 )}
-
                 <Separator />
-
                 <div className="flex justify-between items-center p-4 bg-gradient-to-r from-[hsl(var(--primary))]/10 to-[hsl(var(--accent))]/10 rounded-xl border-2 border-[hsl(var(--primary))]/20">
-                  <span className="text-xl font-bold text-[hsl(var(--foreground))]">
-                    Total
-                  </span>
+                  <span className="text-xl font-bold text-black">Total</span>
                   <span className="text-2xl font-black bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent">
                     ${totalAmount}
                   </span>
@@ -597,7 +564,6 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
             </CardContent>
           </Card>
         )}
-
         {/* Submit Button */}
         <Button
           type="submit"

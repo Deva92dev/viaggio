@@ -33,7 +33,7 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="font-medium text-black dark:text-white px-1 py-2 
+                className="font-medium text-background dark:text-foreground px-1 py-2 
                hover:text-[hsl(var(--accent))] transition-colors duration-150
                border-b-2 border-transparent hover:border-[hsl(var(--accent))]"
               >

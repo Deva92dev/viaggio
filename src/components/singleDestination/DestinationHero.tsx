@@ -5,7 +5,7 @@ import ShareButton from "./ShareButton";
 import { formatCurrency } from "@/utils/format";
 import { Button } from "../ui/button";
 import { Duration, JourneyPath } from "./TourAnimation";
-import BreadcrumbNav from "../global/BreadCrumbNav";
+import CustomBreadcrumb from "../global/CustomBreadCrumb";
 
 type DestinationHeroProps = {
   id: string;
@@ -32,11 +32,6 @@ const DestinationHero = ({
 }: DestinationHeroProps) => {
   const travelerCount = 345;
 
-  const breadcrumbItems = [
-    { label: "Destinations", href: "/destinations" },
-    { label: name, isCurrentPage: true },
-  ];
-
   return (
     <div className="relative w-full h-[70vh] min-h-[600px] mb-16 overflow-hidden">
       <Image
@@ -52,17 +47,22 @@ const DestinationHero = ({
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.4] via-transparent to-[hsl(var(--accent))/0.2] z-10" />
       <JourneyPath />
-      <div className="absolute top-0 left-0 z-10 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
-        <BreadcrumbNav
-          items={breadcrumbItems}
-          className="motion-safe:animate-fade-in max-w-fit"
-        />
+      <div className="absolute top-16 left-16 sm:top-28 sm:left-auto sm:right-16 z-50 pt-4">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
+          <CustomBreadcrumb
+            items={[
+              { label: "Hotels", href: "/hotels" },
+              { label: name, isCurrentPage: true },
+            ]}
+            className="animate-fade-in inline-block"
+          />
+        </div>
       </div>
       {/*  Hero Content */}
       <div className="absolute inset-0 flex items-center z-20 pt-16 sm:pt-20 md:pt-24 lg:pt-16">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
           <div className="max-w-4xl w-full">
-            <div className="hidden md:flex items-center flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 w-full relative z-40 mt-4 sm:mt-6 md:mt-8 animate-fade-in">
+            <div className="hidden lg:flex items-center flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 w-full relative z-40 mt-4 sm:mt-6 md:mt-8 animate-fade-in">
               <div className="inline-block opacity-100">
                 <Duration duration={duration} />
               </div>
@@ -78,7 +78,7 @@ const DestinationHero = ({
               </div>
             </div>
             <h1
-              className="text-5xl md:text-7xl font-black text-white mb-6 shadow-text leading-tight animate-fade-in"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl  font-black text-white mb-4 sm:mb-6 shadow-text leading-tight animate-fade-in capitalize"
               style={{ animationDelay: "0.2s" }}
             >
               Discover

@@ -225,11 +225,11 @@ const Testimonials = () => {
                       />
                     ))}
                   </div>
-                  <span className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm font-medium ml-1 sm:ml-2">
+                  <span className="text-black text-xs sm:text-sm font-medium ml-1 sm:ml-2">
                     5.0 • Verified Review
                   </span>
                 </div>
-                <blockquote className="text-[hsl(var(--foreground))] text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 md:mb-8 font-medium italic">
+                <blockquote className="text-black text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 md:mb-8 font-medium italic">
                   {currentData.quote}
                 </blockquote>
                 <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4 md:mb-6">
@@ -248,10 +248,10 @@ const Testimonials = () => {
                     </div>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-bold text-[hsl(var(--foreground))] text-sm sm:text-base md:text-lg truncate">
+                    <h3 className="font-bold text-black text-sm sm:text-base md:text-lg truncate">
                       {currentData.name}
                     </h3>
-                    <p className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm truncate">
+                    <p className="text-black text-xs sm:text-sm truncate">
                       {currentData.location}
                     </p>
                   </div>
@@ -317,11 +317,11 @@ const Testimonials = () => {
                       <Star
                         key={star}
                         size={10}
-                        className="text-[hsl(var(--accent))] fill-[hsl(var(--accent))]"
+                        className="text-black fill-[hsl(var(--accent))]"
                       />
                     ))}
                   </div>
-                  <blockquote className="text-[hsl(var(--foreground))] mb-2 sm:mb-3 md:mb-4 line-clamp-3 leading-relaxed text-xs sm:text-sm md:text-base">
+                  <blockquote className="text-black mb-2 sm:mb-3 md:mb-4 line-clamp-3 leading-relaxed text-xs sm:text-sm md:text-base">
                     {testimonial.quote}
                   </blockquote>
                   <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
@@ -335,10 +335,10 @@ const Testimonials = () => {
                       />
                     </figure>
                     <div className="min-w-0 flex-1">
-                      <h4 className="font-semibold text-[hsl(var(--foreground))] text-xs sm:text-sm truncate">
+                      <h4 className="font-semibold text-black text-xs sm:text-sm truncate">
                         {testimonial.name}
                       </h4>
-                      <p className="text-[hsl(var(--muted-foreground))] text-xs truncate">
+                      <p className="text-black text-xs truncate">
                         {testimonial.destination}
                       </p>
                     </div>
@@ -372,7 +372,7 @@ const Testimonials = () => {
             <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-1 sm:mb-2">
               Trusted by Adventurers Worldwide
             </h3>
-            <p className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm md:text-base px-2">
+            <p className="text-black text-xs sm:text-sm md:text-base px-2">
               Join thousands of travelers who chose Viaggio for their dream
               adventures
             </p>
@@ -382,7 +382,7 @@ const Testimonials = () => {
               <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
                 4.9
               </div>
-              <div className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm">
+              <div className="text-black text-xs sm:text-sm">
                 Average Rating
               </div>
             </article>
@@ -390,25 +390,19 @@ const Testimonials = () => {
               <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
                 2,847
               </div>
-              <div className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm">
-                Reviews
-              </div>
+              <div className="text-black text-xs sm:text-sm">Reviews</div>
             </article>
             <article className="w-full">
               <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
                 98%
               </div>
-              <div className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm">
-                Recommend Us
-              </div>
+              <div className="text-black text-xs sm:text-sm">Recommend Us</div>
             </article>
             <article className="w-full">
               <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
                 100%
               </div>
-              <div className="text-[hsl(var(--muted-foregroound))] text-xs sm:text-sm">
-                Verified
-              </div>
+              <div className="text-black text-xs sm:text-sm">Verified</div>
             </article>
           </div>
         </MotionSection>

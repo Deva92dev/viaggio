@@ -127,7 +127,7 @@ const HotelCard = ({ hotels }: Props) => {
                     <CardContent className="relative p-6 flex-1 flex flex-col justify-between">
                       <div className="space-y-4">
                         <div className="space-y-2">
-                          <h3 className="font-bold text-xl text-[hsl(var(--foreground))] group-hover:bg-gradient-to-r group-hover:from-[hsl(var(--primary))] group-hover:to-[hsl(var(--accent))] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 line-clamp-1 min-h-[28px]">
+                          <h3 className="font-bold text-xl text-black group-hover:bg-gradient-to-r group-hover:from-[hsl(var(--primary))] group-hover:to-[hsl(var(--accent))] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 line-clamp-1 min-h-[28px]">
                             {hotel.name}
                           </h3>
                           <div className="flex items-center gap-2 text-[hsl(var(--muted-foreground))] min-h-[20px]">
@@ -135,7 +135,7 @@ const HotelCard = ({ hotels }: Props) => {
                               size={16}
                               className="text-[hsl(var(--primary))] flex-shrink-0"
                             />
-                            <span className="text-sm truncate">
+                            <span className="text-sm truncate text-black">
                               {hotel.location},{" "}
                               <span className="font-semibold text-[hsl(var(--primary))]">
                                 {hotel.country}
@@ -146,7 +146,7 @@ const HotelCard = ({ hotels }: Props) => {
                         <div className="space-y-2 min-h-[80px] flex flex-col justify-start">
                           <div className="flex items-center gap-2">
                             <div className="w-1 h-4 bg-[hsl(var(--accent))] rounded-full flex-shrink-0"></div>
-                            <span className="text-xs font-semibold text-[hsl(var(--muted-foreground))] uppercase tracking-wide">
+                            <span className="text-xs font-semibold text-black uppercase tracking-wide">
                               Amenities
                             </span>
                           </div>
@@ -166,7 +166,7 @@ const HotelCard = ({ hotels }: Props) => {
                               </div>
                             ))}
                             {remainingCount > 0 && (
-                              <div className="px-3 py-1 rounded-full text-xs font-medium bg-[hsl(var(--muted))]/20 text-[hsl(var(--muted-foreground))] border border-[hsl(var(--muted))]/30 transition-all duration-300 hover:scale-105 flex-shrink-0">
+                              <div className="px-3 py-1 rounded-full  text-xs font-medium bg-[hsl(var(--muted))]/20 text-black border border-[hsl(var(--muted))]/30 transition-all duration-300 hover:scale-105 flex-shrink-0">
                                 +{remainingCount}
                               </div>
                             )}
@@ -184,7 +184,7 @@ const HotelCard = ({ hotels }: Props) => {
                                 <div className="font-bold text-base text-[hsl(var(--primary))]">
                                   {hotel.availableRooms}
                                 </div>
-                                <div className="text-xs text-[hsl(var(--muted-foreground))] font-medium truncate">
+                                <div className="text-xs text-black font-medium truncate">
                                   Available
                                 </div>
                               </div>

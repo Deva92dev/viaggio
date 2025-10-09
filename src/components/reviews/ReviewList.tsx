@@ -140,10 +140,8 @@ export default function ReviewList({
     <main className="w-full">
       {reviews.length === 0 && (
         <div className="text-center py-8">
-          <p className="text-[hsl(var(--foreground))] text-lg">
-            No reviews yet.
-          </p>
-          <p className="text-[hsl(var(--muted-foreground))] text-sm">
+          <p className="text-black text-lg">No reviews yet.</p>
+          <p className="text-black text-sm">
             Be the first to share your experience!
           </p>
         </div>

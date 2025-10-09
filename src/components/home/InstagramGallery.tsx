@@ -159,7 +159,7 @@ const InstagramGallery = async () => {
                   @ViaggioTravel
                 </h3>
               </header>
-              <p className="text-[hsl(var(--muted-foreground))] text-lg max-w-2xl mx-auto leading-relaxed">
+              <p className="text-black text-lg max-w-2xl mx-auto leading-relaxed">
                 Join our community of adventurous travelers and share your
                 amazing moments. Tag us for a chance to be featured!
               </p>
@@ -181,7 +181,7 @@ const InstagramGallery = async () => {
                     </span>
                   </Button>
                 </Link>
-                <aside className="text-sm text-[hsl(var(--muted-foreground))] font-medium">
+                <aside className="text-sm text-black font-medium">
                   #ViaggioAdventures #TravelWithUs
                 </aside>
               </div>

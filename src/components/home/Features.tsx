@@ -140,7 +140,7 @@ const Features = () => {
         />
       </MotionSection>
       <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-12">
-        <header className="mb-12 md:mb-16">
+        <header className="mb-12 md:mb-16 text-black">
           <SectionTitle
             text="Why Choose Viaggio"
             description="Experience the difference with our premium travel services"

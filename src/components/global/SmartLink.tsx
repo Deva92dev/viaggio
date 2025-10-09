@@ -10,7 +10,7 @@ type SmartLinkProps = {
   children: React.ReactNode;
 };
 
-const SmartLink = ({ href, children }: SmartLinkProps) => {
+const SmartLink = ({ href, children, className }: SmartLinkProps) => {
   const router = useRouter();
   const [prefetched, setPrefetched] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -36,6 +36,7 @@ const SmartLink = ({ href, children }: SmartLinkProps) => {
     <Link
       href={href}
       prefetch={false}
+      className={className}
       onMouseEnter={handleMouseEnter}
       onFocus={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

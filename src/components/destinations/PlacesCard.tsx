@@ -122,7 +122,7 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                   <CardContent className="relative p-6 flex-1 flex flex-col justify-between min-w-0">
                     {/* Title and Location */}
                     <div className="space-y-2 mb-4">
-                      <h3 className="font-bold text-xl text-[hsl(var(--foreground))] group-hover:bg-gradient-to-r group-hover:from-[hsl(var(--primary))] group-hover:to-[hsl(var(--accent))] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 line-clamp-2 min-h-[3.5rem] leading-7">
+                      <h3 className="font-bold text-xl text-black group-hover:bg-gradient-to-r group-hover:from-[hsl(var(--primary))] group-hover:to-[hsl(var(--accent))] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 line-clamp-2 min-h-[3.5rem] leading-7">
                         {place.name}
                       </h3>
                       {/* Location */}
@@ -131,7 +131,7 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                           size={16}
                           className="text-[hsl(var(--primary))] flex-shrink-0"
                         />
-                        <span className="text-sm line-clamp-1">
+                        <span className="text-sm line-clamp-1 text-black">
                           {place.location},{" "}
                           <span className="font-semibold text-[hsl(var(--primary))]">
                             {place.country}
@@ -149,7 +149,7 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                               size={14}
                               className="text-[hsl(var(--muted-foreground))]"
                             />
-                            <span className="text-xs text-[hsl(var(--muted-foreground))]">
+                            <span className="text-xs text-black">
                               2-8 guests
                             </span>
                           </div>

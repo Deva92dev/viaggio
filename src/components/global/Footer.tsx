@@ -47,7 +47,6 @@ const Footer = () => {
     },
   ];
 
-  // UPDATED: Added policy pages
   const policyLinks = [
     { href: "/about", label: "About Us", icon: Users },
     { href: "/privacy-policy", label: "Privacy Policy", icon: Shield },
@@ -190,7 +189,7 @@ const Footer = () => {
                 >
                   <SmartLink
                     href={link.href}
-                    className="group text-white/80 hover:text-[hsl(var(--accent))] transition-all duration-300 flex items-center gap-2 hover:translate-x-1"
+                    className="group text-white hover:text-[hsl(var(--accent))] transition-all duration-300 flex items-center gap-2 hover:translate-x-1"
                   >
                     <ArrowRight
                       size={14}

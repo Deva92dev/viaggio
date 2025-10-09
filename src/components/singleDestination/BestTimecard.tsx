@@ -11,9 +11,7 @@ const BestTimecard = ({ bestTimeToVisit }: Props) => {
         <div className="w-10 h-10 bg-gradient-to-br from-[hsl(var(--primary))] to-blue-600 rounded-xl flex items-center justify-center mr-3">
           <CalendarSearch size={20} className="text-white" />
         </div>
-        <h3 className="font-bold text-[hsl(var(--foreground))] text-xl">
-          Best Time to Visit
-        </h3>
+        <h3 className="font-bold text-black text-xl">Best Time to Visit</h3>
       </div>
       <div className="flex flex-wrap gap-3 mb-4">
         {bestTimeToVisit.map((time, index) => (
@@ -25,7 +23,7 @@ const BestTimecard = ({ bestTimeToVisit }: Props) => {
           </span>
         ))}
       </div>
-      <p className="text-[hsl(var(--muted-foreground))] text-sm leading-relaxed">
+      <p className="text-black text-sm leading-relaxed">
         The weather is most favorable during these seasons, providing the
         optimal experience for travelers.
       </p>

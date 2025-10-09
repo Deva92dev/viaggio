@@ -99,7 +99,6 @@ const TrustIndicators = () => {
         <div className="absolute top-2 right-2 sm:top-10 sm:right-10 w-20 h-20 sm:w-64 sm:h-64 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-5 animate-pulse-custom" />
         <div className="absolute bottom-2 left-2 sm:bottom-10 sm:left-10 w-24 h-24 sm:w-80 sm:h-80 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-8 delay-300 animate-pulse-custom" />
       </aside>
-
       <main className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 md:px-8 lg:px-12 space-y-8 sm:space-y-12 md:space-y-16 overflow-hidden">
         <section
           aria-labelledby="certifications-heading"
@@ -112,7 +111,7 @@ const TrustIndicators = () => {
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent">
               Certified & Trusted
             </h2>
-            <p className="text-[hsl(var(--muted-foreground))] text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
+            <p className="text-black text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
               Our certifications and partnerships ensure you receive the highest
               quality travel experiences
             </p>
@@ -145,10 +144,10 @@ const TrustIndicators = () => {
                     <span className="bg-[hsl(var(--accent))] text-white text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full inline-block mb-1 sm:mb-2 font-semibold">
                       {cert.badge}
                     </span>
-                    <h3 className="font-bold text-[hsl(var(--foreground))] text-xs sm:text-sm md:text-base mb-1 leading-tight">
+                    <h3 className="font-bold text-black text-xs sm:text-sm md:text-base mb-1 leading-tight">
                       {cert.title}
                     </h3>
-                    <p className="text-[hsl(var(--muted-foreground))] text-xs leading-snug px-1">
+                    <p className="text-black text-xs leading-snug px-1">
                       {cert.description}
                     </p>
                   </div>
@@ -195,7 +194,7 @@ const TrustIndicators = () => {
             <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-1 sm:mb-2 md:mb-3">
               Our Promise to You
             </h2>
-            <p className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl mx-auto px-2">
+            <p className="text-black text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl mx-auto px-2">
               We stand behind every booking with comprehensive guarantees that
               protect your investment and ensure satisfaction
             </p>
@@ -216,10 +215,10 @@ const TrustIndicators = () => {
                   </figure>
 
                   <div className="space-y-1 sm:space-y-2">
-                    <h3 className="font-bold text-[hsl(var(--foreground))] text-xs sm:text-sm md:text-base lg:text-lg px-1 leading-tight">
+                    <h3 className="font-bold text-black text-xs sm:text-sm md:text-base lg:text-lg px-1 leading-tight">
                       {guarantee.title}
                     </h3>
-                    <p className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm leading-snug px-1 sm:px-2">
+                    <p className="text-black text-xs sm:text-sm leading-snug px-1 sm:px-2">
                       {guarantee.description}
                     </p>
                   </div>
@@ -233,11 +232,8 @@ const TrustIndicators = () => {
           aria-label="Trust statement"
         >
           <div className="inline-flex items-center gap-1.5 sm:gap-2 md:gap-3 bg-[hsl(var(--primary))]/10 backdrop-blur-md rounded-full px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 border border-[hsl(var(--primary))]/20 max-w-full">
-            <Shield
-              className="text-[hsl(var(--primary))] flex-shrink-0"
-              size={14}
-            />
-            <p className="text-[hsl(var(--primary))] font-semibold text-xs sm:text-sm md:text-base text-center leading-tight">
+            <Shield className="text-black flex-shrink-0" size={14} />
+            <p className="text-black font-semibold text-xs sm:text-sm md:text-base text-center leading-tight">
               Trusted by 10,000+ travelers worldwide since 2019
             </p>
             <Star

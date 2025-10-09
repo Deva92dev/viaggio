@@ -99,7 +99,6 @@ export default async function Review({ itemId, itemType }: Props) {
     );
   } catch (error) {
     console.error("Error in ReviewSection:", error);
-
     // Fallback: Still try to show public reviews
     try {
       const reviewsData = await getReviews(itemId, itemType);

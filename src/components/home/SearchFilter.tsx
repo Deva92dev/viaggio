@@ -92,7 +92,7 @@ const SearchFilter = () => {
         <div className="p-2 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-xl">
           <SearchIcon className="h-5 w-5 text-white" />
         </div>
-        <h2 className="text-xl font-bold text-[hsl(var(--foreground))] tracking-tight">
+        <h2 className="text-xl font-bold text-black tracking-tight">
           Find Your Perfect Adventure
         </h2>
       </div>

@@ -276,7 +276,7 @@ export default function AboutPage() {
                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg">
                     <value.icon className="text-white w-6 h-6 sm:w-7 sm:h-7" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-[hsl(var(--foreground))] mb-3 sm:mb-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-black mb-3 sm:mb-4">
                     {value.title}
                   </h3>
                   <p className="text-[hsl(var(--muted-foreground))] leading-relaxed">

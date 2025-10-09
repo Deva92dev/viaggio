@@ -29,7 +29,6 @@ const DestinationCard = async ({ type }: Props) => {
           style={{ animationDelay: "3s" }}
         />
       </div>
-
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-16">
           <SectionTitle
@@ -39,7 +38,6 @@ const DestinationCard = async ({ type }: Props) => {
             description={`Explore our handpicked ${type}s across these amazing countries worldwide`}
           />
         </div>
-
         <div className="grid gap-6 md:gap-8 lg:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           {countries.map((country, index) => (
             <MotionSection
@@ -161,7 +159,7 @@ const DestinationCard = async ({ type }: Props) => {
                   Can not Decide Where to Go?
                 </h3>
               </div>
-              <p className="text-[hsl(var(--muted-foreground))] text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              <p className="text-black text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                 Let our travel experts help you find the perfect destination
                 based on your interests, budget, and travel dates.
               </p>

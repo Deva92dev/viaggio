@@ -28,7 +28,7 @@ const HotelMainContent = ({
                 <div className="flex items-center gap-3 sm:gap-4">
                   <CompassAnimation />
                   <div>
-                    <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] font-medium">
+                    <p className="text-xs sm:text-sm text-black font-medium">
                       Travelers
                     </p>
                     <p className="font-bold text-lg sm:text-xl md:text-2xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent">
@@ -41,7 +41,7 @@ const HotelMainContent = ({
                     <Calendar className="text-white w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div>
-                    <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] font-medium">
+                    <p className="text-xs sm:text-sm text-black font-medium">
                       Reviews
                     </p>
                     <p className="font-bold text-lg sm:text-xl md:text-2xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent">
@@ -68,7 +68,7 @@ const HotelMainContent = ({
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl overflow-hidden w-full">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl sm:rounded-3xl blur opacity-20 -z-10" />
           <div className="p-4 sm:p-6 md:p-8">
-            <p className="text-[hsl(var(--foreground))] text-base sm:text-lg leading-relaxed">
+            <p className="text-black text-base sm:text-lg leading-relaxed">
               {description}
             </p>
           </div>
