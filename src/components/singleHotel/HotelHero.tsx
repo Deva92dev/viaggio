@@ -1,9 +1,9 @@
-import Image from "next/image";
 import { MapPin, Star } from "lucide-react";
 import ShareButton from "../singleDestination/ShareButton";
 import FavoriteToggleWrapper from "../favorites/FavoriteToggleWrapper";
 import { FloatingClods, HorizontalLine } from "../hotels/ServerAnimation";
 import CustomBreadcrumb from "../global/CustomBreadCrumb";
+import CinematicHeroImage from "../global/CinematicHeroImage";
 
 type HotelHeroProps = {
   id: string;
@@ -25,22 +25,14 @@ const HotelHero = ({
   const destinationTag = "Popular Destination";
 
   return (
-    <div className="relative w-full h-[70vh] min-h-[600px] mb-16 overflow-hidden">
-      <Image
-        src={imageUrl}
-        alt={name}
-        fill
-        priority
-        quality={75}
-        sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 85vw, 75vw"
-        className="object-cover"
-      />
-      {/* Gradient overlays  */}
+    <div className="relative w-full h-[clamp(600px,100vh,900px)] mb-16 overflow-hidden">
+      <CinematicHeroImage src={imageUrl} alt={name} />
+      {/* Gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.4] via-transparent to-[hsl(var(--accent))/0.2] z-10" />
       <FloatingClods />
       <HorizontalLine />
-      <div className="absolute top-28 left-12 right-0 z-50 pt-4">
+      <div className="absolute top-20 left-4 sm:top-28 z-50 pt-4">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
           <CustomBreadcrumb
             items={[
@@ -51,9 +43,8 @@ const HotelHero = ({
           />
         </div>
       </div>
-      {/* Hero Content  */}
-      <div className="absolute inset-0 flex items-end z-20">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 pb-12 w-full">
+      <div className="absolute inset-x-0 bottom-0 z-20 pb-10 sm:pb-14 md:pb-16 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 w-full">
           <div className="flex justify-between items-end flex-wrap gap-4 sm:gap-6 w-full">
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-6 animate-fade-in">
