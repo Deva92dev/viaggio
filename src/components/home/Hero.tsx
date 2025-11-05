@@ -2,10 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Map } from "lucide-react";
 
+const btnAccentClass = `
+    bg-[hsl(14_100%_64%)] text-[hsl(0_0%_0%)]
+         hover:bg-[hsl(14_100%_64%)/0.9] 
+         transition-colors duration-200 rounded-[0.5rem]
+         px-5 py-3 min-w-[110px] text-center font-semibold;
+  `;
+
 const Hero = () => {
   return (
     <section
-      className="relative min-h-[500px] md:min-h-[750px] overflow-hidden"
+      className="relative min-h-[500px] md:min-h-[750px] overflow-hidden bg-[hsl(213_63%_16%)]"
       aria-label="Welcome to Viaggio"
     >
       <Image
@@ -13,11 +20,10 @@ const Hero = () => {
         alt="Breathtaking travel destination banner"
         fill
         priority
-        fetchPriority="high"
-        sizes="100vw"
+        sizes="(max-width:768px) 100vw, 100vw"
         className="object-cover"
         placeholder="blur"
-        blurDataURL="data:image/jpeg;base64,/9j/4AAQSk..."
+        blurDataURL="data:image/octet-stream;base64,UklGRjgAAABXRUJQVlA4ICwAAADwAQCdASoJAAYABUB8JQBOgCIGzttRogAA/ievKXVO+jsrJC6h0X4P5heAAA=="
         quality={75}
       />
       {/* Readability overlay */}
@@ -28,7 +34,7 @@ const Hero = () => {
           <article className="max-w-xl text-right text-white mr-4 md:mr-12">
             <header className="space-y-3 md:space-y-6">
               <p className="text-sm md:text-base font-semibold">
-                <span className="bg-gradient-to-r from-[hsl(var(--accent))] via-[hsl(var(--accent))]/80 to-[hsl(var(--primary))] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[hsl(14_100%_64%)] via-[hsl(14_100%_64%)]/80 to-[hsl(216_74%_37%)] bg-clip-text text-transparent">
                   Discover the world
                 </span>
               </p>
@@ -36,7 +42,7 @@ const Hero = () => {
                 <span className="bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent">
                   Welcome to{" "}
                 </span>
-                <span className="bg-gradient-to-r from-[hsl(var(--accent))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[hsl(14_100%_64%)] via-[hsl(14_100%_64%)] to-[hsl(216_74%_37%)] bg-clip-text text-transparent">
                   Viaggio
                 </span>
               </h1>
@@ -51,7 +57,7 @@ const Hero = () => {
             >
               <Link
                 href="/destinations"
-                className="inline-flex items-center justify-center btn-accent px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-full shadow-md hover:shadow-lg transition-[colors,transform,shadow] duration-200 group"
+                className={`inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-full shadow-md hover:shadow-lg transition-[colors,transform,shadow] duration-200 group ${btnAccentClass}`}
               >
                 Explore Now
                 <ArrowRight
@@ -70,7 +76,7 @@ const Hero = () => {
             </nav>
             <aside aria-label="Recent activity">
               <p className="text-xs md:text-base text-white/90">
-                <span className="font-bold bg-gradient-to-r from-[hsl(var(--accent))] to-[hsl(var(--primary))] bg-clip-text text-transparent">
+                <span className="font-bold bg-gradient-to-r from-[hsl(14_100%_64%)] to-[hsl(216_74%_37%)] bg-clip-text text-transparent">
                   10,000+
                 </span>{" "}
                 travelers joined last month

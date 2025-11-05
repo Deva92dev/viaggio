@@ -26,7 +26,7 @@ import {
   sql,
   SQL,
 } from "drizzle-orm";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath, unstable_cache } from "next/cache";
 import {
@@ -54,23 +54,25 @@ const getAuthUser = async () => {
 // count(*) uses DrizzleORM’s sql helper to safely run aggregate functions.
 const LIMIT = 6;
 
-export const getPopularDestinations = async (): Promise<
-  PopularDestinations[]
-> => {
-  const popularDestinations = await db
-    .select({
-      id: tourPlaces.id,
-      name: tourPlaces.name,
-      imageUrl: tourPlaces.imageUrl,
-      description: tourPlaces.description,
-      createdAt: tourPlaces.createdAt,
-      price: tourPlaces.price,
-      location: tourPlaces.location,
-    })
-    .from(tourPlaces)
-    .where(eq(tourPlaces.popular, true));
-  return popularDestinations;
-};
+export const getPopularDestinations = unstable_cache(
+  async (): Promise<PopularDestinations[]> => {
+    const popularDestinations = await db
+      .select({
+        id: tourPlaces.id,
+        name: tourPlaces.name,
+        imageUrl: tourPlaces.imageUrl,
+        description: tourPlaces.description,
+        createdAt: tourPlaces.createdAt,
+        price: tourPlaces.price,
+        location: tourPlaces.location,
+      })
+      .from(tourPlaces)
+      .where(eq(tourPlaces.popular, true));
+    return popularDestinations;
+  },
+  ["getPopularDestinations"],
+  { revalidate: 3600 }
+);
 
 export const getGalleryImages = async () => {
   try {

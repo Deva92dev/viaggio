@@ -85,6 +85,7 @@ export default function RootLayout({
             name="description"
             content="Explore the world in style: curated destinations, premium hotels, and personalized travel experiences by Viaggio."
           />
+          <link rel="preload" as="image" href="/Hero.webp" type="image/webp" />
         </head>
         <body
           className={`${inter.variable} ${poppins.variable} ${geistMono.variable} antialiased`}

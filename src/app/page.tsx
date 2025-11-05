@@ -1,4 +1,4 @@
-import dynamic from "next/dynamic";
+import dynamicImport from "next/dynamic";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { PopularSkeleton } from "@/components/global/PopularSkeleton";
@@ -10,6 +10,9 @@ import Popular from "@/components/home/Popular";
 import TrustIndicators from "@/components/home/TrustIndicators";
 import TestimonialsSkeleton from "@/components/home/TestimonialSkeleton";
 import SearchFilterSkeleton from "@/components/home/SearchFilterSkeleton";
+
+export const revalidate = 3600; // fallback for any cached data
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Viagio - Discover Amazing Travel Destinations & Guided Tours",
@@ -47,12 +50,18 @@ export const metadata: Metadata = {
   },
 };
 
-const SearchFilter = dynamic(() => import("@/components/home/SearchFilter"), {
-  loading: () => <SearchFilterSkeleton />,
-});
-const Testimonials = dynamic(() => import("@/components/home/Testimonials"), {
-  loading: () => <TestimonialsSkeleton />,
-});
+const SearchFilter = dynamicImport(
+  () => import("@/components/home/SearchFilter"),
+  {
+    loading: () => <SearchFilterSkeleton />,
+  }
+);
+const Testimonials = dynamicImport(
+  () => import("@/components/home/Testimonials"),
+  {
+    loading: () => <TestimonialsSkeleton />,
+  }
+);
 
 export default function Home() {
   return (
