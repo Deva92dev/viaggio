@@ -60,7 +60,6 @@ const SearchFilter = dynamicImport(
   () => import("@/components/home/SearchFilter"),
   {
     loading: () => <SearchFilterSkeleton />,
-    ssr: true,
   }
 );
 const Testimonials = dynamicImport(
@@ -71,6 +70,9 @@ const Testimonials = dynamicImport(
 );
 
 export const revalidate = 3600;
+export const dynamic = "error";
+
+// change deployment region after testing in functions of vercel project dashboard
 
 export default function Home() {
   return (
