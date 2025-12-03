@@ -1,9 +1,18 @@
 "use client";
 
-import { LazyMotion, domAnimation } from "framer-motion";
+import { LazyMotion } from "motion/react";
 import { PropsWithChildren } from "react";
 
-// This component provides the animation context to its children
+// It moves ~30kb of animation logic out of the main bundle.
+const loadFeatures = async () => {
+  const res = await import("motion/react");
+  return res.domAnimation;
+};
+
 export const MotionProvider = ({ children }: PropsWithChildren) => {
-  return <LazyMotion features={domAnimation}>{children}</LazyMotion>;
+  return (
+    <LazyMotion features={loadFeatures} strict>
+      {children}
+    </LazyMotion>
+  );
 };

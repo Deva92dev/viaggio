@@ -2,17 +2,9 @@ import dynamicImport from "next/dynamic";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { PopularSkeleton } from "@/components/global/PopularSkeleton";
-import CallToAction from "@/components/home/CallToAction";
-import Features from "@/components/home/Features";
 import Hero from "@/components/home/Hero";
-import InstagramGallery from "@/components/home/InstagramGallery";
-import Popular from "@/components/home/Popular";
-import TrustIndicators from "@/components/home/TrustIndicators";
 import TestimonialsSkeleton from "@/components/home/TestimonialSkeleton";
 import SearchFilterSkeleton from "@/components/home/SearchFilterSkeleton";
-
-export const revalidate = 3600; // fallback for any cached data
-export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Viagio - Discover Amazing Travel Destinations & Guided Tours",
@@ -50,10 +42,25 @@ export const metadata: Metadata = {
   },
 };
 
+// CRITICAL FIX: Lazy load these "Below the Fold" components
+// This drastically reduces the initial JS bundle size for mobile.
+const Popular = dynamicImport(() => import("@/components/home/Popular"));
+const Features = dynamicImport(() => import("@/components/home/Features"));
+const InstagramGallery = dynamicImport(
+  () => import("@/components/home/InstagramGallery")
+);
+const CallToAction = dynamicImport(
+  () => import("@/components/home/CallToAction")
+);
+const TrustIndicators = dynamicImport(
+  () => import("@/components/home/TrustIndicators")
+);
+
 const SearchFilter = dynamicImport(
   () => import("@/components/home/SearchFilter"),
   {
     loading: () => <SearchFilterSkeleton />,
+    ssr: true,
   }
 );
 const Testimonials = dynamicImport(
@@ -63,11 +70,16 @@ const Testimonials = dynamicImport(
   }
 );
 
+export const revalidate = 3600;
+export const dynamic = "force-static";
+
+// move searchFilter below the fold
+
 export default function Home() {
   return (
     <>
       <Hero />
-      <section className="relative -mt-16 z-20">
+      <section className="bg-white relative z-10 py-12 md:py-16" id="start">
         <div className="container mx-auto px-4">
           <SearchFilter />
         </div>
@@ -75,6 +87,7 @@ export default function Home() {
       <Suspense fallback={<PopularSkeleton />}>
         <Popular />
       </Suspense>
+      {/* These will now load lazily as the user scrolls */}
       <Features />
       <Testimonials />
       <InstagramGallery />

@@ -1,10 +1,17 @@
 "use client";
 
 import Lenis from "lenis";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export const LenisProvider = ({ children }: { children: React.ReactNode }) => {
+  const lenisRef = useRef<Lenis | null>(null);
+
   useEffect(() => {
+    if (window.innerWidth < 768) {
+      return;
+    }
+
+    // 2. Instantiate only on Desktop
     const lenis = new Lenis({
       lerp: 0.08,
       duration: 1.2,
@@ -19,6 +26,8 @@ export const LenisProvider = ({ children }: { children: React.ReactNode }) => {
       autoResize: true,
     });
 
+    lenisRef.current = lenis;
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -28,6 +37,7 @@ export const LenisProvider = ({ children }: { children: React.ReactNode }) => {
 
     return () => {
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 

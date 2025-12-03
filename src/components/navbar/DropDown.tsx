@@ -1,9 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
-import { LucideAlignLeft, LogIn, UserPlus, LogOut } from "lucide-react";
-import { SignedIn, SignedOut, SignInButton, useUser } from "@clerk/nextjs";
-import { usePathname } from "next/navigation";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+  useUser,
+} from "@clerk/nextjs";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,119 +17,90 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import UserIcon from "./UserIcon";
-import { navLinks, publicNavLinks } from "@/utils/links";
+import {
+  LucideAlignLeft,
+  LogIn,
+  LogOut,
+  UserPlus,
+  ChevronDown,
+} from "lucide-react";
 import Link from "next/link";
-import { useResponsive } from "@/hooks/useResponsive";
-import { toast } from "sonner";
-import { SignOutButton } from "@clerk/nextjs";
+import { navLinks, publicNavLinks } from "@/utils/links";
+import { cn } from "@/lib/utils";
 
 type DropDownProps = {
   hidePublicNavLinks?: boolean;
 };
 
-const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const user = useUser();
-  const profileImage = user.user?.imageUrl || null;
-  const { isMobile } = useResponsive();
-  const pathname = usePathname();
-
-  const closeDropdown = () => setIsOpen(false);
-
-  const handleLogout = () => {
-    toast("Logging out....");
-    closeDropdown();
-  };
-
-  const buttonStyles = {
-    width: "48px",
-    height: "48px",
-    minWidth: "48px",
-    minHeight: "48px",
-    maxWidth: "48px",
-    maxHeight: "48px",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "0",
-    margin: "0",
-    flexShrink: 0,
-    flexGrow: 0,
-    position: "relative" as const,
-    overflow: "hidden",
-    contain: "none" as const,
-    gap: "8px",
-  };
+export default function DropDown({ hidePublicNavLinks }: DropDownProps) {
+  const { user } = useUser();
+  const [open, setOpen] = useState(false);
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
+    <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
       <DropdownMenuTrigger asChild>
         <Button
-          className="hover:bg-[hsl(var(--primary))/0.1] transition-colors duration-150 cursor-pointer"
-          style={buttonStyles}
-          aria-label="User Options"
+          aria-label="User Menu"
+          className={cn(
+            "w-12 h-12 flex items-center justify-center gap-2 rounded-full transition-all",
+            "hover:bg-[hsl(var(--primary))/0.1]",
+            open && "bg-[hsl(var(--primary))/0.15] shadow-sm scale-[1.02]"
+          )}
         >
-          <LucideAlignLeft className="w-5 h-5 text-[hsl(var(--primary))] flex-shrink-0" />
-          <span className="w-6 h-6 flex items-center justify-center flex-shrink-0">
-            <UserIcon profileImage={profileImage} />
-          </span>
+          <LucideAlignLeft className="w-5 h-5 text-[hsl(var(--primary))]" />
+          {user && (
+            <img
+              src={user.imageUrl}
+              className="w-6 h-6 rounded-full object-cover border border-white/20"
+              alt="User Avatar"
+            />
+          )}
+          {/* Animated Chevron */}
+          <ChevronDown
+            className={cn(
+              "w-4 h-4 text-[hsl(var(--primary))] transition-transform duration-200",
+              open && "rotate-180"
+            )}
+          />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        side="bottom"
         align="end"
-        sideOffset={8}
-        alignOffset={0}
-        className="w-52 bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-lg rounded-lg z-50"
-        style={{
-          position: "fixed",
-          top: `${isMobile ? "16px" : "24px"}`,
-          right: "8px",
-          left: "auto",
-          maxWidth: "calc(100vw - 32px)", // Prevent overflow with padding
-          minWidth: "200px",
-          transform: "none",
-        }}
-        avoidCollisions={false}
-        collisionPadding={0}
+        sideOffset={10}
+        className={cn(
+          "w-56 bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-xl rounded-xl p-1",
+          "animate-in fade-in-0 zoom-in-95",
+          "animate-out fade-out-0 zoom-out-95"
+        )}
       >
         <SignedOut>
-          <DropdownMenuItem
-            onClick={closeDropdown}
-            className="hover:bg-[hsl(var(--primary))/0.1] cursor-pointer transition-colors duration-150"
-          >
+          <DropdownMenuItem className="rounded-md">
             <SignInButton mode="modal">
-              <button className="w-full text-left text-[hsl(var(--primary))] font-medium flex items-center gap-2 cursor-pointer transition-colors duration-150">
+              <div className="flex items-center gap-2 text-[hsl(var(--primary))] cursor-pointer w-full py-2">
                 <LogIn className="w-4 h-4" />
-                <span>Login</span>
-              </button>
+                Login
+              </div>
             </SignInButton>
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem
-            onClick={closeDropdown}
-            className="hover:bg-[hsl(var(--primary))/0.1] cursor-pointer transition-colors duration-150"
-          >
+
+          <DropdownMenuItem className="rounded-md">
             <SignInButton mode="modal">
-              <button className="w-full text-left text-[hsl(var(--primary))] font-medium flex items-center gap-2 cursor-pointer transition-colors duration-150">
+              <div className="flex items-center gap-2 text-[hsl(var(--primary))] cursor-pointer w-full py-2">
                 <UserPlus className="w-4 h-4" />
-                <span>Register</span>
-              </button>
+                Register
+              </div>
             </SignInButton>
           </DropdownMenuItem>
+
           <DropdownMenuSeparator />
+
           {publicNavLinks.map((link) => (
-            <DropdownMenuItem
-              key={link.href}
-              className="cursor-pointer hover:bg-[hsl(var(--accent))/0.1] rounded-md transition-colors duration-150"
-              onClick={closeDropdown}
-            >
+            <DropdownMenuItem key={link.href} className="rounded-md">
               <Link
                 href={link.href}
-                className="w-full flex items-center gap-2 text-[hsl(var(--foreground))] transition-colors duration-150"
+                className="flex items-center gap-2 text-[hsl(var(--foreground))] w-full py-2"
               >
-                <span>{link.label}</span>
+                {link.label}
               </Link>
             </DropdownMenuItem>
           ))}
@@ -133,41 +109,35 @@ const DropDown = ({ hidePublicNavLinks }: DropDownProps) => {
           {navLinks.map((link) => {
             if (
               hidePublicNavLinks &&
-              publicNavLinks.some((pl) => pl.href === link.href)
+              publicNavLinks.some((p) => p.href === link.href)
             ) {
               return null;
             }
+
             return (
-              <DropdownMenuItem
-                key={link.href}
-                className="cursor-pointer hover:bg-[hsl(var(--accent))/0.1] rounded-md transition-colors duration-150"
-                onClick={closeDropdown}
-              >
+              <DropdownMenuItem key={link.href} className="rounded-md">
                 <Link
                   href={link.href}
-                  className="w-full flex items-center gap-2 text-[hsl(var(--foreground))] transition-colors duration-150"
+                  className="flex items-center gap-2 text-[hsl(var(--foreground))] w-full py-2"
                 >
-                  <span>{link.label}</span>
+                  {link.label}
                 </Link>
               </DropdownMenuItem>
             );
           })}
+
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="hover:bg-[hsl(var(--destructive))/0.1] cursor-pointer transition-colors duration-150 p-0">
-            <SignOutButton redirectUrl={pathname}>
-              <button
-                onClick={handleLogout}
-                className="w-full flex items-center gap-2 text-[hsl(var(--destructive))] transition-colors duration-150 px-2 py-1.5 text-left cursor-pointer"
-              >
+
+          <DropdownMenuItem className="rounded-md p-0">
+            <SignOutButton redirectUrl="/">
+              <div className="flex items-center gap-2 text-[hsl(var(--destructive))] w-full py-2 px-2 cursor-pointer">
                 <LogOut className="w-4 h-4" />
-                <span>Logout</span>
-              </button>
+                Logout
+              </div>
             </SignOutButton>
           </DropdownMenuItem>
         </SignedIn>
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
-
-export default DropDown;
+}

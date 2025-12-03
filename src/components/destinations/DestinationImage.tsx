@@ -5,10 +5,10 @@ import {
   Compass,
   Globe,
   Star,
-  ArrowDown,
   Users,
   Bed,
   Wifi,
+  ChevronDown,
 } from "lucide-react";
 
 interface DestinationImageProps {
@@ -29,7 +29,7 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
         { label: "Destinations", value: "500+" },
         { label: "Rating", value: "4.9" },
       ],
-      scrollHint: "Browse 500+ Destinations Below",
+      scrollHint: "Browse Destinations Below",
       breadcrumb: "Destinations",
       floatingIcons: [
         {
@@ -116,7 +116,6 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
     titleParts,
     description,
     stats,
-    scrollHint,
     breadcrumb,
     floatingIcons,
   } = content[pageType];
@@ -215,17 +214,13 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
           className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 motion-safe:animate-fade-in"
           style={{ animationDelay: "0.7s" }}
         >
-          <div className="flex flex-col items-center gap-2 sm:gap-3 text-white/80">
-            <div className="bg-white/10 backdrop-blur-xl rounded-full px-3 sm:px-4 py-1 sm:py-2 border border-white/20">
-              <span className="text-xs sm:text-sm font-medium">
-                {scrollHint}
-              </span>
-            </div>
-            <ArrowDown
-              size={16}
-              className="sm:w-5 sm:h-5 animate-bounce text-[hsl(var(--accent))] cursor-pointer"
-            />
-          </div>
+          <a
+            href="#end"
+            aria-label="Scroll down to search"
+            className="text-white/70 hover:text-white transition-colors duration-300 animate-bounce motion-reduce:animate-none p-2"
+          >
+            <ChevronDown size={36} strokeWidth={2.5} />
+          </a>
         </div>
       </div>
       {floatingIcons.map(

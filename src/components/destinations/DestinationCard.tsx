@@ -18,7 +18,10 @@ const DestinationCard = async ({ type }: Props) => {
   const countries = await getAllCountriesWithData();
 
   return (
-    <section className="relative w-full py-20 bg-gradient-to-b from-[hsl(var(--background))] to-[hsl(var(--features-bg))]">
+    <section
+      className="relative w-full py-20 bg-gradient-to-b from-[hsl(var(--background))] to-[hsl(var(--features-bg))]"
+      id="end"
+    >
       <div
         className="absolute inset-0 overflow-hidden z-0 hidden md:block"
         aria-hidden="true"

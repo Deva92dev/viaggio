@@ -4,15 +4,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Inter, Poppins, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/global/Footer";
-import Providers from "./providers";
-import QueryProvider from "@/components/global/QueryProvider";
 import ClipDefs from "@/components/global/ClipDefs";
-import { Toaster } from "@/components/ui/sonner";
 import { siteSchema } from "@/utils/schema";
-import { MotionProvider } from "./motionProvider";
-import { LenisProvider } from "./LenisProvider";
+import ClientProviders from "./ClientProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -85,7 +79,6 @@ export default function RootLayout({
             name="description"
             content="Explore the world in style: curated destinations, premium hotels, and personalized travel experiences by Viaggio."
           />
-          <link rel="preload" as="image" href="/Hero.webp" type="image/webp" />
         </head>
         <body
           className={`${inter.variable} ${poppins.variable} ${geistMono.variable} antialiased`}
@@ -99,18 +92,7 @@ export default function RootLayout({
             }}
           />
           <ClipDefs />
-          <QueryProvider>
-            <Providers>
-              <LenisProvider>
-                <MotionProvider>
-                  <Navbar />
-                  {children}
-                  <Toaster />
-                  <Footer />
-                </MotionProvider>
-              </LenisProvider>
-            </Providers>
-          </QueryProvider>
+          <ClientProviders>{children}</ClientProviders>
         </body>
       </html>
     </ClerkProvider>

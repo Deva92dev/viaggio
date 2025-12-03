@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Map } from "lucide-react";
+import { ArrowRight, Map, ChevronDown } from "lucide-react";
 
 const btnAccentClass = `
     bg-[hsl(14_100%_64%)] text-[hsl(0_0%_0%)]
@@ -12,7 +12,7 @@ const btnAccentClass = `
 const Hero = () => {
   return (
     <section
-      className="relative min-h-[500px] md:min-h-[750px] overflow-hidden bg-[hsl(213_63%_16%)]"
+      className="relative w-full min-h-[100dvh] overflow-hidden"
       aria-label="Welcome to Viaggio"
     >
       <Image
@@ -20,16 +20,16 @@ const Hero = () => {
         alt="Breathtaking travel destination banner"
         fill
         priority
-        sizes="(max-width:768px) 100vw, 100vw"
-        className="object-cover"
+        sizes="100vw"
+        className="object-cover z-0"
         placeholder="blur"
         blurDataURL="data:image/octet-stream;base64,UklGRjgAAABXRUJQVlA4ICwAAADwAQCdASoJAAYABUB8JQBOgCIGzttRogAA/ievKXVO+jsrJC6h0X4P5heAAA=="
         quality={75}
       />
       {/* Readability overlay */}
-      <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
-      {/* Right-aligned content on all devices */}
-      <main className="relative z-10 flex items-center justify-end min-h-[500px] md:min-h-[750px]">
+      <div className="absolute inset-0 bg-black/40 z-0" aria-hidden="true" />
+      {/* Main Content */}
+      <main className="relative z-10 flex items-center justify-end h-[100dvh] w-full pb-16">
         <div className="container mx-auto px-4 md:px-6">
           <article className="max-w-xl text-right text-white mr-4 md:mr-12">
             <header className="space-y-3 md:space-y-6">
@@ -85,6 +85,16 @@ const Hero = () => {
           </article>
         </div>
       </main>
+      {/* Scroll Down Indicator */}
+      <div className="absolute bottom-8 left-0 right-0 z-20 flex justify-center">
+        <a
+          href="#start"
+          aria-label="Scroll down to search"
+          className="text-white/70 hover:text-white transition-colors duration-300 animate-bounce motion-reduce:animate-none p-2"
+        >
+          <ChevronDown size={36} strokeWidth={2.5} />
+        </a>
+      </div>
     </section>
   );
 };
