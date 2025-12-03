@@ -71,9 +71,6 @@ const Testimonials = dynamicImport(
 );
 
 export const revalidate = 3600;
-export const dynamic = "force-static";
-
-// move searchFilter below the fold
 
 export default function Home() {
   return (

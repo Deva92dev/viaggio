@@ -7,6 +7,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/global/Footer";
 import { LenisProvider } from "./LenisProvider";
 import { MotionProvider } from "./motionProvider";
+import ClerkClientProvider from "./ClerkClientProvider";
 
 const Toaster = dynamic(
   () => import("@/components/ui/sonner").then((mod) => mod.Toaster),
@@ -24,10 +25,12 @@ export default function ClientProviders({
     <QueryClientProvider client={queryClient}>
       <LenisProvider>
         <MotionProvider>
-          <Navbar />
-          {children}
-          <Footer />
-          <Toaster />
+          <ClerkClientProvider>
+            <Navbar />
+            {children}
+            <Footer />
+            <Toaster />
+          </ClerkClientProvider>
         </MotionProvider>
       </LenisProvider>
     </QueryClientProvider>

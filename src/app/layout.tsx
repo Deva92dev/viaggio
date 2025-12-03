@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Inter, Poppins, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
@@ -19,7 +18,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "700"],
   preload: true,
 });
 
@@ -72,29 +71,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <head>
-          <meta
-            name="description"
-            content="Explore the world in style: curated destinations, premium hotels, and personalized travel experiences by Viaggio."
-          />
-        </head>
-        <body
-          className={`${inter.variable} ${poppins.variable} ${geistMono.variable} antialiased`}
-        >
-          {/* Global structured data */}
-          <Script
-            id="site-schema"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(siteSchema).replace(/</g, "\\u003c"),
-            }}
-          />
-          <ClipDefs />
-          <ClientProviders>{children}</ClientProviders>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta
+          name="description"
+          content="Explore the world in style: curated destinations, premium hotels, and personalized travel experiences by Viaggio."
+        />
+      </head>
+      <body
+        className={`${inter.variable} ${poppins.variable} ${geistMono.variable} antialiased`}
+      >
+        {/* Global structured data */}
+        <Script
+          id="site-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(siteSchema).replace(/</g, "\\u003c"),
+          }}
+        />
+        <ClipDefs />
+        <ClientProviders>{children}</ClientProviders>
+      </body>
+    </html>
   );
 }
