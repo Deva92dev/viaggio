@@ -5,6 +5,7 @@ import { memo } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { GeoLocation } from "@/utils/actions";
 import { MapPin } from "lucide-react";
+import "leaflet/dist/leaflet.css";
 
 type MapViewProps = {
   location: string;
@@ -59,26 +60,15 @@ const useMapComponents = () => {
   return useQuery<MapComponents>({
     queryKey: ["map-components"],
     queryFn: async () => {
-      const [leafletComponents] = await Promise.all([
-        import("react-leaflet"),
-        Promise.all([
-          import("@/utils/leafletIcons").then((mod) =>
-            mod.initializeLeafletIcons()
-          ),
-          new Promise<void>((resolve) => {
-            if (document.querySelector('link[href*="leaflet"]')) {
-              resolve();
-              return;
-            }
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-            link.onload = () => resolve();
-            link.onerror = () => resolve(); // Continue even if CSS fails
-            document.head.appendChild(link);
-          }),
-        ]),
-      ]);
+      // We only need to import the JS libraries now
+      const leafletComponents = await import("react-leaflet");
+
+      // Fix icons (leaflet default icon issue)
+      const { initializeLeafletIcons } = await import("@/utils/leafletIcons");
+      initializeLeafletIcons();
+
+      // REMOVED: The document.createElement('link') block.
+      // The import at the top handles styles much faster and more reliably.
 
       return {
         MapContainer: leafletComponents.MapContainer,
@@ -87,9 +77,8 @@ const useMapComponents = () => {
         Popup: leafletComponents.Popup,
       };
     },
-    // Map components never become stale
     staleTime: Infinity,
-    gcTime: 1000 * 60 * 60 * 24, // Keep in cache for 24 hours
+    gcTime: 1000 * 60 * 60 * 24,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,

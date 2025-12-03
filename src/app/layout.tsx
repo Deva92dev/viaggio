@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter, Poppins, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "leaflet/dist/leaflet.css";
 import ClipDefs from "@/components/global/ClipDefs";
 import { siteSchema } from "@/utils/schema";
 import ClientProviders from "./ClientProvider";
@@ -81,7 +80,6 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Global structured data */}
         <Script
           id="site-schema"
           type="application/ld+json"

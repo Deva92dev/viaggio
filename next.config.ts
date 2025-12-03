@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+
   images: {
     remotePatterns: [
       {
@@ -16,17 +20,19 @@ const nextConfig: NextConfig = {
         hostname: "img.clerk.com",
       },
     ],
-    // Add the new image optimization properties
     formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    deviceSizes: [375, 425, 640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 320, 384, 450, 512, 640],
-    qualities: [25, 40, 50, 60, 75, 85],
-    minimumCacheTTL: 31536000, // 1 year
+    minimumCacheTTL: 31536000,
   },
+
+  // Only cache static assets, NEVER the HTML document.
   async headers() {
     return [
       {
-        source: "/(.*)", // Matches all static files
+        // Target specific image/font extensions in the public folder.
+        // DO NOT use /(.*) or you will cache HTML/JSON data routes.
+        source: "/:all*(svg|jpg|png|webp|avif|woff|woff2)",
         headers: [
           {
             key: "Cache-Control",

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   SignedIn,
   SignedOut,
@@ -33,8 +33,15 @@ type DropDownProps = {
 };
 
 export default function DropDown({ hidePublicNavLinks }: DropDownProps) {
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
   const [open, setOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const showAvatar = isMounted && isLoaded && user;
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
@@ -48,7 +55,7 @@ export default function DropDown({ hidePublicNavLinks }: DropDownProps) {
           )}
         >
           <LucideAlignLeft className="w-5 h-5 text-[hsl(var(--primary))]" />
-          {user && (
+          {showAvatar && (
             <img
               src={user.imageUrl}
               className="w-6 h-6 rounded-full object-cover border border-white/20"
