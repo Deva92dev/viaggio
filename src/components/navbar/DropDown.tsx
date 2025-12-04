@@ -27,6 +27,7 @@ import {
 import Link from "next/link";
 import { navLinks, publicNavLinks } from "@/utils/links";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 type DropDownProps = {
   hidePublicNavLinks?: boolean;
@@ -36,6 +37,7 @@ export default function DropDown({ hidePublicNavLinks }: DropDownProps) {
   const { user, isLoaded } = useUser();
   const [open, setOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     setIsMounted(true);
@@ -136,7 +138,7 @@ export default function DropDown({ hidePublicNavLinks }: DropDownProps) {
           <DropdownMenuSeparator />
 
           <DropdownMenuItem className="rounded-md p-0">
-            <SignOutButton redirectUrl="/">
+            <SignOutButton redirectUrl={pathname || "/"}>
               <div className="flex items-center gap-2 text-[hsl(var(--destructive))] w-full py-2 px-2 cursor-pointer">
                 <LogOut className="w-4 h-4" />
                 Logout
