@@ -23,3 +23,5 @@ typescript parallax: { speed: 80, direction: 'up' }
 TrustIndicators - Credibility Finale
 typescript parallax: { speed: 30, direction: 'up' }
 // + Logo fade-ins with sequential delays
+
+Import (src/assets): Optimization works + Automatic Size + Automatic Blur + Cache Busting. Superior. for static images

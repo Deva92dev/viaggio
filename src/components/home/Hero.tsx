@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Map, ChevronDown } from "lucide-react";
+import HeroImage from "@/assets/Hero.webp";
 
 const btnAccentClass = `
     bg-[hsl(14_100%_64%)] text-[hsl(0_0%_0%)]
@@ -16,11 +17,11 @@ const Hero = () => {
       aria-label="Welcome to Viaggio"
     >
       <Image
-        src="/Hero.webp"
+        src={HeroImage}
         alt="Breathtaking travel destination banner"
         fill
         priority={true}
-        sizes="100vw"
+        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 100vw"
         className="object-cover z-0"
         placeholder="empty"
         quality={60}
@@ -33,25 +34,23 @@ const Hero = () => {
           <article className="max-w-xl text-right text-white mr-4 md:mr-12">
             <header className="space-y-3 md:space-y-6">
               <p className="text-sm md:text-base font-semibold">
-                <span className="text-[hsl(14_100%_64%)] md:bg-gradient-to-r md:from-[hsl(14_100%_64%)] md:via-[hsl(14_100%_64%)]/80 md:to-[hsl(216_74%_37%)] md:bg-clip-text md:text-transparent">
+                <span className="text-orange-500 md:text-[hsl(14_100%_64%)] md:bg-gradient-to-r md:from-[hsl(14_100%_64%)] md:via-[hsl(14_100%_64%)]/80 md:to-[hsl(216_74%_37%)] md:bg-clip-text ">
                   Discover the world
                 </span>
               </p>
-              <h1 className="text-4xl md:text-7xl font-bold md:font-black leading-tight">
+              <h1 className="text-4xl md:text-7xl font-bold md:font-black leading-tight tracking-tight">
                 <span className="text-white md:bg-gradient-to-r md:from-white md:to-white/90 md:bg-clip-text md:text-transparent">
                   Welcome to{" "}
                 </span>
-                <span className="text-[hsl(14_100%_64%)] md:bg-gradient-to-r md:from-[hsl(14_100%_64%)] md:via-[hsl(14_100%_64%)] md:to-[hsl(216_74%_37%)] md:bg-clip-text md:text-transparent">
+                <span className="text-orange-500 md:bg-gradient-to-r md:from-[hsl(14_100%_64%)] md:to-[hsl(216_74%_37%)] md:bg-clip-text md:text-transparent">
                   Viaggio
                 </span>
               </h1>
-
               <p className="text-base md:text-xl leading-relaxed mb-6 md:mb-8 text-white/90">
                 Enjoy scenic views of natural wonders with unforgettable
                 experiences.
               </p>
             </header>
-
             <nav
               className="flex flex-col gap-3 sm:flex-row sm:gap-4 sm:justify-end mb-6 md:mb-8"
               aria-label="Primary"
@@ -79,7 +78,7 @@ const Hero = () => {
             <aside aria-label="Recent activity">
               <p className="text-xs md:text-base text-white/90">
                 <span className="font-bold text-[hsl(14_100%_64%)] md:bg-gradient-to-r md:from-[hsl(14_100%_64%)] md:to-[hsl(216_74%_37%)] md:bg-clip-text md:text-transparent">
-                  10,000+
+                  5,000+
                 </span>{" "}
                 travelers joined last month
               </p>

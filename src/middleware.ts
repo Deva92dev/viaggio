@@ -8,9 +8,10 @@ export default clerkMiddleware(async (auth, req) => {
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    // Always run for API routes
+    // 1. PERFORMANCE FIX:
+    // I added "|^/$" inside the negative lookahead.
+    // This tells Next.js: "Do NOT match if it is a static file OR if it is exactly '/'"
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)|^/$).*)",
     "/(api|trpc)(.*)",
   ],
 };

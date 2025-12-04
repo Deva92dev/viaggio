@@ -10,15 +10,36 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import MotionSection from "./MotionSection";
 import SectionTitle from "../global/SectionTitle";
 import { Button } from "../ui/button";
+import Testim1 from "@/assets/Testim1.webp";
+import Testim2 from "@/assets/Testim2.webp";
+import Testim3 from "@/assets/Testim3.webp";
+import Testim4 from "@/assets/Testim4.webp";
+import Testim5 from "@/assets/Testim5.webp";
+import Avatar1 from "@/assets/Avatar1.jpg";
+
+interface TestimonialData {
+  id: number;
+  name: string;
+  location: string;
+  destination: string;
+  rating: number;
+  date: string;
+  groupSize: string;
+  avatar: StaticImageData;
+  image: StaticImageData;
+  quote: string;
+  experience: string;
+  verified: boolean;
+}
 
 const Testimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
-  const testimonials = [
+  const testimonials: TestimonialData[] = [
     {
       id: 1,
       name: "Sarah Chen",
@@ -27,8 +48,8 @@ const Testimonials = () => {
       rating: 5,
       date: "March 2024",
       groupSize: "2 travelers",
-      avatar: "/Avatar1.jpg",
-      image: "/Testim1.webp",
+      avatar: Avatar1,
+      image: Testim1,
       quote:
         "Viaggio transformed our honeymoon into an unforgettable adventure. The local guides showed us hidden temples and secret beaches we never would have found ourselves.",
       experience: "Romantic Getaway",
@@ -42,8 +63,8 @@ const Testimonials = () => {
       rating: 5,
       date: "January 2024",
       groupSize: "4 travelers",
-      avatar: "/Avatar1.jpg",
-      image: "/Testim2.webp",
+      avatar: Avatar1,
+      image: Testim2,
       quote:
         "The hiking expedition was expertly organized. Every detail was perfect, from the mountain guides to the eco-lodges. Truly a once-in-a-lifetime experience.",
       experience: "Adventure Trek",
@@ -57,8 +78,8 @@ const Testimonials = () => {
       rating: 5,
       date: "November 2023",
       groupSize: "3 travelers",
-      avatar: "/Avatar1.jpg",
-      image: "/Testim3.webp",
+      avatar: Avatar1,
+      image: Testim3,
       quote:
         "The cultural immersion was incredible. From private tea ceremonies to exclusive temple visits, Viaggio gave us authentic Japan beyond any guidebook.",
       experience: "Cultural Journey",
@@ -72,8 +93,8 @@ const Testimonials = () => {
       rating: 5,
       date: "September 2023",
       groupSize: "2 travelers",
-      avatar: "/Avatar1.jpg",
-      image: "/Testim4.webp",
+      avatar: Avatar1,
+      image: Testim4,
       quote:
         "Aurora hunting with Viaggio was magical. The photography guide helped us capture stunning shots while the thermal spring tours were perfectly timed.",
       experience: "Photography Tour",
@@ -87,8 +108,8 @@ const Testimonials = () => {
       rating: 5,
       date: "August 2023",
       groupSize: "6 travelers",
-      avatar: "/Avatar1.jpg",
-      image: "/Testim5.webp",
+      avatar: Avatar1,
+      image: Testim5,
       quote:
         "Our family reunion became extraordinary with Viaggio's planning. The overwater villas and snorkeling adventures created memories that will last forever.",
       experience: "Family Vacation",

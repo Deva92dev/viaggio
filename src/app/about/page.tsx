@@ -16,6 +16,11 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BASE_URL, buildWebPage } from "@/utils/schema";
+import HeroImage from "@/assets/Hero.webp";
+import Testim1 from "@/assets/Testim1.webp";
+import Testim2 from "@/assets/Testim2.webp";
+import Testim3 from "@/assets/Testim3.webp";
+import Testim5 from "@/assets/Testim5.webp";
 
 export const metadata: Metadata = {
   title: "About Viagio - Your Trusted Travel Experience Partner",
@@ -78,19 +83,19 @@ export default function AboutPage() {
     {
       name: "Sarah Chen",
       role: "Founder & CEO",
-      image: "/Testim1.webp",
+      image: Testim1,
       description: "Travel enthusiast with 15+ years in the industry",
     },
     {
       name: "Marcus Rivera",
       role: "Head of Operations",
-      image: "/Testim2.webp",
+      image: Testim2,
       description: "Operations expert ensuring seamless travel experiences",
     },
     {
       name: "Elena Kowalski",
       role: "Travel Curator",
-      image: "/Testim3.webp",
+      image: Testim3,
       description:
         "Destination specialist with expertise in unique experiences",
     },
@@ -119,7 +124,7 @@ export default function AboutPage() {
       <main className="relative overflow-hidden bg-[hsl(var(--background))]">
         <section className="relative w-full h-[70vh] min-h-[600px] mb-16 overflow-hidden">
           <Image
-            src="/Hero.webp"
+            src={HeroImage}
             alt="Viagio Team"
             width={1920}
             height={1080}
@@ -238,7 +243,7 @@ export default function AboutPage() {
               <div className="animate-fade-in">
                 <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/Testim5.webp"
+                    src={Testim5}
                     alt="Our Story"
                     width={600}
                     height={400}

@@ -20,6 +20,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { BASE_URL, buildWebPage } from "@/utils/schema";
+import HeroImage from "@/assets/Hero.webp";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions - Legal Agreement | Viagio",
@@ -127,7 +128,7 @@ export default function TermsConditionsPage() {
       <main className="relative overflow-hidden bg-[hsl(var(--background))]">
         <section className="relative w-full h-[50vh] min-h-[400px] mb-16 overflow-hidden">
           <Image
-            src="/Hero.webp"
+            src={HeroImage}
             alt="Terms and Conditions"
             width={1920}
             height={800}

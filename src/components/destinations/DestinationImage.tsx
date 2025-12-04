@@ -10,6 +10,8 @@ import {
   Wifi,
   ChevronDown,
 } from "lucide-react";
+import Zermat from "@/assets/Zermat.webp";
+import Hotels from "@/assets/Hotels.webp";
 
 interface DestinationImageProps {
   pageType: "destinations" | "hotels";
@@ -18,7 +20,7 @@ interface DestinationImageProps {
 const DestinationImage = ({ pageType }: DestinationImageProps) => {
   const content = {
     destinations: {
-      imageSrc: "/Zermat.webp",
+      imageSrc: Zermat,
       altText:
         "Discover amazing travel destinations - Zermatt mountain adventure",
       badgeText: "Your Adventure Awaits",
@@ -63,7 +65,7 @@ const DestinationImage = ({ pageType }: DestinationImageProps) => {
       ],
     },
     hotels: {
-      imageSrc: "/Hotels.webp",
+      imageSrc: Hotels,
       altText:
         "Experience luxury accommodations with premium amenities and stunning views",
       badgeText: "Your Perfect Stay Awaits",

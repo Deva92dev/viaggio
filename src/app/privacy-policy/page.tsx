@@ -16,6 +16,7 @@ import {
   UserCheck,
 } from "lucide-react";
 import { BASE_URL, buildWebPage } from "@/utils/schema";
+import HeroImage from "@/assets/Hero.webp";
 
 export const metadata: Metadata = {
   title: "Privacy Policy - How We Protect Your Data | Viagio",
@@ -124,7 +125,7 @@ export default function PrivacyPolicyPage() {
       <main className="relative overflow-hidden bg-[hsl(var(--background))]">
         <section className="relative w-full h-[50vh] min-h-[400px] mb-16 overflow-hidden">
           <Image
-            src="/Hero.webp"
+            src={HeroImage}
             alt="Privacy and Security"
             width={1920}
             height={800}
