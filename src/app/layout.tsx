@@ -79,6 +79,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.variable} ${poppins.variable} ${geistMono.variable} antialiased`}
+        style={{ opacity: 1, visibility: "visible" }}
       >
         <Script
           id="site-schema"

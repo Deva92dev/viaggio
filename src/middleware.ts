@@ -7,6 +7,9 @@ export default clerkMiddleware(async (auth, req) => {
 });
 
 export const config = {
+  // Middleware ONLY runs on these paths.
+  // Static files (like /hero.webp or /_next/...) do NOT match these,
+  // so they are automatically skipped.
   matcher: [
     "/bookings(.*)",
     "/api(.*)",
