@@ -6,7 +6,7 @@ import HeroImage from "@/assets/Hero.webp";
 const btnAccentClass = `
     bg-[hsl(14_100%_64%)] text-[hsl(0_0%_0%)] 
     transition-transform duration-200 rounded-[0.5rem] 
-    px-5 py-3 min-w-[110px] text-center font-semibold
+    px-5 py-3 min-w-[110px] text-center font-bold
     active:scale-95 select-none touch-manipulation
     md:hover:bg-[hsl(14_100%_64%)/0.9] 
   `;
@@ -33,12 +33,12 @@ const Hero = () => {
         <div className="container mx-auto px-4 md:px-6">
           <article className="max-w-xl text-center md:text-right text-white mx-auto md:mr-12 md:ml-auto">
             <header className="space-y-4 md:space-y-6">
-              <p className="text-sm md:text-base font-semibold">
+              <p className="text-sm md:text-base font-bold">
                 <span className="text-orange-500 md:text-[hsl(14_100%_64%)] md:bg-gradient-to-r md:from-[hsl(14_100%_64%)] md:via-[hsl(14_100%_64%)]/80 md:to-[hsl(216_74%_37%)] md:bg-clip-text">
                   Discover the world
                 </span>
               </p>
-              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold md:font-black leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight">
                 <span className="text-white md:bg-gradient-to-r md:from-white md:to-white/90 md:bg-clip-text md:text-transparent">
                   Welcome to{" "}
                 </span>
@@ -46,7 +46,7 @@ const Hero = () => {
                   Viaggio
                 </span>
               </h1>
-              <p className="text-base md:text-xl leading-relaxed mb-6 md:mb-8 text-white/90">
+              <p className="text-base md:text-xl leading-relaxed mb-6 md:mb-8 text-gray-200 font-normal">
                 Enjoy scenic views of natural wonders with unforgettable
                 experiences.
               </p>
