@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import logo from "@/assets/Logo.png";
 
 const Logo = () => {
   return (
@@ -11,7 +12,7 @@ const Logo = () => {
     >
       <div className="relative w-10 h-10 flex-shrink-0">
         <Image
-          src="/Logo.png"
+          src={logo}
           alt="Viaggio Logo"
           width={52}
           height={40}
