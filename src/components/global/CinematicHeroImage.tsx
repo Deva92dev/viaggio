@@ -14,39 +14,48 @@ export default function CinematicHeroImage({
   alt,
   priority = true,
 }: CinematicHeroImageProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Parallax scroll + cinematic zoom effect
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  const scale = useSpring(useTransform(scrollYProgress, [0, 1], [1, 1.2]), {
-    stiffness: 80,
-    damping: 20,
-  });
+  // This prevents the image from "drifting" too far from the scroll position
+  const springConfig = { stiffness: 300, damping: 30, restDelta: 0.001 };
 
-  const y = useSpring(useTransform(scrollYProgress, [0, 1], ["0%", "10%"]), {
-    stiffness: 100,
-    damping: 20,
-  });
+  const scale = useSpring(
+    useTransform(scrollYProgress, [0, 1], [1, 1.15]),
+    springConfig
+  );
 
+  const y = useSpring(
+    useTransform(scrollYProgress, [0, 1], ["0%", "20%"]),
+    springConfig
+  );
+
+  // ref and animations must be on different divs
   return (
-    <m.div
-      ref={ref}
-      style={{ scale, y }}
-      className="absolute inset-0 will-change-transform"
+    <div
+      ref={containerRef}
+      className="absolute inset-0 overflow-hidden w-full h-full"
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        priority={priority}
-        quality={85}
-        sizes="100vw"
-        className="object-cover object-center"
-      />
-    </m.div>
+      <m.div
+        style={{ scale, y }}
+        className="relative w-full h-full will-change-transform origin-center"
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          quality={90}
+          sizes="100vw"
+          className="object-cover object-center"
+          // Safari often needs this to prevent flickering during 3D transforms
+          style={{ transform: "translateZ(0)" }}
+        />
+      </m.div>
+    </div>
   );
 }

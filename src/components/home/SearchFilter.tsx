@@ -1,5 +1,5 @@
 "use client";
-import dynamic from "next/dynamic";
+
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
@@ -16,10 +16,7 @@ import { Slider } from "../ui/slider";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "@/lib/utils";
-
-const MotionSection = dynamic(() => import("./MotionSection"), {
-  loading: () => <div className="opacity-0" />,
-});
+import MotionSection from "./MotionSection";
 
 const SearchFilter = () => {
   const router = useRouter();
@@ -61,16 +58,11 @@ const SearchFilter = () => {
 
   return (
     <MotionSection
-      parallax={{
-        speed: 30,
-        direction: "up",
-        range: [0, 0.8],
-      }}
       animation={{
         type: "slide",
         direction: "up",
         duration: 0.8,
-        delay: 0.5,
+        delay: 0.2,
         ease: "easeOut",
       }}
       mobile={{

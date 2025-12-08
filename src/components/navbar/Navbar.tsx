@@ -8,8 +8,11 @@ const DropDown = dynamic(() => import("./DropDown"));
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-[hsl(var(--background))] to-[hsl(var(--background))] shadow-sm">
-      {/* CSS-only scroll shadow */}
+    <nav
+      //transform-gpu forces a new stacking context (GPU layer) to beat the Hero image
+      className="fixed top-0 left-0 w-full z-[100] transform-gpu bg-gradient-to-r from-[hsl(var(--background))] to-[hsl(var(--background))] shadow-sm"
+    >
+      {/* scroll shadow */}
       <div className="pointer-events-none sticky top-0 h-[1px] shadow-[0_1px_4px_0_rgba(0,0,0,0.03)]" />
       <div className="container mx-auto px-4 py-4 flex justify-center items-center">
         {/* Mobile Layout */}

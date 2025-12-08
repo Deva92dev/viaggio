@@ -72,13 +72,14 @@ const Testimonials = dynamicImport(
 export const revalidate = 3600;
 export const dynamic = "error";
 
-// change deployment region after testing in functions of vercel project dashboard
-
 export default function Home() {
   return (
     <>
       <Hero />
-      <section className="bg-white relative z-10 py-12 md:py-16" id="start">
+      <section
+        className="bg-white relative z-10 py-12 md:py-16 min-h-[450px] md:min-h-[350px] flex flex-col justify-center"
+        id="start"
+      >
         <div className="container mx-auto px-4">
           <SearchFilter />
         </div>
@@ -86,7 +87,7 @@ export default function Home() {
       <Suspense fallback={<PopularSkeleton />}>
         <Popular />
       </Suspense>
-      {/* These will now load lazily as the user scrolls */}
+      {/* <section className="min-h-[1000px] w-full relative"></section> */}
       <Features />
       <Testimonials />
       <InstagramGallery />

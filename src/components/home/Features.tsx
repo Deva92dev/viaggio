@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import {
   Shield,
   Users,
@@ -10,10 +9,7 @@ import {
   Award,
 } from "lucide-react";
 import SectionTitle from "../global/SectionTitle";
-
-const MotionSection = dynamic(() => import("./MotionSection"), {
-  loading: () => <div className="opacity-0" />,
-});
+import MotionSection from "./MotionSection";
 
 const Features = () => {
   const features = [
@@ -88,12 +84,6 @@ const Features = () => {
 
   return (
     <MotionSection
-      parallax={{
-        speed: 50,
-        direction: "up",
-        range: [0, 1],
-        offset: ["start end", "end start"],
-      }}
       animation={{
         type: "slide",
         direction: "up",
@@ -109,7 +99,7 @@ const Features = () => {
       triggerOnce={true}
       threshold={0.15}
       overflow={false}
-      className="relative w-full py-16 md:py-20 bg-gradient-to-b from-slate-50 to-white"
+      className="relative w-full py-16 md:py-20 bg-gradient-to-b from-slate-50 to-white min-h-[800px]"
     >
       {/* Background decorative elements */}
       <figure className="absolute top-20 right-10 w-64 h-64 bg-blue-100 rounded-full opacity-40 md:hidden" />

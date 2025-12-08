@@ -96,7 +96,7 @@ const MotionSection = ({
         ? threshold.map((t) => Math.max(t * 0.3, 0.1))
         : Math.max(threshold * 0.3, 0.1)
       : threshold,
-    rootMargin: isMobile ? "20px" : "50px",
+    rootMargin: isMobile ? "0px 0px -5% 0px" : "0px 0px -10% 0px",
   });
 
   const combinedRef = (node: HTMLElement) => {
