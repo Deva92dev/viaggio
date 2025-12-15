@@ -67,15 +67,10 @@ const TrustIndicators = () => {
 
   return (
     <MotionSection
-      parallax={{
-        speed: 20,
-        direction: "up",
-        range: [0, 0.5],
-      }}
       animation={{
         type: "slide",
         direction: "up",
-        duration: 0.7,
+        duration: 0.4,
         delay: 0.1,
         ease: "easeOut",
       }}

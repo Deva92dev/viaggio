@@ -16,12 +16,6 @@ const Popular = async () => {
 
   return (
     <MotionSection
-      parallax={{
-        speed: 75,
-        direction: "up",
-        range: [0, 1],
-        offset: ["start end", "end start"],
-      }}
       animation={{
         type: "fade",
         duration: 1.0,
