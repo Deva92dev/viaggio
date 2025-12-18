@@ -8,6 +8,7 @@ import Footer from "@/components/global/Footer";
 import { LenisProvider } from "./LenisProvider";
 import { MotionProvider } from "./motionProvider";
 import ClerkClientProvider from "./ClerkClientProvider";
+import { ThemeProvider } from "./theme-provider";
 
 const Toaster = dynamic(
   () => import("@/components/ui/sonner").then((mod) => mod.Toaster),
@@ -26,10 +27,12 @@ export default function ClientProviders({
       <LenisProvider>
         <MotionProvider>
           <ClerkClientProvider>
-            <Navbar />
-            {children}
-            <Footer />
-            <Toaster />
+            <ThemeProvider>
+              <Navbar />
+              {children}
+              <Footer />
+              <Toaster />
+            </ThemeProvider>
           </ClerkClientProvider>
         </MotionProvider>
       </LenisProvider>

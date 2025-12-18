@@ -38,9 +38,6 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/destinations" className="btn-accent ml-4">
-              Book Now
-            </Link>
           </div>
           <div className="flex items-center gap-3">
             <DarkMode />

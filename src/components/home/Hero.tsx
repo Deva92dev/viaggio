@@ -32,7 +32,7 @@ const Hero = () => {
       <main className="relative z-10 flex items-center justify-center md:justify-end h-[100dvh] w-full pb-20 md:pb-16">
         <div className="container mx-auto px-4 md:px-6">
           <article className="max-w-xl text-center md:text-right text-white mx-auto md:mr-12 md:ml-auto">
-            <header className="space-y-4 md:space-y-6">
+            <header className="space-y-4 md:space-y-6 mt-6 md:mt-16">
               <p className="text-sm md:text-base font-bold">
                 <span className="text-orange-500 md:text-[hsl(14_100%_64%)] md:bg-gradient-to-r md:from-[hsl(14_100%_64%)] md:via-[hsl(14_100%_64%)]/80 md:to-[hsl(216_74%_37%)] md:bg-clip-text">
                   Discover the world

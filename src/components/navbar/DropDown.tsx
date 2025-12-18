@@ -76,7 +76,7 @@ export default function DropDown({ hidePublicNavLinks }: DropDownProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        sideOffset={isMobile ? 40 : 32}
+        sideOffset={isMobile ? 24 : 32}
         className={cn(
           "w-56 bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-xl rounded-xl p-1",
           "animate-in fade-in-0 zoom-in-95",
