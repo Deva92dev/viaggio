@@ -24,18 +24,23 @@ export default function ClientProviders({
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LenisProvider>
-        <MotionProvider>
-          <ClerkClientProvider>
-            <ThemeProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <LenisProvider>
+          <MotionProvider>
+            <ClerkClientProvider>
               <Navbar />
               {children}
               <Footer />
               <Toaster />
-            </ThemeProvider>
-          </ClerkClientProvider>
-        </MotionProvider>
-      </LenisProvider>
+            </ClerkClientProvider>
+          </MotionProvider>
+        </LenisProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
