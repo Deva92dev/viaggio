@@ -68,7 +68,6 @@ const Testimonials = dynamicImport(
 );
 
 export const revalidate = 3600;
-export const dynamic = "error";
 
 export default function Home() {
   return (

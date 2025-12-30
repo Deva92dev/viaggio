@@ -46,11 +46,11 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
           {destinations.map((place) => (
             <div
               key={place.id}
-              className="group h-full min-w-0 overflow-hidden sm:overflow-visible"
+              className="group h-full min-w-0 overflow-hidden sm:overflow-visible relative"
             >
               <SmartLink
                 href={`/destinations/${place.id}`}
-                className="block min-w-0"
+                className="block min-w-0 h-full"
               >
                 <Card className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur-md border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-0 cursor-pointer h-full flex flex-col min-w-0">
                   {/* Gradient border effect */}
@@ -67,15 +67,7 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                     />
                     {/* gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                    {/* Favorite Button */}
-                    <div className="absolute top-4 right-4 z-20">
-                      <FavoriteToggleWrapper
-                        itemId={place.id}
-                        itemType={itemType}
-                        className="bg-white/20 backdrop-blur-xl hover:bg-white/30 rounded-full p-2 border border-white/30 transition-all duration-300 hover:scale-110"
-                      />
-                    </div>
-                    {/* Floating decorative camera icon */}
+
                     <div className="absolute top-4 left-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
                       <Camera size={16} className="text-white" />
                     </div>
@@ -141,7 +133,6 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                     </div>
                     {/* Bottom section with features and CTA */}
                     <div className="space-y-3">
-                      {/* Enhanced Features */}
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
                           <div className="flex items-center gap-1">
@@ -171,6 +162,14 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
                   <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-gradient-to-br from-[hsl(var(--accent))] to-orange-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
                 </Card>
               </SmartLink>
+
+              <div className="absolute top-4 right-4 z-30 pointer-events-auto">
+                <FavoriteToggleWrapper
+                  itemId={place.id}
+                  itemType={itemType}
+                  className="bg-white/20 backdrop-blur-xl hover:bg-white/30 rounded-full p-2 border border-white/30 transition-all duration-300 hover:scale-110"
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -196,7 +195,7 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
           </div>
         )}
       </div>
-      {/*  floating decorative elements */}
+      {/* floating decorative elements */}
       <div className="absolute top-1/4 hidden md:block right-8 w-20 h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15 animate-float" />
       <div className="absolute bottom-1/4 hidden md:block left-8 w-24 h-24 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20 animate-float-slow" />
     </section>

@@ -2,8 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { useUser } from "@clerk/nextjs";
-import { SignInButton, SignOutButton } from "@/components/auth/AuthButtons";
+import { useUser, useClerk } from "@clerk/nextjs";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,10 +29,10 @@ export default function DropDown({
   hidePublicNavLinks?: boolean;
 }) {
   const { user, isLoaded } = useUser();
+  const { signOut } = useClerk();
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  // "Safe" signed in check: Must be loaded AND have a user
   const isSignedIn = isLoaded && !!user;
   const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
 
@@ -54,10 +53,10 @@ export default function DropDown({
           {/* AVATAR LOGIC: Layout Shift Protected */}
           <div className="w-6 h-6 flex items-center justify-center">
             {!isLoaded ? (
-              // 1. Loading State: Pulse Skeleton
+              // Loading State: Pulse Skeleton
               <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse" />
             ) : isSignedIn && user?.imageUrl ? (
-              // 2. Logged In: Avatar
+              // Logged In: Avatar
               <img
                 src={user.imageUrl}
                 className="w-full h-full rounded-full object-cover border border-white/20"
@@ -83,36 +82,42 @@ export default function DropDown({
         sideOffset={isMobile ? 24 : 32}
         className={cn(
           "w-56 bg-white dark:bg-[hsl(217,32%,20%)] border border-[hsl(214,32%,85%)] dark:border-[hsl(217.2,32.6%,25%)] shadow-xl rounded-xl p-1",
-          "animate-in fade-in-0 zoom-in-95",
-          "animate-out fade-out-0 zoom-out-95"
+          "md:animate-in md:fade-in-0 md:zoom-in-95",
+          "md:animate-out md:fade-out-0 md:zoom-out-95"
         )}
       >
-        {/* State 1: Loading... (Rarely seen if Clerk is fast) */}
+        {/* State 1: Loading... */}
         {!isLoaded && (
           <div className="p-4 text-center text-xs text-muted-foreground">
             Connecting...
           </div>
         )}
 
-        {/* State 2: Guest (Not Signed In) */}
+        {/* State 2: Guest Not Signed In */}
         {isLoaded && !isSignedIn && (
           <>
-            <DropdownMenuItem className="rounded-md focus:bg-[hsl(210,20%,94%)] dark:focus:bg-[hsl(217.2,32.6%,17.5%)]">
-              <SignInButton mode="modal">
-                <div className="flex items-center gap-2 text-[hsl(216,74%,37%)] dark:text-[hsl(216,74%,50%)] cursor-pointer w-full py-2">
+            <DropdownMenuItem
+              asChild
+              className="rounded-md focus:bg-[hsl(210,20%,94%)] dark:focus:bg-[hsl(217.2,32.6%,17.5%)]"
+            >
+              <Link href="/sign-in" className="w-full cursor-pointer">
+                <div className="flex items-center gap-2 text-[hsl(216,74%,37%)] dark:text-[hsl(216,74%,50%)] w-full py-2">
                   <LogIn className="w-4 h-4" />
                   Login
                 </div>
-              </SignInButton>
+              </Link>
             </DropdownMenuItem>
 
-            <DropdownMenuItem className="rounded-md focus:bg-[hsl(210,20%,94%)] dark:focus:bg-[hsl(217.2,32.6%,17.5%)]">
-              <SignInButton mode="modal">
-                <div className="flex items-center gap-2 text-[hsl(216,74%,37%)] dark:text-[hsl(216,74%,50%)] cursor-pointer w-full py-2">
+            <DropdownMenuItem
+              asChild
+              className="rounded-md focus:bg-[hsl(210,20%,94%)] dark:focus:bg-[hsl(217.2,32.6%,17.5%)]"
+            >
+              <Link href="/sign-up" className="w-full cursor-pointer">
+                <div className="flex items-center gap-2 text-[hsl(216,74%,37%)] dark:text-[hsl(216,74%,50%)] w-full py-2">
                   <UserPlus className="w-4 h-4" />
                   Register
                 </div>
-              </SignInButton>
+              </Link>
             </DropdownMenuItem>
 
             <DropdownMenuSeparator className="bg-[hsl(214,32%,85%)] dark:bg-[hsl(217.2,32.6%,25%)]" />
@@ -166,13 +171,14 @@ export default function DropDown({
 
             <DropdownMenuSeparator className="bg-[hsl(214,32%,85%)] dark:bg-[hsl(217.2,32.6%,25%)]" />
 
-            <DropdownMenuItem className="rounded-md p-0 focus:bg-[hsl(210,20%,94%)] dark:focus:bg-[hsl(217.2,32.6%,17.5%)]">
-              <SignOutButton redirectUrl={pathname || "/"}>
-                <div className="flex items-center gap-2 text-[hsl(0,84.2%,60.2%)] dark:text-[hsl(0,62.8%,30.6%)] w-full py-2 px-2 cursor-pointer">
-                  <LogOut className="w-4 h-4" />
-                  Logout
-                </div>
-              </SignOutButton>
+            <DropdownMenuItem
+              onClick={() => signOut({ redirectUrl: pathname || "/" })}
+              className="rounded-md p-0 focus:bg-[hsl(210,20%,94%)] dark:focus:bg-[hsl(217.2,32.6%,17.5%)] cursor-pointer"
+            >
+              <div className="flex items-center gap-2 text-[hsl(0,84.2%,60.2%)] dark:text-[hsl(0,62.8%,30.6%)] w-full py-2 px-2">
+                <LogOut className="w-4 h-4" />
+                Logout
+              </div>
             </DropdownMenuItem>
           </>
         )}

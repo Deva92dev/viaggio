@@ -54,8 +54,12 @@ const HotelCard = ({ hotels }: Props) => {
             const displayAmenities = getDisplayAmenities(hotel.amenities);
             const remainingCount = getRemainingCount(hotel.amenities);
             return (
-              <div key={hotel.id} className="group h-full">
-                <SmartLink href={`/hotels/${hotel.id}`}>
+              <div key={hotel.id} className="group h-full relative">
+                {/* The Link wraps the Card content ONLY (Not the button) */}
+                <SmartLink
+                  href={`/hotels/${hotel.id}`}
+                  className="block h-full"
+                >
                   <Card className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur-md border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-0 cursor-pointer h-full flex flex-col">
                     {/* Gradient border effect */}
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500 -z-10" />
@@ -71,14 +75,7 @@ const HotelCard = ({ hotels }: Props) => {
                       />
                       {/* gradient overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                      <div className="absolute top-4 right-4 z-20">
-                        <FavoriteToggleWrapper
-                          itemId={hotel.id}
-                          itemType="hotel"
-                          className="bg-white/20 backdrop-blur-xl hover:bg-white/30 rounded-full p-2 border border-white/30 transition-all duration-300 hover:scale-110"
-                        />
-                      </div>
-                      {/* Floating decorative camera icon */}
+
                       <div className="absolute top-4 left-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
                         <Camera size={16} className="text-white" />
                       </div>
@@ -243,6 +240,14 @@ const HotelCard = ({ hotels }: Props) => {
                     <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-gradient-to-br from-[hsl(var(--accent))] to-orange-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
                   </Card>
                 </SmartLink>
+
+                <div className="absolute top-4 right-4 z-30 pointer-events-auto">
+                  <FavoriteToggleWrapper
+                    itemId={hotel.id}
+                    itemType="hotel"
+                    className="bg-white/20 backdrop-blur-xl hover:bg-white/30 rounded-full p-2 border border-white/30 transition-all duration-300 hover:scale-110"
+                  />
+                </div>
               </div>
             );
           })}
@@ -268,7 +273,7 @@ const HotelCard = ({ hotels }: Props) => {
           </div>
         )}
       </div>
-      {/*  floating decorative elements */}
+      {/* floating decorative elements */}
       <div className="absolute top-1/4 right-8 w-20 h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15 animate-float" />
       <div className="absolute bottom-1/4 left-8 w-24 h-24 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20 animate-float-slow" />
     </section>

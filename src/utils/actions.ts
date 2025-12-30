@@ -74,9 +74,9 @@ export const getPopularDestinations = unstable_cache(
   { revalidate: 3600 }
 );
 
-export const getGalleryImages = async () => {
+const fetchGalleryImagesInternal = async () => {
   try {
-    const [hotelImages, destinationImages] = await Promise.all([
+    const [hotelPool, destinationPool] = await Promise.all([
       db
         .select({
           id: hotels.id,
@@ -85,8 +85,8 @@ export const getGalleryImages = async () => {
         })
         .from(hotels)
         .where(isNotNull(hotels.imageUrl))
-        .orderBy(sql`RANDOM()`)
-        .limit(4),
+        .orderBy(desc(hotels.id))
+        .limit(20),
       db
         .select({
           id: tourPlaces.id,
@@ -95,19 +95,19 @@ export const getGalleryImages = async () => {
         })
         .from(tourPlaces)
         .where(isNotNull(tourPlaces.imageUrl))
-        .orderBy(sql`RANDOM()`)
-        .limit(4),
+        .orderBy(desc(tourPlaces.id))
+        .limit(20),
     ]);
 
-    // Combine images with type labels
-    const combinedImages = [
-      ...hotelImages.map((img) => ({
+    // Format the pool
+    const combinedPool = [
+      ...hotelPool.map((img) => ({
         id: `hotel-${img.id}`,
         url: img.imageUrl!,
         name: img.name,
         type: "hotel" as const,
       })),
-      ...destinationImages.map((img) => ({
+      ...destinationPool.map((img) => ({
         id: `dest-${img.id}`,
         url: img.imageUrl!,
         name: img.name,
@@ -115,13 +115,28 @@ export const getGalleryImages = async () => {
       })),
     ];
 
-    // Final shuffle for mixed display
-    return combinedImages.sort(() => Math.random() - 0.5);
+    // Extremely Fast for small arrays
+    // This is the Fisher-Yates Shuffle algorithm (better than Math.random() - 0.5)
+    for (let i = combinedPool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [combinedPool[i], combinedPool[j]] = [combinedPool[j], combinedPool[i]];
+    }
+
+    return combinedPool.slice(0, 8);
   } catch (error) {
     console.error("Error in fetchGalleryImages:", error);
     return [];
   }
 };
+
+export const getGalleryImages = unstable_cache(
+  fetchGalleryImagesInternal,
+  ["homepage-gallery-images"],
+  {
+    revalidate: 3600,
+    tags: ["gallery"],
+  }
+);
 
 export const fetchAllDestinationsForSitemap = unstable_cache(
   async () =>
