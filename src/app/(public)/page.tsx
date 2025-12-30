@@ -71,7 +71,7 @@ export const revalidate = 3600;
 
 export default function Home() {
   return (
-    <>
+    <main>
       <Hero />
       <section
         className="bg-white relative z-10 py-12 md:py-16 min-h-[450px] md:min-h-[350px] flex flex-col justify-center"
@@ -81,14 +81,16 @@ export default function Home() {
           <SearchFilter />
         </div>
       </section>
-      <Suspense fallback={<PopularSkeleton />}>
-        <Popular />
-      </Suspense>
-      <Features />
-      <Testimonials />
-      <InstagramGallery />
-      <CallToAction />
-      <TrustIndicators />
-    </>
+      <div className="[content-visibility:auto] [contain-intrinsic-size:1px_1000px]">
+        <Suspense fallback={<PopularSkeleton />}>
+          <Popular />
+        </Suspense>
+        <Features />
+        <Testimonials />
+        <InstagramGallery />
+        <CallToAction />
+        <TrustIndicators />
+      </div>
+    </main>
   );
 }
