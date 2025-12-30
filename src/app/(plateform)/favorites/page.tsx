@@ -32,7 +32,7 @@ const FavoritesPage = async () => {
   ]);
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <main className="min-h-screen w-full flex flex-col items-center justify-center py-12 lg:py-24">
       <SectionTitle text="Your Favorites" description="" />
       <Tabs defaultValue="destinations" className="w-full">
         <TabsList className="mb-6">

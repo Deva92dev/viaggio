@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter, Poppins, Geist_Mono } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import ClipDefs from "@/components/global/ClipDefs";
 import { siteSchema } from "@/utils/schema";
-import ClientProviders from "./ClientProvider";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/global/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
   preload: true,
+  adjustFontFallback: true,
 });
 
 const poppins = Poppins({
@@ -21,12 +19,7 @@ const poppins = Poppins({
   display: "swap",
   weight: ["400", "700"],
   preload: true,
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-  display: "swap",
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -80,7 +73,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${poppins.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
       >
         <Script
           id="site-schema"
@@ -88,13 +81,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(siteSchema).replace(/</g, "\\u003c"),
           }}
+          strategy="afterInteractive"
         />
+        {children}
         <ClipDefs />
-        <ClientProviders>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </ClientProviders>
       </body>
     </html>
   );

@@ -16,7 +16,7 @@ import {
   LogIn,
   LogOut,
   UserPlus,
-  ChevronDown,
+  User2Icon,
 } from "lucide-react";
 import Link from "next/link";
 import { navLinks, publicNavLinks } from "@/utils/links";
@@ -64,16 +64,9 @@ export default function DropDown({
               />
             ) : (
               // 3. Guest: Empty/Ghost (Retains spacing)
-              <div className="w-full h-full rounded-full bg-transparent" />
+              <User2Icon className="w-full h-full rounded-full bg-transparent" />
             )}
           </div>
-
-          <ChevronDown
-            className={cn(
-              "w-4 h-4 text-[hsl(216,74%,37%)] dark:text-[hsl(216,74%,50%)] transition-transform duration-200",
-              open && "rotate-180"
-            )}
-          />
         </Button>
       </DropdownMenuTrigger>
 

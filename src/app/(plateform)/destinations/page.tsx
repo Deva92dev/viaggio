@@ -8,11 +8,7 @@ import DestinationImage from "@/components/destinations/DestinationImage";
 import PlacesCard from "@/components/destinations/PlacesCard";
 import { PopularSkeleton } from "@/components/global/PopularSkeleton";
 import { getAllDestinations } from "@/utils/actions";
-import {
-  BASE_URL,
-  buildBreadcrumb,
-  buildDestinationIndex,
-} from "@/utils/schema";
+import { BASE_URL, buildDestinationIndex } from "@/utils/schema";
 import PaginationSkeleton from "@/components/global/PaginationSkeleton";
 
 export const metadata: Metadata = {
@@ -63,17 +59,9 @@ const DestinationsPage = async ({ searchParams }: Props) => {
     results.map((d) => ({ id: d.id, name: d.name }))
   );
 
-  const breadcrumb = buildBreadcrumb([
-    { name: "Home", url: BASE_URL },
-    {
-      name: "Destinations",
-      url: `${BASE_URL}/destinations`,
-    },
-  ]);
-
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [indexSchema, breadcrumb],
+    "@graph": [indexSchema],
   };
 
   return (

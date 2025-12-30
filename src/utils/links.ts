@@ -9,7 +9,6 @@ export const navLinks: NavLinks[] = [
   { href: "/", label: "Home", trackId: "nav-home" },
   { href: "/destinations", label: "Destinations", trackId: "nav-destinations" },
   { href: "/hotels", label: "Hotels", trackId: "nav-hotels" },
-  { href: "/about", label: "About Us", trackId: "nav-about", prefetch: false },
   {
     href: "/favorites",
     label: "Favorites",
@@ -22,5 +21,4 @@ export const publicNavLinks: NavLinks[] = [
   { href: "/", label: "Home", trackId: "nav-home" },
   { href: "/destinations", label: "Destinations", trackId: "nav-destinations" },
   { href: "/hotels", label: "Hotels", trackId: "nav-hotels" },
-  { href: "/about", label: "About Us", trackId: "nav-about", prefetch: false },
 ];

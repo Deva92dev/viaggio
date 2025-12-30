@@ -14,11 +14,12 @@ const Hero = () => {
           src={HeroImage}
           alt="Breathtaking travel destination banner"
           fill
-          priority
-          sizes="100vw"
+          priority={true}
+          quality={60}
+          sizes="(max-width: 768px) 100vw, 100vw"
           className="object-cover opacity-60"
-          quality={75}
         />
+        {/* CSS Gradient is faster than Image Gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
       </div>
 
@@ -46,7 +47,7 @@ const Hero = () => {
             <nav className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end mt-8">
               <Link
                 href="/destinations"
-                className="group inline-flex items-center justify-center px-8 py-4 text-lg font-bold rounded-full bg-orange-600 text-white md:shadow-lg hover:bg-orange-700 transition-all active:scale-95"
+                className="group inline-flex items-center justify-center px-8 py-4 text-lg font-bold rounded-full bg-orange-700 text-white md:shadow-lg hover:bg-orange-800 transition-all active:scale-95"
               >
                 Explore Now
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />

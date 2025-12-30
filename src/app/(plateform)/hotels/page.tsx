@@ -8,7 +8,7 @@ import DestinationImage from "@/components/destinations/DestinationImage";
 import { PopularSkeleton } from "@/components/global/PopularSkeleton";
 import HotelCard from "@/components/hotels/HotelCard";
 import { getAllHotels } from "@/utils/actions";
-import { BASE_URL, buildBreadcrumb, buildHotelIndex } from "@/utils/schema";
+import { BASE_URL, buildHotelIndex } from "@/utils/schema";
 import PaginationSkeleton from "@/components/global/PaginationSkeleton";
 
 export const metadata: Metadata = {
@@ -60,17 +60,9 @@ const HotelsPage = async ({ searchParams }: Props) => {
     results.map(({ id, name }) => ({ id, name }))
   );
 
-  const breadcrumb = buildBreadcrumb([
-    { name: "Home", url: BASE_URL },
-    {
-      name: "Hotels",
-      url: `${BASE_URL}/hotels`,
-    },
-  ]);
-
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [indexSchema, breadcrumb],
+    "@graph": [indexSchema],
   };
 
   return (
