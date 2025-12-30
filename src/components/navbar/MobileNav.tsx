@@ -21,10 +21,6 @@ const MobileMenu = () => {
         <span className="h-0.5 w-full bg-gray-700 dark:bg-gray-200 rounded-full transition-all duration-300 origin-center peer-checked:-rotate-45 peer-checked:-translate-y-2" />
       </label>
 
-      {/* THE MENU PANEL 
-         Visible only when the peer (checkbox) is checked.
-         Z-Index set to 200 to float above everything.
-      */}
       <div
         className="
         absolute right-0 top-14
@@ -45,10 +41,6 @@ const MobileMenu = () => {
         <ul className="flex flex-col gap-1">
           {publicNavLinks.map((link) => (
             <li key={link.href}>
-              {/* AUTO-CLOSE TRICK:
-                 Wrapping the Link in a label triggers the checkbox again (unchecking it)
-                 whenever a link is clicked.
-              */}
               <label htmlFor="mobile-menu-toggle" className="block w-full">
                 <Link
                   href={link.href}
@@ -64,7 +56,7 @@ const MobileMenu = () => {
             <label htmlFor="mobile-menu-toggle" className="block w-full">
               <Link
                 href="/sign-up"
-                className="block w-full text-center px-4 py-3 rounded-xl text-sm font-bold text-white bg-orange-600 hover:bg-orange-700 transition-colors"
+                className="block w-full text-center px-4 py-3 rounded-xl text-sm font-bold text-white bg-orange-700 hover:bg-orange-800 transition-colors"
               >
                 Sign Up for Free
               </Link>
