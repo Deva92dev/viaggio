@@ -84,9 +84,8 @@ const TrustIndicators = () => {
       triggerOnce={true}
       threshold={0.3}
       overflow={false}
-      className="relative w-full py-6 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-slate-100/50 to-slate-50 overflow-hidden"
+      className="relative w-full py-12 md:py-20 lg:py-24 bg-gradient-to-b from-slate-100/50 to-slate-50 overflow-hidden"
     >
-      {/* Background decorative elements  */}
       <aside
         className="absolute inset-0 overflow-hidden z-0"
         aria-hidden="true"
@@ -94,24 +93,26 @@ const TrustIndicators = () => {
         <div className="absolute top-2 right-2 sm:top-10 sm:right-10 w-20 h-20 sm:w-64 sm:h-64 rounded-full bg-[hsl(var(--primary))] blur-3xl opacity-5 animate-pulse-custom" />
         <div className="absolute bottom-2 left-2 sm:bottom-10 sm:left-10 w-24 h-24 sm:w-80 sm:h-80 rounded-full bg-[hsl(var(--accent))] blur-3xl opacity-8 delay-300 animate-pulse-custom" />
       </aside>
-      <main className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 md:px-8 lg:px-12 space-y-8 sm:space-y-12 md:space-y-16 overflow-hidden">
+
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 space-y-16 md:space-y-24 overflow-hidden">
         <section
           aria-labelledby="certifications-heading"
-          className="space-y-4 sm:space-y-6 md:space-y-8"
+          className="space-y-8 md:space-y-12"
         >
           <header
             id="certifications-heading"
-            className="text-center space-y-1 sm:space-y-2 md:space-y-3 px-2"
+            className="text-center space-y-3 md:space-y-4 px-2 py-2"
           >
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent">
               Certified & Trusted
             </h2>
-            <p className="text-black text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
+            <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               Our certifications and partnerships ensure you receive the highest
               quality travel experiences
             </p>
           </header>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 overflow-hidden pt-16 md:pt-2">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-8 pt-4">
             {certifications.map((cert, index) => {
               const IconComponent = cert.icon;
               return (
@@ -121,7 +122,7 @@ const TrustIndicators = () => {
                     type: "slide",
                     direction: "down",
                     duration: 1.0,
-                    delay: 0.5 + index * 0.1,
+                    delay: 0.2 + index * 0.1,
                     ease: "easeOut",
                   }}
                   mobile={{
@@ -130,19 +131,19 @@ const TrustIndicators = () => {
                   }}
                   triggerOnce={true}
                   threshold={0.3}
-                  className="text-center p-2 sm:p-3 md:p-4 lg:p-6 bg-white/80 backdrop-blur-md rounded-lg sm:rounded-xl md:rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+                  className="text-center p-6 md:p-8 bg-white/80 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
                 >
-                  <figure className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <IconComponent className="text-white" size={14} />
+                  <figure className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <IconComponent className="text-white" size={20} />
                   </figure>
-                  <div className="space-y-1">
-                    <span className="bg-[hsl(var(--accent))] text-white text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full inline-block mb-1 sm:mb-2 font-semibold">
+                  <div className="space-y-2">
+                    <span className="bg-[hsl(var(--accent))] text-white text-xs px-2.5 py-1 rounded-full inline-block font-semibold tracking-wide">
                       {cert.badge}
                     </span>
-                    <h3 className="font-bold text-black text-xs sm:text-sm md:text-base mb-1 leading-tight">
+                    <h3 className="font-bold text-foreground text-base md:text-lg leading-tight">
                       {cert.title}
                     </h3>
-                    <p className="text-black text-xs leading-snug px-1">
+                    <p className="text-muted-foreground text-sm leading-relaxed">
                       {cert.description}
                     </p>
                   </div>
@@ -151,12 +152,13 @@ const TrustIndicators = () => {
             })}
           </div>
         </section>
+
         <MotionSection
           animation={{
             type: "slide",
             direction: "up",
             duration: 1.0,
-            delay: 0.5,
+            delay: 0.3,
             ease: "easeOut",
           }}
           mobile={{
@@ -166,7 +168,7 @@ const TrustIndicators = () => {
           triggerOnce={true}
           threshold={0.3}
           aria-labelledby="guarantees-heading"
-          className="bg-white/90 backdrop-blur-xl rounded-xl sm:rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 relative"
+          className="bg-white/90 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl p-6 md:p-10 lg:p-12 relative"
         >
           <div
             aria-hidden="true"
@@ -178,42 +180,44 @@ const TrustIndicators = () => {
               left: "-0.125rem",
               backgroundImage:
                 "linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))",
-              borderRadius: "1rem",
+              borderRadius: "inherit",
               filter: "blur(8px)",
               opacity: 0.2,
               zIndex: -10,
               pointerEvents: "none",
             }}
           />
-          <header className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10">
-            <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-1 sm:mb-2 md:mb-3">
+
+          <header className="text-center mb-8 md:mb-12">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-3">
               Our Promise to You
             </h2>
-            <p className="text-black text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl mx-auto px-2">
+            <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto px-2 leading-relaxed">
               We stand behind every booking with comprehensive guarantees that
               protect your investment and ensure satisfaction
             </p>
           </header>
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 md:gap-x-8 md:gap-y-12">
             {guarantees.map((guarantee, index) => {
               const IconComponent = guarantee.icon;
               return (
                 <article
                   key={guarantee.title}
-                  className="text-center space-y-2 sm:space-y-3 md:space-y-4 animate-fade-in p-1 sm:p-2"
+                  className="text-center space-y-3 md:space-y-4 animate-fade-in px-2"
                   style={{
                     animationDelay: `${index * 0.15}s`,
                   }}
                 >
-                  <figure className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                    <IconComponent className="text-white" size={16} />
+                  <figure className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-xl md:rounded-2xl flex items-center justify-center mx-auto shadow-lg mb-4">
+                    <IconComponent className="text-white" size={20} />
                   </figure>
 
-                  <div className="space-y-1 sm:space-y-2">
-                    <h3 className="font-bold text-black text-xs sm:text-sm md:text-base lg:text-lg px-1 leading-tight">
+                  <div className="space-y-2">
+                    <h3 className="font-bold text-foreground text-base md:text-lg px-1 leading-tight">
                       {guarantee.title}
                     </h3>
-                    <p className="text-black text-xs sm:text-sm leading-snug px-1 sm:px-2">
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
                       {guarantee.description}
                     </p>
                   </div>
@@ -222,17 +226,20 @@ const TrustIndicators = () => {
             })}
           </div>
         </MotionSection>
+
         <footer
-          className="text-center py-3 sm:py-4 md:py-6 lg:py-8 px-2"
+          className="text-center py-4 md:py-8"
           aria-label="Trust statement"
         >
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 md:gap-3 bg-[hsl(var(--primary))]/10 backdrop-blur-md rounded-full px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 border border-[hsl(var(--primary))]/20 max-w-full">
-            <Shield className="text-black flex-shrink-0" size={14} />
-            <p className="text-black font-semibold text-xs sm:text-sm md:text-base text-center leading-tight">
-              Trusted by 10,000+ travelers worldwide since 2019
-            </p>
+          <div className="inline-flex flex-col sm:flex-row items-center gap-3 bg-[hsl(var(--primary))]/5 backdrop-blur-md rounded-full px-6 py-4 border border-[hsl(var(--primary))]/10">
+            <div className="flex items-center gap-2">
+              <Shield className="text-[hsl(var(--primary))]" size={16} />
+              <p className="text-foreground font-semibold text-sm md:text-base text-center">
+                Trusted by 10,000+ travelers worldwide since 2019
+              </p>
+            </div>
             <Star
-              className="text-[hsl(var(--accent))] fill-[hsl(var(--accent))] flex-shrink-0"
+              className="hidden sm:block text-[hsl(var(--accent))] fill-[hsl(var(--accent))]"
               size={14}
             />
           </div>

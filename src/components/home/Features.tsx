@@ -21,7 +21,14 @@ const Features = () => {
       stat: "500+",
       statLabel: "Destinations",
       gradient: "from-blue-500 to-blue-600",
-      mobileColor: "blue-500",
+      styles: {
+        text: "text-blue-500",
+        groupHoverText: "group-hover:text-blue-500",
+        bg: "bg-blue-500/10",
+        hoverBg: "md:group-hover:bg-blue-500/20",
+        overlayFrom: "from-blue-500/5",
+        overlayTo: "to-blue-500/10",
+      },
     },
     {
       icon: Users,
@@ -31,7 +38,14 @@ const Features = () => {
       stat: "200+",
       statLabel: "Expert Guides",
       gradient: "from-orange-500 to-red-500",
-      mobileColor: "orange-500",
+      styles: {
+        text: "text-orange-500",
+        groupHoverText: "group-hover:text-orange-500",
+        bg: "bg-orange-500/10",
+        hoverBg: "md:group-hover:bg-orange-500/20",
+        overlayFrom: "from-orange-500/5",
+        overlayTo: "to-orange-500/10",
+      },
     },
     {
       icon: Clock,
@@ -41,7 +55,14 @@ const Features = () => {
       stat: "24/7",
       statLabel: "Support",
       gradient: "from-purple-500 to-pink-500",
-      mobileColor: "purple-500",
+      styles: {
+        text: "text-purple-500",
+        groupHoverText: "group-hover:text-purple-500",
+        bg: "bg-purple-500/10",
+        hoverBg: "md:group-hover:bg-purple-500/20",
+        overlayFrom: "from-purple-500/5",
+        overlayTo: "to-purple-500/10",
+      },
     },
     {
       icon: Shield,
@@ -51,7 +72,14 @@ const Features = () => {
       stat: "100%",
       statLabel: "Secure",
       gradient: "from-green-500 to-emerald-600",
-      mobileColor: "green-500",
+      styles: {
+        text: "text-green-500",
+        groupHoverText: "group-hover:text-green-500",
+        bg: "bg-green-500/10",
+        hoverBg: "md:group-hover:bg-green-500/20",
+        overlayFrom: "from-green-500/5",
+        overlayTo: "to-green-500/10",
+      },
     },
   ];
 
@@ -104,6 +132,7 @@ const Features = () => {
       {/* Background decorative elements */}
       <figure className="absolute top-20 right-10 w-64 h-64 bg-blue-100 rounded-full opacity-40 md:hidden" />
       <figure className="absolute bottom-20 left-10 w-80 h-80 bg-purple-100 rounded-full opacity-30 md:hidden" />
+
       <MotionSection
         animation={{
           type: "scale",
@@ -129,6 +158,7 @@ const Features = () => {
           style={{ animationDelay: "6s" }}
         />
       </MotionSection>
+
       <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-12">
         <header className="mb-12 md:mb-16 text-black">
           <SectionTitle
@@ -136,6 +166,7 @@ const Features = () => {
             description="Experience the difference with our premium travel services"
           />
         </header>
+
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8 mb-16 md:mb-20">
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
@@ -146,7 +177,7 @@ const Features = () => {
                   type: "slide",
                   direction: "up",
                   duration: 0.6,
-                  delay: 0.4 + index * 0.15,
+                  delay: 0.2 + index * 0.1,
                   ease: "easeOut",
                 }}
                 mobile={{
@@ -158,7 +189,7 @@ const Features = () => {
                 className="group relative overflow-hidden rounded-2xl bg-white shadow-lg border border-slate-100 hover:shadow-xl hover:-translate-y-1 md:bg-white/95 md:backdrop-blur-sm md:shadow-xl md:border-white/20 md:rounded-3xl md:hover:shadow-2xl md:hover:-translate-y-2 transition-all duration-300 md:duration-500 group-hover:scale-105 md:group-hover:scale-110"
               >
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br from-${feature.mobileColor}/5 to-${feature.mobileColor}/10 md:from-transparent md:to-transparent`}
+                  className={`absolute inset-0 bg-gradient-to-br ${feature.styles.overlayFrom} ${feature.styles.overlayTo} md:from-transparent md:to-transparent`}
                 />
                 <div
                   className={`hidden md:block absolute -inset-0.5 bg-gradient-to-r ${feature.gradient} rounded-3xl blur opacity-0 group-hover:opacity-25 transition-opacity duration-500 -z-10`}
@@ -174,7 +205,7 @@ const Features = () => {
                   </figure>
                   <section className="space-y-3">
                     <h3
-                      className={`text-xl md:text-xl font-bold text-slate-900 transition-all duration-300 group-hover:text-${feature.mobileColor} md:group-hover:bg-gradient-to-r md:group-hover:${feature.gradient} md:group-hover:bg-clip-text md:group-hover:text-transparent`}
+                      className={`text-xl md:text-xl font-bold text-slate-900 transition-all duration-300 ${feature.styles.groupHoverText} md:group-hover:bg-gradient-to-r md:group-hover:${feature.gradient} md:group-hover:bg-clip-text md:group-hover:text-transparent`}
                     >
                       {feature.title}
                     </h3>
@@ -186,7 +217,7 @@ const Features = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <div
-                          className={`text-2xl md:text-2xl font-bold text-${feature.mobileColor} md:bg-gradient-to-r md:${feature.gradient} md:bg-clip-text md:text-transparent`}
+                          className={`text-2xl md:text-2xl font-bold ${feature.styles.text} md:bg-gradient-to-r md:${feature.gradient} md:bg-clip-text md:text-transparent`}
                         >
                           {feature.stat}
                         </div>
@@ -195,11 +226,11 @@ const Features = () => {
                         </div>
                       </div>
                       <div
-                        className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors duration-300 bg-${feature.mobileColor}/10 md:group-hover:bg-${feature.mobileColor}/20`}
+                        className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors duration-300 ${feature.styles.bg} ${feature.styles.hoverBg}`}
                       >
                         <IconComponent
                           size={18}
-                          className={`md:w-5 md:h-5 text-${feature.mobileColor} transition-transform duration-300 group-hover:scale-110`}
+                          className={`md:w-5 md:h-5 ${feature.styles.text} transition-transform duration-300 group-hover:scale-110`}
                         />
                       </div>
                     </div>
@@ -212,6 +243,7 @@ const Features = () => {
             );
           })}
         </section>
+
         <MotionSection
           animation={{
             type: "scale",
@@ -248,7 +280,7 @@ const Features = () => {
                       type: "slide",
                       direction: "left",
                       duration: 0.6,
-                      delay: 0.4 + index * 0.1, // Staggered: 0.4s, 0.5s, 0.6s, 0.7s
+                      delay: 0.4 + index * 0.1,
                       ease: "easeOut",
                     }}
                     mobile={{
@@ -277,15 +309,11 @@ const Features = () => {
           </div>
         </MotionSection>
       </main>
+
       <MotionSection
         parallax={{
           speed: 20,
           direction: "down",
-        }}
-        animation={{
-          type: "scale",
-          duration: 1.0,
-          delay: 0,
         }}
         mobile={{
           disableParallax: true,

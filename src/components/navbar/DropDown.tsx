@@ -1,22 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useEffect, useState } from "react";
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignOutButton,
-  useUser,
-} from "@clerk/nextjs";
+import { useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import { SignInButton, SignOutButton } from "@/components/auth/AuthButtons";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Button } from "../ui/button";
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import {
   LucideAlignLeft,
   LogIn,
@@ -29,21 +24,17 @@ import { navLinks, publicNavLinks } from "@/utils/links";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
-type DropDownProps = {
+export default function DropDown({
+  hidePublicNavLinks,
+}: {
   hidePublicNavLinks?: boolean;
-};
-
-export default function DropDown({ hidePublicNavLinks }: DropDownProps) {
+}) {
   const { user, isLoaded } = useUser();
   const [open, setOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const showAvatar = isMounted && isLoaded && user;
+  // "Safe" signed in check: Must be loaded AND have a user
+  const isSignedIn = isLoaded && !!user;
   const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
 
   return (
@@ -53,100 +44,138 @@ export default function DropDown({ hidePublicNavLinks }: DropDownProps) {
           aria-label="User Menu"
           className={cn(
             "w-12 h-12 flex items-center justify-center gap-2 rounded-full transition-all",
-            "hover:bg-[hsl(var(--primary))/0.1]",
-            open && "bg-[hsl(var(--primary))/0.15] shadow-sm scale-[1.02]"
+            "hover:bg-[hsl(216,74%,37%,0.1)] dark:hover:bg-[hsl(216,74%,50%,0.1)]",
+            open &&
+              "bg-[hsl(216,74%,37%,0.15)] dark:bg-[hsl(216,74%,50%,0.15)] shadow-sm scale-[1.02]"
           )}
         >
-          <LucideAlignLeft className="w-5 h-5 text-[hsl(var(--primary))]" />
-          {showAvatar && (
-            <img
-              src={user.imageUrl}
-              className="w-6 h-6 rounded-full object-cover border border-white/20"
-              alt="User Avatar"
-            />
-          )}
-          {/* Animated Chevron */}
+          <LucideAlignLeft className="w-5 h-5 text-[hsl(216,74%,37%)] dark:text-[hsl(216,74%,50%)]" />
+
+          {/* AVATAR LOGIC: Layout Shift Protected */}
+          <div className="w-6 h-6 flex items-center justify-center">
+            {!isLoaded ? (
+              // 1. Loading State: Pulse Skeleton
+              <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse" />
+            ) : isSignedIn && user?.imageUrl ? (
+              // 2. Logged In: Avatar
+              <img
+                src={user.imageUrl}
+                className="w-full h-full rounded-full object-cover border border-white/20"
+                alt="User"
+              />
+            ) : (
+              // 3. Guest: Empty/Ghost (Retains spacing)
+              <div className="w-full h-full rounded-full bg-transparent" />
+            )}
+          </div>
+
           <ChevronDown
             className={cn(
-              "w-4 h-4 text-[hsl(var(--primary))] transition-transform duration-200",
+              "w-4 h-4 text-[hsl(216,74%,37%)] dark:text-[hsl(216,74%,50%)] transition-transform duration-200",
               open && "rotate-180"
             )}
           />
         </Button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent
         align="end"
         sideOffset={isMobile ? 24 : 32}
         className={cn(
-          "w-56 bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-xl rounded-xl p-1",
+          "w-56 bg-white dark:bg-[hsl(217,32%,20%)] border border-[hsl(214,32%,85%)] dark:border-[hsl(217.2,32.6%,25%)] shadow-xl rounded-xl p-1",
           "animate-in fade-in-0 zoom-in-95",
           "animate-out fade-out-0 zoom-out-95"
         )}
       >
-        <SignedOut>
-          <DropdownMenuItem className="rounded-md">
-            <SignInButton mode="modal">
-              <div className="flex items-center gap-2 text-[hsl(var(--primary))] cursor-pointer w-full py-2">
-                <LogIn className="w-4 h-4" />
-                Login
-              </div>
-            </SignInButton>
-          </DropdownMenuItem>
+        {/* State 1: Loading... (Rarely seen if Clerk is fast) */}
+        {!isLoaded && (
+          <div className="p-4 text-center text-xs text-muted-foreground">
+            Connecting...
+          </div>
+        )}
 
-          <DropdownMenuItem className="rounded-md">
-            <SignInButton mode="modal">
-              <div className="flex items-center gap-2 text-[hsl(var(--primary))] cursor-pointer w-full py-2">
-                <UserPlus className="w-4 h-4" />
-                Register
-              </div>
-            </SignInButton>
-          </DropdownMenuItem>
-
-          <DropdownMenuSeparator />
-
-          {publicNavLinks.map((link) => (
-            <DropdownMenuItem key={link.href} className="rounded-md">
-              <Link
-                href={link.href}
-                className="flex items-center gap-2 text-[hsl(var(--foreground))] w-full py-2"
-              >
-                {link.label}
-              </Link>
+        {/* State 2: Guest (Not Signed In) */}
+        {isLoaded && !isSignedIn && (
+          <>
+            <DropdownMenuItem className="rounded-md focus:bg-[hsl(210,20%,94%)] dark:focus:bg-[hsl(217.2,32.6%,17.5%)]">
+              <SignInButton mode="modal">
+                <div className="flex items-center gap-2 text-[hsl(216,74%,37%)] dark:text-[hsl(216,74%,50%)] cursor-pointer w-full py-2">
+                  <LogIn className="w-4 h-4" />
+                  Login
+                </div>
+              </SignInButton>
             </DropdownMenuItem>
-          ))}
-        </SignedOut>
-        <SignedIn>
-          {navLinks.map((link) => {
-            if (
-              hidePublicNavLinks &&
-              publicNavLinks.some((p) => p.href === link.href)
-            ) {
-              return null;
-            }
 
-            return (
-              <DropdownMenuItem key={link.href} className="rounded-md">
+            <DropdownMenuItem className="rounded-md focus:bg-[hsl(210,20%,94%)] dark:focus:bg-[hsl(217.2,32.6%,17.5%)]">
+              <SignInButton mode="modal">
+                <div className="flex items-center gap-2 text-[hsl(216,74%,37%)] dark:text-[hsl(216,74%,50%)] cursor-pointer w-full py-2">
+                  <UserPlus className="w-4 h-4" />
+                  Register
+                </div>
+              </SignInButton>
+            </DropdownMenuItem>
+
+            <DropdownMenuSeparator className="bg-[hsl(214,32%,85%)] dark:bg-[hsl(217.2,32.6%,25%)]" />
+
+            {publicNavLinks.map((link) => (
+              <DropdownMenuItem
+                key={link.href}
+                className="rounded-md focus:bg-[hsl(210,20%,94%)] dark:focus:bg-[hsl(217.2,32.6%,17.5%)]"
+              >
                 <Link
                   href={link.href}
-                  className="flex items-center gap-2 text-[hsl(var(--foreground))] w-full py-2"
+                  className="flex items-center gap-2 text-[hsl(222.2,84%,4.9%)] dark:text-[hsl(210,40%,95%)] w-full py-2"
                 >
                   {link.label}
                 </Link>
               </DropdownMenuItem>
-            );
-          })}
+            ))}
+          </>
+        )}
 
-          <DropdownMenuSeparator />
+        {/* State 3: User (Signed In) */}
+        {isLoaded && isSignedIn && (
+          <>
+            <div className="px-2 py-1.5 text-xs text-[hsl(215,16%,44%)] dark:text-[hsl(215,20%,75%)] font-medium">
+              {user.fullName || user.firstName}
+            </div>
+            <DropdownMenuSeparator className="bg-[hsl(214,32%,85%)] dark:bg-[hsl(217.2,32.6%,25%)]" />
 
-          <DropdownMenuItem className="rounded-md p-0">
-            <SignOutButton redirectUrl={pathname || "/"}>
-              <div className="flex items-center gap-2 text-[hsl(var(--destructive))] w-full py-2 px-2 cursor-pointer">
-                <LogOut className="w-4 h-4" />
-                Logout
-              </div>
-            </SignOutButton>
-          </DropdownMenuItem>
-        </SignedIn>
+            {navLinks.map((link) => {
+              if (
+                hidePublicNavLinks &&
+                publicNavLinks.some((p) => p.href === link.href)
+              ) {
+                return null;
+              }
+
+              return (
+                <DropdownMenuItem
+                  key={link.href}
+                  className="rounded-md focus:bg-[hsl(210,20%,94%)] dark:focus:bg-[hsl(217.2,32.6%,17.5%)]"
+                >
+                  <Link
+                    href={link.href}
+                    className="flex items-center gap-2 text-[hsl(222.2,84%,4.9%)] dark:text-[hsl(210,40%,95%)] w-full py-2"
+                  >
+                    {link.label}
+                  </Link>
+                </DropdownMenuItem>
+              );
+            })}
+
+            <DropdownMenuSeparator className="bg-[hsl(214,32%,85%)] dark:bg-[hsl(217.2,32.6%,25%)]" />
+
+            <DropdownMenuItem className="rounded-md p-0 focus:bg-[hsl(210,20%,94%)] dark:focus:bg-[hsl(217.2,32.6%,17.5%)]">
+              <SignOutButton redirectUrl={pathname || "/"}>
+                <div className="flex items-center gap-2 text-[hsl(0,84.2%,60.2%)] dark:text-[hsl(0,62.8%,30.6%)] w-full py-2 px-2 cursor-pointer">
+                  <LogOut className="w-4 h-4" />
+                  Logout
+                </div>
+              </SignOutButton>
+            </DropdownMenuItem>
+          </>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

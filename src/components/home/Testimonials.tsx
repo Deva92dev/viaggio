@@ -137,12 +137,7 @@ const Testimonials = () => {
         range: [0, 1],
         offset: ["start end", "end start"],
       }}
-      animation={{
-        type: "scale",
-        duration: 1.0,
-        delay: 0.2,
-        ease: "easeOut",
-      }}
+      // Removed conflicting entrance animation (type: "scale") to allow Parallax to work
       mobile={{
         disableParallax: true,
         disableAnimations: false,
@@ -153,16 +148,11 @@ const Testimonials = () => {
       triggerOnce={true}
       threshold={0.2}
       overflow={true}
-      className="relative w-full py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-[hsl(var(--features-bg))] to-[hsl(var(--testimonials-bg))]"
+      className="relative w-full py-12 md:py-20 lg:py-24 bg-gradient-to-b from-[hsl(var(--features-bg))] to-[hsl(var(--testimonials-bg))]"
     >
-      {/* Decorative background elements*/}
+      {/* Decorative background elements */}
       <MotionSection
-        animation={{
-          type: "scale",
-          duration: 2.0,
-          delay: 0.2,
-          ease: "easeOut",
-        }}
+        // Removed entrance animation on background to prevent flashing
         mobile={{
           simpleAnimation: "none",
         }}
@@ -181,18 +171,20 @@ const Testimonials = () => {
           style={{ animationDelay: "4s" }}
         />
       </MotionSection>
+
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 container">
-        <header className="mb-8 sm:mb-12 md:mb-16">
+        <header className="mb-10 md:mb-16">
           <SectionTitle
             text="Traveler Stories"
             description="Real adventures from our amazing community of explorers"
           />
         </header>
-        <section className="relative mb-8 sm:mb-12 md:mb-16 w-full">
-          <article className="bg-white/90 backdrop-blur-xl rounded-xl sm:rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl overflow-hidden w-full">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-xl sm:rounded-2xl md:rounded-3xl blur opacity-20 -z-10" />
+
+        <section className="relative mb-12 md:mb-20 w-full">
+          <article className="bg-white/90 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-white/20 shadow-2xl overflow-hidden w-full">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-2xl md:rounded-3xl blur opacity-20 -z-10" />
             <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
-              <figure className="relative h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden">
+              <figure className="relative h-64 md:h-80 lg:h-[30rem] overflow-hidden">
                 <Image
                   src={currentData.image}
                   alt={`${currentData.destination} adventure with Viaggio`}
@@ -204,58 +196,58 @@ const Testimonials = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                <address className="absolute top-2 left-2 sm:top-4 sm:left-4 md:top-6 md:left-6 bg-white/20 backdrop-blur-xl rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 flex items-center gap-1 sm:gap-2 border border-white/30 not-italic">
-                  <MapPin size={10} className="text-white flex-shrink-0" />
-                  <span className="text-white text-xs sm:text-sm font-semibold truncate max-w-[100px] sm:max-w-[120px] md:max-w-none">
+                <address className="absolute top-4 left-4 md:top-6 md:left-6 bg-white/20 backdrop-blur-xl rounded-full px-3 py-1.5 md:px-4 md:py-2 flex items-center gap-2 border border-white/30 not-italic">
+                  <MapPin size={12} className="text-white flex-shrink-0" />
+                  <span className="text-white text-xs sm:text-sm font-semibold truncate max-w-[120px] md:max-w-none">
                     {currentData.destination}
                   </span>
                 </address>
-                <aside className="absolute top-2 right-2 sm:top-4 sm:right-4 md:top-6 md:right-6 bg-gradient-to-r from-[hsl(var(--accent))] to-orange-500 rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2">
+                <aside className="absolute top-4 right-4 md:top-6 md:right-6 bg-gradient-to-r from-[hsl(var(--accent))] to-orange-500 rounded-full px-3 py-1.5 md:px-4 md:py-2">
                   <span className="text-white text-xs sm:text-sm font-bold">
                     {currentData.experience}
                   </span>
                 </aside>
-                <nav className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 flex gap-1 sm:gap-2">
+                <nav className="absolute bottom-4 right-4 flex gap-2">
                   <Button
                     onClick={prevTestimonial}
-                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 p-0 cursor-pointer"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 p-0 cursor-pointer"
                     aria-label="Previous testimonial"
                   >
-                    <ChevronLeft size={14} className="text-white" />
+                    <ChevronLeft size={16} className="text-white" />
                   </Button>
                   <Button
                     onClick={nextTestimonial}
-                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 p-0 cursor-pointer"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 p-0 cursor-pointer"
                     aria-label="Next testimonial"
                   >
-                    <ChevronRight size={14} className="text-white" />
+                    <ChevronRight size={16} className="text-white" />
                   </Button>
                 </nav>
               </figure>
-              <section className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 flex flex-col justify-center">
-                <figure className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 md:mb-6 shadow-lg">
-                  <Quote size={16} className="text-white" />
+              <section className="p-6 md:p-8 lg:p-12 flex flex-col justify-center">
+                <figure className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-xl md:rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                  <Quote size={20} className="text-white" />
                 </figure>
-                <div className="flex items-center gap-1 sm:gap-2 mb-2 sm:mb-3 md:mb-4">
-                  <div className="flex items-center gap-0.5 sm:gap-1">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
                         key={star}
-                        size={12}
+                        size={14}
                         className="text-[hsl(var(--accent))] fill-[hsl(var(--accent))]"
                       />
                     ))}
                   </div>
-                  <span className="text-black text-xs sm:text-sm font-medium ml-1 sm:ml-2">
+                  <span className="text-black text-sm font-medium ml-2">
                     5.0 • Verified Review
                   </span>
                 </div>
-                <blockquote className="text-black text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 md:mb-8 font-medium italic">
-                  {currentData.quote}
+                <blockquote className="text-black text-base md:text-lg lg:text-xl leading-relaxed mb-8 font-medium italic">
+                  &quot;{currentData.quote}&quot;
                 </blockquote>
-                <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4 md:mb-6">
+                <div className="flex items-center gap-4 mb-6">
                   <div className="relative flex-shrink-0">
-                    <figure className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-[hsl(var(--primary))]">
+                    <figure className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-[hsl(var(--primary))]">
                       <Image
                         src={currentData.avatar}
                         alt={currentData.name}
@@ -264,35 +256,35 @@ const Testimonials = () => {
                         className="object-cover w-full h-full"
                       />
                     </figure>
-                    <div className="absolute -bottom-0.5 -right-0.5 sm:-bottom-1 sm:-right-1 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-[hsl(var(--accent))] rounded-full flex items-center justify-center border-2 border-white">
-                      <Star size={8} className="text-white fill-white" />
+                    <div className="absolute -bottom-1 -right-1 w-5 h-5 md:w-6 md:h-6 bg-[hsl(var(--accent))] rounded-full flex items-center justify-center border-2 border-white">
+                      <Star size={10} className="text-white fill-white" />
                     </div>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-bold text-black text-sm sm:text-base md:text-lg truncate">
+                    <h3 className="font-bold text-black text-base md:text-lg truncate">
                       {currentData.name}
                     </h3>
-                    <p className="text-black text-xs sm:text-sm truncate">
+                    <p className="text-black text-sm truncate">
                       {currentData.location}
                     </p>
                   </div>
                 </div>
-                <aside className="flex flex-wrap gap-1 sm:gap-2 md:gap-4 text-xs sm:text-sm">
-                  <div className="flex items-center gap-1 sm:gap-2 bg-[hsl(var(--primary))]/10 px-2 sm:px-3 py-1 rounded-full">
+                <aside className="flex flex-wrap gap-2 md:gap-4 text-sm">
+                  <div className="flex items-center gap-2 bg-[hsl(var(--primary))]/10 px-3 py-1.5 rounded-full">
                     <Calendar
-                      size={10}
+                      size={14}
                       className="text-[hsl(var(--primary))] flex-shrink-0"
                     />
-                    <span className="text-[hsl(var(--primary))] font-medium text-xs sm:text-sm">
+                    <span className="text-[hsl(var(--primary))] font-medium">
                       {currentData.date}
                     </span>
                   </div>
-                  <div className="flex items-center gap-1 sm:gap-2 bg-[hsl(var(--accent))]/10 px-2 sm:px-3 py-1 rounded-full">
+                  <div className="flex items-center gap-2 bg-[hsl(var(--accent))]/10 px-3 py-1.5 rounded-full">
                     <Users
-                      size={10}
+                      size={14}
                       className="text-[hsl(var(--accent))] flex-shrink-0"
                     />
-                    <span className="text-[hsl(var(--accent))] font-medium text-xs sm:text-sm">
+                    <span className="text-[hsl(var(--accent))] font-medium">
                       {currentData.groupSize}
                     </span>
                   </div>
@@ -301,8 +293,9 @@ const Testimonials = () => {
             </div>
           </article>
         </section>
-        <section className="mb-8 sm:mb-12 md:mb-16 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full">
+
+        <section className="mb-12 md:mb-16 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 w-full">
             {testimonials.slice(0, 3).map((testimonial, index) => {
               const actualIndex = testimonials.findIndex(
                 (t) => t.id === testimonial.id
@@ -327,26 +320,26 @@ const Testimonials = () => {
                   threshold={0.3}
                   overflow={true}
                   key={testimonial.id}
-                  className={`w-full bg-white/80 backdrop-blur-md rounded-lg sm:rounded-xl md:rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 p-3 sm:p-4 md:p-6 cursor-pointer group animate-fade-in ${
+                  className={`w-full bg-white/80 backdrop-blur-md rounded-xl md:rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 p-6 cursor-pointer group animate-fade-in ${
                     currentTestimonial === actualIndex
                       ? "ring-2 ring-[hsl(var(--primary))] bg-white/95"
                       : ""
                   }`}
                 >
-                  <div className="flex items-center gap-0.5 sm:gap-1 mb-2 sm:mb-3 md:mb-4">
+                  <div className="flex items-center gap-1 mb-3 md:mb-4">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
                         key={star}
-                        size={10}
+                        size={12}
                         className="text-black fill-[hsl(var(--accent))]"
                       />
                     ))}
                   </div>
-                  <blockquote className="text-black mb-2 sm:mb-3 md:mb-4 line-clamp-3 leading-relaxed text-xs sm:text-sm md:text-base">
-                    {testimonial.quote}
+                  <blockquote className="text-black mb-4 line-clamp-3 leading-relaxed text-sm md:text-base">
+                    &quot;{testimonial.quote}&quot;
                   </blockquote>
-                  <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
-                    <figure className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-[hsl(var(--primary))] flex-shrink-0">
+                  <div className="flex items-center gap-3">
+                    <figure className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-[hsl(var(--primary))] flex-shrink-0">
                       <Image
                         src={testimonial.avatar}
                         alt={testimonial.name}
@@ -356,7 +349,7 @@ const Testimonials = () => {
                       />
                     </figure>
                     <div className="min-w-0 flex-1">
-                      <h4 className="font-semibold text-black text-xs sm:text-sm truncate">
+                      <h4 className="font-semibold text-black text-sm truncate">
                         {testimonial.name}
                       </h4>
                       <p className="text-black text-xs truncate">
@@ -369,6 +362,7 @@ const Testimonials = () => {
             })}
           </div>
         </section>
+
         <MotionSection
           animation={{
             type: "fade",
@@ -387,50 +381,49 @@ const Testimonials = () => {
           triggerOnce={true}
           threshold={0.3}
           overflow={true}
-          className="bg-white/90 backdrop-blur-xl rounded-lg sm:rounded-xl md:rounded-2xl border border-white/20 shadow-xl p-3 sm:p-4 md:p-6 lg:p-8 w-full"
+          className="bg-white/90 backdrop-blur-xl rounded-xl md:rounded-2xl border border-white/20 shadow-xl p-6 md:p-10 w-full"
         >
-          <header className="text-center mb-4 sm:mb-6 md:mb-8">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-1 sm:mb-2">
+          <header className="text-center mb-6 md:mb-8">
+            <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-2">
               Trusted by Adventurers Worldwide
             </h3>
-            <p className="text-black text-xs sm:text-sm md:text-base px-2">
+            <p className="text-black text-sm md:text-base px-2">
               Join thousands of travelers who chose Viaggio for their dream
               adventures
             </p>
           </header>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 text-center w-full">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center w-full">
             <article className="w-full">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-1">
                 4.9
               </div>
-              <div className="text-black text-xs sm:text-sm">
-                Average Rating
-              </div>
+              <div className="text-black text-sm">Average Rating</div>
             </article>
             <article className="w-full">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-1">
                 2,847
               </div>
-              <div className="text-black text-xs sm:text-sm">Reviews</div>
+              <div className="text-black text-sm">Reviews</div>
             </article>
             <article className="w-full">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-1">
                 98%
               </div>
-              <div className="text-black text-xs sm:text-sm">Recommend Us</div>
+              <div className="text-black text-sm">Recommend Us</div>
             </article>
             <article className="w-full">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-0.5 sm:mb-1">
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent mb-1">
                 100%
               </div>
-              <div className="text-black text-xs sm:text-sm">Verified</div>
+              <div className="text-black text-sm">Verified</div>
             </article>
           </div>
         </MotionSection>
       </main>
+
       {/* floating decorative elements*/}
-      <figure className="animate-float absolute top-1/4 right-2 sm:right-12 w-8 h-8 sm:w-12 sm:h-12 md:w-20 md:h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15" />
-      <figure className="animate-floatSlowCustom absolute bottom-1/4 left-2 sm:left-12 w-10 h-10 sm:w-16 sm:h-16 md:w-28 md:h-28 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20" />
+      <figure className="animate-float absolute top-1/4 right-4 sm:right-12 w-12 h-12 md:w-20 md:h-20 bg-[hsl(var(--accent))] rounded-full blur-2xl opacity-15" />
+      <figure className="animate-floatSlowCustom absolute bottom-1/4 left-4 sm:left-12 w-16 h-16 md:w-28 md:h-28 bg-[hsl(var(--primary))] rounded-full blur-2xl opacity-20" />
     </MotionSection>
   );
 };

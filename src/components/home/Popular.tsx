@@ -44,11 +44,6 @@ const Popular = async () => {
           speed: 20,
           direction: "down",
         }}
-        animation={{
-          type: "scale",
-          duration: 2.0,
-          delay: 0,
-        }}
         mobile={{
           disableParallax: true,
           simpleAnimation: "none",
@@ -68,12 +63,14 @@ const Popular = async () => {
           />
         </figure>
       </MotionSection>
+
       <header className="relative z-10 mb-12 md:mb-16">
         <SectionTitle
           text="Popular Destinations"
           description="Discover breathtaking places where adventure meets luxury"
         />
       </header>
+
       <main className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 px-4 md:px-6 lg:px-12 max-w-7xl mx-auto">
         {destinations.map((destination, index) => (
           <MotionSection
@@ -132,13 +129,13 @@ const Popular = async () => {
                   href={`/destinations/${destination.id}`}
                   className="block"
                 >
-                  <button className="w-full bg-[hsl(var(--primary))] hover:bg-[hsl(var(--accent))] text-white rounded-lg md:rounded-xl py-2 md:py-3 px-4 transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 shadow-md hover:shadow-lg font-semibold text-sm md:text-base group cursor-pointer">
+                  <div className="w-full bg-[hsl(var(--primary))] hover:bg-[hsl(var(--accent))] text-white rounded-lg md:rounded-xl py-2 md:py-3 px-4 transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 shadow-md hover:shadow-lg font-semibold text-sm md:text-base group cursor-pointer">
                     <span>Explore Adventure</span>
                     <ArrowRight
                       size={16}
                       className="md:w-[18px] md:h-[18px] group-hover:translate-x-1 transition-transform duration-300"
                     />
-                  </button>
+                  </div>
                 </Link>
               </nav>
             </section>

@@ -30,7 +30,24 @@ const CallToAction = () => {
   ];
 
   return (
-    <MotionSection className="relative w-full py-20 overflow-hidden bg-gradient-to-br from-[hsl(var(--cta-bg))] via-[hsl(var(--accent))] to-[hsl(var(--cta-bg))]">
+    <MotionSection
+      animation={{
+        type: "fade",
+        duration: 1.0,
+        delay: 0.2,
+        ease: "easeOut",
+      }}
+      mobile={{
+        disableParallax: true,
+        disableAnimations: false,
+        simpleAnimation: "fade",
+        breakPoint: 768,
+        reducedMotion: true,
+      }}
+      triggerOnce={true}
+      threshold={0.1}
+      className="relative w-full py-16 md:py-24 overflow-hidden bg-gradient-to-br from-[hsl(var(--cta-bg))] via-[hsl(var(--accent))] to-[hsl(var(--cta-bg))]"
+    >
       {/* Background decorative elements */}
       <figure className="absolute inset-0 z-0" aria-hidden="true">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/70 z-10" />
@@ -45,7 +62,7 @@ const CallToAction = () => {
         />
       </figure>
       <main className="relative z-20 max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Main Content Section */}
           <section className="space-y-8 text-white">
             {/* Hero Badge */}
@@ -78,7 +95,7 @@ const CallToAction = () => {
                       animationDelay: `${index * 0.1}s`,
                     }}
                   >
-                    <figure className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center">
+                    <figure className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center flex-shrink-0">
                       <IconComponent size={16} className="text-white" />
                     </figure>
                     <span className="text-white/90 font-medium text-sm">
@@ -89,8 +106,8 @@ const CallToAction = () => {
               })}
             </section>
             <nav className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link href="/destinations">
-                <Button className="px-12 py-4 text-lg shadow-2xl shadow-black/30 hover:shadow-black/50 hover:scale-105 transition-all duration-300 relative overflow-hidden btn-accent group">
+              <Link href="/destinations" className="w-full sm:w-auto">
+                <div className="w-full sm:w-auto px-12 py-4 text-lg shadow-2xl shadow-black/30 hover:shadow-black/50 hover:scale-105 transition-all duration-300 relative overflow-hidden btn-accent group rounded-md flex items-center justify-center cursor-pointer">
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                   <span className="flex items-center gap-3 relative z-10 font-bold">
                     Explore Destinations
@@ -99,19 +116,17 @@ const CallToAction = () => {
                       className="group-hover:translate-x-1 transition-transform duration-300"
                     />
                   </span>
-                </Button>
+                </div>
               </Link>
-              <Link href="/about">
-                <Button
-                  variant="outline"
-                  className="bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 px-12 py-4 text-lg transition-all duration-300 hover:scale-105"
-                >
+              <Link href="/about" className="w-full sm:w-auto">
+                {/* FIXED: Changed Button to div */}
+                <div className="w-full sm:w-auto bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 px-12 py-4 text-lg transition-all duration-300 hover:scale-105 rounded-md flex items-center justify-center font-medium cursor-pointer">
                   Find Us
-                </Button>
+                </div>
               </Link>
             </nav>
             <aside className="pt-8 border-t border-white/20">
-              <div className="flex flex-wrap items-center gap-6">
+              <div className="flex flex-wrap items-center gap-6 md:gap-10">
                 {trustStats.map((stat) => (
                   <article key={stat.label} className="text-center">
                     <div className="text-2xl font-bold text-white">
@@ -123,12 +138,13 @@ const CallToAction = () => {
               </div>
             </aside>
           </section>
+
           <section className="lg:pl-8">
             <article className="bg-white/95 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 md:p-10 relative">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-white to-[hsl(var(--primary))] rounded-3xl blur opacity-30 -z-10 pointer-events-none" />
               <div className="space-y-6">
                 <header className="text-center space-y-3">
-                  <figure className="h-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+                  <figure className="h-16 w-16 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-2xl flex items-center justify-center mx-auto shadow-lg">
                     <Star size={28} className="text-white" />
                   </figure>
                   <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent">
@@ -161,7 +177,7 @@ const CallToAction = () => {
                   </div>
                   <Button
                     type="submit"
-                    className="w-full  h-12 text-lg font-semibold shadow-lg shadow-[hsl(var(--accent))]/30 hover:shadow-[hsl(var(--accent))]/50 transition-all duration-300 relative overflow-hidden btn-accent group"
+                    className="w-full h-12 text-lg font-semibold shadow-lg shadow-[hsl(var(--accent))]/30 hover:shadow-[hsl(var(--accent))]/50 transition-all duration-300 relative overflow-hidden btn-accent group"
                   >
                     <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                     <span className="relative z-10">Claim 20% Discount</span>
@@ -173,12 +189,12 @@ const CallToAction = () => {
                       key={index}
                       className="flex items-center gap-2 text-sm text-black"
                     >
-                      <div className="w-2 h-2 bg-[hsl(var(--accent))] rounded-full" />
+                      <div className="w-2 h-2 bg-[hsl(var(--accent))] rounded-full flex-shrink-0" />
                       <span>{benefit}</span>
                     </div>
                   ))}
                 </aside>
-                <footer className="text-xs text-black text-center">
+                <footer className="text-xs text-[hsl(var(--muted-foreground))] text-center">
                   We respect your privacy. Unsubscribe anytime.
                 </footer>
               </div>

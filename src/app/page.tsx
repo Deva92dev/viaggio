@@ -42,8 +42,6 @@ export const metadata: Metadata = {
   },
 };
 
-// CRITICAL FIX: Lazy load these "Below the Fold" components
-// This drastically reduces the initial JS bundle size for mobile.
 const Popular = dynamicImport(() => import("@/components/home/Popular"));
 const Features = dynamicImport(() => import("@/components/home/Features"));
 const InstagramGallery = dynamicImport(
@@ -87,7 +85,6 @@ export default function Home() {
       <Suspense fallback={<PopularSkeleton />}>
         <Popular />
       </Suspense>
-      {/* <section className="min-h-[1000px] w-full relative"></section> */}
       <Features />
       <Testimonials />
       <InstagramGallery />

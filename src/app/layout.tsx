@@ -5,6 +5,8 @@ import "./globals.css";
 import ClipDefs from "@/components/global/ClipDefs";
 import { siteSchema } from "@/utils/schema";
 import ClientProviders from "./ClientProvider";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/global/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -88,7 +90,11 @@ export default function RootLayout({
           }}
         />
         <ClipDefs />
-        <ClientProviders>{children}</ClientProviders>
+        <ClientProviders>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </ClientProviders>
       </body>
     </html>
   );

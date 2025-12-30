@@ -3,8 +3,6 @@
 import dynamic from "next/dynamic";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/global/Footer";
 import { LenisProvider } from "./LenisProvider";
 import { MotionProvider } from "./motionProvider";
 import ClerkClientProvider from "./ClerkClientProvider";
@@ -33,9 +31,7 @@ export default function ClientProviders({
         <LenisProvider>
           <MotionProvider>
             <ClerkClientProvider>
-              <Navbar />
               {children}
-              <Footer />
               <Toaster />
             </ClerkClientProvider>
           </MotionProvider>
