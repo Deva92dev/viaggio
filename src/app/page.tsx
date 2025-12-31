@@ -102,6 +102,7 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = 3600;
+export const dynamic = "force-static";
 
 const Popular = dynamicImport(() => import("@/components/home/Popular"));
 const Features = dynamicImport(() => import("@/components/home/Features"));

@@ -4,22 +4,23 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import ClipDefs from "@/components/global/ClipDefs";
 import { siteSchema } from "@/utils/schema";
+import ClientProviders from "./ClientProvider";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/global/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
   preload: true,
-  adjustFontFallback: true,
 });
 
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
-  display: "swap",
   weight: ["400", "700"],
-  preload: true,
-  adjustFontFallback: true,
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -75,15 +76,22 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
       >
+        {/* Delay schema until browser is idle */}
         <Script
           id="site-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(siteSchema).replace(/</g, "\\u003c"),
           }}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        {children}
+
+        <ClientProviders>
+          <Navbar />
+          {children}
+          <Footer />
+        </ClientProviders>
+
         <ClipDefs />
       </body>
     </html>

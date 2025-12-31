@@ -20,7 +20,7 @@ export default clerkMiddleware(async (auth, req) => {
   // Case B: User IS logged in but tries to visit Sign-In/Sign-Up
   // Redirect them to the main app area
   if (userId && isAuthRoute(req)) {
-    const dashboardUrl = new URL("/destinations", req.url);
+    const dashboardUrl = new URL("/", req.url);
     return NextResponse.redirect(dashboardUrl);
   }
 
