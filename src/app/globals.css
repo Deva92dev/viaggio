@@ -2,12 +2,6 @@
 
 @custom-variant dark (&:is(.*dark *));
 
-@theme {
-  --font-inter: var(--font-inter);
-  --font-poppins: var(--font-poppins);
-  --font-geist-mono: var(--font-geist-mono);
-}
-
 @layer base {
   :root {
     /* ===== Premium Color Palette (Light Mode) ===== */
@@ -137,17 +131,14 @@
   }
 
   /* Poppins for all headings */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-poppins), system-ui, sans-serif;
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    @apply text-[hsl(var(--foreground))];
+  .font-inter {
+    font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
+  }
+
+  .font-poppins {
+    font-family: var(--font-poppins), system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   /* Specific heading sizes with responsive design */
@@ -160,8 +151,9 @@
 
   h2 {
     font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    line-height: 1.15; /* ↓ was implicit 1.2 */
+    letter-spacing: -0.015em; /* ↑ from -0.02em */
   }
 
   h2::after {
@@ -171,22 +163,30 @@
 
   h3 {
     font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 600;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
   }
 
   h4 {
     font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-weight: 600;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
   }
 
   h5 {
     font-size: clamp(1.125rem, 2vw, 1.5rem);
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.005em;
   }
 
   h6 {
     font-size: clamp(1rem, 1.5vw, 1.25rem);
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 1.45;
+    letter-spacing: 0;
   }
 
   /* Enhanced paragraph styling */

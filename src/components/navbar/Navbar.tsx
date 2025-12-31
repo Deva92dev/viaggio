@@ -25,7 +25,7 @@ export default function Navbar() {
         {/* Mobile View */}
         <div className="flex w-full justify-between items-center lg:hidden px-6 py-3 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 shadow-lg rounded-full">
           <Logo />
-          <div className="flex items-center gap-3 min-w-[88px] justify-end">
+          <div className="flex items-center gap-3 min-w-[88px] h-10 justify-end">
             <DarkMode />
             <DropDown hidePublicNavLinks={false} />
           </div>

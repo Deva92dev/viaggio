@@ -48,7 +48,7 @@ export default function DropDown({
               "bg-[hsl(216,74%,37%,0.15)] dark:bg-[hsl(216,74%,50%,0.15)] shadow-sm scale-[1.02]"
           )}
         >
-          <LucideAlignLeft className="w-5 h-5 text-[hsl(216,74%,37%)] dark:text-[hsl(216,74%,50%)]" />
+          <LucideAlignLeft className="text-[hsl(216,74%,37%)] dark:text-[hsl(216,74%,50%)] h-10 w-10 flex items-center justify-center" />
 
           {/* AVATAR LOGIC: Layout Shift Protected */}
           <div className="w-6 h-6 flex items-center justify-center">
