@@ -75,7 +75,7 @@ const Popular = async () => {
         {destinations.map((destination, index) => (
           <MotionSection
             key={destination.id}
-            className="group relative overflow-hidden rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl transition-all duration-500 bg-white/90 md:backdrop-blur-md border border-white/20 hover:-translate-y-1 md:hover:-translate-y-2 animate-fade-in"
+            className="group relative overflow-hidden rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl transition-all duration-500 bg-white/90 md:backdrop-blur-md border border-white/20 hover:-translate-y-1 md:hover:-translate-y-2 animate-fade-in transform-gpu isolate [mask-image:linear-gradient(white,white)]"
             animation={{
               type: "slide",
               direction: "up",

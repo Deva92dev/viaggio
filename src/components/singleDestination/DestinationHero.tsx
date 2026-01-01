@@ -34,29 +34,30 @@ const DestinationHero = ({
 
   return (
     <div className="relative w-full h-[clamp(600px,100vh,900px)] mb-16 overflow-hidden">
-      {/* Hero Image */}
       <CinematicHeroImage src={imageUrl} alt={name} />
-      {/* gradient overlays */}
+      {/* 2. Overlays */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.4] via-transparent to-[hsl(var(--accent))/0.2] z-10" />
       <JourneyPath />
-      <div className="absolute top-20 left-4 sm:top-28 z-50 pt-4">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
+
+      <div className="absolute top-0 left-0 w-full z-40 pt-32 pointer-events-none">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pointer-events-auto">
           <CustomBreadcrumb
             items={[
               { label: "Destinations", href: "/destinations" },
               { label: name, isCurrentPage: true },
             ]}
-            className="animate-fade-in inline-block"
+            className="animate-fade-in inline-block text-white/90 hover:text-white drop-shadow-md"
           />
         </div>
       </div>
-      {/* Hero content */}
-      <div className="absolute inset-x-0 bottom-0 z-20 pb-10 sm:pb-14 md:pb-16 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
+
+      {/* 3. Hero Content (Bottom) */}
+      <div className="absolute inset-x-0 bottom-0 z-20 pb-10 sm:pb-14 md:pb-16 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-4xl w-full">
-            {/* Tags and metadata */}
-            <div className="hidden lg:flex items-center flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 w-full relative z-40 mt-4 sm:mt-6 md:mt-8 animate-fade-in">
+            {/* Tags */}
+            <div className="hidden lg:flex items-center flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 w-full relative z-40 mt-4 animate-fade-in">
               <div className="inline-block opacity-100">
                 <Duration duration={duration} />
               </div>
@@ -71,7 +72,8 @@ const DestinationHero = ({
                 <span>Premium Experience</span>
               </div>
             </div>
-            {/* Hero Heading */}
+
+            {/* Heading */}
             <h1
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-4 sm:mb-6 shadow-text leading-tight animate-fade-in capitalize"
               style={{ animationDelay: "0.2s" }}
@@ -81,6 +83,7 @@ const DestinationHero = ({
                 {name}
               </span>
             </h1>
+
             {/* Description */}
             <p
               className="text-white/90 text-xl md:text-2xl mb-8 max-w-3xl leading-relaxed drop-shadow-md animate-fade-in"
@@ -88,7 +91,8 @@ const DestinationHero = ({
             >
               {description.substring(0, 150)}...
             </p>
-            {/* Details */}
+
+            {/* Stats */}
             <div
               className="flex items-center flex-wrap gap-6 mb-8 animate-fade-in"
               style={{ animationDelay: "0.4s" }}
@@ -106,7 +110,8 @@ const DestinationHero = ({
                 </span>
               </div>
             </div>
-            {/* CTA Buttons */}
+
+            {/* Actions */}
             <div
               className="flex flex-col sm:flex-row gap-4 animate-fade-in"
               style={{ animationDelay: "0.5s" }}

@@ -41,7 +41,7 @@ const DestinationCard = async ({ type }: Props) => {
             description={`Explore our handpicked ${type}s across these amazing countries worldwide`}
           />
         </div>
-        <div className="grid gap-6 md:gap-8 lg:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+        <div className="grid gap-6 md:gap-8 lg:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto pb-8 md:pb-0">
           {countries.map((country, index) => (
             <MotionSection
               key={country.country}

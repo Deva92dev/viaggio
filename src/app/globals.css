@@ -106,16 +106,7 @@
   h4,
   h5,
   h6 {
-    @apply text-[hsl(var(--foreground))] font-semibold;
-  }
-
-  h1 {
-    @apply text-4xl tracking-tight mb-4;
-  }
-
-  h2::after {
-    content: "";
-    @apply block h-1 w-16 bg-[hsl(var(--accent))] mt-2 mb-6 rounded-full;
+    @apply text-[hsl(var(--foreground))];
   }
 
   :focus-visible {

@@ -44,18 +44,15 @@ const PlacesCard = ({ destinations, itemType = "destination" }: Props) => {
         </div>
         <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-full">
           {destinations.map((place) => (
-            <div
-              key={place.id}
-              className="group h-full min-w-0 overflow-hidden sm:overflow-visible relative"
-            >
+            <div key={place.id} className="group h-full relative">
               <SmartLink
                 href={`/destinations/${place.id}`}
-                className="block min-w-0 h-full"
+                className="block h-full"
               >
-                <Card className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur-md border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-0 cursor-pointer h-full flex flex-col min-w-0">
+                <Card className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur-md border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-0 cursor-pointer h-full flex flex-col min-w-0 transform-gpu isolate">
                   {/* Gradient border effect */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))] rounded-3xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500 -z-10" />
-                  <div className="relative w-full h-64 overflow-hidden rounded-t-3xl flex-shrink-0">
+                  <div className="relative w-full h-64 overflow-hidden flex-shrink-0">
                     <Image
                       src={place.imageUrl}
                       alt={`${place.name} - Premium ${itemType} experience`}
