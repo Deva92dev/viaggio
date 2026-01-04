@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import dynamic from "next/dynamic";
 import { useEffect, useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation"; // Added usePathname
+import { useUser } from "@clerk/nextjs"; // Added Clerk hooks
 import { toast } from "sonner";
 import {
   Calendar,
@@ -68,12 +71,30 @@ const initialFormData: Omit<
 
 const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const { isSignedIn, isLoaded } = useUser();
+
   const [formData, setFormData] =
     useState<typeof initialFormData>(initialFormData);
 
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [showPayment, setShowPayment] = useState(false);
+
+  // Restore form data after login redirect
+  useEffect(() => {
+    const savedData = sessionStorage.getItem(`booking_form_${itemId}`);
+    if (savedData) {
+      try {
+        setFormData(JSON.parse(savedData));
+        // Clear it so it doesn't persist forever
+        sessionStorage.removeItem(`booking_form_${itemId}`);
+      } catch (e: any) {
+        console.error("Failed to parse saved booking data");
+      }
+    }
+  }, [itemId]);
 
   const countTotal = () => {
     if (!formData.checkInDate || !formData.checkOutDate) return 0;
@@ -96,6 +117,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
 
   const totalAmount = countTotal();
 
+  // Validate required fields when showing payment
   useEffect(() => {
     if (
       showPayment &&
@@ -108,10 +130,26 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
     }
   }, [showPayment, formData]);
 
-  // The form submit event stays the same
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+
+    if (isLoaded && !isSignedIn) {
+      // Save current form state so user doesn't lose it
+      sessionStorage.setItem(
+        `booking_form_${itemId}`,
+        JSON.stringify(formData)
+      );
+
+      toast("Please sign in to proceed", {
+        description: "Redirecting to login page...",
+      });
+
+      const returnUrl = encodeURIComponent(pathname);
+      router.push(`/sign-in?redirect_url=${returnUrl}`);
+      return;
+    }
+
     startTransition(() => {
       try {
         // Validate date inputs
@@ -203,6 +241,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
     tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow.toISOString().split("T")[0];
   };
+
   if (
     showPayment &&
     (!formData.checkInDate ||
@@ -296,7 +335,7 @@ const BookingForm = ({ itemId, itemType, itemData }: BookingFormProps) => {
             </div>
           </CardContent>
         </Card>
-        {/*  Stripe Payment */}
+        {/* Stripe Payment */}
         {showPayment && (
           <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl p-6">
             <StripePayment

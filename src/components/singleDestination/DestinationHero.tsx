@@ -32,32 +32,44 @@ const DestinationHero = ({
 }: DestinationHeroProps) => {
   const travelerCount = 345;
 
+  const breadcrumbLabel =
+    name.length > 30 ? `${name.substring(0, 30)}...` : name;
+
   return (
-    <div className="relative w-full h-[clamp(600px,100vh,900px)] mb-16 overflow-hidden">
-      <CinematicHeroImage src={imageUrl} alt={name} />
-      {/* 2. Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.4] via-transparent to-[hsl(var(--accent))/0.2] z-10" />
+    <div className="relative w-full min-h-[clamp(600px,100vh,900px)] mb-16 overflow-hidden flex flex-col group">
+      <div className="absolute inset-0 z-0">
+        <CinematicHeroImage src={imageUrl} alt={name} />
+      </div>
+
+      {/* Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary))/0.9] via-black/20 to-[hsl(var(--accent))/0.1] z-10 pointer-events-none" />
       <JourneyPath />
 
-      <div className="absolute top-0 left-0 w-full z-40 pt-32 pointer-events-none">
+      {/* Breadcrumb (Top) */}
+      <div className="w-full z-40 pt-32 relative pointer-events-none">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pointer-events-auto">
-          <CustomBreadcrumb
-            items={[
-              { label: "Destinations", href: "/destinations" },
-              { label: name, isCurrentPage: true },
-            ]}
-            className="animate-fade-in inline-block text-white/90 hover:text-white drop-shadow-md"
-          />
+          <div className="max-w-[90vw] overflow-hidden">
+            <CustomBreadcrumb
+              items={[
+                { label: "Destinations", href: "/destinations" },
+                { label: breadcrumbLabel, isCurrentPage: true },
+              ]}
+              className="animate-fade-in inline-block text-white/90 hover:text-white drop-shadow-md whitespace-nowrap"
+            />
+          </div>
         </div>
       </div>
 
-      {/* 3. Hero Content (Bottom) */}
-      <div className="absolute inset-x-0 bottom-0 z-20 pb-10 sm:pb-14 md:pb-16 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+      {/* Spacer (Pushes content to bottom) */}
+      <div className="flex-grow min-h-[40px]" />
+
+      {/* Hero Content (Bottom) - Flows naturally */}
+      <div className="relative z-20 w-full pb-10 sm:pb-14 md:pb-16 pt-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-4xl w-full">
             {/* Tags */}
-            <div className="hidden lg:flex items-center flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 w-full relative z-40 mt-4 animate-fade-in">
+            <div className="hidden lg:flex items-center flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 w-full animate-fade-in">
               <div className="inline-block opacity-100">
                 <Duration duration={duration} />
               </div>
@@ -79,7 +91,7 @@ const DestinationHero = ({
               style={{ animationDelay: "0.2s" }}
             >
               Discover
-              <span className="pl-2 bg-gradient-to-r from-[hsl(var(--accent))] via-orange-400 to-[hsl(var(--accent))] bg-clip-text text-transparent">
+              <span className="pl-2 bg-gradient-to-r from-[hsl(var(--accent))] via-orange-400 to-[hsl(var(--accent))] bg-clip-text text-transparent block sm:inline">
                 {name}
               </span>
             </h1>

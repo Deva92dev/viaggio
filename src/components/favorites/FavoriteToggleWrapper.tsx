@@ -24,13 +24,11 @@ const FavoriteToggleWrapper = ({
   useEffect(() => {
     if (!isLoaded) return;
 
-    // FIX: Explicitly reset state if user logs out
     if (!isSignedIn) {
       setIsFavorited(false);
       return;
     }
 
-    // Fetch status ONLY for logged-in users
     let mounted = true;
 
     const checkStatus = async () => {
@@ -53,8 +51,9 @@ const FavoriteToggleWrapper = ({
   }, [isLoaded, isSignedIn, itemId, itemType]);
 
   return (
-    <div className="relative group">
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-full blur opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
+    <div className="relative group/favWrapper">
+      {/* hover selector to match scoped group */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-full blur opacity-0 group-hover/favWrapper:opacity-30 transition-opacity duration-300" />
 
       <FavoriteButton
         initialFavorited={isFavorited}

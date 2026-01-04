@@ -40,14 +40,14 @@ const FavoriteButton = ({
     e.stopPropagation();
     e.preventDefault();
 
-    // GUEST LOGIC: Redirect to Sign In Page
+    //  Redirect to Sign In Page
     if (!isSignedIn) {
       const returnUrl = encodeURIComponent(pathname || "/");
       router.push(`/sign-in?redirect_url=${returnUrl}`);
       return;
     }
 
-    // USER LOGIC: Toggle Favorite
+    //  Toggle Favorite
     setIsAnimating(true);
     setTimeout(() => setIsAnimating(false), 600);
 
@@ -83,12 +83,13 @@ const FavoriteButton = ({
     : "Add to Favorites";
 
   return (
-    <div className="relative group">
+    // Name the group "favorite" to isolate hover events
+    <div className="relative group/favorite">
       <div
         className={`absolute -inset-1 rounded-full blur transition-all duration-500 ${
           isFavorited
-            ? "bg-gradient-to-r from-[hsl(var(--accent))] to-red-500 opacity-30 group-hover:opacity-50"
-            : "bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] opacity-0 group-hover:opacity-20"
+            ? "bg-gradient-to-r from-[hsl(var(--accent))] to-red-500 opacity-30 group-hover/favorite:opacity-50"
+            : "bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] opacity-0 group-hover/favorite:opacity-20"
         }`}
       />
 
@@ -96,13 +97,14 @@ const FavoriteButton = ({
         onClick={handleToggleFavorite}
         disabled={isDisabled}
         aria-label={tooltipText}
+        // Update all group-hover classes to group-hover/favorite
         className={`
           relative z-10 w-12 h-12 rounded-full p-0 
           bg-white/20 backdrop-blur-xl border border-white/30 
           hover:bg-white/30 hover:scale-110 
           active:scale-95
           transition-all duration-300 ease-out
-          group-hover:shadow-xl group-hover:shadow-white/25
+          group-hover/favorite:shadow-xl group-hover/favorite:shadow-white/25
           ${isDisabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
           ${isAnimating ? "animate-pulse" : ""}
           ${className}
@@ -121,7 +123,7 @@ const FavoriteButton = ({
             ${
               isFavorited
                 ? "text-[hsl(var(--accent))] drop-shadow-glow scale-110"
-                : "text-white group-hover:text-[hsl(var(--accent))] group-hover:scale-105"
+                : "text-white group-hover/favorite:text-[hsl(var(--accent))] group-hover/favorite:scale-105"
             }
             ${isAnimating ? "animate-bounce" : ""}
             ${isPending ? "opacity-30" : "opacity-100"}
@@ -150,10 +152,11 @@ const FavoriteButton = ({
           </div>
         )}
 
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 opacity-0 group-hover:opacity-100" />
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover/favorite:translate-x-full transition-transform duration-1000 opacity-0 group-hover/favorite:opacity-100" />
       </Button>
 
-      <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/80 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+      {/* Tooltip Only show when hovering this specific group */}
+      <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/80 text-white text-xs rounded-lg opacity-0 group-hover/favorite:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-50">
         {tooltipText}
       </div>
     </div>

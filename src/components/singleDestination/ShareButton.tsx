@@ -41,15 +41,15 @@ const ShareButton = () => {
   };
 
   return (
-    <div className="relative group">
+    <div className="relative group/share">
       <Button
         className="bg-white/20 backdrop-blur-xl hover:bg-white/30 rounded-full p-3 cursor-pointer border border-white/30 transition-all duration-300 hover:scale-110"
         aria-label="Share Button"
       >
         <Share2 size={20} className="text-white" />
       </Button>
-      {/* Dropdown menu */}
-      <div className="absolute top-full right-0 mt-2 w-48 bg-white/95 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+
+      <div className="absolute top-full right-0 mt-2 w-48 bg-white/95 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl opacity-0 invisible group-hover/share:opacity-100 group-hover/share:visible transition-all duration-300 transform translate-y-2 group-hover/share:translate-y-0 z-50">
         <div className="p-2 space-y-1">
           <button
             onClick={handleCopyLink}
