@@ -49,25 +49,25 @@ export const dynamic = "force-static";
 const Popular = dynamicImport(() => import("@/components/home/Popular"));
 const Features = dynamicImport(() => import("@/components/home/Features"));
 const InstagramGallery = dynamicImport(
-  () => import("@/components/home/InstagramGallery")
+  () => import("@/components/home/InstagramGallery"),
 );
 const CallToAction = dynamicImport(
-  () => import("@/components/home/CallToAction")
+  () => import("@/components/home/CallToAction"),
 );
 const TrustIndicators = dynamicImport(
-  () => import("@/components/home/TrustIndicators")
+  () => import("@/components/home/TrustIndicators"),
 );
 const SearchFilter = dynamicImport(
   () => import("@/components/home/SearchFilter"),
   {
     loading: () => <SearchFilterSkeleton />,
-  }
+  },
 );
 const Testimonials = dynamicImport(
   () => import("@/components/home/Testimonials"),
   {
     loading: () => <TestimonialsSkeleton />,
-  }
+  },
 );
 
 export default function Home() {

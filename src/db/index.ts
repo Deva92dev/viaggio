@@ -1,27 +1,14 @@
-import { drizzle } from "drizzle-orm/postgres-js";
+import { neon } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "./schema";
-import postgres from "postgres";
 
-let connection: postgres.Sql;
-
-// so that we don't create new connection every time when we run the app
-if (process.env.NODE_ENV === "production") {
-  connection = postgres(process.env.DATABASE_URL!, { prepare: false });
-} else {
-  const globalConnection = global as typeof globalThis & {
-    connection: postgres.Sql;
-  };
-  if (!globalConnection.connection) {
-    globalConnection.connection = postgres(process.env.DATABASE_URL!, {
-      prepare: false,
-    });
-  }
-  connection = globalConnection.connection;
+if (!process.env.DATABASE_URL) {
+  throw new Error("CRITICAL: DATABASE_URL is not defined in the environment.");
 }
 
-const db = drizzle(connection, {
-  schema,
-});
+const sql = neon(process.env.DATABASE_URL);
+
+const db = drizzle(sql, { schema });
 
 export * from "./schema";
 export { db };

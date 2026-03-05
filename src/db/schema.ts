@@ -45,7 +45,7 @@ export const tourPlaces = pgTable("tourPlaces", {
   category: varchar("category", { length: 100 }).notNull().default("adventure"),
   popular: boolean("popular").default(false),
   averageRating: decimal("average_rating", { precision: 3, scale: 2 }).default(
-    "0.00"
+    "0.00",
   ),
   totalReviews: integer("total_reviews").default(0),
   clerkId: text("clerk_id").notNull(),
@@ -72,7 +72,7 @@ export const hotels = pgTable("hotels", {
   checkInDate: date("check_in_date").notNull().defaultNow(), // Default: Today
   checkOutDate: date("check_out_date").notNull(),
   averageRating: decimal("average_rating", { precision: 3, scale: 2 }).default(
-    "0.00"
+    "0.00",
   ),
   totalReviews: integer("total_reviews").default(0),
   createdAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
