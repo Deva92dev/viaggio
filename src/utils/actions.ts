@@ -71,7 +71,7 @@ export const getPopularDestinations = unstable_cache(
     return popularDestinations;
   },
   ["getPopularDestinations"],
-  { revalidate: 3600 }
+  { revalidate: 3600 },
 );
 
 const fetchGalleryImagesInternal = async () => {
@@ -135,7 +135,7 @@ export const getGalleryImages = unstable_cache(
   {
     revalidate: 3600,
     tags: ["gallery"],
-  }
+  },
 );
 
 export const fetchAllDestinationsForSitemap = unstable_cache(
@@ -144,7 +144,7 @@ export const fetchAllDestinationsForSitemap = unstable_cache(
       .select({ id: tourPlaces.id, updatedAt: tourPlaces.updatedAt })
       .from(tourPlaces),
   ["destinations-sitemap"],
-  { revalidate: 3600 }
+  { revalidate: 3600 },
 );
 
 export const fetchAllHotelsForSitemap = unstable_cache(
@@ -153,12 +153,12 @@ export const fetchAllHotelsForSitemap = unstable_cache(
       .select({ id: hotels.id, updatedAt: hotels.updatedAt })
       .from(hotels),
   ["hotels-sitemap"],
-  { revalidate: 3600 }
+  { revalidate: 3600 },
 );
 
 export const getAllDestinations = unstable_cache(
   async (
-    pageParams: string
+    pageParams: string,
   ): Promise<{
     results: DestinationsType[];
     total: number;
@@ -184,12 +184,12 @@ export const getAllDestinations = unstable_cache(
     };
   },
   ["getAllDestinations"],
-  { revalidate: 3600 }
+  { revalidate: 3600 },
 );
 
 export const getAllHotels = unstable_cache(
   async (
-    pageParams: string
+    pageParams: string,
   ): Promise<{
     results: HotelsType[];
     total: number;
@@ -205,7 +205,7 @@ export const getAllHotels = unstable_cache(
       .from(hotels)
       .orderBy(
         desc(hotels.createdAt),
-        asc(hotels.id) // Ensure consistent ordering
+        asc(hotels.id), // Ensure consistent ordering
       )
       .limit(meta.limit)
       .offset(meta.offset);
@@ -217,7 +217,7 @@ export const getAllHotels = unstable_cache(
     };
   },
   ["getAllHotels"],
-  { revalidate: 3600 }
+  { revalidate: 3600 },
 );
 
 export const getAllCountriesWithData = async () => {
@@ -277,7 +277,7 @@ export const getAllCountriesWithData = async () => {
 
     // Create lookup maps for O(1) access
     const destCountMap = new Map(
-      destinationCounts.map((d) => [d.country, d.count])
+      destinationCounts.map((d) => [d.country, d.count]),
     );
     const hotelCountMap = new Map(hotelCounts.map((h) => [h.country, h.count]));
 
@@ -288,7 +288,7 @@ export const getAllCountriesWithData = async () => {
         image,
         destinationsCount: destCountMap.get(country) || 0,
         hotelsCount: hotelCountMap.get(country) || 0,
-      })
+      }),
     );
 
     // Sort by country name for consistency
@@ -326,24 +326,24 @@ export const getFilteredDestinations = async ({
       conditions.push(
         sql`(${like(
           sql`LOWER(${tourPlaces.location})`,
-          `%${destination.toLowerCase()}%`
+          `%${destination.toLowerCase()}%`,
         )} OR
              ${like(
                sql`LOWER(${tourPlaces.country})`,
-               `%${country.toLowerCase()}%`
-             )})`
+               `%${country.toLowerCase()}%`,
+             )})`,
       );
     } else {
       // If they're the same (user entered one term), search both fields
       conditions.push(
         sql`(${like(
           sql`LOWER(${tourPlaces.location})`,
-          `%${destination.toLowerCase()}%`
+          `%${destination.toLowerCase()}%`,
         )} OR
              ${like(
                sql`LOWER(${tourPlaces.country})`,
-               `%${destination.toLowerCase()}%`
-             )})`
+               `%${destination.toLowerCase()}%`,
+             )})`,
       );
     }
   } else if (destination) {
@@ -351,23 +351,23 @@ export const getFilteredDestinations = async ({
     conditions.push(
       sql`(${like(
         sql`LOWER(${tourPlaces.location})`,
-        `%${destination.toLowerCase()}%`
+        `%${destination.toLowerCase()}%`,
       )} OR
            ${like(
              sql`LOWER(${tourPlaces.country})`,
-             `%${destination.toLowerCase()}%`
-           )})`
+             `%${destination.toLowerCase()}%`,
+           )})`,
     );
   } else if (country) {
     // Only country is provided
     conditions.push(
-      like(sql`LOWER(${tourPlaces.country})`, `%${country.toLowerCase()}%`)
+      like(sql`LOWER(${tourPlaces.country})`, `%${country.toLowerCase()}%`),
     );
   }
 
   if (category) {
     conditions.push(
-      like(sql`LOWER(${tourPlaces.category})`, `%${category.toLowerCase()}%`)
+      like(sql`LOWER(${tourPlaces.category})`, `%${category.toLowerCase()}%`),
     );
   }
 
@@ -425,24 +425,24 @@ export const getFilteredHotels = async ({
       conditions.push(
         sql`(${like(
           sql`LOWER(${hotels.location})`,
-          `%${destination.toLowerCase()}%`
+          `%${destination.toLowerCase()}%`,
         )} OR
              ${like(
                sql`LOWER(${hotels.country})`,
-               `%${country.toLowerCase()}%`
-             )})`
+               `%${country.toLowerCase()}%`,
+             )})`,
       );
     } else {
       // If they're the same (user entered one term), search both fields
       conditions.push(
         sql`(${like(
           sql`LOWER(${hotels.location})`,
-          `%${destination.toLowerCase()}%`
+          `%${destination.toLowerCase()}%`,
         )} OR
              ${like(
                sql`LOWER(${hotels.country})`,
-               `%${destination.toLowerCase()}%`
-             )})`
+               `%${destination.toLowerCase()}%`,
+             )})`,
       );
     }
   } else if (destination) {
@@ -450,23 +450,23 @@ export const getFilteredHotels = async ({
     conditions.push(
       sql`(${like(
         sql`LOWER(${hotels.location})`,
-        `%${destination.toLowerCase()}%`
+        `%${destination.toLowerCase()}%`,
       )} OR
            ${like(
              sql`LOWER(${hotels.country})`,
-             `%${destination.toLowerCase()}%`
-           )})`
+             `%${destination.toLowerCase()}%`,
+           )})`,
     );
   } else if (country) {
     // Only country is provided
     conditions.push(
-      like(sql`LOWER(${hotels.country})`, `%${country.toLowerCase()}%`)
+      like(sql`LOWER(${hotels.country})`, `%${country.toLowerCase()}%`),
     );
   }
 
   if (category) {
     conditions.push(
-      like(sql`LOWER(${hotels.category})`, `%${category.toLowerCase()}%`)
+      like(sql`LOWER(${hotels.category})`, `%${category.toLowerCase()}%`),
     );
   }
 
@@ -544,7 +544,7 @@ export const getFilteredResults = unstable_cache(
           page,
           limit,
           totalPages: Math.ceil(
-            (toursResult.totalCount + hotelsResult.totalCount) / limit
+            (toursResult.totalCount + hotelsResult.totalCount) / limit,
           ),
         },
       };
@@ -564,7 +564,7 @@ export const getFilteredResults = unstable_cache(
   ["getFilteredResults"],
   {
     revalidate: 360,
-  }
+  },
 );
 
 export const getSingleDestination = async (destinationsId: string) => {
@@ -583,7 +583,7 @@ export const getSingleDestination = async (destinationsId: string) => {
 
 export const getSimilarDestinations = async (
   category: string,
-  currentId: string
+  currentId: string,
 ) => {
   const similar = await db
     .select({
@@ -628,7 +628,7 @@ export const getSimilarHotels = async (category: string, currentId: string) => {
 
 export const addFavorite = async (
   itemId: string,
-  itemType: "hotel" | "destination"
+  itemType: "hotel" | "destination",
 ) => {
   const user = await getAuthUser();
   const userId = user.id;
@@ -644,8 +644,8 @@ export const addFavorite = async (
       and(
         eq(favorites.clerkId, userId),
         eq(favorites.itemId, itemId),
-        eq(favorites.itemType, itemType)
-      )
+        eq(favorites.itemType, itemType),
+      ),
     )
     .limit(1);
 
@@ -679,7 +679,7 @@ export const addFavorite = async (
 
 export const removeFavorite = async (
   itemId: string,
-  itemType: "hotel" | "destination"
+  itemType: "hotel" | "destination",
 ) => {
   const user = await getAuthUser();
   const userId = user.id;
@@ -694,8 +694,8 @@ export const removeFavorite = async (
         and(
           eq(favorites.clerkId, userId),
           eq(favorites.itemId, itemId),
-          eq(favorites.itemType, itemType)
-        )
+          eq(favorites.itemType, itemType),
+        ),
       );
 
     revalidatePath("/favorites");
@@ -717,7 +717,7 @@ export const removeFavorite = async (
 // check if the item is favorite by the current user
 export const IsFavorited = async (
   itemId: string,
-  itemType: "hotel" | "destination"
+  itemType: "hotel" | "destination",
 ) => {
   const user = await getAuthUser();
   const userId = user.id;
@@ -733,8 +733,8 @@ export const IsFavorited = async (
         and(
           eq(favorites.clerkId, userId),
           eq(favorites.itemId, itemId),
-          eq(favorites.itemType, itemType)
-        )
+          eq(favorites.itemType, itemType),
+        ),
       )
       .limit(1);
 
@@ -785,8 +785,8 @@ export const getFavoriteDestinations = async () => {
       .where(
         and(
           eq(favorites.clerkId, userId),
-          eq(favorites.itemType, "destination")
-        )
+          eq(favorites.itemType, "destination"),
+        ),
       );
 
     return favoriteDestinations.map((item) => ({
@@ -816,7 +816,7 @@ export const getFavoriteHotels = async () => {
       .from(favorites)
       .innerJoin(hotels, eq(favorites.itemId, hotels.id))
       .where(
-        and(eq(favorites.clerkId, userId), eq(favorites.itemType, "hotel"))
+        and(eq(favorites.clerkId, userId), eq(favorites.itemType, "hotel")),
       );
 
     return favoriteHotels.map((item) => ({
@@ -832,7 +832,7 @@ export const getFavoriteHotels = async () => {
 // toggle favorite status
 export const toggleFavorite = async (
   itemId: string,
-  itemType: "hotel" | "destination"
+  itemType: "hotel" | "destination",
 ) => {
   const isFavorite = await IsFavorited(itemId, itemType);
 
@@ -855,7 +855,7 @@ export const GeoLocation = async (location: string): Promise<GeoCoords> => {
   }
 
   const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-    location
+    location,
   )}`;
 
   const res = await fetch(url, {
@@ -881,7 +881,7 @@ export const GeoLocation = async (location: string): Promise<GeoCoords> => {
 export const checkReviewEligibility = async (
   userId: string,
   itemId: string,
-  itemType: ReviewItemType
+  itemType: ReviewItemType,
 ) => {
   try {
     if (!userId || !itemId || !itemType) {
@@ -901,7 +901,7 @@ export const checkReviewEligibility = async (
         eq(bookings.clerkId, userId),
         eq(bookings.itemId, itemId),
         eq(bookings.itemType, itemType),
-        eq(bookings.bookingStatus, "confirmed") // be very sure of it
+        eq(bookings.bookingStatus, "confirmed"), // be very sure of it
       ),
       orderBy: desc(bookings.checkOutDate),
     });
@@ -918,7 +918,7 @@ export const checkReviewEligibility = async (
       where: and(
         eq(reviews.clerkId, userId),
         eq(reviews.itemId, itemId),
-        eq(reviews.itemType, itemType)
+        eq(reviews.itemType, itemType),
       ),
     });
 
@@ -950,7 +950,7 @@ export const checkReviewEligibility = async (
 // Helper function to validate booking belongs to user and is eligible
 export const validateBookingForReview = async (
   userId: string,
-  bookingId: string
+  bookingId: string,
 ): Promise<{ valid: boolean; booking?: any; reason?: string }> => {
   try {
     const booking = await db.query.bookings.findFirst({
@@ -985,7 +985,7 @@ export const validateBookingForReview = async (
     // you can change it to different dates for hotel and destinations
     if (now < checkoutDate) {
       const daysUntilEligible = Math.ceil(
-        (checkoutDate.getTime() - now.getTime()) * 1000 * 60 * 60 * 24
+        (checkoutDate.getTime() - now.getTime()) * 1000 * 60 * 60 * 24,
       );
 
       return {
@@ -1019,7 +1019,7 @@ export const validateBookingForReview = async (
 // Helper function to update average rating
 export const updateAverageRating = async (
   itemId: string,
-  itemType: ReviewItemType
+  itemType: ReviewItemType,
 ) => {
   const result = await db
     .select({
@@ -1063,7 +1063,7 @@ export const updateAverageRating = async (
 // CHECK REVIEW ELIGIBILITY
 export const checkUserReviewEligibility = async (
   itemId: string,
-  itemType: ReviewItemType
+  itemType: ReviewItemType,
 ): Promise<BookingEligibilityType> => {
   try {
     const user = await getAuthUser().catch(() => null);
@@ -1109,7 +1109,7 @@ export const getEligibleBookingsForReviews = async () => {
       where: and(
         eq(bookings.clerkId, userId),
         eq(bookings.bookingStatus, "completed"),
-        lt(bookings.checkOutDate, today)
+        lt(bookings.checkOutDate, today),
       ),
       with: {
         tourPlace: {
@@ -1138,7 +1138,7 @@ export const getEligibleBookingsForReviews = async () => {
 
     const reviewedIds = new Set(reviewedBookingIds.map((r) => r.bookingId));
     const unReviewed = eligibleBookings.filter(
-      (booking) => !reviewedIds.has(booking.id)
+      (booking) => !reviewedIds.has(booking.id),
     );
 
     return { success: true, booking: unReviewed };
@@ -1201,7 +1201,7 @@ export const createReview = async (data: CreateReviewType) => {
 export const getReviews = async (
   itemId: string,
   itemType: ReviewItemType,
-  sortBy: "newest" | "oldest" | "rating_high" | "rating_low" = "newest"
+  sortBy: "newest" | "oldest" | "rating_high" | "rating_low" = "newest",
 ) => {
   try {
     const currentUser = await getAuthUser().catch(() => null); // allow not logged in
@@ -1267,7 +1267,7 @@ export const getReviews = async (
       helpfulCount:
         rev.helpful != null
           ? Number(rev.helpful)
-          : rev.helpfulVotes?.length ?? 0,
+          : (rev.helpfulVotes?.length ?? 0),
       helpfulByMe: currentUserId
         ? rev.helpfulVotes?.some((h) => h.clerkId === currentUserId)
         : false,
@@ -1329,7 +1329,7 @@ export const getUserReviews = async () => {
 
 export const updateReview = async (
   reviewId: string,
-  data: UpdateReviewType
+  data: UpdateReviewType,
 ) => {
   try {
     const user = await getAuthUser();
@@ -1450,7 +1450,7 @@ export const makeReviewHelpful = async (reviewId: string) => {
     const existingVote = await db.query.reviewHelpful.findFirst({
       where: and(
         eq(reviewHelpful.reviewId, reviewId),
-        eq(reviewHelpful.clerkId, userId)
+        eq(reviewHelpful.clerkId, userId),
       ),
     });
 
@@ -1497,7 +1497,7 @@ export const makeReviewHelpful = async (reviewId: string) => {
 
 export const getReviewStats = async (
   itemId: string,
-  itemType: ReviewItemType
+  itemType: ReviewItemType,
 ) => {
   try {
     const stats = await db
@@ -1611,7 +1611,7 @@ export const createBooking = async (data: CreateBookingData) => {
 
 export const updateBooking = async (
   bookingId: string,
-  data: UpdateBookingData
+  data: UpdateBookingData,
 ) => {
   try {
     const user = await getAuthUser();
@@ -1777,7 +1777,7 @@ export const cancelBooking = async (bookingId: string) => {
 export const updatePaymentStatus = async (
   bookingId: string,
   paymentId: string,
-  status: "completed" | "failed"
+  status: "completed" | "failed",
 ) => {
   try {
     const booking = await db.query.bookings.findFirst({
